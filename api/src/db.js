@@ -1,14 +1,14 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-const modelPlace = require("./models/place.js");
-const modelUser = require("./models/user.js");
-const modelNtf = require("./models/ntf.js");
-const modelCategory = require("./models/category");
-const modelOder = require("./models/order.js");
-const modelFavorite = require("./models/favorite.js");
-const modelLike = require("./models/like.js");
-const modelShoppinCar = require("./models/shopping_car.js");
-const modelTag = require("./models/tag.js");
+const modelPlace = require("./models/Place.js");
+const modelUser = require("./models/User.js");
+const modelNft = require("./models/Nft.js");
+const modelCategory = require("./models/Category");
+const modelOder = require("./models/Order.js");
+const modelFavorite = require("./models/Favorite.js");
+const modelLike = require("./models/Like.js");
+const modelShoppinCar = require("./models/Shopping_car.js");
+const modelTag = require("./models/Tag.js");
 
 /**
  * @author Nicolas Alejandro Suarez
@@ -29,7 +29,7 @@ modelPlace(sequelize);
 modelUser(sequelize);
 modelCategory(sequelize); 
 modelTag(sequelize);
-modelNtf(sequelize);
+modelNft(sequelize);
 modelOder(sequelize);
 modelFavorite(sequelize);
 modelLike(sequelize);
@@ -44,7 +44,7 @@ const {
   user,
   category,
   tag,
-  ntf,
+  nft,
   order,
   favorite,
   like,
@@ -55,26 +55,26 @@ place.hasMany(place, { foreignKey: "located" });
 user.belongsTo(place);
 place.hasMany(user);
 
-ntf.belongsTo(category);
-category.hasMany(ntf);
+nft.belongsTo(category);
+category.hasMany(nft);
 
-ntf.belongsToMany(tag, { through: "NTF_TAG" });
-tag.belongsToMany(ntf, { through: "NTF_TAG" });
+nft.belongsToMany(tag, { through: "NFT_TAG" });
+tag.belongsToMany(nft, { through: "NFT_TAG" });
 
-user.hasMany(ntf);
-ntf.belongsTo(user);
+user.hasMany(nft);
+nft.belongsTo(user);
 
-user.belongsToMany(ntf, { through: shopping_car });
-ntf.belongsToMany(user, { through: shopping_car});
+user.belongsToMany(nft, { through: shopping_car });
+nft.belongsToMany(user, { through: shopping_car});
 
-user.belongsToMany(ntf, { through: favorite});
-ntf.belongsToMany(user, { through: favorite});
+user.belongsToMany(nft, { through: favorite});
+nft.belongsToMany(user, { through: favorite});
 
-user.belongsToMany(ntf, { through: like });
-ntf.belongsToMany(user, { through: like});
+user.belongsToMany(nft, { through: like });
+nft.belongsToMany(user, { through: like});
 
-user.belongsToMany(ntf, { through: order });
-ntf.belongsToMany(user, { through: order });
+user.belongsToMany(nft, { through: order });
+nft.belongsToMany(user, { through: order });
 
 
 
