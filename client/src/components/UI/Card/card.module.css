@@ -27,7 +27,7 @@
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10000;
+  z-index: 999;
   width: 100%;
   height: 100px;
   transition: 0.5s;
@@ -144,6 +144,6 @@
   
 }
 .container .contentBx a:hover{
-  background: #b879ff;
+  background: #fa882a;
   transition: 0.1s;
 }
