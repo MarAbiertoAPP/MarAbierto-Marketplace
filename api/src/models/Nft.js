@@ -4,7 +4,7 @@ const { DataTypes } = require('sequelize');
  * @param {} sequelize 
  */
 module.exports = (sequelize) => {
-  sequelize.define('ntf', {
+  sequelize.define('nft', {
     id:{
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
