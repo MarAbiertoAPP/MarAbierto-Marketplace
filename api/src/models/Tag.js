@@ -1,24 +1,26 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize')
 /**
  * @author Nicolas Alejandro Suarez
- * @param {} sequelize 
+ * @param {} sequelize
  */
 module.exports = (sequelize) => {
   sequelize.define('tag', {
-    id:{
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     }
-  }, {timeStamps: false,
-    createdAt: false, 
-    updatedAt: false});
-};
+  }, {
+    timeStamps: false,
+    createdAt: false,
+    updatedAt: false
+  })
+}
