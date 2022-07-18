@@ -1,1 +1,1 @@
-export const GET_ALL_NFT = 'GET ALL NFT'
+// export const GET_ALL_NFT = 'GET ALL NFT'
