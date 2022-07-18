@@ -1,71 +1,84 @@
-require('dotenv').config();
-const { Sequelize, Op } = require('sequelize');
-const fs = require('fs');
-const path = require('path');
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
+const modelPlace = require("./models/Place.js");
+const modelUser = require("./models/User.js");
+const modelNft = require("./models/Nft.js");
+const modelCategory = require("./models/Category");
+const modelOder = require("./models/Order.js");
+const modelFavorite = require("./models/Favorite.js");
+const modelLike = require("./models/Like.js");
+const modelShoppinCar = require("./models/Shopping_car.js");
+const modelTag = require("./models/Tag.js");
+
+/**
+ * @author Nicolas Alejandro Suarez
+ */
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+
+const sequelize = new Sequelize(
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`,
+  {
+    logging: false,
+    native: false,
+  }
+);
+/**
+ * Create models in database
+ */
+modelPlace(sequelize);
+modelUser(sequelize);
+modelCategory(sequelize); 
+modelTag(sequelize);
+modelNft(sequelize);
+modelOder(sequelize);
+modelFavorite(sequelize);
+modelLike(sequelize);
+modelShoppinCar(sequelize);
+
+
+/**
+ * create relationship
+ */
 const {
-  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME,
-} = process.env;
+  place,
+  user,
+  category,
+  tag,
+  nft,
+  order,
+  favorite,
+  like,
+  shopping_car,
+} = sequelize.models;
 
-let sequelize =
-  process.env.NODE_ENV === 'production'
-    ? new Sequelize({
-      database: DB_NAME,
-      dialect: 'postgres',
-      host: DB_HOST,
-      port: 5432,
-      username: DB_USER,
-      password: DB_PASSWORD,
-      pool: {
-        max: 3,
-        min: 1,
-        idle: 10000,
-      },
-      dialectOptions: {
-        ssl: {
-          require: true,
-          rejectUnauthorized: false,
-        },
-        keepAlive: true,
-      },
-      ssl: true,
-    })
-    : new Sequelize(
-      `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`,
-      { logging: false, native: false }
-    )
+place.hasMany(place, { foreignKey: "located" });
+user.belongsTo(place);
+place.hasMany(user);
 
-/* const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-}); */
-const basename = path.basename(__filename);
+nft.belongsTo(category);
+category.hasMany(nft);
 
-const modelDefiners = [];
+nft.belongsToMany(tag, { through: "NFT_TAG" });
+tag.belongsToMany(nft, { through: "NFT_TAG" });
 
-// Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
-fs.readdirSync(path.join(__dirname, '/models'))
-  .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
-  .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
-  });
+user.hasMany(nft);
+nft.belongsTo(user);
 
-// Injectamos la conexion (sequelize) a todos los modelos
-modelDefiners.forEach(model => model(sequelize));
-// Capitalizamos los nombres de los modelos ie: product => Product
-let entries = Object.entries(sequelize.models);
-let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
-sequelize.models = Object.fromEntries(capsEntries);
+user.belongsToMany(nft, { through: shopping_car });
+nft.belongsToMany(user, { through: shopping_car});
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
-const { User } = sequelize.models;
+user.belongsToMany(nft, { through: favorite});
+nft.belongsToMany(user, { through: favorite});
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
+user.belongsToMany(nft, { through: like });
+nft.belongsToMany(user, { through: like});
+
+user.belongsToMany(nft, { through: order });
+nft.belongsToMany(user, { through: order });
+
 
 
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-  Op
+  ...sequelize.models,
+  conn: sequelize,
 };

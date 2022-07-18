@@ -13,6 +13,5 @@ function App() {
       </BrowserRouter>
     </Fragment>
   );
-}
 
-export default App;
+export default App
