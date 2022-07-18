@@ -1,84 +1,86 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize')
 /**
  * @author Nicolas Alejandro Suarez
- * @param {} sequelize 
+ * @param {} sequelize
  */
 module.exports = (sequelize) => {
   sequelize.define('user', {
-    id:{
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     lastname: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     dni: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     profile_picture: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     phone: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     typeUser: {
       type: DataTypes.ENUM('N', 'SU'),
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     marcoins: {
       type: DataTypes.DECIMAL(20, 2),
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     isActive: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true,
+      defaultValue: true
     }
-  }, {timeStamps: false,
+  }, {
+    timeStamps: false,
     createdAt: false,
-    updatedAt: false});
-};
+    updatedAt: false
+  })
+}

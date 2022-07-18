@@ -1,18 +1,20 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize')
 /**
  * @author Nicolas Alejandro Suarez
- * @param {} sequelize 
+ * @param {} sequelize
  */
 module.exports = (sequelize) => {
   sequelize.define('favorite', {
-    date:{
+    date: {
       type: DataTypes.DATE,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     }
-  }, {timeStamps: false,
+  }, {
+    timeStamps: false,
     createdAt: false,
-    updatedAt: false});
-};
+    updatedAt: false
+  })
+}
