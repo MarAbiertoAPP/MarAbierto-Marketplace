@@ -1,11 +1,17 @@
-import './App.css'
-import React from 'react'
-function App () {
+import './App.css';
+import { Fragment } from 'react';
+import Home from './components/Home/Home';
+import { BrowserRouter, Route, Routes} from 'react-router-dom';
+
+function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
-}
+    <Fragment>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </Fragment>
+  );
 
 export default App
