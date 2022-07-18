@@ -20,6 +20,10 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.19",
     "pg": "^8.7.3",
-    "sequelize": "^6.21.3"
+    "sequelize": "^6.21.3",
+    "standard": "^17.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.20.0"
   }
 }
