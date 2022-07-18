@@ -1,18 +1,18 @@
 import GET_ALL_NFT from '../Actions/ActionsCreators'
 
-let initialState = {
- nft: []
+const initialState = {
+  nft: []
 }
 
-export default function rootReducer(state = initialState, action) {
-    switch(action.payload){
-        case GET_ALL_NFT:
-            return {
-                ...state,
-                nft: action.payload
-            }
+export default function rootReducer (state = initialState, action) {
+  switch (action.payload) {
+    case GET_ALL_NFT:
+      return {
+        ...state,
+        nft: action.payload
+      }
 
-            default: 
-            return {...state}
-    }
+    default:
+      return { ...state }
+  }
 }
