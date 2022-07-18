@@ -1,6 +1,6 @@
-const express = require("express");
-const router = express.Router();
-const placeController = require("../controllers/place.js");
+const express = require('express')
+const router = express.Router()
+const placeController = require('../controllers/place.js')
 
 /**
  * @author Nicolas Alejandro Suarez
@@ -9,10 +9,10 @@ const placeController = require("../controllers/place.js");
 /**
  * route to post a place
  */
-router.post("/", placeController.createPlace);
+router.post('/', placeController.createPlace)
 /**
  * route to get a place
  */
-router.get("/", placeController.getPlace);
+router.get('/', placeController.getPlace)
 
-module.exports = router;
+module.exports = router
