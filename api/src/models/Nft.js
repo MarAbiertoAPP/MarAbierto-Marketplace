@@ -1,49 +1,51 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize')
 /**
  * @author Nicolas Alejandro Suarez
- * @param {} sequelize 
+ * @param {} sequelize
  */
 module.exports = (sequelize) => {
   sequelize.define('nft', {
-    id:{
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     title: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     description: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     path: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     price: {
       type: DataTypes.DECIMAL(20, 2),
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
     isActive: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true,
+      defaultValue: true
     }
-  }, {timeStamps: false,
+  }, {
+    timeStamps: false,
     createdAt: false,
-    updatedAt: false});
-};
+    updatedAt: false
+  })
+}
