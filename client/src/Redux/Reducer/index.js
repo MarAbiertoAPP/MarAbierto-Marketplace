@@ -1,4 +1,4 @@
-import GET_ALL_NFT from '../Actions/ActionsCreators'
+import {GET_ALL_NFT, CREATE_NFT} from '../Actions/ActionsCreators'
 
 let initialState = {
  nft: []
@@ -11,7 +11,10 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 nft: action.payload
             }
-
+        case CREATE_NFT:
+            return {
+                ...state
+            }
             default: 
             return {...state}
     }
