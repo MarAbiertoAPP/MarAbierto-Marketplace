@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from 'react'
 
-export default function SearchBar() {
-
+export default function SearchBar () {
   const [search, setSearch] = useState('')
 
   const handleChange = (e) => {
@@ -18,11 +17,11 @@ export default function SearchBar() {
   return (
     <div>
       <button></button>
-      <form onSubmit={(e) => {handleSubmit(e)}}>
+      <form onSubmit={(e) => { handleSubmit(e) }}>
         <input
           name={'search'}
           value={search}
-          onChange={(e) => {handleChange(e)}}
+          onChange={(e) => { handleChange(e) }}
           type={'search'}
           placeholder={'Search NFTs!'}
         />

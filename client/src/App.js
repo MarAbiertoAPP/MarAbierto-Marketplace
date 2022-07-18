@@ -1,9 +1,10 @@
-import './App.css';
-import { Fragment } from 'react';
-import Home from './components/Home/Home';
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import './App.css'
+import React, { Fragment } from 'react'
 
-function App() {
+import Home from './components/Home/Home'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+function App () {
   return (
     <Fragment>
       <BrowserRouter>
@@ -12,6 +13,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </Fragment>
-  );
-
+  )
+}
 export default App

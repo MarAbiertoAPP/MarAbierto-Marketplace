@@ -1,4 +1,4 @@
-import GET_ALL_NFT from '../Actions/ActionsCreators'
+import { GET_ALL_NFT } from '../Actions/ActionsCreators'
 
 const initialState = {
   nft: []
