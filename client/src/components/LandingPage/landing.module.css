@@ -3,3 +3,10 @@
 #46d5da --> turquoise
 #d77e34 --> orange
 */
+.Container{
+    
+    width: 100%;
+    height: 100vh;
+    background: rgb(184,121,255);
+  background: linear-gradient(0deg, rgba(184,121,255,1) 0%, rgba(24,28,30,1) 56%);
+}
