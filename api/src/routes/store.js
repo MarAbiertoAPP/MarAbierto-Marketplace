@@ -13,7 +13,6 @@ router.get('/all', async (req, res) => {
 // recibe un arreglo de objetos, formato (/api/prechargue.json)
 router.post('/add', async (req, res) => {
   const arrNFT = req.body
-  console.log('aca')
   const arrPromisesNFT = arrNFT.map(n => {
     return nft.create({
       title: n.title,
