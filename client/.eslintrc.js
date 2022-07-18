@@ -18,5 +18,7 @@ module.exports = {
     'react'
   ],
   rules: {
+    semi: [2, 'never'],
+    'no-extra-semi': 'error'
   }
 }
