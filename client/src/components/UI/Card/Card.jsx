@@ -3,7 +3,7 @@ import Classes from './card.module.css'
 import PropTypes from 'prop-types'
 
 export default function Card ({ title, image, price }) {
-  Card.PropTypes = {
+  Card.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.string
