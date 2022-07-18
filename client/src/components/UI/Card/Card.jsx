@@ -1,8 +1,15 @@
-import React from "react";
-import Classes from './card.module.css';
-export default function Card ( {title, image, price}) {
-  
-    return(
+import React from 'react'
+import Classes from './card.module.css'
+import PropTypes from 'prop-types'
+
+export default function Card ({ title, image, price }) {
+  Card.PropTypes = {
+    title: PropTypes.string,
+    image: PropTypes.string,
+    price: PropTypes.string
+  }
+
+  return (
       <div className={Classes.container}>
         <div className={Classes.card}>
             <div className={Classes.imgBx}>
@@ -14,10 +21,9 @@ export default function Card ( {title, image, price}) {
                     <h3>Price :</h3>
                     <span>{price} ETH</span>
                 </div>
-               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a href="#">Buy Now</a>
             </div>
         </div>
         </div>
-    )
+  )
 }
