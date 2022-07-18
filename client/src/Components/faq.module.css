@@ -1,0 +1,27 @@
+.container {
+  box-sizing: border-box;
+  background: rgb(184,121,255);
+  background: linear-gradient(0deg, rgba(184,121,255,1) 0%, rgba(24,28,30,1) 56%);
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.main {
+  background: white;
+  border-radius: 30px;
+  height: 509px;
+  width: 920px;
+  grid-template-columns: 400px 1fr;
+  grid-gap: 6rem;
+  background-image: url('../assests/bg-pattern-desktop.svg');
+  background-repeat: no-repeat;
+  background-position: 1260% 65%;
+}
+
+.accordionQuestion > .question {
+  display: none;
+}
