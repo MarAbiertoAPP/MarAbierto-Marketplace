@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import Home from './components/Home/Home';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
 
-function App() {
+export default function App() {
   return (
     <Fragment>
       <BrowserRouter>
@@ -13,5 +13,6 @@ function App() {
       </BrowserRouter>
     </Fragment>
   );
+}  
 
-export default App
+
