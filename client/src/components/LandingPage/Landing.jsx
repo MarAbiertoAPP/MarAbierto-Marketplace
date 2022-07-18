@@ -9,7 +9,9 @@ const slides = Array.from(Array(SLIDE_COUNT).keys());
 const Landing = () => {
   return (
     <div className={landing.Container}>
-      <EmblaCarousel slides={slides} />
+      <div className={landing.Carrusel}>
+        <EmblaCarousel slides={slides} />
+      </div>
     </div>
   );
 };
