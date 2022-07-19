@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const placeController = require('../controllers/place.js')
+const categoryController = require('../controllers/category.js')
 
 /**
  * @author Nicolas Alejandro Suarez
@@ -9,10 +9,10 @@ const placeController = require('../controllers/place.js')
 /**
  * route to post a place
  */
-router.post('/', placeController.createPlace)
+router.post('/', categoryController.createCategory)
 /**
  * route to get a place
  */
-router.get('/', placeController.getPlace)
+router.get('/', categoryController.getCategory)
 
 module.exports = router
