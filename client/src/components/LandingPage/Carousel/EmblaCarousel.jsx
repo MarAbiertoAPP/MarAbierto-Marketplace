@@ -5,6 +5,8 @@ import Autoplay from "embla-carousel-autoplay";
 import { mediaByIndex } from "../Carousel/media/index.js";
 import "./Css/embla.css";
 
+
+
 const EmblaCarousel = ({ slides, options = { loop: false } }) => {
   const autoplay = useRef(
     Autoplay(

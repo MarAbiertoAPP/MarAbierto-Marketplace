@@ -1,7 +1,7 @@
 .embla {
   
     position: relative;
-    background-color: #543ad4;
+  
     padding: 10px;
     max-width:400px;
     max-height:500px;
@@ -11,6 +11,7 @@
   .embla__viewport {
     overflow: hidden;
     width: 100%;
+    height: 100%;
   }
   
   .embla__viewport.is-draggable {
@@ -41,6 +42,7 @@
     position: relative;
     overflow: hidden;
     height: 400px;
+    object-fit: cover;
   }
   
   .embla__slide__img {
@@ -51,8 +53,9 @@
     width: auto;
     min-height: 100%;
     min-width: 100%;
-    max-width: none;
+    max-width: 100%;
     transform: translate(-50%, -50%);
+   
   }
   
   .embla__button {
@@ -84,10 +87,10 @@
   }
   
   .embla__button--prev {
-    left: 27px;
+    left: -50px;
   }
   
   .embla__button--next {
-    right: 27px;
+    right: -50px;
   }
   
