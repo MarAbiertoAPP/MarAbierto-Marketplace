@@ -3,6 +3,7 @@ import landing from '../LandingPage/landing.module.css'
 import nftData from '../LandingPage/SliderNftData'
 import EmblaCarousel from './Carousel/EmblaCarousel'
 import logoPMA from '../../assests/LogoPMA.png'
+import { Link } from 'react-router-dom'
 
 const SLIDE_COUNT = nftData.length
 const slides = Array.from(Array(SLIDE_COUNT).keys())
@@ -28,14 +29,16 @@ const Landing = () => {
 
         </div>
 
-        <div className="flex flex-row w-full justify-center">
+        <div className="   flex flex-row w-full justify-center">
           <div className="basis-5/12 m-11" >
            <EmblaCarousel slides={slides}/>
           </div>
 
           <div className="basis-5/12 m-11 flex flex-col items-center">
             <p className="p-10 py-20 w-12/12 text-4xl text-neutral-200">NFTs are designed to give you something that cant be copied.</p>
-            <button className="p-4 w-fit bg-amber-600 text-5xl">EXPLORE</button>
+            <Link to="/home">
+            <button className= {landing.toHomeButton }>EXPLORE</button>
+            </Link>
           </div>
         </div>
 
