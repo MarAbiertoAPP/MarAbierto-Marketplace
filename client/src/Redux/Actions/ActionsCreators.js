@@ -1,2 +1,8 @@
 export const GET_ALL_NFT = 'GET ALL NFT'
 export const CREATE_NFT = 'CREATE NFT'
+export const CREATE_USER = 'CREATE USER'
+export const FILTER_BY_PRICE = 'FILTER BY PRICE'
+export const FILTER_BY_TITLE = 'FILTER BY TITLE'
+export const FILTER_BY_CATEGORY = 'FILTER BY CATEGORY'
+export const FILTER_BY_STATE = 'FILTER BY STATE'
+export const FILTER_BY_USER = 'FILTER BY USER'

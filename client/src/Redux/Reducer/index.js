@@ -1,7 +1,14 @@
-import { GET_ALL_NFT, CREATE_NFT } from '../Actions/ActionsCreators'
+import { GET_ALL_NFT, CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, CREATE_USER } from '../Actions/ActionsCreators'
 
 const initialState = {
-  nft: []
+  nft: [],
+  filter: {
+    price: null,
+    title: null,
+    categoryId: null,
+    isActive: null,
+    userId: null
+  }
 }
 
 export default function rootReducer (state = initialState, action) {
@@ -12,6 +19,50 @@ export default function rootReducer (state = initialState, action) {
         nft: action.payload
       }
     case CREATE_NFT:
+      return {
+        ...state
+      }
+    case FILTER_BY_PRICE:
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          price: action.payload
+        }
+      }
+    case FILTER_BY_TITLE:
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          title: action.payload
+        }
+      }
+    case FILTER_BY_CATEGORY:
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          categoryId: action.payload
+        }
+      }
+    case FILTER_BY_STATE:
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          isActive: action.payload
+        }
+      }
+    case FILTER_BY_USER:
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          userId: action.payload
+        }
+      }
+    case CREATE_USER:
       return {
         ...state
       }
