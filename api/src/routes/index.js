@@ -4,13 +4,15 @@ const { Router } = require('express')
 const user = require('./user.js')
 const place = require('./place.js')
 const store = require('./store.js')
+const category = require('./category.js')
 
 const router = Router()
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.use('/users', user)
-router.use('/place', place)
-router.use('/store', store)
+router.use('/places', place)
+router.use('/stores', store)
+router.use('/categories', category)
 
 module.exports = router
