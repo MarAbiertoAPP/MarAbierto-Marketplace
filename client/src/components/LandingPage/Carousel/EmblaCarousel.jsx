@@ -1,47 +1,51 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { PrevButton, NextButton } from "./EmblaCarouselButtons";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import { mediaByIndex } from "../Carousel/media/index.js";
-import "./Css/embla.css";
-
-
+import React, { useState, useEffect, useCallback, useRef } from 'react'
+import { PrevButton, NextButton } from './EmblaCarouselButtons'
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
+import { mediaByIndex } from '../Carousel/media/index.js'
+import './Css/embla.css'
+import PropTypes from 'prop-types'
 
 const EmblaCarousel = ({ slides, options = { loop: false } }) => {
+  EmblaCarousel.propTypes = {
+    slides: PropTypes.any,
+    options: PropTypes.any
+  }
+
   const autoplay = useRef(
     Autoplay(
       { delay: 3000, stopOnInteraction: false },
       (emblaRoot) => emblaRoot.parentElement
     )
-  );
+  )
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [autoplay.current]);
-  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
-  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [autoplay.current])
+  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
+  const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
 
   const scrollNext = useCallback(() => {
-    if (!emblaApi) return;
-    emblaApi.scrollNext();
-    autoplay.current.reset();
-  }, [emblaApi]);
+    if (!emblaApi) return
+    emblaApi.scrollNext()
+    autoplay.current.reset()
+  }, [emblaApi])
 
   const scrollPrev = useCallback(() => {
-    if (!emblaApi) return;
-    emblaApi.scrollPrev();
-    autoplay.current.reset();
-  }, [emblaApi]);
+    if (!emblaApi) return
+    emblaApi.scrollPrev()
+    autoplay.current.reset()
+  }, [emblaApi])
 
   const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setPrevBtnEnabled(emblaApi.canScrollPrev());
-    setNextBtnEnabled(emblaApi.canScrollNext());
-  }, [emblaApi]);
+    if (!emblaApi) return
+    setPrevBtnEnabled(emblaApi.canScrollPrev())
+    setNextBtnEnabled(emblaApi.canScrollNext())
+  }, [emblaApi])
 
   useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect);
-  }, [emblaApi, onSelect]);
+    if (!emblaApi) return
+    onSelect()
+    emblaApi.on('select', onSelect)
+  }, [emblaApi, onSelect])
 
   return (
     <div className="embla">
@@ -63,7 +67,7 @@ const EmblaCarousel = ({ slides, options = { loop: false } }) => {
       <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
       <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
     </div>
-  );
-};
+  )
+}
 
-export default EmblaCarousel;
+export default EmblaCarousel

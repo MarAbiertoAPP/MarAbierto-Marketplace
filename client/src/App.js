@@ -1,11 +1,10 @@
-
+import './App.css'
 import React, { Fragment } from 'react'
-import './App.css';
-import Home from './components/Home/Home';
-import Landing from "./components/LandingPage/Landing";
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import Home from './components/Home/Home'
+import Landing from './components/LandingPage/Landing'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-export default function App() 
+export default function App () {
   return (
     <Fragment>
       <BrowserRouter>
@@ -15,6 +14,6 @@ export default function App()
         </Routes>
       </BrowserRouter>
     </Fragment>
-  );
-}  
+  )
+}
 
