@@ -1,4 +1,3 @@
-
 import './App.css'
 import React, { Fragment } from 'react'
 import Home from './components/Home/Home'
@@ -7,7 +6,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 export default function App () {
   return (
-
     <Fragment>
       <BrowserRouter>
         <Routes>
@@ -16,6 +14,6 @@ export default function App () {
         </Routes>
       </BrowserRouter>
     </Fragment>
-
   )
 }
+
