@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { user } = require('../db.js')
 const { findName } = require('./place.js')
 const bcrypt = require('bcrypt')
@@ -20,8 +21,11 @@ const createUser = async (
 ) => {
   try {
     const place = await findName(placeName)
-    const passwordE = await bcrypt.hash(password, 10)
-    return await user.create({
+    const saltRounds = 10
+    console.log(password)
+    const passwordE = await bcrypt.hash(password, saltRounds)
+    console.log(passwordE)
+    const newUser = await user.create({
       name: eliminarDiacriticos(name).toUpperCase(),
       lastname: eliminarDiacriticos(lastname).toUpperCase(),
       password: passwordE,
@@ -30,8 +34,11 @@ const createUser = async (
       email,
       phone,
       typeUser,
-      placeId: place.dataValues.id
+      placeId: place.dataValues?.id ? place.dataValues.id : null
     })
+    return {
+      user: newUser
+    }
   } catch (error) {
     return error
   }
@@ -44,8 +51,7 @@ const createUser = async (
 const searchUser = async (email) => {
   try {
     return await user.findOne({
-      where: { email },
-      attributes: { exclude: ['password'] }
+      where: { email }
     })
   } catch (error) {
     return error

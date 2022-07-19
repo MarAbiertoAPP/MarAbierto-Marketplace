@@ -46,7 +46,7 @@ router.get('/nft', async (req, res) => {
 router.post('/', nftController.createNFT)
 
 // Route POST to upload NFT's
-// NFT's data came in body
+// NFT's data came in body //revisalo...
 router.post('/add', async (req, res) => {
   const arrNFT = req.body
   const arrPromisesNFT = arrNFT.map(n => {
