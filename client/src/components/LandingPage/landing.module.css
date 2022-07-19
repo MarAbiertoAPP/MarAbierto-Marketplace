@@ -3,3 +3,43 @@
 #46d5da --> turquoise
 #d77e34 --> orange
 */
+.Container{
+    
+    width: 100%;
+    height: 100vh;
+    background: rgb(184,121,255);
+  background: linear-gradient(0deg, rgba(184,121,255,1) 0%, rgba(24,28,30,1) 56%);
+}
+
+.div{
+
+    min-height: 100vh;
+    height: max-content;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(184,121,255);
+    background: linear-gradient(0deg, rgba(184,121,255,1) 0%, rgba(24,28,30,1) 56%);
+    background-attachment: scroll;
+    background-size: fixed;
+}
+
+.limitH{
+   height: 100vh;
+   max-height: 860px;
+}
+body{
+  min-height: 100vh;
+  height: max-content;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(184,121,255);
+  background: linear-gradient(0deg, rgba(184,121,255,1) 0%, rgba(24,28,30,1) 56%);
+  background-attachment: scroll;
+  background-size: fixed;
+}
