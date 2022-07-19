@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Classes from './home.module.css'
 import data from './monigotes/nft'
 import Card from '../UI/Card/Card'
@@ -6,6 +6,10 @@ import SearchBar from './SearchBar/SearchBar'
 import Nav from '../UI/Nav/Navigation'
 
 export default function Home () {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className={Classes.bg}>
       <Nav/>
