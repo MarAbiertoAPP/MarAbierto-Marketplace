@@ -33,11 +33,7 @@ module.exports = (sequelize) => {
       }
     },
     dni: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true
-      }
+      type: DataTypes.STRING
     },
     profile_picture: {
       type: DataTypes.STRING,
@@ -51,11 +47,7 @@ module.exports = (sequelize) => {
       }
     },
     phone: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true
-      }
+      type: DataTypes.STRING
     },
     typeUser: {
       type: DataTypes.ENUM('N', 'SU'),

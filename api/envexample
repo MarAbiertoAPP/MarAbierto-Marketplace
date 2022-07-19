@@ -1,0 +1,8 @@
+DB_USER=postgres
+DB_PASSWORD=123456
+DB_HOST=localhost
+HOST=http://127.0.0.1:3001/
+SECRET=SECR3T
+CORREO=mercaditopf@gmail.com
+CONTRASENIA=cukjsoydudhudwdi
+FRONTEND_URL = http://localhost:3000
