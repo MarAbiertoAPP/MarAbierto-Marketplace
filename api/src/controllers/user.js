@@ -9,13 +9,16 @@ const { createUser, searchUser } = require('../dao/user.js')
  */
 exports.signUp = async (req, res) => {
   const { name, lastname, password, email, dni, profilePicture, phone, place } = req.body
+
   try {
     const userS = await searchUser(email)
     if (userS) {
       return res.status(401).json({ msg: 'Usuario ya registrado' })
     }
+
     const newuser = await createUser(name,
       lastname, password, dni, profilePicture, email, phone, 'N', place)
+    console.log(newuser)
     res.json({
       user: newuser
     })
@@ -24,3 +27,7 @@ exports.signUp = async (req, res) => {
     res.status(500).send({ error: 'Algo ha ocurrido' })
   }
 }
+/**
+ * @author Tiago Cornalo
+ * Signin user
+ */

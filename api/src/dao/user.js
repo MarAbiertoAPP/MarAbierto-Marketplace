@@ -44,8 +44,7 @@ const createUser = async (
 const searchUser = async (email) => {
   try {
     return await user.findOne({
-      where: { email },
-      attributes: { exclude: ['password'] }
+      where: { email }
     })
   } catch (error) {
     return error
