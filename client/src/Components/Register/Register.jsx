@@ -36,7 +36,7 @@ function Register () {
     if (!input.password) {
       errors.password = 'Password is required'
     } else if (!/^(?=.*[0-9])[a-zA-Z0-9]{8,16}$/.test(input.password)) {
-      errors.password = 'Password 8 characters at least one number'
+      errors.password = 'Password must 8 characters at and least one number'
     }
     return errors
   }
@@ -71,7 +71,7 @@ function Register () {
             onChange={handleChange}
             placeholder='Insert Name'
           />
-          {errors.name && (<p >{errors.name}</p>)}
+          {errors.name && <p>{errors.name}</p>}
         </div>
         <div>
           <h4 htmlFor='lastname'>Lastname</h4>
@@ -83,30 +83,30 @@ function Register () {
             onChange={handleChange}
             placeholder='Insert Lastname'
           />
-          {errors.lastname && (<p >{errors.lastname}</p>)}
+          {errors.lastname && <p >{errors.lastname}</p>}
         </div>
         <div>
-        <h4 htmlFor='email'>Email</h4>
-        <input
-          name='email'
-          id='email'
-          type='text'
-          value={input.email}
-          onChange={e => handleChange(e)}
-          placeholder='Insert Email'
-        />
-          {errors.email && <p >{errors.email}</p>}
+          <h4 htmlFor='email'>Email</h4>
+          <input
+            name='email'
+            id='email'
+            type='text'
+            value={input.email}
+            onChange={handleChange}
+            placeholder='Insert Email'
+          />
+          {errors.email && <p>{errors.email}</p>}
         </div>
         <div>
-        <h4 htmlFor='password'>Password</h4>
-        <input
-          name='password'
-          id='password'
-          type='password'
-          value={input.password}
-          onChange={e => handleChange(e)}
-          placeholder='Insert Password'
-        />
+          <h4 htmlFor='password'>Password</h4>
+          <input
+            name='password'
+            id='password'
+            type='password'
+            value={input.password}
+            onChange={handleChange}
+            placeholder='Insert Password'
+          />
           {errors.password && (<p >{errors.password}</p>)}
         </div>
         <button type='submit'>
