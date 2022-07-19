@@ -8,9 +8,19 @@ const userController = require('../controllers/user')
  */
 
 /**
- * Create New User
+ * Create New User Register
  */
 router.post('/signup', userController.signUp)
 router.post('/signin', userController.signIn)
+
+/**
+ *  get User
+ */
+router.get('/profile', userController.signUp)
+
+/**
+ * Iniciar sesion
+ */
+router.post('/signin', userController.signUp)
 
 module.exports = router
