@@ -12,7 +12,7 @@ const initialState = {
 }
 
 export default function rootReducer (state = initialState, action) {
-  switch (action.payload) {
+  switch (action.type) {
     case GET_ALL_NFT:
       return {
         ...state,
