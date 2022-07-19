@@ -24,6 +24,7 @@
 }
 
 .container .card .imgBx{
+  opacity: 0.6;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -36,7 +37,7 @@
 .container .card:hover .imgBx{
   top: 35%;
   transform: translateY(0%);
-  opacity: 0.6;
+  opacity: 1;
 }
 
 
@@ -146,4 +147,13 @@
 .container .contentBx a:hover{
   background: #fa882a;
   transition: 0.1s;
+}
+
+@media (max-width: 600px) {
+  .container .card .imgBx{
+    opacity: 1;
+  }
+  .container .card:hover .imgBx{
+    opacity: 0.6;
+  }
 }
