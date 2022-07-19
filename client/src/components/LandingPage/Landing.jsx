@@ -11,7 +11,7 @@ const Landing = () => {
   return (
       <div className={landing.div}>
 
-        <div className={`${landing.limitH} flex flex-col  max-w-screen-xl w-screen max-w-screen-xl `}>
+        <div className={`${landing.limitH} flex flex-col  w-screen max-w-screen-xl `}>
 
         <div className=" m-2 flex flex-start max-h-24 max-w-fit">
           <img className="object-cover" src='https://raw.githubusercontent.com/RQuirogaH/MarAbierto-Marketplace/US2_Home_Page/client/src/assests/LogoPMA.png' alt='logo'></img>
