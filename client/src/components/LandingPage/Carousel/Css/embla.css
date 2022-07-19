@@ -1,5 +1,5 @@
 .embla {
-  
+  margin-top: 200%;
     position: relative;
   
     padding: 10px;
@@ -24,6 +24,7 @@
   }
   
   .embla__container {
+    
     display: flex;
     user-select: none;
     -webkit-touch-callout: none;
@@ -66,13 +67,13 @@
     position: absolute;
     z-index: 1;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(200%);
     border: 0;
     width: 30px;
     height: 30px;
     justify-content: center;
     align-items: center;
-    fill: #1bcacd;
+    fill: #1bcd42;
     padding: 0;
   }
   
@@ -88,7 +89,9 @@
   
   .embla__button--prev {
     left: -50px;
+    transition-delay: 0.5;
   }
+ 
   
   .embla__button--next {
     right: -50px;

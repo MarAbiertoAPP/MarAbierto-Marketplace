@@ -9,8 +9,11 @@ function App() {
 
         <Routes>
 
+
           <Route path="/" element={<Landing/>}>
           </Route>
+
+
         </Routes>
 
       </BrowserRouter>

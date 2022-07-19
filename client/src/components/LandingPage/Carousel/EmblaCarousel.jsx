@@ -10,7 +10,7 @@ import "./Css/embla.css";
 const EmblaCarousel = ({ slides, options = { loop: false } }) => {
   const autoplay = useRef(
     Autoplay(
-      { delay: 2000, stopOnInteraction: false },
+      { delay: 3000, stopOnInteraction: false },
       (emblaRoot) => emblaRoot.parentElement
     )
   );
@@ -53,7 +53,7 @@ const EmblaCarousel = ({ slides, options = { loop: false } }) => {
                 <img
                   className="embla__slide__img"
                   src={mediaByIndex(index)}
-                  alt="A cool cat."
+                  alt="falta  Imagen"
                 />
               </div>
             </div>
