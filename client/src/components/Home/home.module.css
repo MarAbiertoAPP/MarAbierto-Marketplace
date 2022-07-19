@@ -1,3 +1,16 @@
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+  
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #6649b8;
+} 
+
 body{
   background: rgb(184,121,255);
 background: linear-gradient(0deg, rgba(184,121,255,1) 0%, rgba(24,28,30,1) 56%);
