@@ -1,11 +1,18 @@
+import React, { Fragment } from 'react'
 import './App.css'
-import React from 'react'
-function App () {
+import Home from './components/Home/Home'
+import Landing from './components/LandingPage/Landing'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+export default function App () {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <Fragment>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Landing/>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </Fragment>
   )
 }
-
-export default App

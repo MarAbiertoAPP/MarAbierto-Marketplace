@@ -1,32 +1,34 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize')
 /**
  * @author Nicolas Alejandro Suarez
- * @param {} sequelize 
+ * @param {} sequelize
  */
 module.exports = (sequelize) => {
   sequelize.define('order', {
-    total:{
+    total: {
       type: DataTypes.DECIMAL(20, 2),
       allowNull: false,
       validate: {
-        notNull: true, 
+        notNull: true
       }
     },
-    date:{
-        type: DataTypes.DATE,
-        allowNull: false,
-        validate: {
-          notNull: true, 
-        }
-      },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        notNull: true
+      }
+    },
     state: {
-        type: DataTypes.ENUM('approved', 'denclined', 'pending'),
-        allowNull: false,
-        validate: {
-          notNull: true, 
-        }
+      type: DataTypes.ENUM('approved', 'denclined', 'pending'),
+      allowNull: false,
+      validate: {
+        notNull: true
+      }
     }
-  }, {timeStamps: false,
+  }, {
+    timeStamps: false,
     createdAt: false,
-    updatedAt: false});
-};
+    updatedAt: false
+  })
+}
