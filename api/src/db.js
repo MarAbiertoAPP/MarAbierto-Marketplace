@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { Sequelize } = require('sequelize')
+const { Sequelize, Op } = require('sequelize')
 const modelPlace = require('./models/Place.js')
 const modelUser = require('./models/User.js')
 const modelNft = require('./models/Nft.js')
@@ -71,5 +71,6 @@ nft.belongsToMany(user, { through: order })
 
 module.exports = {
   ...sequelize.models,
-  conn: sequelize
+  conn: sequelize,
+  Op
 }
