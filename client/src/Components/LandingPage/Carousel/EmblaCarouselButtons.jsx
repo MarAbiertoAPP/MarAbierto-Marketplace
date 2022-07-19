@@ -4,7 +4,7 @@ import React from 'react'
 export const PrevButton = ({ enabled, onClick }) => (
 
   <button
-    className="embla__button embla__button--prev"
+    className="hidden xl:flex embla__button embla__button--prev"
     onClick={onClick}
     disabled={!enabled}
   >
@@ -16,7 +16,7 @@ export const PrevButton = ({ enabled, onClick }) => (
 
 export const NextButton = ({ enabled, onClick }) => (
   <button
-    className="embla__button embla__button--next"
+    className="hidden xl:flex embla__button embla__button--next"
     onClick={onClick}
     disabled={!enabled}
   >

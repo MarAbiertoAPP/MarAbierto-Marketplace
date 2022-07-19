@@ -15,6 +15,9 @@
     overflow: hidden;
     width: 100%;
     height: 100%;
+    border-radius: 8px;
+    box-shadow: rgba(167, 7, 135, 0.56) 0px 22px 70px 4px;
+
   }
   
   .embla__viewport.is-draggable {
@@ -69,14 +72,14 @@
     touch-action: manipulation;
     position: absolute;
     z-index: 1;
-    top: 35%;
+    top: 33%;
     transform: translateY(200%);
     border: 0;
     width: 30px;
     height: 30px;
     justify-content: center;
     align-items: center;
-    fill: #1bcd42;
+    fill: rgb(217 119 6);
     padding: 0;
   }
   
