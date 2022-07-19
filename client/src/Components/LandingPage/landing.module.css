@@ -17,7 +17,7 @@
   min-height: 100vh;
   height: max-content;
   display: flex;
-  margin: auto;
+  
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -31,6 +31,8 @@
   height: 100vh;
   max-height: 860px;
 }
+
+
 
 body {
   background: rgb(184, 121, 255);
@@ -76,7 +78,7 @@ body {
   }
 }
 
-.toHomeButton:before {
+/* .toHomeButton:before {
   content: '';
   position: absolute;
   top: -5px;
@@ -92,7 +94,7 @@ body {
 
 .toHomeButton:hover::before {
   filter: blur(20px);
-}
+} */
 
 .toHomeButton:active {
   background: linear-gradient(32deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
