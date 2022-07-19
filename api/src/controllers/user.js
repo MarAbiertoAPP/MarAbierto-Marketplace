@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken')
  * ALTERAR AL DARLE TOKEN CON JWT
  */
 exports.signUp = async (req, res) => {
-  const { name, lastname, password, email, dni, profilePicture, phone, place } = req.body
+  const { name, lastname, password, email, dni, profilePicture, phone } = req.body
 
   try {
     const userS = await searchUser(email)
@@ -19,7 +19,7 @@ exports.signUp = async (req, res) => {
     }
 
     const newuser = await createUser(name,
-      lastname, password, dni, profilePicture, email, phone, 'N', place)
+      lastname, password, dni, profilePicture, email, phone, 'N')
     console.log(newuser)
     res.json({
       user: newuser

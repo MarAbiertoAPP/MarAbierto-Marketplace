@@ -1,6 +1,5 @@
 require('dotenv').config()
 const { user } = require('../db.js')
-const { findName } = require('./place.js')
 const bcrypt = require('bcrypt')
 /**
  * @author Nicolas Alejandro Suarez
@@ -16,11 +15,9 @@ const createUser = async (
   profilePicture,
   email,
   phone,
-  typeUser,
-  placeName
+  typeUser
 ) => {
   try {
-    const place = await findName(placeName)
     const saltRounds = 10
     console.log(password)
     const passwordE = await bcrypt.hash(password, saltRounds)
@@ -33,8 +30,7 @@ const createUser = async (
       profile_picture: profilePicture,
       email,
       phone,
-      typeUser,
-      placeId: place.dataValues?.id ? place.dataValues.id : null
+      typeUser
     })
     return {
       user: newUser

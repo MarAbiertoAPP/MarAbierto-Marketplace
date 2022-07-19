@@ -1,6 +1,5 @@
 require('dotenv').config()
 const { Sequelize, Op } = require('sequelize')
-const modelPlace = require('./models/Place.js')
 const modelUser = require('./models/User.js')
 const modelNft = require('./models/Nft.js')
 const modelCategory = require('./models/Category')
@@ -24,7 +23,6 @@ const sequelize = new Sequelize(
 /**
  * Create models in database
  */
-modelPlace(sequelize)
 modelUser(sequelize)
 modelCategory(sequelize)
 modelNft(sequelize)
@@ -37,7 +35,6 @@ modelShoppingCar(sequelize)
  * create relationship
  */
 const {
-  place,
   user,
   category,
   nft,
@@ -46,10 +43,6 @@ const {
   like,
   shoppingCar
 } = sequelize.models
-
-place.hasMany(place, { foreignKey: 'located' })
-user.belongsTo(place)
-place.hasMany(user)
 
 nft.belongsTo(category)
 category.hasMany(nft)
