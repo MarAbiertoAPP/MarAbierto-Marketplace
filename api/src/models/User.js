@@ -41,10 +41,7 @@ module.exports = (sequelize) => {
     },
     profile_picture: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true
-      }
+      defaultValue: 'https://cdn.dribbble.com/users/1165166/screenshots/3394646/media/d7adc8caca2611cd33ea23061df411fc.png'
     },
     email: {
       type: DataTypes.STRING,
@@ -69,10 +66,7 @@ module.exports = (sequelize) => {
     },
     marcoins: {
       type: DataTypes.DECIMAL(20, 2),
-      allowNull: false,
-      validate: {
-        notNull: true
-      }
+      defaultValue: 0
     },
     isActive: {
       type: DataTypes.BOOLEAN,
