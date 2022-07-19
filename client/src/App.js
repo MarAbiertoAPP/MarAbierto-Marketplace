@@ -1,24 +1,24 @@
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import './App.css';
+import { Fragment } from 'react';
+import Home from './components/Home/Home';
 import Landing from "./components/LandingPage/Landing";
+import { BrowserRouter, Route, Routes} from 'react-router-dom';
 
-function App() {
+
+export default function App() {
   return (
-    <div>
+  
+    <Fragment>
       <BrowserRouter>
-
         <Routes>
-
-
-          <Route path="/" element={<Landing/>}>
-          </Route>
-
-
+          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Landing/>}></Route>
         </Routes>
-
       </BrowserRouter>
-    </div>
-  );
-}
+    </Fragment>
 
-export default App;
+  );
+}  
+
+

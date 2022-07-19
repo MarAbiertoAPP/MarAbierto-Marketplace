@@ -1,20 +1,80 @@
-const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+const { DataTypes } = require('sequelize')
+/**
+ * @author Nicolas Alejandro Suarez
+ * @param {} sequelize
+ */
 module.exports = (sequelize) => {
-  // defino el modelo
   sequelize.define('user', {
     id: {
-        type: DataTypes.INTEGER,
-        unique: true,
-        autoIncrement: true,
-        primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true
     },
     name: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true
+      }
+    },
+    lastname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true
+      }
+    },
+    dni: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true
+      }
+    },
+    profile_picture: {
+      type: DataTypes.STRING,
+      defaultValue: 'https://cdn.dribbble.com/users/1165166/screenshots/3394646/media/d7adc8caca2611cd33ea23061df411fc.png'
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true
+      }
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true
+      }
+    },
+    typeUser: {
+      type: DataTypes.ENUM('N', 'SU'),
+      allowNull: false,
+      validate: {
+        notNull: true
+      }
+    },
+    marcoins: {
+      type: DataTypes.DECIMAL(20, 2),
+      defaultValue: 0
+    },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     }
-  },{
-    timestamps: false,
-  });
-};
+  }, {
+    timeStamps: false,
+    createdAt: false,
+    updatedAt: false
+  })
+}
