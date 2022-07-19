@@ -9,7 +9,7 @@ const slides = Array.from(Array(SLIDE_COUNT).keys())
 
 const Landing = () => {
   return (
-      <div>
+      <div className={landing.div}>
 
         <div className={`${landing.limitH} flex flex-col  max-w-screen-xl w-screen max-w-screen-xl `}>
 
