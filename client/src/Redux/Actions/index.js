@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export function getAllNFT () {
   return function (dispatch) {
-    axios(`http://localhost:${process.env.PORT}/stores/all`)
+    axios('http://localhost:3001/stores/all')
       .then(res => {
         dispatch({ type: GET_ALL_NFT, payload: res.data })
       }).catch(error => console.log(error.message))
@@ -37,10 +37,10 @@ export function filterByCategory (categoryId) {
 }
 export function filterByTitle (title) {
   return function (dispatch) {
-    axios(`http://localhost:${process.env.PORT}/stores/nft?title=${title}`)
+    axios(`http://localhost:3001/stores/nft?title=${title}`)
       .then(res => {
         dispatch({ type: FILTER_BY_TITLE, payload: res.data })
-      })
+      }).catch(error => console.log(error.message))
   }
 }
 export function filterByUser (userId) {

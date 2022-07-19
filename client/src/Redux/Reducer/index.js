@@ -2,6 +2,7 @@ import { GET_ALL_NFT, CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY
 
 const initialState = {
   nft: [],
+  search: [],
   filter: {
     price: null,
     title: null,
@@ -12,7 +13,7 @@ const initialState = {
 }
 
 export default function rootReducer (state = initialState, action) {
-  switch (action.payload) {
+  switch (action.type) {
     case GET_ALL_NFT:
       return {
         ...state,
@@ -33,10 +34,7 @@ export default function rootReducer (state = initialState, action) {
     case FILTER_BY_TITLE:
       return {
         ...state,
-        filter: {
-          ...state.filter,
-          title: action.payload
-        }
+        search: action.payload
       }
     case FILTER_BY_CATEGORY:
       return {
