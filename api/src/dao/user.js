@@ -2,7 +2,6 @@ require('dotenv').config()
 const { user } = require('../db.js')
 const { findName } = require('./place.js')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize
@@ -22,7 +21,10 @@ const createUser = async (
 ) => {
   try {
     const place = await findName(placeName)
-    const passwordE = await bcrypt.hash(password, 10)
+    const saltRounds = 10
+    console.log(password)
+    const passwordE = await bcrypt.hash(password, saltRounds)
+    console.log(passwordE)
     const newUser = await user.create({
       name: eliminarDiacriticos(name).toUpperCase(),
       lastname: eliminarDiacriticos(lastname).toUpperCase(),
@@ -34,12 +36,8 @@ const createUser = async (
       typeUser,
       placeId: place.dataValues?.id ? place.dataValues.id : null
     })
-    const token = jwt.sign({ id: newUser.id }, process.env.SECRET, {
-      expiresIn: 60 * 60 * 1
-    })
     return {
-      user: newUser,
-      token
+      user: newUser
     }
   } catch (error) {
     return error
