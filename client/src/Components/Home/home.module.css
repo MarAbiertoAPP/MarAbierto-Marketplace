@@ -12,5 +12,13 @@ body::-webkit-scrollbar-thumb {
 } 
 
 .main{
-  margin-top: 10%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  margin: 10% auto 0 auto;
+}
+
+@media (max-width: 600px){
+  .main{
+    margin-top: 20%;
+  }
 }
