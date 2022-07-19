@@ -19,9 +19,7 @@ const createUser = async (
 ) => {
   try {
     const saltRounds = 10
-    console.log(password)
     const passwordE = await bcrypt.hash(password, saltRounds)
-    console.log(passwordE)
     const newUser = await user.create({
       name: eliminarDiacriticos(name).toUpperCase(),
       lastname: eliminarDiacriticos(lastname).toUpperCase(),
@@ -32,9 +30,7 @@ const createUser = async (
       phone,
       typeUser
     })
-    return {
-      user: newUser
-    }
+    return newUser
   } catch (error) {
     return error
   }
