@@ -5,9 +5,18 @@ const nftController = require('../controllers/nft.js')
 
 // Route GET all NFT's
 router.get('/all', async (req, res) => {
+  const { offset, limit } = req.query
   try {
-    const allNFT = await nft.findAll()
-    res.status(200).json(allNFT)
+    const count = await nft.count({})
+    const allNFT = await nft.findAll({
+      offset: offset * limit,
+      limit
+    })
+    res.status(200).json({
+      nft: allNFT,
+      currentPage: offset,
+      totalPage: Math.ceil(count / limit)
+    })
   } catch (error) {
     return res.status(400).send({ msg: error })
   }
