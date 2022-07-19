@@ -1,17 +1,18 @@
-import './App.css';
-import { Fragment } from 'react';
-import Home from './components/Home/Home';
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import './App.css'
+import React, { Fragment } from 'react'
+import Faq from './Components/Faq/faq'
+import Home from './Components/Home/Home.jsx'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-function App() {
+export default function App () {
   return (
     <Fragment>
       <BrowserRouter>
         <Routes>
           <Route path="/home" element={<Home />} />
+          <Route path="/faq" element={<Faq />} />
         </Routes>
       </BrowserRouter>
     </Fragment>
-  );
-
-export default App
+  )
+}
