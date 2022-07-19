@@ -1,8 +1,8 @@
 import React from 'react'
-
 import landing from '../LandingPage/landing.module.css'
 import nftData from '../LandingPage/SliderNftData'
 import EmblaCarousel from './Carousel/EmblaCarousel'
+import logoPMA from '../../assests/LogoPMA.png'
 
 const SLIDE_COUNT = nftData.length
 const slides = Array.from(Array(SLIDE_COUNT).keys())
@@ -14,7 +14,7 @@ const Landing = () => {
         <div className={`${landing.limitH} flex flex-col  w-screen max-w-screen-xl `}>
 
         <div className=" m-2 flex flex-start max-h-24 max-w-fit">
-          <img className="object-cover" src='https://raw.githubusercontent.com/RQuirogaH/MarAbierto-Marketplace/US2_Home_Page/client/src/assests/LogoPMA.png' alt='logo'></img>
+          <img className="object-cover" src={logoPMA} alt='logo'></img>
         </div>
 
         <div className="flex w-full justify-center content-center">
