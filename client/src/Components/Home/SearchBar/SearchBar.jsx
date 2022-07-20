@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Classes from './searchbar.module.css'
-import { filterByTitle } from '../../../Redux/Actions/index'
+import { filterByTitle, setPage } from '../../../Redux/Actions/index'
 import { BiRefresh, BiSearch } from 'react-icons/bi'
 import { useDispatch } from 'react-redux'
 import FilterSortBar from '../FilterSortBar/FilterSortBar'
@@ -29,6 +29,7 @@ export default function SearchBar () {
     }
 
     dispatch(filterByTitle(search))
+    dispatch(setPage(0))
     setSearch('')
   }
 

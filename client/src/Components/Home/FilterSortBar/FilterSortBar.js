@@ -1,9 +1,10 @@
 import React from 'react'
 import Classes from '../SearchBar/searchbar.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { orderNFTS } from '../../../Redux/Actions/ActionsSort'
+// import { orderNFTS } from '../../../Redux/Actions/ActionsSort'
 import { BiArrowToLeft, BiArrowToRight } from 'react-icons/bi'
 import { showFilterBar } from '../../../Redux/Actions/ActionsFilterBar'
+import { setSort } from '../../../Redux/Actions/index'
 
 export default function FilterSortBar () {
   const dispatch = useDispatch()
@@ -11,7 +12,7 @@ export default function FilterSortBar () {
 
   const onChangeHandlerSort = (e) => {
     e.preventDefault()
-    dispatch(orderNFTS(e.target.value))
+    dispatch(setSort(e.target.value))
   }
 
   // filter: {
@@ -35,15 +36,15 @@ export default function FilterSortBar () {
       }}
       >
         <optgroup className={Classes.group} label="Reset">
-          <option value={'Default'}>Order by (Default)</option>
+          <option value="id_ASC">Order by (Default)</option>
         </optgroup>
         <optgroup className={Classes.group} label="Name">
-          <option value="ascName">Ascending (A-Z) ↑</option>
-          <option value="descName">Descending (Z-A) ↓</option>
+          <option value="title_ASC">Ascending (A-Z) ↑</option>
+          <option value="title_DESC">Descending (Z-A) ↓</option>
         </optgroup>
         <optgroup className={Classes.group} label="Price">
-          <option value="ascPrice">From Lower-Higher ↑</option>
-          <option value="descPrice">From Higher-Lower ↓</option>
+          <option value="price_ASC">From Lower-Higher ↑</option>
+          <option value="price_DESC">From Higher-Lower ↓</option>
         </optgroup>
       </select>
     </div>
