@@ -25,6 +25,7 @@ export default function Home () {
 
   useEffect(() => {
     console.log(filterConfig)
+    window.scrollTo(0, 0)
     axios.post(`/stores/nft?offset=${page.current || 0}`, filterConfig)
       .then(response => setDataAPI(response.data))
       .then(response => dispatch(setPageMax(dataAPI.totalPage)))

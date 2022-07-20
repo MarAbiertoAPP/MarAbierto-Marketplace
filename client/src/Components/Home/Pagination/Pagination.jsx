@@ -1,4 +1,5 @@
 import React from 'react'
+import Classes from './Pagination.module.css'
 import { setPage } from '../../../Redux/Actions'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -14,11 +15,11 @@ export default function Pagination () {
   }
 
   return (
-    <div>
-        <button value={'firstPage'} onClick={(e) => handleClick(e)}>FisrtPage</button>
-        <button value={'prevPage'} onClick={(e) => handleClick(e)}>PrevPage</button>
-        <button value={'nextPage'} onClick={(e) => handleClick(e)}>NextPage</button>
-        <button value={'lastPage'}onClick={(e) => handleClick(e)}>LastPage</button>
+    <div className={Classes.container}>
+        <button className='m-5' value={'firstPage'} onClick={(e) => handleClick(e)}>FIRST PAGE</button>
+        <button className='m-5' value={'prevPage'} onClick={(e) => handleClick(e)}>PREV PAGE</button>
+        <button className='m-5' value={'nextPage'} onClick={(e) => handleClick(e)}>NEXT PAGE</button>
+        <button className='m-5' value={'lastPage'} onClick={(e) => handleClick(e)}>LAST PAGE</button>
     </div>
   )
 }
