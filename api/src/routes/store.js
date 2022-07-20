@@ -2,7 +2,6 @@ const { Router } = require('express')
 const router = Router()
 const { nft, Op } = require('../db.js')
 const nftController = require('../controllers/nft.js')
-const { parsePrice } = require('../utils/utils')
 
 /* // Route GET all NFT's
 router.get('/all', async (req, res) => {
