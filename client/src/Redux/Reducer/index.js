@@ -1,5 +1,5 @@
-import { CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, SET_PAGE, SET_PAGE_MAX, CREATE_USER, GET_ALL_CATEGORIES, CREATE_CATEGORIES } from '../Actions/ActionsCreators'
-
+import { CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, SET_PAGE, SET_PAGE_MAX, CREATE_USER, GET_ALL_CATEGORIES } from '../Actions/ActionsCreators'
+import { SHOW_FILTER_BAR } from '../Actions/ActionsFilterBar'
 const initialState = {
   filter: {
     price: null,
@@ -12,8 +12,8 @@ const initialState = {
     current: 0,
     max: undefined
   },
-  categories: []
-
+  categories: [],
+  filterBar: false
 }
 
 export default function rootReducer (state = initialState, action) {
@@ -29,6 +29,11 @@ export default function rootReducer (state = initialState, action) {
           ...state.filter,
           price: action.payload
         }
+      }
+    case SHOW_FILTER_BAR:
+      return {
+        ...state,
+        filterBar: action.payload
       }
     case FILTER_BY_TITLE:
       return {

@@ -35,7 +35,7 @@ export default function SearchBar () {
   return (
     <div>
     <div className={Classes.container1}>
-    <button className={Classes.button}><BiArrowFromRight/>Filters</button>
+    <button className={Classes.button}>Filters</button>
     <button className={Classes.button}><BiRefresh/>Refresh</button>
     <form className={Classes.container2} onSubmit={(e) => { handleSubmit(e) }}>
       <input className={Classes.input}
@@ -51,7 +51,6 @@ export default function SearchBar () {
       <div>
         <FilterSortBar/>
       </div>
-
     </div>
 
   )
