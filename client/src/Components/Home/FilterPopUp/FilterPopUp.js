@@ -12,19 +12,19 @@ export default function FilterPopUp () {
 
   return (
     <div className={Classes.container}>
-      <h1>Its time to filter!</h1>
+      <h1>ITS TIME TO FILTER!</h1>
       <br/>
       <label>Price range?
-        <input type={'number'} width={'5'}/>
+        <input className={Classes.input} type={'number'} width={'5'} placeholder={'Min'}/>
         -
-        <input type={'number'} width={'5'}/>
+        <input className={Classes.input} type={'number'} width={'5'} placeholder={'Max'}/>
       </label>
       <br/>
       <label>Active?:
         <input type={'checkbox'}/>
       </label>
       <br/>
-      <button type={'submit'}> Lets Go!</button>
+      <button className={Classes.button} type={'submit'}> Lets Go!</button>
     </div>
   )
 }
