@@ -29,9 +29,10 @@ router.get('/all', async (req, res) => {
 // Route GET with search by name and filters
 // params came by body
 // pagination came by query
-router.get('/nft', async (req, res) => {
+router.post('/nft', async (req, res) => {
   try {
     const input = req.body
+    console.log(input)
     const offset = req.query.offset || 0
     const limit = req.query.limit || 10
     const whereQuery = {}
@@ -39,18 +40,20 @@ router.get('/nft', async (req, res) => {
     const AVAILABLE_QUERYS = ['title', 'price', 'categoryId', 'isActive', 'userId']
 
     for (const query in input) {
-      if (AVAILABLE_QUERYS.includes(query)) {
-        if (query === 'title') {
-          whereQuery[query] = {
-            [Op.iLike]: `%${input[query]}%`
+      if (input[query] !== null) {
+        if (AVAILABLE_QUERYS.includes(query)) {
+          if (query === 'title') {
+            whereQuery[query] = {
+              [Op.iLike]: `%${input[query]}%`
+            }
+          } else if (query === 'price') {
+            const priceMinMax = input[query].split('_')
+            whereQuery[query] = {
+              [Op.between]: [Number(priceMinMax[0]), Number(priceMinMax[1])]
+            }
+          } else {
+            whereQuery[query] = input[query]
           }
-        } else if (query === 'price') {
-          const priceMinMax = input[query].split('_')
-          whereQuery[query] = {
-            [Op.between]: [Number(priceMinMax[0]), Number(priceMinMax[1])]
-          }
-        } else {
-          whereQuery[query] = input[query]
         }
       }
     }

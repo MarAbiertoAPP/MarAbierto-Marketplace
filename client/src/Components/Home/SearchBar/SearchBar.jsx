@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import Classes from './searchbar.module.css'
 import { BiArrowFromRight, BiRefresh, BiSearch } from 'react-icons/bi'
+import { filterByTitle } from '../../../Redux/Actions/index'
+import { useDispatch } from 'react-redux'
+
 export default function SearchBar () {
   const [search, setSearch] = useState('')
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -11,7 +15,7 @@ export default function SearchBar () {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // dispatch()
+    dispatch(filterByTitle(search))
     setSearch('')
   }
 
