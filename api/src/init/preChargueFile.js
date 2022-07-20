@@ -22,7 +22,7 @@ const users = [
     lastname: 'suarez',
     password: '2jmk3218',
     dni: '1049653787',
-    email: '2jmk3218@gmail.com',
+    email: '2jmk3@gmail.com',
     phone: '3177833860'
   },
   {
