@@ -4,6 +4,7 @@ import data from './monigotes/nft'
 import Card from '../UI/Card/Card'
 import SearchBar from './SearchBar/SearchBar'
 import Nav from '../UI/Nav/Navigation'
+import Footer from '../Footer/Footer'
 
 export default function Home () {
   useEffect(() => {
@@ -17,7 +18,7 @@ export default function Home () {
       <div className={`${Classes.main} place-items-center`}>
         {data && data.map(item => <Card key={item.title} title={item.title} image={item.img} price={item.price}/>)}
       </div>
-
+<Footer/>
     </div>
   )
 }

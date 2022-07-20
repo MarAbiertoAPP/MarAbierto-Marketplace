@@ -10,9 +10,9 @@ export default function App () {
     <Fragment>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing/>}></Route>
-          <Route path="/home" element={<Home />} />
-          <Route path="/faq" element={<Faq/>}></Route>
+          <Route path="/home" element={<Home/>}/>
+          <Route path="/" element={<Landing/>}/>
+          <Route path="/faq" element={<Faq/>}/>
         </Routes>
       </BrowserRouter>
     </Fragment>
