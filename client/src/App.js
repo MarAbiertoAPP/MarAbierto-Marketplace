@@ -2,8 +2,8 @@ import React, { Fragment } from 'react'
 import './App.css'
 import Home from './Components/Home/Home.jsx'
 import Landing from './Components/LandingPage/Landing.jsx'
+import Faq from './Components/Faq/faq.jsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Faq from '../src/Components/Faq/faq'
 
 export default function App () {
   return (

@@ -1,6 +1,7 @@
 const { createUser, searchUser } = require('../dao/user.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const { emailRegisterUser } = require('../dao/sendMails.js')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize
@@ -20,9 +21,14 @@ exports.signUp = async (req, res) => {
 
     const newuser = await createUser(name,
       lastname, password, dni, profilePicture, email, phone, 'N')
-    console.log(newuser)
+
+    const token = jwt.sign({ id: newuser.id }, process.env.SECRET, {
+      expiresIn: 60 * 60 * 24
+    })
+    emailRegisterUser(email, `${name} ${lastname}`)
     res.json({
-      user: newuser
+      user: newuser,
+      token
     })
   } catch (err) {
     console.log(err)
@@ -40,7 +46,6 @@ exports.signIn = async (req, res) => {
     if (!user) {
       return res.status(401).json({ msg: 'Usuario no registrado' })
     }
-    console.log(user)
     const passwordCorrect = await bcrypt.compare(pass, user.dataValues.password)
     if (!passwordCorrect) {
       return res.status(401).json({ msg: 'Contraseña incorrecta' })

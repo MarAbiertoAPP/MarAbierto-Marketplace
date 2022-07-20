@@ -3,7 +3,7 @@ const router = Router()
 const { nft, Op } = require('../db.js')
 const nftController = require('../controllers/nft.js')
 
-// Route GET all NFT's
+/* // Route GET all NFT's
 router.get('/all', async (req, res) => {
   const { offset, limit } = req.query
   try {
@@ -12,21 +12,28 @@ router.get('/all', async (req, res) => {
       offset: offset * limit,
       limit
     })
+
+    const nftsFilteredJSON = JSON.parse(JSON.stringify(allNFT))
+    const nftsParsedNumber = parsePrice(nftsFilteredJSON)
+
     res.status(200).json({
-      nft: allNFT,
+      nft: nftsParsedNumber,
       currentPage: offset,
-      totalPage: Math.ceil(count / limit)
+      totalPage: Math.ceil(count / limit) - 1
     })
   } catch (error) {
     return res.status(400).send({ msg: error })
   }
-})
+}) */
 
 // Route GET with search by name and filters
-// params came by query
+// params came by body
+// pagination came by query
 router.get('/nft', async (req, res) => {
   try {
-    const input = req.query
+    const input = req.body
+    const offset = req.query.offset || 0
+    const limit = req.query.limit || 10
     const whereQuery = {}
 
     const AVAILABLE_QUERYS = ['title', 'price', 'categoryId', 'isActive', 'userId']
@@ -48,12 +55,23 @@ router.get('/nft', async (req, res) => {
       }
     }
 
-    const nftsFiltered = await nft.findAll({
+    const count = await nft.count({
       where: whereQuery
     })
 
-    return res.status(200).json(nftsFiltered)
+    const nftsFiltered = await nft.findAll({
+      where: whereQuery,
+      offset: offset * limit,
+      limit
+    })
+
+    return res.status(200).json({
+      nft: nftsFiltered,
+      currentPage: offset,
+      totalPage: Math.ceil(count / limit) - 1
+    })
   } catch (error) {
+    console.log(error)
     return res.status(400).send({ msg: error })
   }
 })
@@ -84,5 +102,9 @@ router.post('/add', async (req, res) => {
     return res.status(400).send({ msg: error })
   }
 })
+/**
+ * GetNft per Id
+ */
+router.get('/nft/:id', nftController.getNftId)
 
 module.exports = router

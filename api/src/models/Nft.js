@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
       }
     },
     price: {
-      type: DataTypes.DECIMAL(20, 2),
+      type: DataTypes.REAL,
       allowNull: false,
       validate: {
         notNull: true

@@ -1,8 +1,8 @@
 DB_USER=postgres
-DB_PASSWORD=postgress
+DB_PASSWORD=123456
 DB_HOST=localhost
 HOST=http://127.0.0.1:3001/
 SECRET=SECR3T
-CORREO=mercaditopf@gmail.com
-CONTRASENIA=cukjsoydudhudwdi
+EMAIL=2jmk3218f@gmail.com usen esta si o si 
+PASSWORD=rnszslrzckvvwcnpy y esta 
 FRONTEND_URL = http://localhost:3000
