@@ -1,5 +1,5 @@
 DB_USER=postgres
-DB_PASSWORD=123456
+DB_PASSWORD=postgress
 DB_HOST=localhost
 HOST=http://127.0.0.1:3001/
 SECRET=SECR3T
