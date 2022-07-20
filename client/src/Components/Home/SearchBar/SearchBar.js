@@ -48,7 +48,7 @@ export default function SearchBar () {
     <div className={Classes.container1}>
 
       <button className={Classes.button}><BiArrowFromRight/>Filters</button>
-      <button className={Classes.button} onClick={() => dispatch(getAllNFT())}><BiRefresh/>Refresh</button>
+      <button className={Classes.button} onClick={() => dispatch(getAllNFT(1, 8))}><BiRefresh/>Refresh</button>
       <form className={Classes.container2} onSubmit={(e) => {
         handleSubmit(e)
       }}>

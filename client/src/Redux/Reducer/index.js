@@ -18,7 +18,8 @@ export default function rootReducer (state = initialState, action) {
     case GET_ALL_NFT:
       return {
         ...state,
-        nft: action.payload
+        nft: action.payload,
+        search: action.payload
       }
     case CREATE_NFT:
       return {
@@ -28,7 +29,10 @@ export default function rootReducer (state = initialState, action) {
     case ORDER_RECIPES:
       return {
         ...state,
-        search: action.payload
+        search: {
+          ...state.search,
+          nft: action.payload
+        }
       }
     case FILTER_BY_PRICE:
       return {
