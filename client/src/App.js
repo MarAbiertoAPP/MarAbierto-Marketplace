@@ -3,7 +3,6 @@ import './App.css'
 import Home from './Components/Home/Home.jsx'
 import Landing from './Components/LandingPage/Landing.jsx'
 import Faq from './Components/Faq/faq.jsx'
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 export default function App () {
@@ -14,7 +13,6 @@ export default function App () {
           <Route path="/" element={<Landing/>}></Route>
           <Route path="/home" element={<Home />} />
           <Route path="/faq" element={<Faq/>}></Route>
-
         </Routes>
       </BrowserRouter>
     </Fragment>

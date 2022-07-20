@@ -33,16 +33,6 @@
 
 
 
-body {
-<<<<<<< HEAD
-  
-  background: rgb(184, 121, 255);
-  background: linear-gradient(0deg, rgba(184, 121, 255, 1) 0%, rgba(24, 28, 30, 1) 56%);
-=======
-  background-image: linear-gradient(315deg, rgb(24, 2, 48) 0%, #000000 90%);
->>>>>>> 4319bc8e158580048c0cf2ad7349e65f4620ffca
-}
-
 
 
 .toHomeButton {
