@@ -35,6 +35,7 @@
 
 
 body {
+  
   background: rgb(184, 121, 255);
   background: linear-gradient(0deg, rgba(184, 121, 255, 1) 0%, rgba(24, 28, 30, 1) 56%);
 }
@@ -46,7 +47,7 @@ body {
 
   border: none;
   font-size: 20px;
-
+  font-family: 'Inter', sans-serif;
   color: #fff;
   letter-spacing: 4px;
   font-weight: bold;
