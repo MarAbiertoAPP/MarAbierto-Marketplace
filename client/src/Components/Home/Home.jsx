@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setPageMax } from '../../Redux/Actions'
 import axios from 'axios'
 import Pagination from './Pagination/Pagination'
+import Footer from '../Footer/Footer'
 
 export default function Home () {
   useEffect(() => {
@@ -37,6 +38,7 @@ export default function Home () {
         {data && dataAPI.nft?.map(item => <Card key={item.title} title={item.title} image={item.path} price={item.price}/>)}
       </div>
       <Pagination />
+<Footer/>
     </div>
   )
 }
