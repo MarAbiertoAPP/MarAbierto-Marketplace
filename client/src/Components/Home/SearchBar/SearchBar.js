@@ -47,22 +47,6 @@ export default function SearchBar () {
   return (
     <div className={Classes.container1}>
 
-      <select className={'OrderSubContainer'} name="Order" id="Order"
-              onChange={(e) => { onChangeHandlerSort(e) }}
-      >
-        <optgroup label="Reset">
-          <option value={'Default'}>Order by (Default)</option>
-        </optgroup>
-        <optgroup label="Name">
-          <option value="ascName">Ascending (A-Z) ↑</option>
-          <option value="descName">Descending (Z-A) ↓</option>
-        </optgroup>
-        <optgroup label="Price">
-          <option value="ascPrice">From Lower-Higher ↑</option>
-          <option value="descPrice">From Higher-Lower ↓</option>
-        </optgroup>
-      </select>]
-
       <button className={Classes.button}><BiArrowFromRight/>Filters</button>
       <button className={Classes.button} onClick={() => dispatch(getAllNFT())}><BiRefresh/>Refresh</button>
       <form className={Classes.container2} onSubmit={(e) => {
@@ -79,6 +63,25 @@ export default function SearchBar () {
         />
         <button className={Classes.button} type={'submit'}><BiSearch/>Search!</button>
       </form>
+
+            <select className={Classes.selector} name="Order" id="Order"
+              onChange={(e) => {
+                onChangeHandlerSort(e)
+              }}
+      >
+        <optgroup className={Classes.group} label="Reset">
+          <option value={'Default'}>Order by (Default)</option>
+        </optgroup>
+        <optgroup className={Classes.group} label="Name">
+          <option value="ascName">Ascending (A-Z) ↑</option>
+          <option value="descName">Descending (Z-A) ↓</option>
+        </optgroup>
+        <optgroup className={Classes.group} label="Price">
+          <option value="ascPrice">From Lower-Higher ↑</option>
+          <option value="descPrice">From Higher-Lower ↓</option>
+        </optgroup>
+      </select>
+
     </div>
   )
 }

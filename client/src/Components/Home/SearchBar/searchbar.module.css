@@ -12,6 +12,7 @@
 
 .button:hover {
     background: #8a00ff;
+    font-weight: bolder;
     transition: 600ms;
 }
 
@@ -42,8 +43,33 @@
     flex-direction: row;
 }
 
+.selector {
+    background: transparent;
+    color: white;
+    border: #636363 2px solid;
+    border-radius: 5px;
+    font-size: 1.3em;
+    margin: 10px;
+    padding: 3px;
+}
+
+.selector:hover {
+    background: #8a00ff;
+    font-weight: bolder;
+    transition: 600ms;
+}
+
+.group {
+    background: #1e1e24;
+}
+
+.group:active {
+    background: #8a00ff;
+}
+
 @media (max-width: 600px) {
     .container1 {
         display: none;
+        flex-direction: column;
     }
 }
