@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import './App.css'
-import Home from './components/Home/Home'
-import Landing from './components/LandingPage/Landing'
-import Faq from './components/Faq/faq'
+import Home from './Components/Home/Home'
+import Landing from './Components/LandingPage/Landing'
+import Faq from './Components/Faq/faq'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 export default function App () {

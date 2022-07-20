@@ -5,6 +5,7 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_BY_STATE,
   FILTER_BY_USER,
+  SET_SORT,
   SET_PAGE,
   SET_PAGE_MAX,
   CREATE_USER,
@@ -53,6 +54,13 @@ export function FilterByState (state) {
   return {
     type: FILTER_BY_STATE,
     payload: state
+  }
+}
+
+export function setSort (payload) {
+  return {
+    type: SET_SORT,
+    payload
   }
 }
 
