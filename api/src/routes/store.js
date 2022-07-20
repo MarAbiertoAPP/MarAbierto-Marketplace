@@ -2,6 +2,7 @@ const { Router } = require('express')
 const router = Router()
 const { nft, Op } = require('../db.js')
 const nftController = require('../controllers/nft.js')
+const { parsePrice } = require('../utils/utils')
 
 // Route GET all NFT's
 router.get('/all', async (req, res) => {
@@ -12,10 +13,14 @@ router.get('/all', async (req, res) => {
       offset: offset * limit,
       limit
     })
+
+    const nftsFilteredJSON = JSON.parse(JSON.stringify(allNFT))
+    const nftsParsedNumber = parsePrice(nftsFilteredJSON)
+
     res.status(200).json({
-      nft: allNFT,
+      nft: nftsParsedNumber,
       currentPage: offset,
-      totalPage: Math.ceil(count / limit)
+      totalPage: Math.ceil(count / limit) - 1
     })
   } catch (error) {
     return res.status(400).send({ msg: error })
@@ -26,7 +31,7 @@ router.get('/all', async (req, res) => {
 // params came by query
 router.get('/nft', async (req, res) => {
   try {
-    const input = req.query
+    const input = req.body
     const whereQuery = {}
 
     const AVAILABLE_QUERYS = ['title', 'price', 'categoryId', 'isActive', 'userId']
@@ -52,8 +57,12 @@ router.get('/nft', async (req, res) => {
       where: whereQuery
     })
 
-    return res.status(200).json(nftsFiltered)
+    const nftsFilteredJSON = JSON.parse(JSON.stringify(nftsFiltered))
+    const nftsParsedNumber = parsePrice(nftsFilteredJSON)
+
+    return res.status(200).json(parsePrice(nftsParsedNumber))
   } catch (error) {
+    console.log(error)
     return res.status(400).send({ msg: error })
   }
 })
