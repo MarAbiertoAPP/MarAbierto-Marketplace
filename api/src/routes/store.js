@@ -102,5 +102,9 @@ router.post('/add', async (req, res) => {
     return res.status(400).send({ msg: error })
   }
 })
+/**
+ * GetNft per Id
+ */
+router.get('/nft/:id', nftController.getNftId)
 
 module.exports = router
