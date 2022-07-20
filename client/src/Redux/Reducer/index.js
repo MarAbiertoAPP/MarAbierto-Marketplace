@@ -1,10 +1,6 @@
-import { GET_ALL_NFT, CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, CREATE_USER } from '../Actions/ActionsCreators'
-import { ORDER_RECIPES } from '../Actions/ActionsSort'
-import { SHOW_FILTER_BAR } from '../Actions/ActionsFilterBar'
+import { CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, SET_PAGE, SET_PAGE_MAX, CREATE_USER, GET_ALL_CATEGORIES, CREATE_CATEGORIES } from '../Actions/ActionsCreators'
 
 const initialState = {
-  nft: [],
-  search: [],
   filter: {
     price: null,
     title: null,
@@ -12,34 +8,19 @@ const initialState = {
     isActive: null,
     userId: null
   },
-  filterBar: false
+  page: {
+    current: 0,
+    max: undefined
+  },
+  categories: []
+
 }
 
 export default function rootReducer (state = initialState, action) {
   switch (action.type) {
-    case GET_ALL_NFT:
-      return {
-        ...state,
-        nft: action.payload,
-        search: action.payload
-      }
     case CREATE_NFT:
       return {
         ...state
-      }
-      // order
-    case ORDER_RECIPES:
-      return {
-        ...state,
-        search: {
-          ...state.search,
-          nft: action.payload
-        }
-      }
-    case SHOW_FILTER_BAR:
-      return {
-        ...state,
-        filterBar: action.payload
       }
     case FILTER_BY_PRICE:
       return {
@@ -52,7 +33,10 @@ export default function rootReducer (state = initialState, action) {
     case FILTER_BY_TITLE:
       return {
         ...state,
-        search: action.payload
+        filter: {
+          ...state.filter,
+          title: action.payload
+        }
       }
     case FILTER_BY_CATEGORY:
       return {
@@ -77,6 +61,29 @@ export default function rootReducer (state = initialState, action) {
           ...state.filter,
           userId: action.payload
         }
+      }
+
+    case SET_PAGE:
+      return {
+        ...state,
+        page: {
+          ...state.page,
+          current: action.payload
+        }
+      }
+
+    case SET_PAGE_MAX:
+      return {
+        ...state,
+        page: {
+          ...state.page,
+          max: action.payload
+        }
+      }
+    case GET_ALL_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload
       }
     case CREATE_USER:
       return {

@@ -3,3 +3,6 @@
 *{
   font-family: 'Inter', sans-serif;
 }
+body{
+  background-image: linear-gradient(315deg, rgb(24, 2, 48) 0%, #000000 90%);
+}

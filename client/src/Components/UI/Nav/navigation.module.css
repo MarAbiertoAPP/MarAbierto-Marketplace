@@ -31,6 +31,9 @@
 }
 .dropdown {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
   top: 58px;
   width: 300px;
   transform: translateX(-45%);
@@ -40,6 +43,7 @@
   overflow: hidden;
 }
 .dropdownText{
+  cursor: pointer;
   font-size: 20px;
   color: white;
   margin-left: 5%;
@@ -61,11 +65,21 @@
 .menu-item:hover{
   background-color: #525357;
 }
+.login_item{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius);
+  transition: background var(--speed);
+  padding: 0.5rem;
+}
+.login_item:hover{
+  background-color: #525357;
+}
 .icon_button{
-  --button-size: calc(var(--nav-size) * 0.5);
   color: #b879ff;
-  width: var(--button-size);
-  height: var(--button-size);
+  width: 40px;
+  height: 40px;
   background-color: #484a4d;
   border-radius: 50%;
   padding: 5px;

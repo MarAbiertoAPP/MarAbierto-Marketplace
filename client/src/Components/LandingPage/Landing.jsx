@@ -22,12 +22,12 @@ const Landing = () => {
 
           <div className='flex flex-col xl:flex-row'>
 
-            <h1 className="font-mono text-6xl text-cyan-500">Mar</h1>
-            <h1 className="font-mono text-6xl text-amber-600 mx-8 ">Abierto</h1>
+            <h1 className=" text-6xl tracking-wider text-cyan-500">Mar</h1>
+            <h1 className="text-6xl tracking-wider  text-amber-600 mx-8 ">Abierto</h1>
           </div>
 
           <div className=" flex place-self-center">
-            <h1 className="font-mono text-4xl self-auto text-neutral-400" >  NFT MARKETPLACE</h1>
+            <h1 className=" text-4xl self-auto text-neutral-400 tracking-wider" >  NFT MARKETPLACE</h1>
 
           </div>
 
@@ -40,7 +40,7 @@ const Landing = () => {
           </div>
 
           <div className="basis-5/12 m-11 flex flex-col items-center -mt-4 xl:mt-16">
-            <p className="xl:p-10 xl:py-20 text-center w-12/12 text-2xl md:text-4xl font-semibold md:font-normal xl:font-semibold text-neutral-200">NFTs are designed to give you something that cant be copied.</p>
+            <p className="xl:p-10 xl:py-20 text-center w-12/12 text-2xl md:text-4xl text-neutral-200">NFTs are designed to give you something that cant be copied.</p>
 
             <Link to="/home">
               <button className= {`${landing.toHomeButton} mt-8 xl:mt-0 `}>EXPLORE</button>

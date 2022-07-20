@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 import './App.css'
-import Home from './Components/Home/Home.jsx'
-import Landing from './Components/LandingPage/Landing.jsx'
+import Home from './components/Home/Home'
+import Landing from './components/LandingPage/Landing'
+import Faq from './components/Faq/faq'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 export default function App () {
@@ -9,8 +10,9 @@ export default function App () {
     <Fragment>
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/" element={<Landing/>}></Route>
+          <Route path="/home" element={<Home/>}/>
+          <Route path="/" element={<Landing/>}/>
+          <Route path="/faq" element={<Faq/>}/>
         </Routes>
       </BrowserRouter>
     </Fragment>
