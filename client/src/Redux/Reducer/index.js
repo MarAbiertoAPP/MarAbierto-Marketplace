@@ -1,4 +1,5 @@
 import { GET_ALL_NFT, CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, CREATE_USER } from '../Actions/ActionsCreators'
+import { ORDER_RECIPES } from '../Actions/ActionsSort'
 
 const initialState = {
   nft: [],
@@ -22,6 +23,12 @@ export default function rootReducer (state = initialState, action) {
     case CREATE_NFT:
       return {
         ...state
+      }
+      // order
+    case ORDER_RECIPES:
+      return {
+        ...state,
+        search: action.payload
       }
     case FILTER_BY_PRICE:
       return {
