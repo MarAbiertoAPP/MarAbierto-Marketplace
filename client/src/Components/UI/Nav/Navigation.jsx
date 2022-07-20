@@ -3,10 +3,13 @@ import Classes from './navigation.module.css'
 import Logo from '../../../assests/LogoPMA.png'
 import User from '../../../assests/user.png'
 import { IconContext } from 'react-icons'
-import PropTypes from 'prop-types'
 import { BiDotsHorizontalRounded, BiRocket } from 'react-icons/bi'
+import { CgLogIn, CgLogOut } from 'react-icons/cg'
+import { useAuth0 } from '@auth0/auth0-react'
+
 export default function Nav () {
   const [open, setOpen] = useState(false)
+
   const showDropdown = () => {
     setOpen(!open)
   }
@@ -37,28 +40,62 @@ export default function Nav () {
   )
 }
 function Dropdown () {
-  function DropdownItem (props) {
-    Dropdown.propTypes = {
-      exploreIcon: PropTypes.function
-    }
+  const {
+    loginWithRedirect, isAuthenticated,
+    logout
+  } = useAuth0()
 
+  /* function DropdownItem (props) {
+    Dropdown.propTypes = {
+      Icon: PropTypes.function,
+      children: PropTypes.string
+    }
     return (
       <a href="#" className={Classes.menu_item}>
         <span className={Classes.icon_button}>
           <IconContext.Provider value={{ className: `${Classes.icon_button}` }}>
-            {props.exploreIcon}
+            {props.Icon}
           </IconContext.Provider>
         </span>
-        <span className={Classes.dropdownText}>Explore</span>
+        {props.children}
       </a>
     )
-  }
+  } */
 
   return (
     <div className={`${Classes.dropdown} ${open ? Classes.fadeIn : Classes.fadeOut}`}>
-      <DropdownItem
-        exploreIcon={<BiRocket />}
-      />
+      <div>
+          <span className={Classes.icon_button}>
+            <IconContext.Provider value={{ className: `${Classes.icon_button}` }}>
+              <BiRocket />
+            </IconContext.Provider>
+          </span>
+      </div>
+       <span className={Classes.dropdownText}>Explore</span>
+       {
+          !isAuthenticated
+            ? (
+            <div>
+          <span className={Classes.icon_button}>
+            <IconContext.Provider value={{ className: `${Classes.icon_button}` }}>
+              <CgLogIn />
+            </IconContext.Provider>
+          </span>
+          <label onClick={() => loginWithRedirect()} className={Classes.dropdownText}>Login</label>
+      </div>
+              )
+            : (
+            <div>
+          <span className={Classes.icon_button}>
+            <IconContext.Provider value={{ className: `${Classes.icon_button}` }}>
+              <CgLogOut />
+            </IconContext.Provider>
+          </span>
+          <label onClick={() => logout({ returnTo: window.location.origin })} className={Classes.dropdownText}>Logout</label>
+      </div>
+              )
+       }
+
       </div>
   )
 }

@@ -33,10 +33,6 @@
 
 
 
-body {
-  background-image: linear-gradient(315deg, rgb(24, 2, 48) 0%, #000000 90%);
-}
-
 
 
 .toHomeButton {
@@ -44,7 +40,7 @@ body {
 
   border: none;
   font-size: 20px;
-
+  font-family: 'Inter', sans-serif;
   color: #fff;
   letter-spacing: 4px;
   font-weight: bold;
