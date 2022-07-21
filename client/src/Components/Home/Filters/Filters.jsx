@@ -241,11 +241,11 @@ export default function Filters ({ children }) {
               {/* Filters */}
               <form className="hidden lg:block">
                 <h3 className="sr-only">Categories</h3>
-                <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6 border-b border-gray-200">
+                <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6  ">
                 </ul>
 
                 {filters.map((section) => (
-                  <Disclosure as="div" key={section.id} className="border-b  border-gray-200 py-6">
+                  <Disclosure as="div" key={section.id} className=" py-6">
                     {({ open }) => (
                       <>
                         <h3 className="-my-3 flow-root">
