@@ -1,12 +1,30 @@
 import React from 'react'
 import Classes from './card.module.css'
 import PropTypes from 'prop-types'
-
-export default function Card ({ title, image, price }) {
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../../Redux/Actions/ActionsCart'
+import { Link } from 'react-router-dom'
+export default function Card ({ title, image, price, id }) {
+  const dispatch = useDispatch()
   Card.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
-    price: PropTypes.number
+    price: PropTypes.number,
+    id: PropTypes.string
+  }
+  const handleBuy = () => {
+    return dispatch(
+
+      addToCart({
+        title,
+        image,
+        price,
+        id
+
+      }
+
+      )
+    )
   }
 
   return (
@@ -21,7 +39,9 @@ export default function Card ({ title, image, price }) {
                     <h3>Price :</h3>
                     <span>{price} ETH</span>
                 </div>
-                <a href="#">Buy Now</a>
+                <Link to='/cart'>
+               <button onClick={(e) => handleBuy(e)} >Buy Now</button>
+               </Link>
             </div>
         </div>
         </div>
