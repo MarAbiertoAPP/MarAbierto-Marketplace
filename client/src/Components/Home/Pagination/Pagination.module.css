@@ -1,0 +1,13 @@
+.container {
+    color: white;
+    font-weight: bolder;
+    margin: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.textbuttons {
+    margin: 5px;
+}
+

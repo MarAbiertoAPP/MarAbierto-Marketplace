@@ -14,7 +14,9 @@ export default function Card ({ title, image, price }) {
     <div className={Classes.container}>
         <div className={Classes.card}>
             <div className={Classes.imgBx}>
+              <Link to={`/detail/${id}`}>
                 <img src={image} alt="pic"></img>
+              </Link>
             </div>
             <div className={Classes.contentBx}>
                 <h2>{title}</h2>

@@ -14,10 +14,15 @@ const modelShoppingCar = require('./models/ShoppingCar.js')
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`,
+  process.env.DATABASE_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`,
   {
     logging: false,
-    native: false
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
   }
 )
 /**
