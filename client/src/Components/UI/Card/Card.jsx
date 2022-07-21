@@ -3,7 +3,6 @@ import Classes from './card.module.css'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../../Redux/Actions/ActionsCart'
-import { Link } from 'react-router-dom'
 export default function Card ({ title, image, price, id }) {
   const dispatch = useDispatch()
   Card.propTypes = {
@@ -20,9 +19,7 @@ export default function Card ({ title, image, price, id }) {
         image,
         price,
         id
-
       }
-
       )
     )
   }
@@ -39,9 +36,7 @@ export default function Card ({ title, image, price, id }) {
                     <h3>Price :</h3>
                     <span>{price} ETH</span>
                 </div>
-                <Link to='/cart'>
                <button onClick={(e) => handleBuy(e)} >Buy Now</button>
-               </Link>
             </div>
         </div>
         </div>
