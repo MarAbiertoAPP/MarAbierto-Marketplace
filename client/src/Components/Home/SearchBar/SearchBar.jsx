@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import Classes from './searchbar.module.css'
 import { filterByTitle, resetFilters, setPage } from '../../../Redux/Actions/index'
 import { BiRefresh, BiSearch } from 'react-icons/bi'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import FilterSortBar from '../FilterSortBar/FilterSortBar'
+import { showFilterBar } from '../../../Redux/Actions/ActionsFilterBar'
 
 export default function SearchBar () {
   const [search, setSearch] = useState('')
   const dispatch = useDispatch()
+  const filterShow = useSelector(state => state.filterBar)
 
   /*   const handleChange = (e) => {
     e.preventDefault()
@@ -31,11 +33,18 @@ export default function SearchBar () {
     }
     dispatch(setPage(0))
     setSearch('')
+    console.log(filterShow)
+    if (filterShow) {
+      dispatch(showFilterBar())
+    }
   }
 
   const handleReset = (e) => {
     dispatch(resetFilters())
     dispatch(setPage(0))
+    if (filterShow) {
+      dispatch(showFilterBar())
+    }
   }
 
   return (

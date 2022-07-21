@@ -24,6 +24,13 @@ export function createNFT (obj) {
 }
 
 export function filterByPrice (min, max) {
+  if (!min && !max) {
+    return {
+      type: FILTER_BY_PRICE,
+      payload: null
+    }
+  }
+
   if (!min) min = 0
   if (!max) max = 999
   return {

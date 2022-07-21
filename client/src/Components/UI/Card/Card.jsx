@@ -6,7 +6,7 @@ export default function Card ({ title, image, price }) {
   Card.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
-    price: PropTypes.string
+    price: PropTypes.number
   }
 
   return (
