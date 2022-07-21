@@ -6,7 +6,9 @@
 .container .card{
   position: relative;
   width: 350px;
+  max-width: 350px;
   height: 500px;
+  max-height: 500px;
   background: transparent;
   border-radius: 20px;
   overflow: hidden;
@@ -31,6 +33,7 @@
   z-index: 5;
   width: 100%;
   height: 100px;
+  max-height: 100px;
   transition: 0.5s;
 }
 

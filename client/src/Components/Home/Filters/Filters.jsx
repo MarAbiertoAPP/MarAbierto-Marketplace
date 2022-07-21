@@ -1,8 +1,11 @@
 import React, { /* useEffect, */ Fragment, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
+import { filterByCategory } from '../../../Redux/Actions'
 import { XIcon } from '@heroicons/react/outline'
 import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
 import PropTypes from 'prop-types'
+
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
   { name: 'Best Rating', href: '#', current: false },
@@ -10,14 +13,7 @@ const sortOptions = [
   { name: 'Price: Low to High', href: '#', current: false },
   { name: 'Price: High to Low', href: '#', current: false }
 ]
-const subCategories = [
-  { name: 'Totes', href: '#' },
-  { name: 'Backpacks', href: '#' },
-  { name: 'Travel Bags', href: '#' },
-  { name: 'Hip Bags', href: '#' },
-  { name: 'Laptop Sleeves', href: '#' }
-]
-const filters = [
+/* const filters = [
   {
     id: 'color',
     name: 'Color',
@@ -29,31 +25,8 @@ const filters = [
       { value: 'green', label: 'Green', checked: false },
       { value: 'purple', label: 'Purple', checked: false }
     ]
-  },
-  {
-    id: 'category',
-    name: 'Category',
-    options: [
-      { value: 'new-arrivals', label: 'New Arrivals', checked: false },
-      { value: 'sale', label: 'Sale', checked: false },
-      { value: 'travel', label: 'Travel', checked: true },
-      { value: 'organization', label: 'Organization', checked: false },
-      { value: 'accessories', label: 'Accessories', checked: false }
-    ]
-  },
-  {
-    id: 'size',
-    name: 'Size',
-    options: [
-      { value: '2l', label: '2L', checked: false },
-      { value: '6l', label: '6L', checked: false },
-      { value: '12l', label: '12L', checked: false },
-      { value: '18l', label: '18L', checked: false },
-      { value: '20l', label: '20L', checked: false },
-      { value: '40l', label: '40L', checked: true }
-    ]
   }
-]
+] */
 
 function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
@@ -61,9 +34,28 @@ function classNames (...classes) {
 
 export default function Filters ({ children }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const dispatch = useDispatch()
+  const [checked, setChecked] = useState({
+    category: []
+  })
+  const categories = useSelector(state => state.categories)
   Filters.propTypes = {
     children: PropTypes.node
   }
+
+  const handleOnChange = (e) => {
+    const { value } = e.target
+    if (e.target.checked) {
+      console.log(value)
+      setChecked({
+        ...checked, category: [...checked.category, value]
+      })
+      if (checked.category.length > 0) {
+        dispatch(filterByCategory(checked.category.join('_')))
+      }
+    }
+  }
+
   return (
     <div>
       <div>
@@ -106,25 +98,17 @@ export default function Filters ({ children }) {
                   </div>
 
                   {/* Filters */}
-                  <form className="mt-4 border-t border-gray-200">
+                  <form className="mt-4 border-t border-gray-200" onChange= {(e) => handleOnChange(e)}>
                     <h3 className="sr-only">Categories</h3>
                     <ul role="list" className="font-medium text-gray-900 px-2 py-3">
-                      {subCategories.map((category) => (
-                        <li key={category.name}>
-                          <a href={category.href} className="block px-2 py-3">
-                            {category.name}
-                          </a>
-                        </li>
-                      ))}
                     </ul>
-
-                    {filters.map((section) => (
-                      <Disclosure as="div" key={section.id} className="border-t border-gray-200 px-4 py-6">
+    {/* ALGO A CAMBIAR CUANDO HAYA MAS TIPOS DE FILTRADOS ESTO ES PARA EL CELULAR */}
+                      <Disclosure as="div" key={'Category'} className="border-t border-gray-200 px-4 py-6">
                         {({ open }) => (
                           <>
                             <h3 className="-mx-2 -my-3 flow-root">
                               <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
-                                <span className="font-medium text-gray-900">{section.name}</span>
+                                <span className="font-medium text-gray-900">Category</span>
                                 <span className="ml-6 flex items-center">
                                   {open
                                     ? (
@@ -138,21 +122,19 @@ export default function Filters ({ children }) {
                             </h3>
                             <Disclosure.Panel className="pt-6">
                               <div className="space-y-6">
-                                {section.options.map((option, optionIdx) => (
-                                  <div key={option.value} className="flex items-center">
+                                {categories && categories.map((option, optionIdx) => (
+                                  <div key={option.id} className="flex items-center">
                                     <input
-                                      id={`filter-mobile-${section.id}-${optionIdx}`}
-                                      name={`${section.id}[]`}
-                                      defaultValue={option.value}
+                                      id='Category'
+                                      value={option.id}
                                       type="checkbox"
-                                      defaultChecked={option.checked}
                                       className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                                     />
                                     <label
-                                      htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
+                                      htmlFor={`filter-mobile-Category-${optionIdx}`}
                                       className="ml-3 min-w-0 flex-1 text-gray-500"
                                     >
-                                      {option.label}
+                                      {option.name}
                                     </label>
                                   </div>
                                 ))}
@@ -161,7 +143,6 @@ export default function Filters ({ children }) {
                           </>
                         )}
                       </Disclosure>
-                    ))}
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
@@ -237,20 +218,20 @@ export default function Filters ({ children }) {
               Products
             </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10" >
               {/* Filters */}
-              <form className="hidden lg:block">
+              <div className='w-80'>
+              <form className="hidden lg:block w-80" onChange= {(e) => handleOnChange(e)}>
                 <h3 className="sr-only">Categories</h3>
                 <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6  ">
                 </ul>
-
-                {filters.map((section) => (
-                  <Disclosure as="div" key={section.id} className=" py-6">
+{/* ESTO TAMBIEN HAY QUE CAMBIAR SI VAMOS A COLOCAR MAS OPCIONES DE FILTRADO ESTO ESCRITORIO */}
+                  <Disclosure as="div" key={'Category'} className=" py-6">
                     {({ open }) => (
                       <>
                         <h3 className="-my-3 flow-root">
                           <Disclosure.Button className="py-3 text-lg rounded-md w-full flex items-center justify-between  text-white hover:text-white">
-                            <span className="font-bold text-white ">{section.name}</span>
+                            <span className="font-bold text-white ">Category</span>
                             <span className="ml-6 flex items-center">
                               {open
                                 ? (
@@ -264,21 +245,19 @@ export default function Filters ({ children }) {
                         </h3>
                         <Disclosure.Panel className="pt-6">
                           <div className="space-y-4">
-                            {section.options.map((option, optionIdx) => (
-                              <div key={option.value} className="flex items-center">
+                            {categories && categories.map((option, optionIdx) => (
+                              <div key={option.id} className="flex items-center">
                                 <input
-                                  id={`filter-${section.id}-${optionIdx}`}
-                                  name={`${section.id}[]`}
-                                  defaultValue={option.value}
+                                id='Category'
+                                  value={option.id}
                                   type="checkbox"
-                                  defaultChecked={option.checked}
                                   className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                                 />
                                 <label
-                                  htmlFor={`filter-${section.id}-${optionIdx}`}
+                                  htmlFor={`filter-${option.id}-${optionIdx}`}
                                   className="ml-3 text-sm text-white"
                                 >
-                                  {option.label}
+                                  {option.name}
                                 </label>
                               </div>
                             ))}
@@ -287,11 +266,10 @@ export default function Filters ({ children }) {
                       </>
                     )}
                   </Disclosure>
-                ))}
               </form>
-
+</div>
               {/* Product grid */}
-              <div className="lg:col-span-3 xl:col-span5">
+              <div className="lg:col-span-3">
                 {/* Replace with your content */}
                 {children}
                 {/* /End replace */}

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Classes from './home.module.css'
-import data from './monigotes/nft'
 import Card from '../UI/Card/Card'
 /* import SearchBar from './SearchBar/SearchBar' */
 import Nav from '../UI/Nav/Navigation'
 import Filters from './Filters/Filters'
 import { useSelector, useDispatch } from 'react-redux'
-import { setPageMax } from '../../Redux/Actions'
+import { setPageMax, getAllCategories } from '../../Redux/Actions'
 import axios from 'axios'
 import Pagination from './Pagination/Pagination'
 import Footer from '../Footer/Footer'
@@ -37,6 +36,10 @@ export default function Home () {
   }, [filterConfig, page.current]) */
 
   useEffect(() => {
+    dispatch(getAllCategories())
+  }, [dispatch])
+
+  useEffect(() => {
     let url = 'home?'
     for (const key in filterConfig) {
       if (filterConfig[key]) {
@@ -65,7 +68,7 @@ export default function Home () {
       {/* <SearchBar/> */}
       <Filters>
       <div className={`${Classes.main} place-content-center`}>
-        {data && data.map(item => <Card key={item.title} title={item.title} image={item.img} price={item.price}/>)}
+        {dataAPI && dataAPI.nft?.map(item => item.path ? <Card key={item.id} title={item.title} image={item.path} price={item.price} id={item.id}/> : null)}
       </div>
       </Filters>
       <Pagination />
