@@ -1,4 +1,5 @@
 import React from 'react'
+import Classes from './Pagination.module.css'
 import { setPage } from '../../../Redux/Actions'
 import { useSelector, useDispatch } from 'react-redux'
 import { AiOutlineRight, AiOutlineLeft, AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai'

@@ -4,6 +4,7 @@ import data from './monigotes/nft'
 import Card from '../UI/Card/Card'
 import SearchBar from './SearchBar/SearchBar'
 import Nav from '../UI/Nav/Navigation'
+import FilterPopUp from './FilterPopUp/FilterPopUp'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPageMax } from '../../Redux/Actions'
 import axios from 'axios'
@@ -12,6 +13,8 @@ import Footer from '../Footer/Footer'
 import { useNavigate } from 'react-router-dom'
 
 export default function Home () {
+  const { filterBar } = useSelector(state => state)
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -29,6 +32,7 @@ export default function Home () {
   }
   useEffect(() => {
     console.log(filterConfig)
+    window.scrollTo(0, 0)
     axios.post(`/stores/nft?offset=${page.current || 0}`, filterConfig)
       .then(response => setVariables(response.data))
   }, [filterConfig, page.current])
@@ -54,14 +58,21 @@ export default function Home () {
     <div className={Classes.bg}>
       <Nav/>
       <SearchBar/>
-      {
-        console.log(dataAPI.nft)
+      {!filterBar &&
+        <div>
+        </div>
+      }
+      {filterBar &&
+        <div className={''}>
+          <FilterPopUp/>
+        </div>
       }
       <div className={`${Classes.main} place-items-center`}>
-        {data && dataAPI.nft?.map(item => <Card key={item.title} title={item.title} image={item.path} price={item.price}/>)}
+        {data && dataAPI.nft?.map(item => <Card key={item.id} title={item.title} image={item.path} price={item.price}/>)}
       </div>
       <Pagination />
 <Footer/>
+
     </div>
   )
 }
