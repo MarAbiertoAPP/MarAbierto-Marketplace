@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 11;
   top: 0;
   background: rgba(24,28,30,0.4);
   transition: 200ms ease;
@@ -54,16 +54,25 @@
   filter: grayscale(0%) opacity(1);
   transition: 600ms;
 }
-.menu_item{
+.menu_items{
+  list-style-type: none;
   height: 50px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   border-radius: var(--border-radius);
   transition: background var(--speed);
   padding: 0.5rem;
 }
-.menu-item:hover{
-  background-color: #525357;
+.menu_items li{
+  cursor: pointer;
+  margin-bottom: 0.7rem;
+  filter: grayscale(100%) opacity(0.7);
+  transition: 600ms;
+}
+.menu_items li:hover{
+  color: #fffeff;
+  filter: grayscale(0%) opacity(1);
+  transition: 600ms;
 }
 .login_item{
   height: 50px;

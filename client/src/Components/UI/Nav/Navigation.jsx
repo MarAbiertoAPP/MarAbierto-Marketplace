@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
+import DropDownTail from '../../Home/Dropdown/Dropdown'
 import Classes from './navigation.module.css'
 import Logo from '../../../assests/LogoPMA.png'
 import User from '../../../assests/user.png'
 import { IconContext } from 'react-icons'
-import { BiDotsHorizontalRounded, BiRocket } from 'react-icons/bi'
+import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { CgLogIn, CgLogOut } from 'react-icons/cg'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function Nav () {
   const [open, setOpen] = useState(false)
-
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
   const showDropdown = () => {
     setOpen(!open)
   }
@@ -28,39 +29,32 @@ export default function Nav () {
             <BiDotsHorizontalRounded />
           </IconContext.Provider>
         </li>
-        {
-          open
-            ? <li>
-                <Dropdown />
+       <li>
+                <DropDownTail
+                open={open}
+                setOpen={setOpen}>
+                <div className={Classes.menu_items}>
+            <li>Home</li>
+            <li> FAQ</li>
+            {
+              !isAuthenticated
+                ? <li onClick={() => loginWithRedirect()}> <CgLogIn/>Login</li>
+                : <li onClick={() => logout()}><CgLogOut/> Logout</li>
+            }
+
+          </div>
+                </DropDownTail>
           </li>
-            : null}
       </ul>
       </nav>
     </div>
   )
 }
-function Dropdown () {
+/* function Dropdown () {
   const {
     loginWithRedirect, isAuthenticated,
     logout
   } = useAuth0()
-
-  /* function DropdownItem (props) {
-    Dropdown.propTypes = {
-      Icon: PropTypes.function,
-      children: PropTypes.string
-    }
-    return (
-      <a href="#" className={Classes.menu_item}>
-        <span className={Classes.icon_button}>
-          <IconContext.Provider value={{ className: `${Classes.icon_button}` }}>
-            {props.Icon}
-          </IconContext.Provider>
-        </span>
-        {props.children}
-      </a>
-    )
-  } */
 
   return (
     <div className={`${Classes.dropdown} ${open ? Classes.fadeIn : Classes.fadeOut}`}>
@@ -98,4 +92,4 @@ function Dropdown () {
 
       </div>
   )
-}
+} */
