@@ -10,7 +10,7 @@ import { setPageMax } from '../../Redux/Actions'
 import axios from 'axios'
 import Pagination from './Pagination/Pagination'
 import Footer from '../Footer/Footer'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function Home () {
   const { filterBar } = useSelector(state => state)
@@ -24,20 +24,21 @@ export default function Home () {
   const dispatch = useDispatch()
   const [dataAPI, setDataAPI] = useState({})
   const navigate = useNavigate()
+  const location = useLocation()
 
   const setVariables = (data) => {
     setDataAPI(data)
     dispatch(setPageMax(data.totalPage))
   }
 
-  useEffect(() => {
+  /*   useEffect(() => {
     window.scrollTo(0, 0)
     axios.post(`/stores/nft?offset=${page.current || 0}`, filterConfig)
       .then(response => setVariables(response.data))
-  }, [filterConfig, page.current])
+  }, [filterConfig, page.current]) */
 
   useEffect(() => {
-    let url = 'home/?'
+    let url = 'home?'
     for (const key in filterConfig) {
       if (filterConfig[key]) {
         url += `${key}=${filterConfig[key]}&`
@@ -48,10 +49,17 @@ export default function Home () {
       if (q === 'cardsPerPage' && page[q] !== 10) url += `limit=${page[q]}&`
     }
     url = url.slice(0, -1)
-    if (url !== 'home/?') {
+    if (url !== 'home?') {
       navigate(`/${url}`, { push: true })
     }
-  }, [filterConfig, page.current])
+  }, [filterConfig, page])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    axios.get(`/stores/nft${location.search}`)
+      .then(response => setVariables(response.data))
+  }, [location.search])
+
   return (
     <div className={Classes.bg}>
       <Nav/>
@@ -66,7 +74,7 @@ export default function Home () {
         </div>
       }
       <div className={`${Classes.main} place-items-center`}>
-        {data && dataAPI.nft?.map(item => <Card key={item.id} title={item.title} image={item.path} price={item.price}/>)}
+        {data && dataAPI.nft?.map(item => <Card key={item.id} title={item.title} id={item.id} image={item.path} price={item.price}/>)}
       </div>
       <Pagination />
       <Footer/>

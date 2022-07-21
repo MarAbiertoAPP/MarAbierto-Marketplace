@@ -1,9 +1,13 @@
 /*eslint-disable*/ 
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import style from './Details.module.css'
 import TitleDetails from './Title/TitleDetails'
 import { FaEthereum, FaHeart} from "react-icons/fa";
+import { useEffect } from 'react';
+import { useRef } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 
 const img= 'https://img.seadn.io/files/fc1b697662d7b7ae34e4c9ca23b34938.png?fit=max&w=600'
 const img2='https://img-cdn.magiceden.dev/rs:fill:640:640:0:0/plain/https://dweb.link/ipfs/QmTFo9jVdLui8X1L2idY9VnmGWUg1AqyD31vKf5urE73cz/406.png'
@@ -20,6 +24,17 @@ const example = {
   }
 
 const Details = () => {
+
+  const { id } = useParams()
+  const [nftDetail, setNftDetail] = useState({})
+  
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    console.log('in')
+    axios.get(`/stores/nft/${id}`)
+      .then(response => setNftDetail(response.data))
+  },[])
+
   return (
     <div className={style.div}>
 
@@ -27,7 +42,7 @@ const Details = () => {
         <TitleDetails/>
 
         <div className='flex xl:hidden w-full justify-center space-x-20'>
-            <h1 className='mt-6 text-xl md:text-3xl tracking-wider text-amber-600'>{example.title}</h1>
+            <h1 className='mt-6 text-xl md:text-3xl tracking-wider text-amber-600'>{nftDetail?.title}</h1>
             <div className='flex items-center mt-6 place-content-end'>
                 <FaHeart className='text-neutral-400 text-3xl hover:text-red-500'/>
                 <p className='ml-4 text-md self-auto text-neutral-400 tracking-wider'>444 likes</p>
@@ -38,14 +53,14 @@ const Details = () => {
 
           <div className={`basis-5/12 flex justify-center h-fit`}>
             <img className={`${style.limitH} object-contain h-full border-transparent border-solid border-2 hover:border-cyan-500`}
-             src={img5}></img>
+             src={nftDetail?.path}></img>
 
           </div>  
 
           <div className='flex flex-col basis-8/12 '>
 
             <div className='hidden xl:flex w-full'>
-              <h1 className='mt-6 text-3xl tracking-wider text-amber-600 mx-8 '>{example.title}</h1>
+              <h1 className='mt-6 text-3xl tracking-wider text-amber-600 mx-8 '>{nftDetail?.title}</h1>
               <div className='flex items-center mt-6 place-content-end ml-64'>
                   <FaHeart className='text-neutral-400 text-3xl hover:text-red-500'/>
                   <p className='ml-4 text-md self-auto text-neutral-400 tracking-wider'>444 likes</p>
@@ -56,7 +71,7 @@ const Details = () => {
 
             <div className='w-full px-4 md:px-14 xl:px-8 py-6 '>
                 <p className='text-md self-auto text-white tracking-wider'>About Waifu Collection blablabla</p>
-               <p className='text-md self-auto text-neutral-400 tracking-wider'>{example.description}</p>
+               <p className='text-md self-auto text-neutral-400 tracking-wider'>{nftDetail?.description}</p>
             </div>
 
 
@@ -69,15 +84,15 @@ const Details = () => {
 
                 <div className='flex my-2'>
                   <FaEthereum className='text-white text-xl'/> 
-                  <p className=' ml-2 text-xl self-auto text-white tracking-wider'>{`${example.price} MONEDA`}</p>
+                  <p className=' ml-2 text-xl self-auto text-white tracking-wider'>{`${nftDetail?.price} MONEDA`}</p>
                 </div>
               </div>
 
               <div className='flex my-6'>
                 <p className='text-md self-auto text-neutral-400 tracking-wider'>Owned by:</p>
-                <Link className='ml-4' to='/user/juakodegenereke3000'>
+                <Link className='ml-4' to={`/user/${nftDetail?.User}`}>
                   <p className='text-lg self-auto text-cyan-600 tracking-wider 
-                  decoration-transparent underline hover:underline-offset-4 hover:decoration-current'> JUAKO DEGENEREKE 3000</p>
+                  decoration-transparent underline hover:underline-offset-4 hover:decoration-current'> {nftDetail?.User}</p>
                 </Link>
               </div>
 
