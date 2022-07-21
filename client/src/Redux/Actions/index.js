@@ -5,6 +5,7 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_BY_STATE,
   FILTER_BY_USER,
+  RESET_FILTERS,
   SET_SORT,
   SET_PAGE,
   SET_PAGE_MAX,
@@ -54,6 +55,12 @@ export function FilterByState (state) {
   return {
     type: FILTER_BY_STATE,
     payload: state
+  }
+}
+
+export function resetFilters () {
+  return {
+    type: RESET_FILTERS
   }
 }
 

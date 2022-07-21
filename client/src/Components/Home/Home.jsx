@@ -30,6 +30,7 @@ export default function Home () {
     dispatch(setPageMax(data.totalPage))
     console.log(data)
   }
+
   useEffect(() => {
     console.log(filterConfig)
     window.scrollTo(0, 0)
