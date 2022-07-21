@@ -10,6 +10,7 @@ import { setPageMax } from '../../Redux/Actions'
 import axios from 'axios'
 import Pagination from './Pagination/Pagination'
 import Footer from '../Footer/Footer'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home () {
   const { filterBar } = useSelector(state => state)
@@ -22,6 +23,7 @@ export default function Home () {
   const page = useSelector(state => state.page)
   const dispatch = useDispatch()
   const [dataAPI, setDataAPI] = useState({})
+  const navigate = useNavigate()
 
   const setVariables = (data) => {
     setDataAPI(data)
@@ -36,6 +38,23 @@ export default function Home () {
       .then(response => setVariables(response.data))
   }, [filterConfig, page.current])
 
+  useEffect(() => {
+    let url = 'home/?'
+    for (const key in filterConfig) {
+      if (filterConfig[key]) {
+        url += `${key}=${filterConfig[key]}&`
+      }
+    }
+    for (const q in page) {
+      if (q === 'current' && page[q] !== 0) url += `offset=${page[q]}&`
+      if (q === 'cardsPerPage' && page[q] !== 10) url += `limit=${page[q]}&`
+    }
+    url = url.slice(0, -1)
+    console.log(url)
+    if (url !== 'home/?') {
+      navigate(`/${url}`, { push: true })
+    }
+  }, [filterConfig, page.current])
   return (
     <div className={Classes.bg}>
       <Nav/>
