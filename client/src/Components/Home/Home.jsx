@@ -28,11 +28,9 @@ export default function Home () {
   const setVariables = (data) => {
     setDataAPI(data)
     dispatch(setPageMax(data.totalPage))
-    console.log(data)
   }
 
   useEffect(() => {
-    console.log(filterConfig)
     window.scrollTo(0, 0)
     axios.post(`/stores/nft?offset=${page.current || 0}`, filterConfig)
       .then(response => setVariables(response.data))
@@ -50,7 +48,6 @@ export default function Home () {
       if (q === 'cardsPerPage' && page[q] !== 10) url += `limit=${page[q]}&`
     }
     url = url.slice(0, -1)
-    console.log(url)
     if (url !== 'home/?') {
       navigate(`/${url}`, { push: true })
     }
@@ -72,7 +69,7 @@ export default function Home () {
         {data && dataAPI.nft?.map(item => <Card key={item.id} title={item.title} image={item.path} price={item.price}/>)}
       </div>
       <Pagination />
-<Footer/>
+      <Footer/>
 
     </div>
   )

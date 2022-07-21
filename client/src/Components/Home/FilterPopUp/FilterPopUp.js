@@ -57,7 +57,8 @@ export default function FilterPopUp () {
     e.preventDefault()
     if (!input.category[0]) dispatch(filterByCategory(null))
     if (input.category[0]) dispatch(filterByCategory(input.category.join('_')))
-    if (input.priceMin || input.priceMax) dispatch(filterByPrice(input.priceMin, input.priceMax))
+    dispatch(filterByPrice(input.priceMin, input.priceMax))
+
     dispatch(setPage(0))
   }
 
