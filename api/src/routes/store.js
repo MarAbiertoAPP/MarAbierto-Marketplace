@@ -31,36 +31,40 @@ router.get('/all', async (req, res) => {
 // pagination came by query
 router.get('/nft', async (req, res) => {
   try {
-    const input = req.body
+    const input = req.query
+    // Get query to order
+    const orderQuery = input.order ? input.order.split('_') : ['title', 'ASC']
+
+    // Get query of pagination
     const offset = req.query.offset || 0
     const limit = req.query.limit || 10
     const whereQuery = {}
 
-    const AVAILABLE_QUERYS = ['title', 'price', 'categoryId', 'isActive', 'userId']
+    // Get query to search
+    if (input.title) whereQuery.title = { [Op.iLike]: `%${input.title}%` }
 
-    for (const query in input) {
-      if (AVAILABLE_QUERYS.includes(query)) {
-        if (query === 'title') {
-          whereQuery[query] = {
-            [Op.iLike]: `%${input[query]}%`
-          }
-        } else if (query === 'price') {
-          const priceMinMax = input[query].split('_')
-          whereQuery[query] = {
-            [Op.between]: [Number(priceMinMax[0]), Number(priceMinMax[1])]
-          }
-        } else {
-          whereQuery[query] = input[query]
-        }
-      }
+    // Get query to filters
+    if (input.price) {
+      const priceMinMax = input.price.split('_')
+      whereQuery.price = { [Op.between]: [Number(priceMinMax[0]), Number(priceMinMax[1])] }
     }
+    if (input.categoryId) whereQuery.categoryId = input.categoryId.split('_')
+    if (input.isActive) whereQuery.isActive = input.isActive
+    if (input.userId) whereQuery.userId = input.userId
 
+    console.log(whereQuery)
+
+    // Count the total data filtered
     const count = await nft.count({
       where: whereQuery
     })
 
+    // Get the data with pagination
     const nftsFiltered = await nft.findAll({
       where: whereQuery,
+      order: [
+        orderQuery
+      ],
       offset: offset * limit,
       limit
     })
