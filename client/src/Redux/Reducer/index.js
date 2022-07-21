@@ -1,7 +1,9 @@
 import { GET_ALL_NFT, CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, CREATE_USER } from '../Actions/ActionsCreators'
+import { ORDER_RECIPES } from '../Actions/ActionsSort'
 
 const initialState = {
   nft: [],
+  search: [],
   filter: {
     price: null,
     title: null,
@@ -16,11 +18,21 @@ export default function rootReducer (state = initialState, action) {
     case GET_ALL_NFT:
       return {
         ...state,
-        nft: action.payload
+        nft: action.payload,
+        search: action.payload
       }
     case CREATE_NFT:
       return {
         ...state
+      }
+      // order
+    case ORDER_RECIPES:
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          nft: action.payload
+        }
       }
     case FILTER_BY_PRICE:
       return {
@@ -33,10 +45,7 @@ export default function rootReducer (state = initialState, action) {
     case FILTER_BY_TITLE:
       return {
         ...state,
-        filter: {
-          ...state.filter,
-          title: action.payload
-        }
+        search: action.payload
       }
     case FILTER_BY_CATEGORY:
       return {
