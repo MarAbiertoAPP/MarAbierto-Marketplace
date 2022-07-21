@@ -14,7 +14,7 @@ export default function App () {
           <Route path="/home" element={<Home/>}/>
           <Route path="/" element={<Landing/>}/>
           <Route path="/faq" element={<Faq/>}/>
-          <Route path='/details' element={<Details/>} />
+          <Route path='/detail/:id' element={<Details/>} />
         </Routes>
       </BrowserRouter>
     </Fragment>

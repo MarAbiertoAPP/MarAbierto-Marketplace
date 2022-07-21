@@ -7,7 +7,7 @@ const initialState = {
     categoryId: null,
     isActive: null,
     userId: null,
-    order: 'id_ASC'
+    order: null
   },
   page: {
     current: 0,
@@ -84,7 +84,7 @@ export default function rootReducer (state = initialState, action) {
           categoryId: null,
           isActive: null,
           userId: null,
-          order: 'id_ASC'
+          order: null
         }
       }
     }
