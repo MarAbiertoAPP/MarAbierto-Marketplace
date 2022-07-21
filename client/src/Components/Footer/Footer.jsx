@@ -1,6 +1,6 @@
 import React from 'react'
 import footer from '../Footer/Footer.module.css'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -109,11 +109,9 @@ const Footer = () => {
             <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start text-yellow-400">
               Links
             </h6>
-            <Link to="/faq">
-              <p className="mb-4">
-                <a href="" className="text-violet-500">FAQ</a>
-              </p>
-            </Link>
+            <p className="mb-4">
+              <a href="/faq" className="text-violet-500">FAQ</a>
+            </p>
             <p className="mb-4">
               <a href="" className="text-violet-500">My User</a>
             </p>
