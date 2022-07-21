@@ -291,7 +291,7 @@ export default function Filters ({ children }) {
               </form>
 
               {/* Product grid */}
-              <div className="lg:col-span-3">
+              <div className="lg:col-span-3 xl:col-span5">
                 {/* Replace with your content */}
                 {children}
                 {/* /End replace */}
