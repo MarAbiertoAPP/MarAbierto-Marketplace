@@ -9,6 +9,7 @@ import { setSort } from '../../../Redux/Actions/index'
 export default function FilterSortBar () {
   const dispatch = useDispatch()
   const { filterBar } = useSelector(state => state)
+  const { order } = useSelector(state => state.filter)
 
   const onChangeHandlerSort = (e) => {
     e.preventDefault()
@@ -31,7 +32,7 @@ export default function FilterSortBar () {
       {filterBar &&
         <button className={Classes.button2} onClick={() => dispatch(showFilterBar())}>Filters<BiArrowToLeft/></button>
       }
-      <select className={Classes.selector} name="Order" id="Order" onChange={(e) => {
+      <select className={Classes.selector} value={order} name="Order" id="Order" onChange={(e) => {
         onChangeHandlerSort(e)
       }}
       >

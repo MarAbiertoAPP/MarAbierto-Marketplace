@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Classes from './searchbar.module.css'
-import { filterByTitle, setPage } from '../../../Redux/Actions/index'
+import { filterByTitle, resetFilters, setPage } from '../../../Redux/Actions/index'
 import { BiRefresh, BiSearch } from 'react-icons/bi'
 import { useDispatch } from 'react-redux'
 import FilterSortBar from '../FilterSortBar/FilterSortBar'
@@ -9,34 +9,39 @@ export default function SearchBar () {
   const [search, setSearch] = useState('')
   const dispatch = useDispatch()
 
-  const handleChange = (e) => {
+  /*   const handleChange = (e) => {
     e.preventDefault()
     setSearch(e.target.value)
+  } */
+
+  const handleChange = (e) => {
+    const inputText = e.target.value.replace(/[^a-z\s#0-9]/gi, '')
+    if (inputText.length < 50) {
+      setSearch(inputText)
+    }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(filterByTitle(search))
-
-    if (!search.length) {
-      setSearch('')
-      return alert('Please enter a search term')
+    dispatch(resetFilters())
+    if (!search.trim().length) {
+      dispatch(filterByTitle(null))
+    } else {
+      dispatch(filterByTitle(search.trim()))
     }
-
-    if (search.match(/^[!@#$%?/><,.:;'"^&*()_=+]+$/)) {
-      setSearch('')
-      return alert('The search Term cant contain special characters')
-    }
-
-    dispatch(filterByTitle(search))
     dispatch(setPage(0))
     setSearch('')
+  }
+
+  const handleReset = (e) => {
+    dispatch(resetFilters())
+    dispatch(setPage(0))
   }
 
   return (
     <div>
     <div className={Classes.container1}>
-    <button className={Classes.button}><BiRefresh/>Refresh</button>
+    <button className={Classes.button} onClick={(e) => handleReset(e)}><BiRefresh/>Refresh</button>
     <form className={Classes.container2} onSubmit={(e) => { handleSubmit(e) }}>
       <input className={Classes.input}
              name={'search'}
