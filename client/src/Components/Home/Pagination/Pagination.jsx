@@ -33,13 +33,4 @@ export default function Pagination () {
     </button>
     </form>
   )
-  /* return (
-       <div>
-           <button value={'firstPage'}>FisrtPage</button>
-           <button value={'prevPage'}>PrevPage</button>
-           <button value={'nextPage'}>NextPage</button>
-           <button value={'lastPage'>LastPage</button>
-       </div>
-  )
- */
 }
