@@ -1,4 +1,4 @@
-const { createNFT, getNftId } = require('../dao/nft')
+const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../dao/nft')
 
 /**
  * route create Category
@@ -18,6 +18,24 @@ exports.getNftId = async (req, res) => {
     const { id } = req.params
     const response = await getNftId(id)
     return response ? res.status(200).send(response) : res.status(400).send({ msg: 'Not found' })
+  } catch (error) {
+    return res.status(400).send({ msg: error })
+  }
+}
+
+exports.addFavorite = async (req, res) => {
+  try {
+    const { idUser, idNft } = req.body
+    res.status(200).send(await addFavorite(idUser, idNft))
+  } catch (error) {
+    return res.status(400).send({ msg: error })
+  }
+}
+
+exports.getFavoritesPerId = async (req, res) => {
+  try {
+    const { iduser } = req.query
+    res.status(200).send(await getFavoritesPerId(iduser))
   } catch (error) {
     return res.status(400).send({ msg: error })
   }

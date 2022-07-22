@@ -8,9 +8,7 @@ module.exports = (sequelize) => {
     date: {
       type: DataTypes.DATE,
       allowNull: false,
-      validate: {
-        notNull: true
-      }
+      defaultValue: DataTypes.NOW
     }
   }, {
     timeStamps: false,
