@@ -7,4 +7,4 @@ PORT=3001
 SECRET=MLZhWC42
 EMAIL=2jmk3218@gmail.com
 PASSWORD=rnszslrzckvvwcnp
-FRONTEND_URL = http://localhost:3000
+FRONTEND_URL=http://localhost:3000
