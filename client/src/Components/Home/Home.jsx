@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Classes from './home.module.css'
 import Card from '../UI/Card/Card'
-/* import SearchBar from './SearchBar/SearchBar' */
 import Nav from '../UI/Nav/Navigation'
 import Filters from './Filters/Filters'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPageMax, resetFilters, getAllCategories } from '../../Redux/Actions'
+import { cartFromLocalStorage } from '../../Redux/Actions/ActionsCart'
 import axios from 'axios'
 import Pagination from './Pagination/Pagination'
 import Footer from '../Footer/Footer'
@@ -13,9 +13,12 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../Home/toast.css'
 
+const cartFromLocal = JSON.parse(localStorage.getItem('Cart'))
+
 export default function Home () {
   useEffect(() => {
     window.scrollTo(0, 0)
+    dispatch(cartFromLocalStorage(cartFromLocal))
   }, [])
 
   const filterConfig = useSelector(state => state.filter)

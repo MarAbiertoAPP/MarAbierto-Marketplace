@@ -1,6 +1,6 @@
 
 /* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment, useRef, useState } from 'react'
+import React, { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
@@ -15,6 +15,10 @@ export function Cart ({ open, setOpen }) {
     open: PropTypes.bool,
     setOpen: PropTypes.func
   }
+
+  useEffect(() => {
+    localStorage.setItem('Cart', JSON.stringify(cartToBuy))
+  }, [cartToBuy])
 
   let totalBuy = 0
   cartToBuy.map(item => {
