@@ -1,5 +1,5 @@
 import { CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, RESET_FILTERS, SET_SORT, SET_PAGE, SET_PAGE_MAX, CREATE_USER, GET_ALL_CATEGORIES, ADD_TO_CART, REMOVE_FROM_CART } from '../Actions/ActionsCreators'
-import { SHOW_FILTER_BAR } from '../Actions/ActionsFilterBar'
+/* import { SHOW_FILTER_BAR } from '../Actions/ActionsFilterBar' */
 const initialState = {
   filter: {
     price: null,
