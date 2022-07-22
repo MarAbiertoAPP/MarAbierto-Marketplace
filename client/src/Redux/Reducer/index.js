@@ -77,7 +77,7 @@ export default function rootReducer (state = initialState, action) {
           categoryId: null,
           isActive: null,
           userId: null,
-          order: null
+          order: 'id_ASC'
         }
       }
     }
