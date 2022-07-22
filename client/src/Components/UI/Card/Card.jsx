@@ -77,7 +77,7 @@ export default function Card ({ title, image, price, id }) {
             <h3>Price :</h3>
             <span>{price} ETH</span>
           </div>
-          <button onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}>Buy Now</button>
+          <button hidden={'hidden'} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}>Buy Now</button>
         </div>
       </div>
     </div>

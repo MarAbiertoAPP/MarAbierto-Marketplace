@@ -84,7 +84,7 @@ const Footer = () => {
               MarketPlace Web Info
             </h6>
             <p className='text-violet-500 text-justify'>
-              Mar abierto es una plataforma de compra y venta de NFT donde podras adquirir los NFT que quieras con la facilidad de poder pagar con tarjeta de credito
+              Mar abierto its a NFT marketplace where you can buy what you want with your credit card!
             </p>
           </div>
           <div className="">
