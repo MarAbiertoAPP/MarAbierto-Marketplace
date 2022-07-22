@@ -6,8 +6,7 @@ import { addToCart } from '../../../Redux/Actions/ActionsCart'
 import { Link } from 'react-router-dom'
 
 export default function Card ({ title, image, price, id }) {
-
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
   Card.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
