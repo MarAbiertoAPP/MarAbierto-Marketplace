@@ -7,7 +7,7 @@ import { IconContext } from 'react-icons'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { CgLogIn, CgLogOut } from 'react-icons/cg'
 import { useAuth0 } from '@auth0/auth0-react'
-import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { IoIosCart } from 'react-icons/io'
 import { Cart } from '../../Cart/Cart'
 
 export default function Nav () {
@@ -31,7 +31,7 @@ export default function Nav () {
         <li onClick={() => showCart()}>
         <IconContext.Provider value={{ className: `${Classes.dots}` }}>
 
-            <AiOutlineShoppingCart />
+            <IoIosCart />
 
           </IconContext.Provider>
         </li>

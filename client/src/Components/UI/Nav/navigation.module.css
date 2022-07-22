@@ -123,13 +123,19 @@
   transition: 600ms;
 }
 .dots{
-  color: #ececec;
+  color: #d278d3;
   width: 45px;
   height: 45px;
   user-select: none;
   cursor: pointer;
+  filter: grayscale(100%) opacity(0.7);
+  transition: 600ms;
+  
 }
-
+.dots:hover{
+  filter: grayscale(0) opacity(1);
+  transition: 600ms;
+}
 .fadeIn{
   animation: fadeInKey 1s;
 }
