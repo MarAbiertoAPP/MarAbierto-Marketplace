@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 const TitleDetails = () => {
   return (
         <div className='text-center'>
           <h1 className='my-6 text-3xl md:text-6xl tracking-wider text-amber-600 mx-8'>WAIFU COLLECTION BLABLABLA</h1>
 
-          <div className='flex justify-center items-center -my-10'>
+          {/* <div className='flex justify-center items-center -my-10'>
             <Link to='/'>
               <p className='text-md md:text-xl self-auto text-neutral-400 tracking-wider'>Landing</p>
             </Link>
@@ -23,7 +23,7 @@ const TitleDetails = () => {
               <p className='text-md md:text-xl self-auto text-neutral-400 tracking-wider'>Collection</p>
             </Link>
 
-          </div>
+          </div> */}
         </div>
   )
 }
