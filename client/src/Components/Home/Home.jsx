@@ -118,7 +118,7 @@ export default function Home () {
         </div>
       }
       <div className={`${Classes.main} place-items-center`}>
-        {data && dataAPI.nft?.map(item => <Card key={item.id} title={item.title} id={item.id} image={item.path} price={item.price}/>)}
+        {data && dataAPI.nft?.map(item => <Card key={item.id} title={item.title} image={item.path} price={item.price} id={item.id}/>)}
       </div>
       <Pagination />
       <Footer/>

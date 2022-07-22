@@ -6,12 +6,18 @@ import { IconContext } from 'react-icons'
 import { BiDotsHorizontalRounded, BiRocket } from 'react-icons/bi'
 import { CgLogIn, CgLogOut } from 'react-icons/cg'
 import { useAuth0 } from '@auth0/auth0-react'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { Cart } from '../../Cart/Cart'
 
 export default function Nav () {
   const [open, setOpen] = useState(false)
+  const [openCart, setOpenCart] = useState(false)
 
   const showDropdown = () => {
     setOpen(!open)
+  }
+  const showCart = () => {
+    setOpenCart(!openCart)
   }
   return (
     <div>
@@ -20,6 +26,16 @@ export default function Nav () {
       <img src={Logo} alt="logo" className={Classes.logo} />
       </div>
       <ul className={Classes.navbar_menu}>
+        <li onClick={() => showCart()}>
+        <IconContext.Provider value={{ className: `${Classes.dots}` }}>
+
+            <AiOutlineShoppingCart />
+
+          </IconContext.Provider>
+        </li>
+        <li>
+          <Cart open={openCart} setOpen={setOpenCart} />
+        </li>
         <li>
           <img src={User} alt="user" className={Classes.icons} />
         </li>

@@ -6,7 +6,12 @@ module.exports = {
     './src/*.{js,jsx,ts,tsx}'
   ],
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        'cheto-violet': '#110226'
+      }
+    }
+
   },
   plugins: []
 }
