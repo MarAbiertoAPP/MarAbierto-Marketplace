@@ -5,18 +5,29 @@ import Landing from './Components/LandingPage/Landing'
 import Faq from './Components/Faq/faq'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Details from './Components/DetailsNFT/Details'
+import { Auth0Provider } from '@auth0/auth0-react'
+
+const domain = process.env.REACT_APP_AUTH0_DOMAIN
+const clientId = process.env.REACT_APP_AUTH0
 
 export default function App () {
   return (
     <Fragment>
       <BrowserRouter>
+      <Auth0Provider
+      domain={domain}
+      clientId={clientId}
+      redirectUri={`${window.location.origin}`}
+    >
         <Routes>
           <Route path="/home" element={<Home/>}/>
           <Route path="/" element={<Landing/>}/>
           <Route path="/faq" element={<Faq/>}/>
           <Route path='/detail/:id' element={<Details/>} />
         </Routes>
+        </Auth0Provider>
       </BrowserRouter>
+
     </Fragment>
   )
 }
