@@ -1,5 +1,5 @@
 require('dotenv').config()
-const {Sequelize, Op} = require('sequelize')
+const { Sequelize, Op } = require('sequelize')
 const modelUser = require('./models/User.js')
 const modelNft = require('./models/Nft.js')
 const modelCategory = require('./models/Category')
@@ -56,17 +56,17 @@ category.hasMany(nft)
 user.hasMany(nft)
 nft.belongsTo(user)
 
-user.belongsToMany(nft, {through: shoppingCar})
-nft.belongsToMany(user, {through: shoppingCar})
+user.belongsToMany(nft, { through: shoppingCar })
+nft.belongsToMany(user, { through: shoppingCar })
 
-user.belongsToMany(nft, {through: favorite})
-nft.belongsToMany(user, {through: favorite})
+user.belongsToMany(nft, { through: favorite })
+nft.belongsToMany(user, { through: favorite })
 
-user.belongsToMany(nft, {through: like})
-nft.belongsToMany(user, {through: like})
+user.belongsToMany(nft, { through: like })
+nft.belongsToMany(user, { through: like })
 
-user.belongsToMany(nft, {through: order})
-nft.belongsToMany(user, {through: order})
+user.belongsToMany(nft, { through: order })
+nft.belongsToMany(user, { through: order })
 
 module.exports = {
   ...sequelize.models,
