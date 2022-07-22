@@ -1,4 +1,4 @@
-import { CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, RESET_FILTERS, SET_SORT, SET_PAGE, SET_PAGE_MAX, CREATE_USER, GET_ALL_CATEGORIES, ADD_TO_CART, REMOVE_FROM_CART } from '../Actions/ActionsCreators'
+import { CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, RESET_FILTERS, SET_SORT, SET_PAGE, SET_PAGE_MAX, CREATE_USER, GET_ALL_CATEGORIES, ADD_TO_CART, REMOVE_FROM_CART, CART_FROM_LOCAL_STORAGE } from '../Actions/ActionsCreators'
 const initialState = {
   filter: {
     price: null,
@@ -131,7 +131,10 @@ export default function rootReducer (state = initialState, action) {
         ...state,
         Cart: [...state.Cart.filter((item) => item.id !== action.payload)]
       }
-
+    case CART_FROM_LOCAL_STORAGE:
+      return {
+        ...state, Cart: action?.payload || []
+      }
     default:
       return { ...state }
   }
