@@ -16,7 +16,7 @@ exports.NFTs = [
   {
     title: 'The Family Mooks #872',
     description: 'The Family Mooks by Mr. Kaves is the genesis token for the Doodle Labs platform. The Family Mooks originally debuted as a comic strip in Mass Appeal Magazine in 1999. Doodle Labs, in collaboration with Mr. Kaves, has brought The Family Mooks back to life in a mashup of 3,951, fully on-chain generative NFT works of art.',
-    price: 0.129,
+    price: '0.129',
     img: 'https://generator.artblocks.io/0x28f2d3805652fb5d359486dffb7d08320d403240/872',
     category: 'art'
   },

@@ -5,6 +5,7 @@ import Landing from './Components/LandingPage/Landing'
 import Faq from './Components/Faq/faq'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Details from './Components/DetailsNFT/Details'
+import { Cart } from './Components/Cart/Cart'
 import { Auth0Provider } from '@auth0/auth0-react'
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN
@@ -23,6 +24,7 @@ export default function App () {
           <Route path="/home" element={<Home/>}/>
           <Route path="/" element={<Landing/>}/>
           <Route path="/faq" element={<Faq/>}/>
+          <Route path='/cart' element={<Cart/>} />
           <Route path='/detail/:id' element={<Details/>} />
         </Routes>
         </Auth0Provider>

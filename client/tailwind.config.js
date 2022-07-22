@@ -11,7 +11,10 @@ module.exports = {
       sans: ['Inter var', 'sans-serif'],
       // poppins
       poppins: ['Poppins', 'sans-serif']
-    }
-  },
+    },
+      colors: {
+        'cheto-violet': '#110226'
+      }
+  }
   plugins: []
 }
