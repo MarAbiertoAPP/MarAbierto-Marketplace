@@ -5,7 +5,7 @@ import Landing from './Components/LandingPage/Landing'
 import Faq from './Components/Faq/faq'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Details from './Components/DetailsNFT/Details'
-import Cart from './Components/Cart/Cart'
+import { Cart } from './Components/Cart/Cart'
 
 export default function App () {
   return (
