@@ -6,11 +6,13 @@ import SearchBar from './SearchBar/SearchBar'
 import Nav from '../UI/Nav/Navigation'
 import FilterPopUp from './FilterPopUp/FilterPopUp'
 import { useSelector, useDispatch } from 'react-redux'
-import { setPageMax } from '../../Redux/Actions'
+import { setPageMax, resetFilters } from '../../Redux/Actions'
 import axios from 'axios'
 import Pagination from './Pagination/Pagination'
 import Footer from '../Footer/Footer'
 import { useLocation, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import '../Home/toast.css'
 
 export default function Home () {
   const { filterBar } = useSelector(state => state)
@@ -25,8 +27,50 @@ export default function Home () {
   const [dataAPI, setDataAPI] = useState({})
   const navigate = useNavigate()
   const location = useLocation()
-
   const setVariables = (data) => {
+    console.log(data)
+    if (data.nft.length === 0) {
+      /*     console.log('holis')
+      let timerInterval
+      Swal.fire({
+        title: 'Oops!',
+        html: 'Nothing was found',
+        timer: 1000,
+        showConfirmButton: false,
+        didOpen: () => {
+          dispatch(resetFilters())
+          navigate('/home', { push: true })
+          timerInterval = setInterval(() => {
+            Swal.getTimerLeft()
+          }, 100)
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+      }) */
+
+      dispatch(resetFilters())
+      navigate('/home', { push: true })
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        iconColor: 'white',
+        customClass: {
+          popup: 'colored_toast'
+        },
+        showConfirmButton: false,
+        timer: 1800,
+        timerProgressBar: true
+      })
+      Toast.fire({
+        icon: 'error',
+        title: 'Nothing found'
+      })
+    }
     setDataAPI(data)
     dispatch(setPageMax(data.totalPage))
   }
