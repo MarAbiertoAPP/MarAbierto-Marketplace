@@ -26,7 +26,7 @@
 }
 
 .container .card .imgBx{
-  opacity: 1;
+  opacity: 0.6;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -51,6 +51,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
+  max-height: 400px;
 }
 
 .container .card .contentBx{
