@@ -6,7 +6,7 @@ const initialState = {
     categoryId: null,
     isActive: null,
     userId: null,
-    order: null
+    order: 'id_ASC'
   },
   page: {
     current: 0,
