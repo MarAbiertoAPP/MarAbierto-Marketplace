@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Details from './Components/DetailsNFT/Details'
 import { Cart } from './Components/Cart/Cart'
 
+
 export default function App () {
   return (
     <Fragment>
