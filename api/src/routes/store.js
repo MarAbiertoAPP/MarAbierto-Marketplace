@@ -29,9 +29,9 @@ router.get('/all', async (req, res) => {
 // Route GET with search by name and filters
 // params came by body
 // pagination came by query
-router.post('/nft', async (req, res) => {
+router.get('/nft', async (req, res) => {
   try {
-    const input = req.body
+    const input = req.query
     // Get query to order
     const orderQuery = input.order ? input.order.split('_') : ['title', 'ASC']
 
