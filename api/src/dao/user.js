@@ -30,6 +30,7 @@ const createUser = async (
       phone,
       typeUser
     })
+    console.log(newUser)
     return newUser
   } catch (error) {
     return error

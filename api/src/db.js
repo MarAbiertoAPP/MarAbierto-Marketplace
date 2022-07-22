@@ -12,12 +12,13 @@ const modelShoppingCar = require('./models/ShoppingCar.js')
  * @author Nicolas Alejandro Suarez
  */
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env
-
+// process.env.DATABASE_URL ||
 const sequelize = new Sequelize(
-  process.env.DATABASE_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`,
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`,
   {
-    logging: false
-    /* dialectOptions: {
+    logging: false,
+    native: false
+  /** dialectOptions: {
       ssl: {
         require: true,
         rejectUnauthorized: false
