@@ -6,24 +6,13 @@ import App from './App'
 import store from './Redux/Store'
 import { Provider } from 'react-redux'
 import reportWebVitals from './reportWebVitals'
-import { Auth0Provider } from '@auth0/auth0-react'
-
 axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001'
 const root = ReactDOM.createRoot(document.getElementById('root'))
-
-const domain = process.env.REACT_APP_AUTH0_DOMAIN
-const clientId = process.env.REACT_APP_AUTH0
 
 root.render(
   <Provider store={store}>
   <React.StrictMode>
-    <Auth0Provider
-      domain={domain}
-      clientId={clientId}
-      redirectUri={`${window.location.origin}${window.location.pathname}`}
-    >
     <App />
-    </Auth0Provider>
   </React.StrictMode>
   </Provider>
 )
