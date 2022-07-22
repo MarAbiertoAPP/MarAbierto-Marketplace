@@ -164,7 +164,7 @@ export default function Filters ({ children }) {
           </Dialog>
         </Transition.Root>
 
-        <main className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <main className="w-full mx-auto mt-6 px-4 sm:px-6 lg:px-8">
           <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900"></h1>
 
@@ -172,7 +172,7 @@ export default function Filters ({ children }) {
               <Menu as="div" className="relative inline-block text-left">
                 <div>
                   <Menu.Button
-                    className="group inline-flex justify-center text-sm font-medium text-white hover:text-gray-600">
+                    className="group inline-flex justify-center text-sm font-medium text-white hover:text-gray-600 z-10">
                     Sort
                     <ChevronDownIcon
                       className="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
