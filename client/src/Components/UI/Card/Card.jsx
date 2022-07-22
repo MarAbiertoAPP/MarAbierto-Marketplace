@@ -5,6 +5,8 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../../../Redux/Actions/ActionsCart'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import '../../Home/toast.css'
 
 export default function Card ({ title, image, price, id }) {
   const { Cart } = useSelector(state => state)
@@ -18,9 +20,37 @@ export default function Card ({ title, image, price, id }) {
   const { isAuthenticated, loginWithRedirect } = useAuth0()
   const handleBuy = () => {
     if (Cart.find(i => i.id === id)) {
-      return alert('the current item its on the shopping cart, go check it')
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        iconColor: 'white',
+        customClass: {
+          popup: 'colored_toast'
+        },
+        showConfirmButton: false,
+        timer: 1800,
+        timerProgressBar: true
+      })
+      Toast.fire({
+        icon: 'info',
+        title: 'Current item is already in your shopping cart'
+      })
     } else {
-      alert('item added to the shopping cart!')
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        iconColor: 'white',
+        customClass: {
+          popup: 'colored_toast'
+        },
+        showConfirmButton: false,
+        timer: 1800,
+        timerProgressBar: true
+      })
+      Toast.fire({
+        icon: 'success',
+        title: 'item added to your shopping cart'
+      })
       return dispatch(
         addToCart({
           title,
