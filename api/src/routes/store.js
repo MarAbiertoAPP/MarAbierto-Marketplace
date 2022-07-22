@@ -106,6 +106,18 @@ router.post('/add', async (req, res) => {
     return res.status(400).send({ msg: error })
   }
 })
+
+/**
+ * Add favorite idUser, idNft
+ */
+router.post('/nft/fav/', nftController.addFavorite)
+
+/**
+ * Get Favorite Per id
+ */
+
+router.get('/nft/fav', nftController.getFavoritesPerId)
+
 /**
  * GetNft per Id
  */

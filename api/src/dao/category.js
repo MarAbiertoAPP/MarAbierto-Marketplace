@@ -65,9 +65,9 @@ const getAll = async () => {
 }
 
 /**
- * Remove ´, (), ñ, +, example: BOYACÁ => BOYACA
- * @param {} texto
- * @returns
+ * Este metodo toma una cadena y le quita los diacriticos de talmanera
+ * @param {String} texto
+ * @returns {String} Cadena nueva
  */
 function eliminarDiacriticos (texto) {
   return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
