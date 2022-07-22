@@ -172,7 +172,7 @@ export default function Filters ({ children }) {
           </Dialog>
         </Transition.Root>
 
-        <main className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <main className="w-full mx-auto mt-6 px-4 sm:px-6 lg:px-8">
           <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900"></h1>
 
@@ -180,7 +180,7 @@ export default function Filters ({ children }) {
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
-                  <select className={'font-medium text-gray-900 bg-black text-white outline-none cursor-pointer'} value={order} name="Order" id="Order" onChange={(e) => {
+                  <select className={'font-medium bg-black text-white outline-none cursor-pointer'} value={order} name="Order" id="Order" onChange={(e) => {
                     onChangeHandlerSort(e)
                   }}>
                     <optgroup className={'text-gray-500 bg-slate-200'} label="Reset">
