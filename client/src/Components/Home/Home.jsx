@@ -30,31 +30,7 @@ export default function Home () {
   const navigate = useNavigate()
   const location = useLocation()
   const setVariables = (data) => {
-    console.log(data)
     if (data.nft.length === 0) {
-      /*     console.log('holis')
-      let timerInterval
-      Swal.fire({
-        title: 'Oops!',
-        html: 'Nothing was found',
-        timer: 1000,
-        showConfirmButton: false,
-        didOpen: () => {
-          dispatch(resetFilters())
-          navigate('/home', { push: true })
-          timerInterval = setInterval(() => {
-            Swal.getTimerLeft()
-          }, 100)
-        },
-        willClose: () => {
-          clearInterval(timerInterval)
-        }
-      }).then((result) => {
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('I was closed by the timer')
-        }
-      }) */
-
       dispatch(resetFilters())
       navigate('/home', { push: true })
       const Toast = Swal.mixin({
@@ -77,12 +53,6 @@ export default function Home () {
     dispatch(setPageMax(data.totalPage))
   }
 
-  /*   useEffect(() => {
-    window.scrollTo(0, 0)
-    axios.post(`/stores/nft?offset=${page.current || 0}`, filterConfig)
-      .then(response => setVariables(response.data))
-  }, [filterConfig, page.current]) */
-
   useEffect(() => {
     dispatch(getAllCategories())
   }, [dispatch])
@@ -91,6 +61,7 @@ export default function Home () {
     let url = 'home?'
     for (const key in filterConfig) {
       if (filterConfig[key]) {
+        if (key === 'order' && filterConfig[key] === 'id_ASC') continue
         url += `${key}=${filterConfig[key]}&`
       }
     }

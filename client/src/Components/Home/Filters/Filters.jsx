@@ -1,17 +1,18 @@
 import React, { /* useEffect, */ Fragment, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
-import { filterByCategory, setPage } from '../../../Redux/Actions'
+import { filterByCategory, setPage, setSort } from '../../../Redux/Actions'
 import { XIcon } from '@heroicons/react/outline'
-import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
+import { /* ChevronDownIcon, */ FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
 import PropTypes from 'prop-types'
-
-const sortOptions = [
+/* import Classes from '../SearchBar/searchbar.module.css'
+ */
+/* const sortOptions = [
   { name: 'Ascending (A-Z) ↑', href: '#', current: true },
   { name: 'Descending (Z-A) ↓', href: '#', current: false },
   { name: 'From Lower-Higher ↑', href: '#', current: false },
   { name: 'From Higher-Lower ↓', href: '#', current: false }
-]
+] */
 
 /* const filters = [
   {
@@ -28,20 +29,22 @@ const sortOptions = [
   }
 ] */
 
-function classNames (...classes) {
+/* function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
-}
+} */
 
 export default function Filters ({ children }) {
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const dispatch = useDispatch()
-  const [checked, setChecked] = useState({
-    category: []
-  })
-  const categories = useSelector(state => state.categories)
   Filters.propTypes = {
     children: PropTypes.node
   }
+
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const dispatch = useDispatch()
+  const { order } = useSelector(state => state.filter)
+  const categories = useSelector(state => state.categories)
+  const [checked, setChecked] = useState({
+    category: []
+  })
 
   const handleOnChange = (e) => {
     const { value } = e.target
@@ -68,6 +71,11 @@ export default function Filters ({ children }) {
     dispatch(setPage(0))
   }
 
+  const onChangeHandlerSort = (e) => {
+    e.preventDefault()
+    dispatch(setSort(e.target.value))
+  }
+
   return (
     <div>
       <div>
@@ -83,7 +91,7 @@ export default function Filters ({ children }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-black bg-opacity-25"/>
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
             </Transition.Child>
 
             <div className="fixed inset-0 flex z-40">
@@ -106,7 +114,7 @@ export default function Filters ({ children }) {
                       onClick={() => setMobileFiltersOpen(false)}
                     >
                       <span className="sr-only">Close menu</span>
-                      <XIcon className="h-6 w-6" aria-hidden="true"/>
+                      <XIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
 
@@ -124,14 +132,14 @@ export default function Filters ({ children }) {
                               className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
                               <span className="font-medium text-gray-900">Category</span>
                               <span className="ml-6 flex items-center">
-                                  {open
-                                    ? (
-                                      <MinusSmIcon className="h-5 w-5" aria-hidden="true"/>
-                                      )
-                                    : (
-                                      <PlusSmIcon className="h-5 w-5" aria-hidden="true"/>
-                                      )}
-                                </span>
+                                {open
+                                  ? (
+                                    <MinusSmIcon className="h-5 w-5" aria-hidden="true" />
+                                    )
+                                  : (
+                                    <PlusSmIcon className="h-5 w-5" aria-hidden="true" />
+                                    )}
+                              </span>
                             </Disclosure.Button>
                           </h3>
                           <Disclosure.Panel className="pt-6">
@@ -168,55 +176,31 @@ export default function Filters ({ children }) {
           <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900"></h1>
 
+            {/* Ordering div */}
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
-                  <Menu.Button
-                    className="group inline-flex justify-center text-sm font-medium text-white hover:text-gray-600">
-                    Sort
-                    <ChevronDownIcon
-                      className="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                  </Menu.Button>
+                  <select className={'font-medium text-gray-900 bg-black text-white outline-none cursor-pointer'} value={order} name="Order" id="Order" onChange={(e) => {
+                    onChangeHandlerSort(e)
+                  }}>
+                    <optgroup className={'text-gray-500 bg-slate-200'} label="Reset">
+                      <option value="id_ASC" className={'text-gray-500 bg-white'}>Order by (Default)</option>
+                    </optgroup>
+                    <optgroup className={'text-gray-500 bg-slate-200'} label="Name">
+                      <option value="title_ASC" className={'text-gray-500 bg-white'}>Ascending (A-Z) ↑</option>
+                      <option value="title_DESC" className={'text-gray-500 bg-white'}>Descending (Z-A) ↓</option>
+                    </optgroup>
+                    <optgroup className={'text-gray-500 bg-slate-200'} label="Price">
+                      <option value="price_ASC" className={'text-gray-500 bg-white'}>From Lower-Higher ↑</option>
+                      <option value="price_DESC" className={'text-gray-500 bg-white'}>From Higher-Lower ↓</option>
+                    </optgroup>
+                  </select>
                 </div>
-
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <Menu.Items
-                    className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="py-1">
-                      {sortOptions.map((option) => (
-                        <Menu.Item key={option.name}>
-                          {({ active }) => (
-                            <a
-                              href={option.href}
-                              className={classNames(
-                                option.current ? 'font-medium text-gray-900' : 'text-gray-500',
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm'
-                              )}
-                            >
-                              {option.name}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ))}
-                    </div>
-                  </Menu.Items>
-                </Transition>
               </Menu>
 
               <button type="button" className="p-2 -m-2 ml-5 sm:ml-7 text-gray-400 hover:text-gray-500">
                 <span className="sr-only">View grid</span>
-                <ViewGridIcon className="w-5 h-5" aria-hidden="true"/>
+                <ViewGridIcon className="w-5 h-5" aria-hidden="true" />
               </button>
               <button
                 type="button"
@@ -224,7 +208,7 @@ export default function Filters ({ children }) {
                 onClick={() => setMobileFiltersOpen(true)}
               >
                 <span className="sr-only">Filters</span>
-                <FilterIcon className="w-5 h-5" aria-hidden="true"/>
+                <FilterIcon className="w-5 h-5" aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -252,10 +236,10 @@ export default function Filters ({ children }) {
                             <span className="ml-6 flex items-center">
                               {open
                                 ? (
-                                  <MinusSmIcon className="h-5 w-5" aria-hidden="true"/>
+                                  <MinusSmIcon className="h-5 w-5" aria-hidden="true" />
                                   )
                                 : (
-                                  <PlusSmIcon className="h-5 w-5" aria-hidden="true"/>
+                                  <PlusSmIcon className="h-5 w-5" aria-hidden="true" />
                                   )}
                             </span>
                           </Disclosure.Button>
@@ -294,7 +278,7 @@ export default function Filters ({ children }) {
             </div>
           </section>
         </main>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }

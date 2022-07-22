@@ -26,7 +26,7 @@ const Details = () => {
   return (
     <div className={style.div}>
 
-      <div className={' flex flex-col items-center w-screen max-w-screen-xl'} >
+      <div className={'mt-10 flex flex-col items-center w-screen max-w-screen-xl'} >
 
         <TitleDetails />
         <TitleLikesSM title={nftDetail?.title}/>
