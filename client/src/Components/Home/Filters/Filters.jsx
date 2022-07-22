@@ -180,7 +180,7 @@ export default function Filters ({ children }) {
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
-                  <select className={'font-medium text-gray-900 bg-black text-white outline-none cursor-pointer'} value={order} name="Order" id="Order" onChange={(e) => {
+                  <select className={'font-medium bg-black text-white outline-none cursor-pointer'} value={order} name="Order" id="Order" onChange={(e) => {
                     onChangeHandlerSort(e)
                   }}>
                     <optgroup className={'text-gray-500 bg-slate-200'} label="Reset">
