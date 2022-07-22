@@ -3,6 +3,7 @@ import Classes from './home.module.css'
 import Card from '../UI/Card/Card'
 import Nav from '../UI/Nav/Navigation'
 import Filters from './Filters/Filters'
+import SearchBar from './SearchBar/SearchBar'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPageMax, resetFilters, getAllCategories } from '../../Redux/Actions'
 import { cartFromLocalStorage } from '../../Redux/Actions/ActionsCart'
@@ -112,7 +113,7 @@ export default function Home () {
   return (
     <div className={Classes.bg}>
       <Nav/>
-       {/* <SearchBar/> */}
+        <SearchBar/>
       <Filters>
       <div className={`${Classes.main} place-content-center`}>
         {dataAPI && dataAPI.nft?.map(item => item.path ? <Card key={item.id} title={item.title} image={item.path} price={item.price} id={item.id}/> : null)}
