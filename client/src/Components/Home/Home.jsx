@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Classes from './home.module.css'
-import data from './monigotes/nft'
 import Card from '../UI/Card/Card'
-import SearchBar from './SearchBar/SearchBar'
+/* import SearchBar from './SearchBar/SearchBar' */
 import Nav from '../UI/Nav/Navigation'
-import FilterPopUp from './FilterPopUp/FilterPopUp'
+import Filters from './Filters/Filters'
 import { useSelector, useDispatch } from 'react-redux'
-import { setPageMax, resetFilters } from '../../Redux/Actions'
+import { setPageMax, resetFilters, getAllCategories } from '../../Redux/Actions'
 import axios from 'axios'
 import Pagination from './Pagination/Pagination'
 import Footer from '../Footer/Footer'
@@ -15,8 +14,6 @@ import Swal from 'sweetalert2'
 import '../Home/toast.css'
 
 export default function Home () {
-  const { filterBar } = useSelector(state => state)
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -24,6 +21,7 @@ export default function Home () {
   const filterConfig = useSelector(state => state.filter)
   const page = useSelector(state => state.page)
   const dispatch = useDispatch()
+  /* eslint-disable-next-line */
   const [dataAPI, setDataAPI] = useState({})
   const navigate = useNavigate()
   const location = useLocation()
@@ -82,6 +80,10 @@ export default function Home () {
   }, [filterConfig, page.current]) */
 
   useEffect(() => {
+    dispatch(getAllCategories())
+  }, [dispatch])
+
+  useEffect(() => {
     let url = 'home?'
     for (const key in filterConfig) {
       if (filterConfig[key]) {
@@ -107,22 +109,14 @@ export default function Home () {
   return (
     <div className={Classes.bg}>
       <Nav/>
-      <SearchBar/>
-      {!filterBar &&
-        <div>
-        </div>
-      }
-      {filterBar &&
-        <div className={''}>
-          <FilterPopUp/>
-        </div>
-      }
-      <div className={`${Classes.main} place-items-center`}>
-        {data && dataAPI.nft?.map(item => <Card key={item.id} title={item.title} image={item.path} price={item.price} id={item.id}/>)}
+       {/* <SearchBar/> */}
+      <Filters>
+      <div className={`${Classes.main} place-content-center`}>
+        {dataAPI && dataAPI.nft?.map(item => item.path ? <Card key={item.id} title={item.title} image={item.path} price={item.price} id={item.id}/> : null)}
       </div>
+      </Filters>
       <Pagination />
       <Footer/>
-
     </div>
   )
 }

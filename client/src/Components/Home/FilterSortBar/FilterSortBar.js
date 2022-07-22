@@ -3,7 +3,6 @@ import Classes from '../SearchBar/searchbar.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 // import { orderNFTS } from '../../../Redux/Actions/ActionsSort'
 import { BiArrowToLeft, BiArrowToRight } from 'react-icons/bi'
-import { showFilterBar } from '../../../Redux/Actions/ActionsFilterBar'
 import { setSort } from '../../../Redux/Actions/index'
 
 export default function FilterSortBar () {
@@ -26,12 +25,7 @@ export default function FilterSortBar () {
 
   return (
     <div className={Classes.container3}>
-      {!filterBar &&
-        <button className={Classes.button} onClick={() => dispatch(showFilterBar())}>Filters<BiArrowToRight/></button>
-      }
-      {filterBar &&
-        <button className={Classes.button2} onClick={() => dispatch(showFilterBar())}>Filters<BiArrowToLeft/></button>
-      }
+
       <select className={Classes.selector} value={order} name="Order" id="Order" onChange={(e) => {
         onChangeHandlerSort(e)
       }}

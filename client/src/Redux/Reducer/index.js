@@ -33,13 +33,6 @@ export default function rootReducer (state = initialState, action) {
           price: action.payload
         }
       }
-
-    case SHOW_FILTER_BAR:
-      return {
-        ...state,
-        filterBar: action.payload
-      }
-
     case FILTER_BY_TITLE:
       return {
         ...state,

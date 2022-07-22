@@ -3,8 +3,6 @@ import Classes from './searchbar.module.css'
 import { filterByTitle, resetFilters, setPage } from '../../../Redux/Actions/index'
 import { BiRefresh, BiSearch } from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux'
-import FilterSortBar from '../FilterSortBar/FilterSortBar'
-import { showFilterBar } from '../../../Redux/Actions/ActionsFilterBar'
 
 export default function SearchBar () {
   const [search, setSearch] = useState('')
@@ -34,23 +32,18 @@ export default function SearchBar () {
     dispatch(setPage(0))
     setSearch('')
     console.log(filterShow)
-    if (filterShow) {
-      dispatch(showFilterBar())
-    }
   }
 
   const handleReset = (e) => {
+    e.preventDefault()
     dispatch(resetFilters())
     dispatch(setPage(0))
-    if (filterShow) {
-      dispatch(showFilterBar())
-    }
   }
 
   return (
     <div>
     <div className={Classes.container1}>
-    <button className={Classes.button} onClick={(e) => handleReset(e)}><BiRefresh/>Refresh</button>
+    <button className={Classes.button} onClick={(e) => handleReset(e)}><BiRefresh/></button>
     <form className={Classes.container2} onSubmit={(e) => { handleSubmit(e) }}>
       <input className={Classes.input}
              name={'search'}
@@ -62,9 +55,6 @@ export default function SearchBar () {
       <button className={Classes.button} type={'submit'}><BiSearch/>Search!</button>
     </form>
     </div>
-      <div>
-        <FilterSortBar/>
-      </div>
     </div>
 
   )
