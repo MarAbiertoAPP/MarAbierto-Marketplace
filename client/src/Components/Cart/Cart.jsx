@@ -58,11 +58,11 @@ export function Cart ({ open, setOpen }) {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-screen max-w-md  bg-cheto-violet ">
+                <Dialog.Panel className="pointer-events-auto w-screen max-w-md  bg-white ">
                   <div className="flex h-full flex-col overflow-y-scroll   shadow-xl">
                     <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                       <div className="flex items-start justify-between">
-                        <Dialog.Title className="text-lg font-medium  text-lime-500"> Shopping cart </Dialog.Title>
+                        <Dialog.Title className="text-lg font-medium  text-indigo-600"> Shopping cart </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
@@ -109,7 +109,7 @@ export function Cart ({ open, setOpen }) {
                                       </button> */}
                                       <FaTrashAlt
                                       type="button"
-                                      className="font-medium text-indigo-600 hover:text-indigo-500 cursor-pointer text-orange-600"
+                                      className="font-medium text-indigo-600 hover:text-indigo-500 cursor-pointer "
                                       onClick={ () => handleDelete(e.id)
 
                                       }
