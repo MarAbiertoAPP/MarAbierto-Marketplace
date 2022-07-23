@@ -34,7 +34,6 @@ const Details = () => {
         <div className={`my-6 flex flex-col xl:flex-row w-full min-h-screen xl:${style.limitH}`}>
 
           <RenderImg img={nftDetail?.path}/>
-
           <div className='flex flex-col basis-8/12 '>
 
             <TitleLikesXL title={nftDetail?.title}/>
