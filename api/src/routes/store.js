@@ -52,8 +52,6 @@ router.get('/nft', async (req, res) => {
     if (input.isActive) whereQuery.isActive = input.isActive
     if (input.userId) whereQuery.userId = input.userId
 
-    console.log(whereQuery)
-
     // Count the total data filtered
     const count = await nft.count({
       where: whereQuery
@@ -75,7 +73,6 @@ router.get('/nft', async (req, res) => {
       totalPage: Math.ceil(count / limit) - 1
     })
   } catch (error) {
-    console.log(error)
     return res.status(400).send({ msg: error })
   }
 })
