@@ -41,7 +41,6 @@ export default function SearchBar () {
   }
 
   return (
-    <div>
     <div className={Classes.container1}>
     <button className={Classes.button} onClick={(e) => handleReset(e)}><BiRefresh/></button>
     <form className={Classes.container2} onSubmit={(e) => { handleSubmit(e) }}>
@@ -54,7 +53,6 @@ export default function SearchBar () {
       />
       <button className={Classes.button} type={'submit'}><BiSearch/>Search!</button>
     </form>
-    </div>
     </div>
 
   )

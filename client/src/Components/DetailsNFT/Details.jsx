@@ -11,6 +11,7 @@ import DetailsDescription from './DetailsDescription/DetailsDescription'
 import CurrentPriceDetail from './CurrentPriceDetail/CurrentPriceDetail'
 import CurrentOwner from './CurrentOwner/CurrentOwner'
 import ButtonsDetails from './ButtonsDetails/ButtonsDetails'
+import Footer from '../Footer/Footer'
 
 const Details = () => {
   const { id } = useParams()
@@ -26,7 +27,7 @@ const Details = () => {
   return (
     <div className={style.div}>
 
-      <div className={' flex flex-col items-center w-screen max-w-screen-xl'} >
+      <div className={'mt-10 flex flex-col items-center w-screen max-w-screen-xl'} >
 
         <TitleDetails />
         <TitleLikesSM title={nftDetail?.title}/>
@@ -55,6 +56,7 @@ const Details = () => {
 
         </div>
       </div>
+      <Footer/>
     </div>
 
   )

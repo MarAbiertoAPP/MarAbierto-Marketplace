@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Classes from './home.module.css'
 import Card from '../UI/Card/Card'
-/* import SearchBar from './SearchBar/SearchBar' */
 import Nav from '../UI/Nav/Navigation'
 import Filters from './Filters/Filters'
+import SearchBar from './SearchBar/SearchBar'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPageMax, resetFilters, getAllCategories } from '../../Redux/Actions'
+import { cartFromLocalStorage } from '../../Redux/Actions/ActionsCart'
+import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import Pagination from './Pagination/Pagination'
 import Footer from '../Footer/Footer'
@@ -13,9 +15,20 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../Home/toast.css'
 
+const cartFromLocal = JSON.parse(localStorage.getItem('Cart'))
+
 export default function Home () {
+  const { isAuthenticated, user } = useAuth0()
+
   useEffect(() => {
     window.scrollTo(0, 0)
+    dispatch(cartFromLocalStorage(cartFromLocal))
+  }, [])
+  // Proximo a mover en la landing page
+  useEffect(() => {
+    if (isAuthenticated) {
+      window.localStorage.setItem('user', JSON.stringify(user))
+    }
   }, [])
 
   const filterConfig = useSelector(state => state.filter)
@@ -26,31 +39,7 @@ export default function Home () {
   const navigate = useNavigate()
   const location = useLocation()
   const setVariables = (data) => {
-    console.log(data)
     if (data.nft.length === 0) {
-      /*     console.log('holis')
-      let timerInterval
-      Swal.fire({
-        title: 'Oops!',
-        html: 'Nothing was found',
-        timer: 1000,
-        showConfirmButton: false,
-        didOpen: () => {
-          dispatch(resetFilters())
-          navigate('/home', { push: true })
-          timerInterval = setInterval(() => {
-            Swal.getTimerLeft()
-          }, 100)
-        },
-        willClose: () => {
-          clearInterval(timerInterval)
-        }
-      }).then((result) => {
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('I was closed by the timer')
-        }
-      }) */
-
       dispatch(resetFilters())
       navigate('/home', { push: true })
       const Toast = Swal.mixin({
@@ -73,12 +62,6 @@ export default function Home () {
     dispatch(setPageMax(data.totalPage))
   }
 
-  /*   useEffect(() => {
-    window.scrollTo(0, 0)
-    axios.post(`/stores/nft?offset=${page.current || 0}`, filterConfig)
-      .then(response => setVariables(response.data))
-  }, [filterConfig, page.current]) */
-
   useEffect(() => {
     dispatch(getAllCategories())
   }, [dispatch])
@@ -87,6 +70,7 @@ export default function Home () {
     let url = 'home?'
     for (const key in filterConfig) {
       if (filterConfig[key]) {
+        if (key === 'order' && filterConfig[key] === 'id_ASC') continue
         url += `${key}=${filterConfig[key]}&`
       }
     }
@@ -109,7 +93,7 @@ export default function Home () {
   return (
     <div className={Classes.bg}>
       <Nav/>
-       {/* <SearchBar/> */}
+        <SearchBar/>
       <Filters>
       <div className={`${Classes.main} place-content-center`}>
         {dataAPI && dataAPI.nft?.map(item => item.path ? <Card key={item.id} title={item.title} image={item.path} price={item.price} id={item.id}/> : null)}
