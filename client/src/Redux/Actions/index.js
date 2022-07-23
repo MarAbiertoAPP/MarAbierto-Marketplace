@@ -11,7 +11,8 @@ import {
   SET_PAGE_MAX,
   CREATE_USER,
   GET_ALL_CATEGORIES,
-  CREATE_CATEGORIES
+  CREATE_CATEGORIES,
+  GET_CLIENTE_SECRET
 } from './ActionsCreators'
 import axios from 'axios'
 
@@ -116,5 +117,12 @@ export function createCategories (item) {
       .then(dispatch({
         type: CREATE_CATEGORIES
       }))
+  }
+}
+export function getClientPay (data) {
+  return {
+    type: GET_CLIENTE_SECRET,
+    payload: data
+
   }
 }

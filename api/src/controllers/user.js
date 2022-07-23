@@ -65,3 +65,11 @@ exports.signIn = async (req, res) => {
     res.status(500).send({ error: 'Algo ha ocurrido' })
   }
 }
+exports.getSecret = (req, res) => {
+  /*  const { secretKey } = req.body */
+  try {
+    return res.status(401).send('llegue al back')
+  } catch (error) {
+
+  }
+}

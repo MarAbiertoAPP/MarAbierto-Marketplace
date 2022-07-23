@@ -21,5 +21,7 @@ router.get('/profile', userController.signUp)
  * Iniciar sesion
  */
 router.post('/signin', userController.signIn)
+router.get('/getsecret', userController.getSecret)
+// /users/getsecret
 
 module.exports = router
