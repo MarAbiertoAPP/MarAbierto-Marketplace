@@ -1,4 +1,4 @@
-import React, { /* useEffect, */ Fragment, useState } from 'react'
+import React, { /* useEffect, */ Fragment, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { filterByCategory, setPage, setSort } from '../../../Redux/Actions'
@@ -38,14 +38,26 @@ export default function Filters ({ children }) {
     children: PropTypes.node
   }
 
+  // Data cycle
+  // User click checkedBox -> set(intermediateState(checked)) -> set Reducer state: categoryId
+  // -> ComponentDidUpdate(reduxState) -> set(checkedStates)
+
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const dispatch = useDispatch()
-  const { order } = useSelector(state => state.filter)
+  const { order, categoryId } = useSelector(state => state.filter)
   const categories = useSelector(state => state.categories)
+
+  // Local state that consume from redux to set if a checkbox if checked
+  const [checkedState, setCheckedState] = useState(
+    new Array(categories.length || 9).fill(false)
+  )
+
+  // Local state to control checkbox checked
   const [checked, setChecked] = useState({
     category: []
   })
 
+  // Handle to set the checked state and set the state in redux
   const handleOnChange = (e) => {
     const { value } = e.target
     if (e.target.checked) {
@@ -57,7 +69,6 @@ export default function Filters ({ children }) {
       }
     }
     if (!e.target.checked) {
-      console.log(e.target.value)
       setChecked({
         ...checked, category: [...checked.category.filter(c => c !== value)]
       })
@@ -71,9 +82,28 @@ export default function Filters ({ children }) {
     dispatch(setPage(0))
   }
 
+  // Component update when the redux state change and set the local state that control the checked
+  useEffect(() => {
+    if (categoryId === null) {
+      setCheckedState([...checkedState].fill(false))
+    }
+    if (categoryId) {
+      const arrCheckedBoxes = categoryId.split('_')
+      const newState = [...checkedState].fill(false)
+      for (const id of arrCheckedBoxes) {
+        const category = categories.find(c => c.id === id)
+        const indexCategory = categories.indexOf(category)
+        newState[indexCategory] = true
+        setCheckedState(newState)
+      }
+    }
+  }, [categoryId])
+
+  // Handle to set the order value on redux
   const onChangeHandlerSort = (e) => {
     e.preventDefault()
     dispatch(setSort(e.target.value))
+    dispatch(setPage(0))
   }
 
   return (
@@ -119,7 +149,7 @@ export default function Filters ({ children }) {
                   </div>
 
                   {/* Filters */}
-                  <form className="mt-4 border-t border-gray-200" onChange={(e) => handleOnChange(e)}>
+                  <form className="mt-4 border-t border-gray-200">
                     <h3 className="sr-only">Categories</h3>
                     <ul role="list" className="font-medium text-gray-900 px-2 py-3">
                     </ul>
@@ -144,22 +174,24 @@ export default function Filters ({ children }) {
                           </h3>
                           <Disclosure.Panel className="pt-6">
                             <div className="space-y-6">
-                              {categories && categories.map((option, optionIdx) => (
-                                <div key={option.id} className="flex items-center">
-                                  <input
-                                    id='Category'
-                                    value={option.id}
-                                    type="checkbox"
-                                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
-                                  />
-                                  <label
-                                    htmlFor={`filter-mobile-Category-${optionIdx}`}
-                                    className="ml-3 min-w-0 flex-1 text-gray-500"
-                                  >
-                                    {option.name}
-                                  </label>
-                                </div>
-                              ))}
+                            {categories && categories.map((option, optionIdx) => (
+                              <div key={option.id} className="flex items-center">
+                                <input
+                                  id='Category'
+                                  value={option.id}
+                                  type="checkbox"
+                                  checked={!!checkedState[optionIdx]}
+                                  onChange={(e) => handleOnChange(e)}
+                                  className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                />
+                                <label
+                                  htmlFor={`filter-${option.id}-${optionIdx}`}
+                                  className="ml-3 text-sm text-white"
+                                >
+                                  {option.name}
+                                </label>
+                              </div>
+                            ))}
                             </div>
                           </Disclosure.Panel>
                         </>
@@ -221,7 +253,7 @@ export default function Filters ({ children }) {
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
               {/* Filters */}
               <div className='w-80'>
-                <form className="hidden lg:block w-80" onChange={(e) => handleOnChange(e)}>
+                <form className="hidden lg:block w-80" >
                   <h3 className="sr-only">Categories</h3>
                   <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6  ">
                   </ul>
@@ -252,6 +284,8 @@ export default function Filters ({ children }) {
                                   id='Category'
                                   value={option.id}
                                   type="checkbox"
+                                  checked={!!checkedState[optionIdx]}
+                                  onChange={(e) => handleOnChange(e)}
                                   className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                                 />
                                 <label
