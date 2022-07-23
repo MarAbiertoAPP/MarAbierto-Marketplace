@@ -18,8 +18,19 @@ module.exports = (sequelize) => {
         notNull: true
       }
     },
-    nickname: {
-      type: DataTypes.STRING
+    lastname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true
+      }
     },
     dni: {
       type: DataTypes.STRING
@@ -34,6 +45,9 @@ module.exports = (sequelize) => {
       validate: {
         notNull: true
       }
+    },
+    phone: {
+      type: DataTypes.STRING
     },
     typeUser: {
       type: DataTypes.ENUM('N', 'SU'),

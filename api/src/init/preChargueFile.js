@@ -1,8 +1,7 @@
-/* const { createUser } = require('../dao/user.js') */
+const { createUser } = require('../dao/user.js')
 const { NFTs } = require('./prechargue.js')
 const { findNameOrCreate: createCat } = require('../dao/category.js')
 const { createNFT } = require('../dao/nft.js')
-
 // https://www.datos.gov.co/resource/xdk5-pm3f.json
 // https://apis.datos.gob.ar/georef/api/provincias
 // https://apis.datos.gob.ar/georef/api/municipios?provincia=14&campos=nombre&max=428
@@ -17,7 +16,7 @@ const { createNFT } = require('../dao/nft.js')
  * temporary while the database is just filled and the "force" becomes false.
  * DELETE ENTIRE INIT FOLDER BEFORE DEPLOYING
  */
-/* const users = [
+const users = [
   {
     name: 'nicolas',
     lastname: 'suarez',
@@ -82,21 +81,22 @@ const { createNFT } = require('../dao/nft.js')
     email: 'correo7@gmail.com',
     phone: '12345'
   }
-] */
+]
 const chargue = async () => {
   try {
-    /* const arrUsersID = []
+    const arrUsersID = []
     for (let i = 0; i < users.length; i++) {
       const { name, lastname, password, dni, profilePicture, email, phone } = users[i]
       const idUser = await createUser(name, lastname, password, dni, profilePicture, email, phone, 'N')
       arrUsersID.push(idUser.dataValues.id)
-    } */
+    }
 
     for (let i = 0; i < NFTs.length; i++) {
-      /* const rand = Math.floor(Math.random() * arrUsersID.length) */
+      const rand = Math.floor(Math.random() * arrUsersID.length)
+      const rValue = arrUsersID[rand]
       const { title, description, img: path, price, category } = NFTs[i]
       const catId = await createCat(category)
-      await createNFT(title, description, path, price, catId[0].dataValues.id)
+      await createNFT(title, description, path, price, catId[0].dataValues.id, rValue)
     }
     console.log('sucessfully')
   } catch (error) {

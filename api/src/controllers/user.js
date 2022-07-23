@@ -1,7 +1,7 @@
 const { createUser, searchUser } = require('../dao/user.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-/* const { emailRegisterUser } = require('../dao/sendMails.js') */
+const { emailRegisterUser } = require('../dao/sendMails.js')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize
@@ -11,19 +11,24 @@ const jwt = require('jsonwebtoken')
  * ALTERAR AL DARLE TOKEN CON JWT
  */
 exports.signUp = async (req, res) => {
-  const { name, email, nickname, picture } = req.body
+  const { name, lastname, password, email, dni, profilePicture, phone } = req.body
+
   try {
     const userS = await searchUser(email)
     if (userS) {
-      return res.status(200).json(userS)
+      return res.status(401).json({ msg: 'Usuario ya registrado' })
     }
 
     const newuser = await createUser(name,
-      name, nickname, picture, email, 'N')
+      lastname, password, dni, profilePicture, email, phone, 'N')
 
-    /* emailRegisterUser(email, `${name} ${lastname}`) */
+    const token = jwt.sign({ id: newuser.id }, process.env.SECRET, {
+      expiresIn: 60 * 60 * 24
+    })
+    emailRegisterUser(email, `${name} ${lastname}`)
     res.json({
-      user: newuser
+      user: newuser,
+      token
     })
   } catch (err) {
     console.log(err)
