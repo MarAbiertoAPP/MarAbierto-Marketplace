@@ -4,10 +4,8 @@ import Home from './Components/Home/Home'
 import Landing from './Components/LandingPage/Landing'
 import Faq from './Components/Faq/faq'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Details from './Components/DetailsNFT/Details'
 import { Cart } from './Components/Cart/Cart'
 import { Auth0Provider } from '@auth0/auth0-react'
-
 import Checkout from './Components/CheckOut/CheckoutForm'
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN
@@ -27,8 +25,8 @@ export default function App () {
           <Route path="/" element={<Landing/>}/>
           <Route path="/faq" element={<Faq/>}/>
           <Route path='/cart' element={<Cart/>} />
-          <Route path='/detail/:id' element={<Details/>} />
           <Route path='/checkout' element={<Checkout/>} />
+
         </Routes>
         </Auth0Provider>
       </BrowserRouter>
