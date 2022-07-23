@@ -1,27 +1,27 @@
 export const Data = [
   {
     id: 1,
-    title: '¿Qué es Mar abierto?',
-    answer: 'Mar abierto es una plataforma de compra y venta de NFT donde podras adquirir los NFT que quieras con la facilidad de poder pagar con tarjeta de credito'
+    title: '¿What is Mar abierto?',
+    answer: 'Mar abierto is a platform for buying and selling NFTs where you can acquire the NFTs you want with the ease of being able to pay by credit card'
   },
   {
     id: 2,
-    title: '¿Qué es un NFT?',
-    answer: 'NFT significa Non-Fungible Tokens o, lo que sería lo mismo, un «activo no fungible». Es decir, un tipo de activo que no puede ser modificado, que es único. Por ejemplo, una obra de arte.'
+    title: '¿What is an NFT?',
+    answer: 'NFT means Non-Fungible Tokens or an «not fungible asset», a type of asset that cannot be modified, that is unique. For example, a work of art.'
   },
   {
     id: 3,
-    title: '¿Como compro un NFT?',
-    answer: 'En Mar Abierto te damos la facilidad de poder comprar tus NFT con tu tarjeta si deseas, nosotros hacemos el cambio a cripto por ti!'
+    title: '¿How can i buy in an NFT?',
+    answer: 'In Mar Abierto we give you the facility to be able to buy your NFT with your card if you wish, we make the change to crypto for you!'
   },
   {
     id: 4,
-    title: '¿Qué es un MarCoin?',
-    answer: 'El MarCoin es la moneda interna de nuestra web, con ella puedes comprar tus NFT'
+    title: '¿What is a MarCoin?',
+    answer: 'The MarCoin is the internal currency of our website, with it you can buy your NFTs'
   },
   {
     id: 5,
-    title: '¿Puedo vender mis propios NFT? ',
-    answer: 'Seguro! en Mar Abierto puedes subir y vender tus propios NFT'
+    title: '¿Can i sell my NFTs? ',
+    answer: 'For shure! in Mar Abierto you can post and sell your NFTs'
   }
 ]
