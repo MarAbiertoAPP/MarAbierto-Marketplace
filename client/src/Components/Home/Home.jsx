@@ -7,6 +7,7 @@ import SearchBar from './SearchBar/SearchBar'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPageMax, resetFilters, getAllCategories } from '../../Redux/Actions'
 import { cartFromLocalStorage } from '../../Redux/Actions/ActionsCart'
+import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import Pagination from './Pagination/Pagination'
 import Footer from '../Footer/Footer'
@@ -17,9 +18,17 @@ import '../Home/toast.css'
 const cartFromLocal = JSON.parse(localStorage.getItem('Cart'))
 
 export default function Home () {
+  const { isAuthenticated, user } = useAuth0()
+
   useEffect(() => {
     window.scrollTo(0, 0)
     dispatch(cartFromLocalStorage(cartFromLocal))
+  }, [])
+  // Proximo a mover en la landing page
+  useEffect(() => {
+    if (isAuthenticated) {
+      window.localStorage.setItem('user', JSON.stringify(user))
+    }
   }, [])
 
   const filterConfig = useSelector(state => state.filter)
