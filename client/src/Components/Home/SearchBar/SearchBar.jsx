@@ -29,7 +29,7 @@ export default function SearchBar () {
     } else {
       dispatch(filterByTitle(search.trim()))
     }
-    dispatch(setPage(0))
+    dispatch(setPage(1))
     setSearch('')
     console.log(filterShow)
   }
@@ -37,7 +37,7 @@ export default function SearchBar () {
   const handleReset = (e) => {
     e.preventDefault()
     dispatch(resetFilters())
-    dispatch(setPage(0))
+    dispatch(setPage(1))
   }
 
   return (

@@ -5,6 +5,8 @@ import { filterByCategory, setPage, setSort } from '../../../Redux/Actions'
 import { XIcon } from '@heroicons/react/outline'
 import { /* ChevronDownIcon, */ FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
 import PropTypes from 'prop-types'
+import { useLocation } from 'react-router-dom'
+
 /* import Classes from '../SearchBar/searchbar.module.css'
  */
 /* const sortOptions = [
@@ -42,50 +44,49 @@ export default function Filters ({ children }) {
   // User click checkedBox -> set(intermediateState(checked)) -> set Reducer state: categoryId
   // -> ComponentDidUpdate(reduxState) -> set(checkedStates)
 
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const dispatch = useDispatch()
+  const location = useLocation()
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const { order, categoryId } = useSelector(state => state.filter)
   const categories = useSelector(state => state.categories)
 
   // Local state that consume from redux to set if a checkbox if checked
   const [checkedState, setCheckedState] = useState(
-    new Array(categories.length || 9).fill(false)
+    new Array(9).fill(false)
   )
 
   // Local state to control checkbox checked
-  const [checked, setChecked] = useState({
-    category: []
-  })
+  // The render has to be from redux not the localState
+  const [checked, setChecked] = useState([])
+
 
   // Handle to set the checked state and set the state in redux
   const handleOnChange = (e) => {
     const { value } = e.target
     if (e.target.checked) {
-      setChecked({
-        ...checked, category: [...checked.category, value]
-      })
-      if ([...checked.category, value].length > 0) {
-        dispatch(filterByCategory([...checked.category, value].join('_')))
+      setChecked([...checked, value])
+      if ([...checked, value].length > 0) {
+        dispatch(filterByCategory([...checked, value].join('_')))
       }
     }
     if (!e.target.checked) {
-      setChecked({
-        ...checked, category: [...checked.category.filter(c => c !== value)]
-      })
-      if ([...checked.category.filter(c => c !== value)].length > 0) {
-        dispatch(filterByCategory([...checked.category.filter(c => c !== value)].join('_')))
+      setChecked([...checked.filter(c => c !== value)])
+      if ([...checked.filter(c => c !== value)].length > 0) {
+        dispatch(filterByCategory([...checked.filter(c => c !== value)].join('_')))
+
       }
-      if ([...checked.category.filter(c => c !== value)].length === 0) {
+      if ([...checked.filter(c => c !== value)].length === 0) {
         dispatch(filterByCategory(null))
       }
     }
-    dispatch(setPage(0))
+    dispatch(setPage(1))
   }
 
   // Component update when the redux state change and set the local state that control the checked
   useEffect(() => {
     if (categoryId === null) {
       setCheckedState([...checkedState].fill(false))
+      setChecked([])
     }
     if (categoryId) {
       const arrCheckedBoxes = categoryId.split('_')
@@ -94,16 +95,49 @@ export default function Filters ({ children }) {
         const category = categories.find(c => c.id === id)
         const indexCategory = categories.indexOf(category)
         newState[indexCategory] = true
-        setCheckedState(newState)
       }
+      setCheckedState(newState)
     }
   }, [categoryId])
+
+  // When page is refresh set the values of the checked boxes we have to use LocalStorage
+  useEffect(() => {
+    const stateFromRedux = urlToState(location.search)
+    const arrCategoriesFromRedux = stateFromRedux?.categoryId ? stateFromRedux.categoryId.split('_') : []
+    setChecked(arrCategoriesFromRedux || [])
+    const newState = [...checkedState].fill(false)
+    for (const id of arrCategoriesFromRedux) {
+      const category = categories.find(c => c.id === id)
+      const indexCategory = categories.indexOf(category)
+      newState[indexCategory] = true
+    }
+    setCheckedState(newState)
+  }, [categories])
+
+  const urlToState = (url) => {
+    if (url === '') return
+    const arrQuerys = url.slice(1).split('&')
+    const newState = {}
+    const numbersKeys = ['page', 'max', 'cardsPerPage']
+    for (const query of arrQuerys) {
+      const key = query.split('=')[0]
+      const value = query.split('=')[1]
+      if (numbersKeys.includes(key)) {
+        newState[key] = Number(value)
+      } else {
+        newState[key] = value
+      }
+    }
+    return newState
+  }
 
   // Handle to set the order value on redux
   const onChangeHandlerSort = (e) => {
     e.preventDefault()
     dispatch(setSort(e.target.value))
-    dispatch(setPage(0))
+
+    dispatch(setPage(1))
+
   }
 
   return (
@@ -174,24 +208,24 @@ export default function Filters ({ children }) {
                           </h3>
                           <Disclosure.Panel className="pt-6">
                             <div className="space-y-6">
-                            {categories && categories.map((option, optionIdx) => (
-                              <div key={option.id} className="flex items-center">
-                                <input
-                                  id='Category'
-                                  value={option.id}
-                                  type="checkbox"
-                                  checked={!!checkedState[optionIdx]}
-                                  onChange={(e) => handleOnChange(e)}
-                                  className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
-                                />
-                                <label
-                                  htmlFor={`filter-${option.id}-${optionIdx}`}
-                                  className="ml-3 text-sm text-white"
-                                >
-                                  {option.name}
-                                </label>
-                              </div>
-                            ))}
+                              {categories && categories.map((option, optionIdx) => (
+                                <div key={option.id} className="flex items-center ">
+                                  <input
+                                    id={`Category-${option.id}`}
+                                    value={option.id}
+                                    type="checkbox"
+                                    checked={!!checkedState[optionIdx]}
+                                    onChange={(e) => handleOnChange(e)}
+                                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500 cursor-pointer"
+                                  />
+                                  <label
+                                    htmlFor={`Category-${option.id}`}
+                                    className="ml-3 text-sm text-white cursor-pointer"
+                                  >
+                                    {option.name}
+                                  </label>
+                                </div>
+                              ))}
                             </div>
                           </Disclosure.Panel>
                         </>
@@ -279,18 +313,18 @@ export default function Filters ({ children }) {
                         <Disclosure.Panel className="pt-6">
                           <div className="space-y-4">
                             {categories && categories.map((option, optionIdx) => (
-                              <div key={option.id} className="flex items-center">
+                              <div key={option.id} className="flex items-center ">
                                 <input
-                                  id='Category'
+                                  id={`Category-${option.id}`}
                                   value={option.id}
                                   type="checkbox"
                                   checked={!!checkedState[optionIdx]}
                                   onChange={(e) => handleOnChange(e)}
-                                  className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                  className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500 cursor-pointer"
                                 />
                                 <label
-                                  htmlFor={`filter-${option.id}-${optionIdx}`}
-                                  className="ml-3 text-sm text-white"
+                                  htmlFor={`Category-${option.id}`}
+                                  className="ml-3 text-sm text-white cursor-pointer"
                                 >
                                   {option.name}
                                 </label>

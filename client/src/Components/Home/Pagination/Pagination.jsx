@@ -5,14 +5,14 @@ import { AiOutlineRight, AiOutlineLeft, AiOutlineDoubleLeft, AiOutlineDoubleRigh
 
 export default function Pagination () {
   const dispatch = useDispatch()
-  const page = useSelector(state => state.page)
+  const { page, max } = useSelector(state => state.filter)
 
   const handleClick = (e) => {
     e.preventDefault()
-    if (e.target.value === 'firstPage') dispatch(setPage(0))
-    if (e.target.value === 'prevPage') dispatch(setPage(page.current !== 0 ? page.current - 1 : page.current))
-    if (e.target.value === 'nextPage') dispatch(setPage(page.current !== page.max ? page.current + 1 : page.max))
-    if (e.target.value === 'lastPage') dispatch(setPage(page.max))
+    if (e.target.value === 'firstPage') dispatch(setPage(1))
+    if (e.target.value === 'prevPage') dispatch(setPage(page !== 1 ? page - 1 : page))
+    if (e.target.value === 'nextPage') dispatch(setPage(page !== max ? page + 1 : max))
+    if (e.target.value === 'lastPage') dispatch(setPage(max))
   }
   return (
     <form className="text-gray-300 flex items-center space-x-1 justify-center mb-6" onClick={(e) => handleClick(e)}>
@@ -23,7 +23,7 @@ export default function Pagination () {
       <AiOutlineLeft className='pointer-events-none'/>
     </button>
     <div className="space-x-1">
-        <span className=" px-2 rounded page-item text-lg">Showing {page.current + 1} of {page.max ? page.max + 1 : 1}</span>
+        <span className=" px-2 rounded page-item text-lg">Showing {page} of {max || 1}</span>
     </div>
     <button value={'nextPage'} className="h-8 w-8 p-0 hover:bg-gray-700 rounded page-control text-4xl">
      <AiOutlineRight className='pointer-events-none'/>
