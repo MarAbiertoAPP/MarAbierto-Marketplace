@@ -1,4 +1,4 @@
-import { CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, RESET_FILTERS, SET_SORT, SET_PAGE, SET_PAGE_MAX, CREATE_USER, GET_ALL_CATEGORIES, ADD_TO_CART, REMOVE_FROM_CART, CART_FROM_LOCAL_STORAGE } from '../Actions/ActionsCreators'
+import { CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, RESET_FILTERS, SET_SORT, SET_PAGE, SET_PAGE_MAX, CREATE_USER, GET_ALL_CATEGORIES, ADD_TO_CART, REMOVE_FROM_CART, CART_FROM_LOCAL_STORAGE, SET_MULTIPLE_FILTERS } from '../Actions/ActionsCreators'
 const initialState = {
   filter: {
     price: null,
@@ -6,11 +6,10 @@ const initialState = {
     categoryId: null,
     isActive: null,
     userId: null,
-    order: 'id_ASC'
-  },
-  page: {
-    current: 0,
-    max: undefined
+    order: 'id_ASC',
+    page: 1,
+    max: undefined,
+    cardsPerPage: 10
   },
   categories: [],
   filterBar: false,
@@ -77,7 +76,19 @@ export default function rootReducer (state = initialState, action) {
           categoryId: null,
           isActive: null,
           userId: null,
-          order: 'id_ASC'
+          order: 'id_ASC',
+          page: 1,
+          max: undefined
+        }
+      }
+    }
+
+    case SET_MULTIPLE_FILTERS: {
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          ...action.payload
         }
       }
     }
@@ -94,17 +105,17 @@ export default function rootReducer (state = initialState, action) {
     case SET_PAGE:
       return {
         ...state,
-        page: {
-          ...state.page,
-          current: action.payload
+        filter: {
+          ...state.filter,
+          page: action.payload
         }
       }
 
     case SET_PAGE_MAX:
       return {
         ...state,
-        page: {
-          ...state.page,
+        filter: {
+          ...state.filter,
           max: action.payload
         }
       }
