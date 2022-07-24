@@ -27,7 +27,6 @@ export default function Filters ({ children }) {
   // The render has to be from redux not the localState
   const [checked, setChecked] = useState([])
 
-
   // Handle to set the checked state and set the state in redux
   const handleOnChange = (e) => {
     const { value } = e.target
@@ -41,7 +40,6 @@ export default function Filters ({ children }) {
       setChecked([...checked.filter(c => c !== value)])
       if ([...checked.filter(c => c !== value)].length > 0) {
         dispatch(filterByCategory([...checked.filter(c => c !== value)].join('_')))
-
       }
       if ([...checked.filter(c => c !== value)].length === 0) {
         dispatch(filterByCategory(null))
@@ -105,7 +103,6 @@ export default function Filters ({ children }) {
     dispatch(setSort(e.target.value))
 
     dispatch(setPage(1))
-
   }
 
   return (
