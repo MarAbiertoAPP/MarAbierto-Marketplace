@@ -11,7 +11,8 @@ import {
   SET_PAGE_MAX,
   CREATE_USER,
   GET_ALL_CATEGORIES,
-  CREATE_CATEGORIES
+  CREATE_CATEGORIES,
+  SET_MULTIPLE_FILTERS
 } from './ActionsCreators'
 import axios from 'axios'
 
@@ -68,6 +69,13 @@ export function FilterByState (state) {
 export function resetFilters () {
   return {
     type: RESET_FILTERS
+  }
+}
+
+export function setMultipleFilters (payload) {
+  return {
+    type: SET_MULTIPLE_FILTERS,
+    payload
   }
 }
 
