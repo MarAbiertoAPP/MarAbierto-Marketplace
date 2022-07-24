@@ -32,7 +32,7 @@ const Details = () => {
         <TitleDetails />
         <TitleLikesSM title={nftDetail?.title}/>
 
-        <div className={`my-6 flex flex-col xl:flex-row w-full min-h-screen xl:${style.limitH}`}>
+        <div className={`my-6 flex flex-col xl:flex-row w-full min-h-min xl:${style.limitH} pb-9`}>
 
           <RenderImg img={nftDetail?.path}/>
           <div className='flex flex-col basis-8/12 '>
