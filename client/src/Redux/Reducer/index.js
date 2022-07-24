@@ -132,18 +132,20 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state
       }
+
     case ADD_TO_CART:
       return {
         ...state,
         Cart: [...state.Cart, action.payload]
       }
-    case REMOVE_FROM_CART:
 
+    case REMOVE_FROM_CART:
       return {
 
         ...state,
         Cart: [...state.Cart.filter((item) => item.id !== action.payload)]
       }
+
     case GET_CLIENTE_SECRET:
       return {
         ...state,
@@ -155,6 +157,7 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state, Cart: action?.payload || []
       }
+
     default:
       return { ...state }
   }
