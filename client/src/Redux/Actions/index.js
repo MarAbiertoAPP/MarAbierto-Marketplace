@@ -12,6 +12,7 @@ import {
   CREATE_USER,
   GET_ALL_CATEGORIES,
   CREATE_CATEGORIES,
+  GET_CLIENTE_SECRET,
   SET_MULTIPLE_FILTERS
 } from './ActionsCreators'
 import axios from 'axios'
@@ -124,5 +125,12 @@ export function createCategories (item) {
       .then(dispatch({
         type: CREATE_CATEGORIES
       }))
+  }
+}
+export function getClientPay (data) {
+  return {
+    type: GET_CLIENTE_SECRET,
+    payload: data
+
   }
 }
