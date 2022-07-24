@@ -16,10 +16,14 @@
   align-items: center;
   z-index: 11;
   top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
   background: rgba(24,28,30,0.4);
   transition: 200ms ease;
   height: 6%;
   width: 100%;
+  max-width: 1420px;
 }
 .navbar_menu{
   position: absolute;

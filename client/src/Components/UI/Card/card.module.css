@@ -5,8 +5,8 @@
 
 .container .card {
   position: relative;
-  width: 350px;
-  max-width: 350px;
+  width: 320px;
+  max-width: 320px;
   height: 500px;
   max-height: 500px;
   background: transparent;

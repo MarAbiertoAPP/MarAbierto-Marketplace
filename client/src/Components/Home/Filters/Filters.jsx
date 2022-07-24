@@ -3,46 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { filterByCategory, setPage, setSort } from '../../../Redux/Actions'
 import { XIcon } from '@heroicons/react/outline'
-import { /* ChevronDownIcon, */ FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
+import { FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
 import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
-
-/* import Classes from '../SearchBar/searchbar.module.css'
- */
-/* const sortOptions = [
-  { name: 'Ascending (A-Z) ↑', href: '#', current: true },
-  { name: 'Descending (Z-A) ↓', href: '#', current: false },
-  { name: 'From Lower-Higher ↑', href: '#', current: false },
-  { name: 'From Higher-Lower ↓', href: '#', current: false }
-] */
-
-/* const filters = [
-  {
-    id: 'color',
-    name: 'Color',
-    options: [
-      { value: 'white', label: 'White', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: true },
-      { value: 'brown', label: 'Brown', checked: false },
-      { value: 'green', label: 'Green', checked: false },
-      { value: 'purple', label: 'Purple', checked: false }
-    ]
-  }
-] */
-
-/* function classNames (...classes) {
-  return classes.filter(Boolean).join(' ')
-} */
 
 export default function Filters ({ children }) {
   Filters.propTypes = {
     children: PropTypes.node
   }
-
-  // Data cycle
-  // User click checkedBox -> set(intermediateState(checked)) -> set Reducer state: categoryId
-  // -> ComponentDidUpdate(reduxState) -> set(checkedStates)
 
   const dispatch = useDispatch()
   const location = useLocation()
@@ -137,7 +105,7 @@ export default function Filters ({ children }) {
   }
 
   return (
-    <div>
+    <div className='max-w-screen-2xl w-full'>
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -234,7 +202,7 @@ export default function Filters ({ children }) {
           </Dialog>
         </Transition.Root>
 
-        <main className="w-full mx-auto mt-6 px-4 sm:px-6 lg:px-8">
+        <main className="w-full max-w-screen-2xl mt-6 px-4 sm:px-6 lg:px-8">
           <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900"></h1>
 
@@ -276,14 +244,14 @@ export default function Filters ({ children }) {
           </div>
 
           <section aria-labelledby="products-heading" className="pt-6 pb-24">
-            <h2 id="products-heading" className="sr-only">
+            <h2 id="products-heading" className="sr-only text-white">
               Products
             </h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
               {/* Filters */}
-              <div className='w-80'>
-                <form className="hidden lg:block w-80" >
+              <div className='w-64'>
+                <form className="hidden lg:block w-60" >
                   <h3 className="sr-only">Categories</h3>
                   <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6  ">
                   </ul>
@@ -309,14 +277,14 @@ export default function Filters ({ children }) {
                         <Disclosure.Panel className="pt-6">
                           <div className="space-y-4">
                             {categories && categories.map((option, optionIdx) => (
-                              <div key={option.id} className="flex items-center ">
+                              <div key={option.id} className="flex items-center text-black">
                                 <input
                                   id={`Category-${option.id}`}
                                   value={option.id}
                                   type="checkbox"
                                   checked={!!checkedState[optionIdx]}
                                   onChange={(e) => handleOnChange(e)}
-                                  className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500 cursor-pointer"
+                                  className="h-6 w-6 appearance-none border-slate-50 border-2 rounded-md checked:bg-violet-800 checked:border-purple-600"
                                 />
                                 <label
                                   htmlFor={`Category-${option.id}`}
@@ -332,7 +300,42 @@ export default function Filters ({ children }) {
                     )}
                   </Disclosure>
                 </form>
+                <form className="hidden lg:block w-60" >
+                  <h3 className="sr-only">Price</h3>
+                  <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6  ">
+                  </ul>
+                  {/* ESTO TAMBIEN HAY QUE CAMBIAR SI VAMOS A COLOCAR MAS OPCIONES DE FILTRADO ESTO ESCRITORIO */}
+                  <Disclosure as="div" key={'Category'} className=" py-6">
+                    {({ open }) => (
+                      <>
+                        <h3 className="-my-3 flow-root">
+                          <Disclosure.Button
+                            className="py-3 text-lg rounded-md w-full flex items-center justify-between  text-white hover:text-white">
+                            <span className="font-bold text-white ">Price</span>
+                            <span className="ml-6 flex items-center">
+                              {open
+                                ? (
+                                  <MinusSmIcon className="h-5 w-5" aria-hidden="true" />
+                                  )
+                                : (
+                                  <PlusSmIcon className="h-5 w-5" aria-hidden="true" />
+                                  )}
+                            </span>
+                          </Disclosure.Button>
+                        </h3>
+                        <Disclosure.Panel className="pt-6">
+                          <div className="space-y-4">
+                            <div className="flex items-center text-white">
+                              Hola
+                            </div>
+                          </div>
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
+                </form>
               </div>
+
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* Replace with your content */}

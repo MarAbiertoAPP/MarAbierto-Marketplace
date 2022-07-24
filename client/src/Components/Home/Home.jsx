@@ -122,7 +122,7 @@ export default function Home () {
   }
 
   return (
-    <div className={Classes.bg}>
+    <div className={Classes.div}>
       <Nav />
       <SearchBar />
       <Filters>
