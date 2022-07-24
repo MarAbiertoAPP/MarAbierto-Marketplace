@@ -90,8 +90,11 @@ const Footer = () => {
           </div>
           <div className="">
             <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start text-yellow-400">
-              Tecnologies Used
+              Technologies Used
             </h6>
+            <p className="mb-4">
+              <a href="#!" className="text-violet-500">React</a>
+            </p>
             <p className="mb-4">
               <a href="#!" className="text-violet-500">Redux</a>
             </p>
@@ -99,10 +102,13 @@ const Footer = () => {
               <a href="#!" className="text-violet-500">Express</a>
             </p>
             <p className="mb-4">
-              <a href="#!" className="text-violet-500">Sql</a>
+              <a href="#!" className="text-violet-500">Sequelize</a>
+            </p>
+            <p className="mb-4">
+              <a href="#!" className="text-violet-500">Postgres</a>
             </p>
             <p>
-              <a href="#!" className="text-violet-500">Sequelize</a>
+              <a href="#!" className="text-violet-500">Node.js</a>
             </p>
           </div>
           <div className="">
