@@ -8,6 +8,7 @@ import PropTypes from 'prop-types'
 // import { removeFromCart } from '../../Redux/Actions/ActionsCart'
 import { FaTrashAlt } from 'react-icons/fa'
 import Modal from '../ModalDelete/ModalDeleteFromCart'
+import { Link } from 'react-router-dom'
 
 export function Cart ({ open, setOpen }) {
   const cartToBuy = useSelector(state => state.Cart)
@@ -134,15 +135,15 @@ export function Cart ({ open, setOpen }) {
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p className='text-orange-600'>Subtotal</p>
                         <p className='text-orange-600'>ETH {totalBuy}</p>
+                        <p className='text-orange-600'>USD {totalBuy * 1500}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
-                        <a
-                          href="#"
-                          className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                        >
-                          Checkout
-                        </a>
+                        <Link to={'/checkout'}>
+                          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'> CHECKOUT</button>
+
+                      </Link>
+
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
