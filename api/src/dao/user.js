@@ -1,6 +1,5 @@
 require('dotenv').config()
 const { user } = require('../db.js')
-const bcrypt = require('bcrypt')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize
@@ -9,25 +8,17 @@ const bcrypt = require('bcrypt')
 
 const createUser = async (
   name,
-  lastname,
-  password,
-  dni,
-  profilePicture,
+  nickname,
+  picture,
   email,
-  phone,
   typeUser
 ) => {
   try {
-    const saltRounds = 10
-    const passwordE = await bcrypt.hash(password, saltRounds)
     const newUser = await user.create({
-      name: eliminarDiacriticos(name).toUpperCase(),
-      lastname: eliminarDiacriticos(lastname).toUpperCase(),
-      password: passwordE,
-      dni,
-      profile_picture: profilePicture,
+      name: eliminarDiacriticos(name),
+      nickname,
+      profile_picture: picture,
       email,
-      phone,
       typeUser
     })
     console.log(newUser)

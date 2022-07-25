@@ -5,32 +5,20 @@ import Nav from '../UI/Nav/Navigation'
 import Filters from './Filters/Filters'
 import SearchBar from './SearchBar/SearchBar'
 import { useSelector, useDispatch } from 'react-redux'
-import { setPageMax, resetFilters, getAllCategories } from '../../Redux/Actions'
-import { cartFromLocalStorage } from '../../Redux/Actions/ActionsCart'
+import { setPageMax, resetFilters, getAllCategories, createUser, userFromLocalStorage } from '../../Redux/Actions'
 import { useAuth0 } from '@auth0/auth0-react'
+import { cartFromLocalStorage } from '../../Redux/Actions/ActionsCart'
 import axios from 'axios'
 import Pagination from './Pagination/Pagination'
 import Footer from '../Footer/Footer'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../Home/toast.css'
-
 const cartFromLocal = JSON.parse(localStorage.getItem('Cart'))
 
 export default function Home () {
-  const { isAuthenticated, user } = useAuth0()
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    dispatch(cartFromLocalStorage(cartFromLocal))
-  }, [])
   // Proximo a mover en la landing page
-  useEffect(() => {
-    if (isAuthenticated) {
-      window.localStorage.setItem('user', JSON.stringify(user))
-    }
-  }, [])
-
+  const { user, isAuthenticated } = useAuth0()
   const filterConfig = useSelector(state => state.filter)
   const page = useSelector(state => state.page)
   const dispatch = useDispatch()
@@ -38,6 +26,16 @@ export default function Home () {
   const [dataAPI, setDataAPI] = useState({})
   const navigate = useNavigate()
   const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    dispatch(cartFromLocalStorage(cartFromLocal))
+    dispatch(userFromLocalStorage())
+    if (isAuthenticated) {
+      dispatch(createUser(user))
+    }
+  }, [])
+
   const setVariables = (data) => {
     if (data.nft.length === 0) {
       dispatch(resetFilters())

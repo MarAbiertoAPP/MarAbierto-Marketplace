@@ -5,33 +5,6 @@ import { filterByCategory, setPage, setSort } from '../../../Redux/Actions'
 import { XIcon } from '@heroicons/react/outline'
 import { /* ChevronDownIcon, */ FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
 import PropTypes from 'prop-types'
-/* import Classes from '../SearchBar/searchbar.module.css'
- */
-/* const sortOptions = [
-  { name: 'Ascending (A-Z) ↑', href: '#', current: true },
-  { name: 'Descending (Z-A) ↓', href: '#', current: false },
-  { name: 'From Lower-Higher ↑', href: '#', current: false },
-  { name: 'From Higher-Lower ↓', href: '#', current: false }
-] */
-
-/* const filters = [
-  {
-    id: 'color',
-    name: 'Color',
-    options: [
-      { value: 'white', label: 'White', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: true },
-      { value: 'brown', label: 'Brown', checked: false },
-      { value: 'green', label: 'Green', checked: false },
-      { value: 'purple', label: 'Purple', checked: false }
-    ]
-  }
-] */
-
-/* function classNames (...classes) {
-  return classes.filter(Boolean).join(' ')
-} */
 
 export default function Filters ({ children }) {
   Filters.propTypes = {

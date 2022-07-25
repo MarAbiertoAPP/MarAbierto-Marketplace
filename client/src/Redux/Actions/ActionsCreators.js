@@ -1,4 +1,3 @@
-
 export const CREATE_NFT = 'CREATE NFT'
 export const CREATE_USER = 'CREATE USER'
 export const FILTER_BY_PRICE = 'FILTER BY PRICE'
@@ -16,3 +15,4 @@ export const ADD_TO_CART = 'ADD_TO_CART'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 export const REMOVE_ALL_FROM_CART = 'REMOVE_FROM_CART'
 export const CART_FROM_LOCAL_STORAGE = 'CART_FROM_LOCAL_STORAGE'
+export const SET_USER = 'SET_USER'

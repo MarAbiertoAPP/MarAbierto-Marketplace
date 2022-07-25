@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { userFromLocalStorage } from '../../Redux/Actions/index'
 import landing from '../LandingPage/landing.module.css'
 import nftData from '../LandingPage/SliderNftData'
 import EmblaCarousel from './Carousel/EmblaCarousel'
 import logoPMA from '../../assests/LogoPMA.png'
 import { Link } from 'react-router-dom'
-
 const SLIDE_COUNT = nftData.length
 const slides = Array.from(Array(SLIDE_COUNT).keys())
 
-const Landing = () => {
+export default function Landing () {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(userFromLocalStorage())
+  }, [])
   return (
       <div className={landing.div}>
 
@@ -45,7 +50,6 @@ const Landing = () => {
             <Link to="/home">
               <button className= {`${landing.toHomeButton} mt-8 xl:mt-0 `}>EXPLORE</button>
             </Link>
-
           </div>
 
         </div>
@@ -55,5 +59,3 @@ const Landing = () => {
 
   )
 }
-
-export default Landing

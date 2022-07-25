@@ -23,6 +23,10 @@ export default function Nav () {
   const showCart = () => {
     setOpenCart(!openCart)
   }
+  const handleLogout = () => {
+    logout()
+    window.localStorage.removeItem('User')
+  }
   return (
     <div>
       <nav className={Classes.nav}>
@@ -61,7 +65,7 @@ export default function Nav () {
             {
               !isAuthenticated
                 ? <li onClick={() => loginWithRedirect()}> <CgLogIn/>Login</li>
-                : <li onClick={() => logout()}><CgLogOut/> Logout</li>
+                : <li onClick={() => handleLogout()}><CgLogOut/> Logout</li>
             }
 
           </div>

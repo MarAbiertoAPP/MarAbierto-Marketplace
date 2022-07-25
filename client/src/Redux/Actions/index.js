@@ -11,7 +11,8 @@ import {
   SET_PAGE_MAX,
   CREATE_USER,
   GET_ALL_CATEGORIES,
-  CREATE_CATEGORIES
+  CREATE_CATEGORIES,
+  SET_USER
 } from './ActionsCreators'
 import axios from 'axios'
 
@@ -95,11 +96,27 @@ export function setPageMax (pageMax) {
 export function createUser (obj) {
   return function (dispatch) {
     axios.post('/users/signup', obj)
+      .then(res => window.localStorage.setItem('User', JSON.stringify(res.data)))
       .then(dispatch({ type: CREATE_USER }))
-      .catch(error => console.log(error))
+      .catch(error => console.log(error.message))
   }
 }
-
+export function userFromLocalStorage () {
+  return function (dispatch) {
+    const user = window.localStorage.getItem('User')
+    if (user) {
+      dispatch({
+        type: SET_USER,
+        payload: JSON.parse(user)
+      })
+    }
+  }
+}
+export function testing () {
+  return function (dispatch) {
+    dispatch({ type: CREATE_USER })
+  }
+}
 export function getAllCategories () {
   return function (dispatch) {
     axios('/categories')
