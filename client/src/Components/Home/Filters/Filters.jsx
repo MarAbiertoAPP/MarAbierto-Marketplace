@@ -149,9 +149,6 @@ export default function Filters ({ children }) {
 
                   {/* Filters */}
                   <form className="mt-4 border-t border-gray-200">
-                    <h3 className="sr-only">Categories</h3>
-                    <ul role="list" className="font-medium text-gray-900 px-2 py-3">
-                    </ul>
                     {/* ALGO A CAMBIAR CUANDO HAYA MAS TIPOS DE FILTRADOS ESTO ES PARA EL CELULAR */}
                     <Disclosure as="div" key={'Category'} className="border-t border-gray-200 px-4 py-6">
                       {({ open }) => (
@@ -249,13 +246,10 @@ export default function Filters ({ children }) {
               Products
             </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
+            <div className="flex justify-center">
               {/* Filters */}
               <div className='w-64'>
                 <form className="hidden lg:block w-60" >
-                  <h3 className="sr-only">Categories</h3>
-                  <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6  ">
-                  </ul>
                   {/* ESTO TAMBIEN HAY QUE CAMBIAR SI VAMOS A COLOCAR MAS OPCIONES DE FILTRADO ESTO ESCRITORIO */}
                   <Disclosure as="div" key={'Category'} className=" py-6">
                     {({ open }) => (
@@ -302,9 +296,6 @@ export default function Filters ({ children }) {
                   </Disclosure>
                 </form>
                 <form className="hidden lg:block w-60" >
-                  <h3 className="sr-only">Price</h3>
-                  <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6  ">
-                  </ul>
                   {/* ESTO TAMBIEN HAY QUE CAMBIAR SI VAMOS A COLOCAR MAS OPCIONES DE FILTRADO ESTO ESCRITORIO */}
                   <Disclosure as="div" key={'Category'} className=" py-6">
                     {({ open }) => (
@@ -338,10 +329,8 @@ export default function Filters ({ children }) {
               </div>
 
               {/* Product grid */}
-              <div className="lg:col-span-3">
-                {/* Replace with your content */}
-                {children}
-                {/* /End replace */}
+              <div className="flex justify-center w-4/5">
+                  {children}
               </div>
             </div>
           </section>

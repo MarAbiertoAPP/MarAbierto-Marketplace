@@ -1,17 +1,17 @@
 .container {
   position: relative;
-
 }
 
 .container .card {
   position: relative;
-  width: 320px;
-  max-width: 320px;
+  width: 310px;
+  max-width: 310px;
   height: 500px;
   max-height: 500px;
   background: transparent;
   border-radius: 20px;
   overflow: hidden;
+  margin: 1rem;
 }
 
 
