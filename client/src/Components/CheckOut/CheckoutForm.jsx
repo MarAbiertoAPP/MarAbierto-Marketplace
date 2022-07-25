@@ -6,7 +6,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import style from '../CheckOut/Checkout.module.css'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
-import { FaTrashAlt } from 'react-icons/fa'
+// import { FaTrashAlt } from 'react-icons/fa'
 
 const stripePromise = loadStripe(
   'pk_test_51LOPfmJVPjWVJr6N63nReuOKhebPKvDMrQteVj0tfUMRkNbCCethuo2cTgd1t0xsLQQco6lyYClRaUMUWCiAXL8M00abWXdmci'
@@ -55,17 +55,21 @@ const Checkoutform = () => {
 
   const iframeStyles = {
     base: {
+
       iconColor: '#c4f0ff',
       color: '#fff',
-      fontWeight: '500',
+      fontWeight: '300',
       fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
-      fontSize: '30px',
+      fontSize: '20px',
       fontSmoothing: 'antialiased',
       ':-webkit-autofill': {
         color: '#fce883'
       },
       '::placeholder': {
         color: '#87BBFD'
+      },
+      '::cardNumber': {
+        color: '#9FFF33'
       }
 
       // backgroundColor: 'rgba(0,0,0,0.5);'
@@ -117,21 +121,6 @@ const Checkoutform = () => {
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
 
-                                    <div className="flex">
-                                      {/* <button
-                                        type="button"
-                                        className="font-medium text-indigo-600 hover:text-indigo-500"
-                                        onClick={() => handleRemove(e.id)}
-                                      >
-
-                                      </button> */}
-                                      <FaTrashAlt
-                                      type="button"
-                                      className="font-medium text-indigo-600 hover:text-indigo-500 cursor-pointer "
-                                      onClick={ '' }
-                                        />
-
-                                    </div>
                                   </div>
                                 </div>
                               </li>
@@ -150,6 +139,7 @@ const Checkoutform = () => {
           PAY
         </button>
       </form>
+
       {isdata && <h1 className='text-zinc-100 text-5xl'>PAGO REALIZADO CON EXITO</h1> }
       {nodata && <h2 className='text-red-100 text-5xl' > PROCESANDO PAGO...</h2>}
     </div>
@@ -164,6 +154,7 @@ const Checkout = () => {
 
         <Elements stripe={stripePromise} >
           <Checkoutform />
+
         </Elements>
 
       </div>

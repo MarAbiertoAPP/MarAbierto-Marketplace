@@ -122,11 +122,9 @@ const Footer = () => {
               <a href="" className="text-violet-500">My User</a>
             </p>
             <p className="mb-4">
-              <a href="" className="text-violet-500">Home</a>
+              <a href="/home" className="text-violet-500">Home</a>
             </p>
-            <p>
-              <a href="" className="text-violet-500">Login</a>
-            </p>
+
           </div>
           <div className="">
             <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start text-yellow-400">

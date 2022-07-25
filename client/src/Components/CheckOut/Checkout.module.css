@@ -1,29 +1,28 @@
 .div {
 
-    min-height: 100vh;
-    height: max-content;
-    display: flex;
-    
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: linear-gradient(315deg, rgb(24, 2, 48) 0%, #000000 90%);
-    background-attachment: scroll;
-    background-size: fixed;
-  }
+  min-height: 100vh;
+  height: max-content;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(315deg, rgb(24, 2, 48) 0%, #000000 90%);
+  background-attachment: scroll;
+  background-size: fixed;
+}
 
 
 
-  .limitH {
-    height: 100vh;
-    max-height: 450px;
-  }
-.limitH::-webkit-scrollbar{
+.limitH {
+  height: 100vh;
+  max-height: 450px;
+}
+
+.limitH::-webkit-scrollbar {
   width: 5px;
 }
 
-.limitH::-webkit-scrollbar-thumb{
+.limitH::-webkit-scrollbar-thumb {
   background-color: rgb(87, 20, 158);
 }
-
-  
