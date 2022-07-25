@@ -4,7 +4,7 @@ import Card from '../UI/Card/Card'
 import Nav from '../UI/Nav/Navigation'
 import Filters from './Filters/Filters'
 import { useSelector, useDispatch } from 'react-redux'
-import { setPageMax, resetFilters, getAllCategories, setMultipleFilters } from '../../Redux/Actions'
+import { setPageMax, resetFilters, getAllCategories, setMultipleFilters, createUser, userFromLocalStorage } from '../../Redux/Actions'
 import { cartFromLocalStorage } from '../../Redux/Actions/ActionsCart'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
@@ -13,24 +13,18 @@ import Footer from '../Footer/Footer'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../Home/toast.css'
+import { motion } from 'framer-motion'
 
 const cartFromLocal = JSON.parse(localStorage.getItem('Cart'))
 
 export default function Home () {
   const { isAuthenticated, user } = useAuth0()
-
   useEffect(() => {
     window.scrollTo(0, 0)
     dispatch(cartFromLocalStorage(cartFromLocal))
   }, [])
 
   // Proximo a mover en la landing page
-  useEffect(() => {
-    if (isAuthenticated) {
-      window.localStorage.setItem('user', JSON.stringify(user))
-    }
-  }, [])
-
   const filterConfig = useSelector(state => state.filter)
   // const page = useSelector(state => state.page)
   const dispatch = useDispatch()
@@ -38,6 +32,15 @@ export default function Home () {
   const [dataAPI, setDataAPI] = useState({})
   const navigate = useNavigate()
   const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    dispatch(cartFromLocalStorage(cartFromLocal))
+    dispatch(userFromLocalStorage())
+    if (isAuthenticated) {
+      dispatch(createUser(user))
+    }
+  }, [])
 
   useEffect(() => {
     dispatch(getAllCategories())
@@ -121,15 +124,21 @@ export default function Home () {
   }
 
   return (
-    <div className={Classes.div}>
+    <motion.div
+    className={Classes.div}
+    >
       <Nav />
       <Filters>
-        <div className={`${Classes.main} place-content-center`}>
+        <motion.div
+        className={`${Classes.main} place-content-center`}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        >
           {dataAPI && dataAPI.nft?.map(item => item.path ? <Card key={item.id} title={item.title} image={item.path} price={item.price} id={item.id} /> : null)}
-        </div>
+        </motion.div>
       </Filters>
       <Pagination />
       <Footer />
-    </div>
+    </motion.div>
   )
 }

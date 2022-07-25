@@ -26,6 +26,10 @@ export default function Nav () {
     setOpenCart(!openCart)
   }
 
+  const handleLogout = () => {
+    logout()
+    window.localStorage.removeItem('User')
+  }
   const handleClick = (e) => {
     navigate(-1)
   }
@@ -43,7 +47,6 @@ export default function Nav () {
             <IconContext.Provider value={{ className: `${Classes.dots}` }}>
 
               <IoIosCart />
-
             </IconContext.Provider>
           </li>
           <li>
@@ -67,7 +70,7 @@ export default function Nav () {
                 {
                   !isAuthenticated
                     ? <li onClick={() => loginWithRedirect()}> <CgLogIn />Login</li>
-                    : <li onClick={() => logout()}><CgLogOut /> Logout</li>
+                    : <li onClick={() => handleLogout()}><CgLogOut /> Logout</li>
                 }
 
               </div>

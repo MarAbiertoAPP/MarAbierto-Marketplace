@@ -1,7 +1,7 @@
 const { createUser, searchUser } = require('../dao/user.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { emailRegisterUser } = require('../dao/sendMails.js')
+/* const { emailRegisterUser } = require('../dao/sendMails.js') */
 const Stripe = require('stripe')
 /**
  * @author Nicolas Alejandro Suarez
@@ -13,24 +13,20 @@ const Stripe = require('stripe')
  */
 
 exports.signUp = async (req, res) => {
-  const { name, lastname, password, email, dni, profilePicture, phone } = req.body
-
+  const { name, nickname, email, picture } = req.body
+  console.log(name, nickname, email, picture)
   try {
     const userS = await searchUser(email)
     if (userS) {
-      return res.status(401).json({ msg: 'Usuario ya registrado' })
+      return res.status(200).json(userS)
     }
 
     const newuser = await createUser(name,
-      lastname, password, dni, profilePicture, email, phone, 'N')
+      nickname, picture, email, 'N')
 
-    const token = jwt.sign({ id: newuser.id }, process.env.SECRET, {
-      expiresIn: 60 * 60 * 24
-    })
-    emailRegisterUser(email, `${name} ${lastname}`)
+    // emailRegisterUser(email, `${name} ${lastname}`)
     res.json({
-      user: newuser,
-      token
+      user: newuser
     })
   } catch (err) {
     console.log(err)
