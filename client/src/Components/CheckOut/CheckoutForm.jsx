@@ -6,8 +6,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import style from '../CheckOut/Checkout.module.css'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
-// import { FaTrashAlt } from 'react-icons/fa'
-
+import { motion } from 'framer-motion'
 const stripePromise = loadStripe(
   'pk_test_51LOPfmJVPjWVJr6N63nReuOKhebPKvDMrQteVj0tfUMRkNbCCethuo2cTgd1t0xsLQQco6lyYClRaUMUWCiAXL8M00abWXdmci'
 )
@@ -87,7 +86,12 @@ const Checkoutform = () => {
   }
 
   return (
-    <div className={'w-full xl:max-w-screen-xl flex flex-column justify-center'}>
+    <motion.div
+    className={'w-full xl:max-w-screen-xl flex flex-column justify-center'}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    >
 
     <div className={'flex flex-col basis-5/12 justify-self-center bg-neutral-900 rounded-lg'}>
 
@@ -143,7 +147,7 @@ const Checkoutform = () => {
       {isdata && <h1 className='text-zinc-100 text-5xl'>PAGO REALIZADO CON EXITO</h1> }
       {nodata && <h2 className='text-red-100 text-5xl' > PROCESANDO PAGO...</h2>}
     </div>
-  </div>
+  </motion.div>
 
   )
 }

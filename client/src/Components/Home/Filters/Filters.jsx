@@ -6,6 +6,8 @@ import { XIcon } from '@heroicons/react/outline'
 import { FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
 import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
+import SearchBar from '../SearchBar/SearchBar'
+import FilterPrice from './FilterPrice'
 
 export default function Filters ({ children }) {
   Filters.propTypes = {
@@ -149,9 +151,6 @@ export default function Filters ({ children }) {
 
                   {/* Filters */}
                   <form className="mt-4 border-t border-gray-200">
-                    <h3 className="sr-only">Categories</h3>
-                    <ul role="list" className="font-medium text-gray-900 px-2 py-3">
-                    </ul>
                     {/* ALGO A CAMBIAR CUANDO HAYA MAS TIPOS DE FILTRADOS ESTO ES PARA EL CELULAR */}
                     <Disclosure as="div" key={'Category'} className="border-t border-gray-200 px-4 py-6">
                       {({ open }) => (
@@ -185,7 +184,7 @@ export default function Filters ({ children }) {
                                   />
                                   <label
                                     htmlFor={`Category-${option.id}`}
-                                    className="ml-3 text-sm text-white cursor-pointer"
+                                    className="ml-3 text-sm text-black cursor-pointer"
                                   >
                                     {option.name}
                                   </label>
@@ -204,8 +203,13 @@ export default function Filters ({ children }) {
         </Transition.Root>
 
         <main className="w-full max-w-screen-2xl mt-6 px-4 sm:px-6 lg:px-8">
-          <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900"></h1>
+          <div className="relative z-10 flex items-baseline justify-between pt-16 pb-6 border-b border-gray-200">
+            {/* SearchBar */}
+            <div className="w-2/6">
+              <Menu as="div" className="relative inline-block text-left w-full">
+                <SearchBar />
+              </Menu>
+            </div>
 
             {/* Ordering div */}
             <div className="flex items-center">
@@ -249,15 +253,13 @@ export default function Filters ({ children }) {
               Products
             </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
+            <div className="flex justify-center">
               {/* Filters */}
               <div className='w-64'>
+                <FilterPrice />
                 <form className="hidden lg:block w-60" >
-                  <h3 className="sr-only">Categories</h3>
-                  <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6  ">
-                  </ul>
                   {/* ESTO TAMBIEN HAY QUE CAMBIAR SI VAMOS A COLOCAR MAS OPCIONES DE FILTRADO ESTO ESCRITORIO */}
-                  <Disclosure as="div" key={'Category'} className=" py-6">
+                  <Disclosure as="div" key={'Category'} className=" py-4">
                     {({ open }) => (
                       <>
                         <h3 className="-my-3 flow-root">
@@ -275,7 +277,7 @@ export default function Filters ({ children }) {
                             </span>
                           </Disclosure.Button>
                         </h3>
-                        <Disclosure.Panel className="pt-6">
+                        <Disclosure.Panel className="pt-4">
                           <div className="space-y-4">
                             {categories && categories.map((option, optionIdx) => (
                               <div key={option.id} className="flex items-center text-black">
@@ -285,7 +287,7 @@ export default function Filters ({ children }) {
                                   type="checkbox"
                                   checked={!!checkedState[optionIdx]}
                                   onChange={(e) => handleOnChange(e)}
-                                  className="h-6 w-6 appearance-none border-slate-50 border-2 rounded-md checked:bg-violet-800 checked:border-purple-600"
+                                  className="h-6 w-6 appearance-none border-slate-50 border rounded-md checked:bg-violet-800 checked:border-purple-600 checked:border-2"
                                 />
                                 <label
                                   htmlFor={`Category-${option.id}`}
@@ -301,47 +303,12 @@ export default function Filters ({ children }) {
                     )}
                   </Disclosure>
                 </form>
-                <form className="hidden lg:block w-60" >
-                  <h3 className="sr-only">Price</h3>
-                  <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6  ">
-                  </ul>
-                  {/* ESTO TAMBIEN HAY QUE CAMBIAR SI VAMOS A COLOCAR MAS OPCIONES DE FILTRADO ESTO ESCRITORIO */}
-                  <Disclosure as="div" key={'Category'} className=" py-6">
-                    {({ open }) => (
-                      <>
-                        <h3 className="-my-3 flow-root">
-                          <Disclosure.Button
-                            className="py-3 text-lg rounded-md w-full flex items-center justify-between  text-white hover:text-white">
-                            <span className="font-bold text-white ">Price</span>
-                            <span className="ml-6 flex items-center">
-                              {open
-                                ? (
-                                  <MinusSmIcon className="h-5 w-5" aria-hidden="true" />
-                                  )
-                                : (
-                                  <PlusSmIcon className="h-5 w-5" aria-hidden="true" />
-                                  )}
-                            </span>
-                          </Disclosure.Button>
-                        </h3>
-                        <Disclosure.Panel className="pt-6">
-                          <div className="space-y-4">
-                            <div className="flex items-center text-white">
-                              Hola
-                            </div>
-                          </div>
-                        </Disclosure.Panel>
-                      </>
-                    )}
-                  </Disclosure>
-                </form>
+
               </div>
 
               {/* Product grid */}
-              <div className="lg:col-span-3">
-                {/* Replace with your content */}
+              <div className="flex justify-center w-4/5">
                 {children}
-                {/* /End replace */}
               </div>
             </div>
           </section>

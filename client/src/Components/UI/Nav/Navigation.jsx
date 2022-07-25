@@ -10,12 +10,14 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { IoIosCart } from 'react-icons/io'
 import { Cart } from '../../Cart/Cart'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 export default function Nav () {
   const [open, setOpen] = useState(false)
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
   const [openCart, setOpenCart] = useState(false)
   const cart = useSelector(state => state.Cart)
+  const navigate = useNavigate()
 
   const showDropdown = () => {
     setOpen(!open)
@@ -23,51 +25,58 @@ export default function Nav () {
   const showCart = () => {
     setOpenCart(!openCart)
   }
+
+  const handleLogout = () => {
+    logout()
+    window.localStorage.removeItem('User')
+  }
+  const handleClick = (e) => {
+    navigate(-1)
+  }
   return (
     <div>
       <nav className={Classes.nav}>
-        <div>
-      <img src={Logo} alt="logo" className={Classes.logo} />
-      </div>
-      <ul className={Classes.navbar_menu}>
-        {cart.length > 0 && (<li style={{ color: '#8a00ff', fontWeight: 'bolder', fontSize: '1.5em' }}>
-          {cart.length}
-        </li>)}
-        <li onClick={() => showCart()}>
-        <IconContext.Provider value={{ className: `${Classes.dots}` }}>
+        <div onClick={(e) => handleClick(e)}>
+          <img src={Logo} alt="logo" className={`${Classes.logo} cursor-pointer`}/>
+        </div>
+        <ul className={Classes.navbar_menu}>
+          {cart.length > 0 && (<li style={{ color: '#8a00ff', fontWeight: 'bolder', fontSize: '1.5em' }}>
+            {cart.length}
+          </li>)}
+          <li onClick={() => showCart()}>
+            <IconContext.Provider value={{ className: `${Classes.dots}` }}>
 
-            <IoIosCart />
-
-          </IconContext.Provider>
-        </li>
-        <li>
-          <Cart open={openCart} setOpen={setOpenCart} />
-        </li>
-        <li>
-          <img src={User} alt="user" className={Classes.icons} />
-        </li>
-        <li onClick={() => showDropdown()}>
-          <IconContext.Provider value={{ className: `${Classes.dots}` }}>
-            <BiDotsHorizontalRounded />
-          </IconContext.Provider>
-        </li>
-       <li>
-                <DropDownTail
-                open={open}
-                setOpen={setOpen}>
-                <div className={Classes.menu_items}>
-            <li>Home</li>
-            <li> FAQ</li>
-            {
-              !isAuthenticated
-                ? <li onClick={() => loginWithRedirect()}> <CgLogIn/>Login</li>
-                : <li onClick={() => logout()}><CgLogOut/> Logout</li>
-            }
-
-          </div>
-                </DropDownTail>
+              <IoIosCart />
+            </IconContext.Provider>
           </li>
-      </ul>
+          <li>
+            <Cart open={openCart} setOpen={setOpenCart} />
+          </li>
+          <li>
+            <img src={User} alt="user" className={Classes.icons} />
+          </li>
+          <li onClick={() => showDropdown()}>
+            <IconContext.Provider value={{ className: `${Classes.dots}` }}>
+              <BiDotsHorizontalRounded />
+            </IconContext.Provider>
+          </li>
+          <li>
+            <DropDownTail
+              open={open}
+              setOpen={setOpen}>
+              <div className={Classes.menu_items}>
+                <li>Home</li>
+                <li> FAQ</li>
+                {
+                  !isAuthenticated
+                    ? <li onClick={() => loginWithRedirect()}> <CgLogIn />Login</li>
+                    : <li onClick={() => handleLogout()}><CgLogOut /> Logout</li>
+                }
+
+              </div>
+            </DropDownTail>
+          </li>
+        </ul>
       </nav>
     </div>
   )
