@@ -36,7 +36,7 @@ router.get('/nft', async (req, res) => {
     const orderQuery = input.order ? input.order.split('_') : ['title', 'ASC']
 
     // Get query of pagination
-    const offset = req.query.offset || 0
+    const offset = (req.query.page - 1) || 0
     const limit = req.query.limit || 10
     const whereQuery = {}
 
@@ -51,8 +51,6 @@ router.get('/nft', async (req, res) => {
     if (input.categoryId) whereQuery.categoryId = input.categoryId.split('_')
     if (input.isActive) whereQuery.isActive = input.isActive
     if (input.userId) whereQuery.userId = input.userId
-
-    console.log(whereQuery)
 
     // Count the total data filtered
     const count = await nft.count({
@@ -72,10 +70,9 @@ router.get('/nft', async (req, res) => {
     return res.status(200).json({
       nft: nftsFiltered,
       currentPage: offset,
-      totalPage: Math.ceil(count / limit) - 1
+      totalPage: Math.ceil(count / limit)
     })
   } catch (error) {
-    console.log(error)
     return res.status(400).send({ msg: error })
   }
 })

@@ -1,7 +1,8 @@
 const { createUser, searchUser } = require('../dao/user.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-// const { emailRegisterUser } = require('../dao/sendMails.js')
+/* const { emailRegisterUser } = require('../dao/sendMails.js') */
+const Stripe = require('stripe')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize
@@ -10,6 +11,7 @@ const jwt = require('jsonwebtoken')
  * SingUp user
  * ALTERAR AL DARLE TOKEN CON JWT
  */
+
 exports.signUp = async (req, res) => {
   const { name, nickname, email, picture } = req.body
   console.log(name, nickname, email, picture)
@@ -59,5 +61,23 @@ exports.signIn = async (req, res) => {
   } catch (err) {
     console.log(err)
     res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+}
+
+const stripe = new Stripe('sk_test_51LOPfmJVPjWVJr6NDta3q2uCWz3RWP6yUKDCMd9H0K8WMrsxPUXmNztykwbtRNkZSYU2GPF6qXfgO4jxz9GhdrS000PyVtq2T6')
+exports.payNft = async (req, res) => {
+  const { id, amount } = req.body
+  try {
+    await stripe.paymentIntents.create({
+      amount,
+      currency: 'usd',
+      description: 'Compra NFT',
+      payment_method: id,
+      confirm: true
+    })
+
+    res.status(200).send({ message: 'succesfull Payment' })
+  } catch (error) {
+    res.json({ message: `Pay rejected due: ${error.raw.message}` })
   }
 }

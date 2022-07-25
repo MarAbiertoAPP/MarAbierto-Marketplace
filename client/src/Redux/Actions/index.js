@@ -12,7 +12,9 @@ import {
   CREATE_USER,
   GET_ALL_CATEGORIES,
   CREATE_CATEGORIES,
-  SET_USER
+  SET_USER,
+  GET_CLIENTE_SECRET,
+  SET_MULTIPLE_FILTERS
 } from './ActionsCreators'
 import axios from 'axios'
 
@@ -72,6 +74,13 @@ export function resetFilters () {
   }
 }
 
+export function setMultipleFilters (payload) {
+  return {
+    type: SET_MULTIPLE_FILTERS,
+    payload
+  }
+}
+
 export function setSort (payload) {
   return {
     type: SET_SORT,
@@ -112,11 +121,6 @@ export function userFromLocalStorage () {
     }
   }
 }
-export function testing () {
-  return function (dispatch) {
-    dispatch({ type: CREATE_USER })
-  }
-}
 export function getAllCategories () {
   return function (dispatch) {
     axios('/categories')
@@ -133,5 +137,12 @@ export function createCategories (item) {
       .then(dispatch({
         type: CREATE_CATEGORIES
       }))
+  }
+}
+export function getClientPay (data) {
+  return {
+    type: GET_CLIENTE_SECRET,
+    payload: data
+
   }
 }

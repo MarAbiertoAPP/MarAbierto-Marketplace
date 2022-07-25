@@ -1,56 +1,114 @@
-import React, { /* useEffect, */ Fragment, useState } from 'react'
+import React, { /* useEffect, */ Fragment, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { filterByCategory, setPage, setSort } from '../../../Redux/Actions'
 import { XIcon } from '@heroicons/react/outline'
-import { /* ChevronDownIcon, */ FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
+import { FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
 import PropTypes from 'prop-types'
+import { useLocation } from 'react-router-dom'
+import SearchBar from '../SearchBar/SearchBar'
+import FilterPrice from './FilterPrice'
 
 export default function Filters ({ children }) {
   Filters.propTypes = {
     children: PropTypes.node
   }
 
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const dispatch = useDispatch()
-  const { order } = useSelector(state => state.filter)
+  const location = useLocation()
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const { order, categoryId } = useSelector(state => state.filter)
   const categories = useSelector(state => state.categories)
-  const [checked, setChecked] = useState({
-    category: []
-  })
 
+  // Local state that consume from redux to set if a checkbox if checked
+  const [checkedState, setCheckedState] = useState(
+    new Array(9).fill(false)
+  )
+
+  // Local state to control checkbox checked
+  // The render has to be from redux not the localState
+  const [checked, setChecked] = useState([])
+
+  // Handle to set the checked state and set the state in redux
   const handleOnChange = (e) => {
     const { value } = e.target
     if (e.target.checked) {
-      setChecked({
-        ...checked, category: [...checked.category, value]
-      })
-      if ([...checked.category, value].length > 0) {
-        dispatch(filterByCategory([...checked.category, value].join('_')))
+      setChecked([...checked, value])
+      if ([...checked, value].length > 0) {
+        dispatch(filterByCategory([...checked, value].join('_')))
       }
     }
     if (!e.target.checked) {
-      console.log(e.target.value)
-      setChecked({
-        ...checked, category: [...checked.category.filter(c => c !== value)]
-      })
-      if ([...checked.category.filter(c => c !== value)].length > 0) {
-        dispatch(filterByCategory([...checked.category.filter(c => c !== value)].join('_')))
+      setChecked([...checked.filter(c => c !== value)])
+      if ([...checked.filter(c => c !== value)].length > 0) {
+        dispatch(filterByCategory([...checked.filter(c => c !== value)].join('_')))
       }
-      if ([...checked.category.filter(c => c !== value)].length === 0) {
+      if ([...checked.filter(c => c !== value)].length === 0) {
         dispatch(filterByCategory(null))
       }
     }
-    dispatch(setPage(0))
+    dispatch(setPage(1))
   }
 
+  // Component update when the redux state change and set the local state that control the checked
+  useEffect(() => {
+    if (categoryId === null) {
+      setCheckedState([...checkedState].fill(false))
+      setChecked([])
+    }
+    if (categoryId) {
+      const arrCheckedBoxes = categoryId.split('_')
+      const newState = [...checkedState].fill(false)
+      for (const id of arrCheckedBoxes) {
+        const category = categories.find(c => c.id === id)
+        const indexCategory = categories.indexOf(category)
+        newState[indexCategory] = true
+      }
+      setCheckedState(newState)
+    }
+  }, [categoryId])
+
+  // When page is refresh set the values of the checked boxes we have to use LocalStorage
+  useEffect(() => {
+    const stateFromRedux = urlToState(location.search)
+    const arrCategoriesFromRedux = stateFromRedux?.categoryId ? stateFromRedux.categoryId.split('_') : []
+    setChecked(arrCategoriesFromRedux || [])
+    const newState = [...checkedState].fill(false)
+    for (const id of arrCategoriesFromRedux) {
+      const category = categories.find(c => c.id === id)
+      const indexCategory = categories.indexOf(category)
+      newState[indexCategory] = true
+    }
+    setCheckedState(newState)
+  }, [categories])
+
+  const urlToState = (url) => {
+    if (url === '') return
+    const arrQuerys = url.slice(1).split('&')
+    const newState = {}
+    const numbersKeys = ['page', 'max', 'cardsPerPage']
+    for (const query of arrQuerys) {
+      const key = query.split('=')[0]
+      const value = query.split('=')[1]
+      if (numbersKeys.includes(key)) {
+        newState[key] = Number(value)
+      } else {
+        newState[key] = value
+      }
+    }
+    return newState
+  }
+
+  // Handle to set the order value on redux
   const onChangeHandlerSort = (e) => {
     e.preventDefault()
     dispatch(setSort(e.target.value))
+
+    dispatch(setPage(1))
   }
 
   return (
-    <div>
+    <div className='max-w-screen-2xl w-full'>
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -92,10 +150,7 @@ export default function Filters ({ children }) {
                   </div>
 
                   {/* Filters */}
-                  <form className="mt-4 border-t border-gray-200" onChange={(e) => handleOnChange(e)}>
-                    <h3 className="sr-only">Categories</h3>
-                    <ul role="list" className="font-medium text-gray-900 px-2 py-3">
-                    </ul>
+                  <form className="mt-4 border-t border-gray-200">
                     {/* ALGO A CAMBIAR CUANDO HAYA MAS TIPOS DE FILTRADOS ESTO ES PARA EL CELULAR */}
                     <Disclosure as="div" key={'Category'} className="border-t border-gray-200 px-4 py-6">
                       {({ open }) => (
@@ -118,16 +173,18 @@ export default function Filters ({ children }) {
                           <Disclosure.Panel className="pt-6">
                             <div className="space-y-6">
                               {categories && categories.map((option, optionIdx) => (
-                                <div key={option.id} className="flex items-center">
+                                <div key={option.id} className="flex items-center ">
                                   <input
-                                    id='Category'
+                                    id={`Category-${option.id}`}
                                     value={option.id}
                                     type="checkbox"
-                                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                    checked={!!checkedState[optionIdx]}
+                                    onChange={(e) => handleOnChange(e)}
+                                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500 cursor-pointer"
                                   />
                                   <label
-                                    htmlFor={`filter-mobile-Category-${optionIdx}`}
-                                    className="ml-3 min-w-0 flex-1 text-gray-500"
+                                    htmlFor={`Category-${option.id}`}
+                                    className="ml-3 text-sm text-black cursor-pointer"
                                   >
                                     {option.name}
                                   </label>
@@ -145,9 +202,14 @@ export default function Filters ({ children }) {
           </Dialog>
         </Transition.Root>
 
-        <main className="w-full mx-auto mt-6 px-4 sm:px-6 lg:px-8">
-          <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900"></h1>
+        <main className="w-full max-w-screen-2xl mt-6 px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 flex items-baseline justify-between pt-16 pb-6 border-b border-gray-200">
+            {/* SearchBar */}
+            <div className="w-2/6">
+              <Menu as="div" className="relative inline-block text-left w-full">
+                <SearchBar />
+              </Menu>
+            </div>
 
             {/* Ordering div */}
             <div className="flex items-center">
@@ -187,19 +249,17 @@ export default function Filters ({ children }) {
           </div>
 
           <section aria-labelledby="products-heading" className="pt-6 pb-24">
-            <h2 id="products-heading" className="sr-only">
+            <h2 id="products-heading" className="sr-only text-white">
               Products
             </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
+            <div className="flex justify-center">
               {/* Filters */}
-              <div className='w-80'>
-                <form className="hidden lg:block w-80" onChange={(e) => handleOnChange(e)}>
-                  <h3 className="sr-only">Categories</h3>
-                  <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6  ">
-                  </ul>
+              <div className='w-64'>
+                <FilterPrice />
+                <form className="hidden lg:block w-60" >
                   {/* ESTO TAMBIEN HAY QUE CAMBIAR SI VAMOS A COLOCAR MAS OPCIONES DE FILTRADO ESTO ESCRITORIO */}
-                  <Disclosure as="div" key={'Category'} className=" py-6">
+                  <Disclosure as="div" key={'Category'} className=" py-4">
                     {({ open }) => (
                       <>
                         <h3 className="-my-3 flow-root">
@@ -217,19 +277,21 @@ export default function Filters ({ children }) {
                             </span>
                           </Disclosure.Button>
                         </h3>
-                        <Disclosure.Panel className="pt-6">
+                        <Disclosure.Panel className="pt-4">
                           <div className="space-y-4">
                             {categories && categories.map((option, optionIdx) => (
-                              <div key={option.id} className="flex items-center">
+                              <div key={option.id} className="flex items-center text-black">
                                 <input
-                                  id='Category'
+                                  id={`Category-${option.id}`}
                                   value={option.id}
                                   type="checkbox"
-                                  className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                  checked={!!checkedState[optionIdx]}
+                                  onChange={(e) => handleOnChange(e)}
+                                  className="h-6 w-6 appearance-none border-slate-50 border rounded-md checked:bg-violet-800 checked:border-purple-600 checked:border-2"
                                 />
                                 <label
-                                  htmlFor={`filter-${option.id}-${optionIdx}`}
-                                  className="ml-3 text-sm text-white"
+                                  htmlFor={`Category-${option.id}`}
+                                  className="ml-3 text-sm text-white cursor-pointer"
                                 >
                                   {option.name}
                                 </label>
@@ -241,12 +303,12 @@ export default function Filters ({ children }) {
                     )}
                   </Disclosure>
                 </form>
+
               </div>
+
               {/* Product grid */}
-              <div className="lg:col-span-3">
-                {/* Replace with your content */}
+              <div className="flex justify-center w-4/5">
                 {children}
-                {/* /End replace */}
               </div>
             </div>
           </section>
