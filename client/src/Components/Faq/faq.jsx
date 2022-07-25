@@ -4,6 +4,7 @@ import box from '../../assests/illustration-box-desktop.svg'
 import arrow from '../../assests/icon-arrow-down.svg'
 import { Data } from './Data'
 import { motion } from 'framer-motion'
+import Nav from '../UI/Nav/Navigation'
 export default function Faq () {
   const [selected, setSelected] = useState(null)
 
@@ -15,13 +16,16 @@ export default function Faq () {
   }
 
   return (
+
     <motion.div
     className={style.main}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
     >
+
     <main className={style.wrapper}>
+    <Nav/>
         <div className={style.image__wrapper}>
             <div className={style.image__wrapper_inner}>
 

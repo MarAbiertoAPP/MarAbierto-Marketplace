@@ -3,14 +3,25 @@ import Classes from './card.module.css'
 import PropTypes from 'prop-types'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../../../Redux/Actions/ActionsCart'
+
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../../Home/toast.css'
 import { motion } from 'framer-motion'
+import { passDetail } from '../../../Redux/Actions/ActionsDetail'
 export default function Card ({ title, image, price, id }) {
-  const { Cart } = useSelector(state => state)
   const dispatch = useDispatch()
+  const handleDetail = () => {
+    dispatch(passDetail({
+      title,
+      image,
+      price,
+      id
+    }))
+  }
+
+  const { Cart } = useSelector(state => state)
+
   Card.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
@@ -51,15 +62,6 @@ export default function Card ({ title, image, price, id }) {
         icon: 'success',
         title: 'item added to your shopping cart'
       })
-      return dispatch(
-        addToCart({
-          title,
-          image,
-          price,
-          id
-        }
-        )
-      )
     }
   }
 
@@ -71,7 +73,7 @@ export default function Card ({ title, image, price, id }) {
     >
       <div className={Classes.card}>
         <div className={Classes.imgBx}>
-          <Link to={`/detail/${id}`}>
+          <Link onClick={handleDetail} to={`/detail/${id}`}>
             <img src={image} alt="pic"></img>
           </Link>
         </div>

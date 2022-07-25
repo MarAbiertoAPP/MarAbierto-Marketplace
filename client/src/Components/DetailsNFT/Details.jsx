@@ -14,13 +14,14 @@ import ButtonsDetails from './ButtonsDetails/ButtonsDetails'
 import Nav from '../UI/Nav/Navigation'
 import Footer from '../Footer/Footer'
 import { motion } from 'framer-motion'
+
 const Details = () => {
   const { id } = useParams()
   const [nftDetail, setNftDetail] = useState({})
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    console.log('in')
+    // console.log('in')
     axios.get(`/stores/nft/${id}`)
       .then(response => setNftDetail(response.data))
   }, [])
@@ -49,7 +50,7 @@ const Details = () => {
 
               <CurrentPriceDetail price={nftDetail?.price}/>
               <CurrentOwner user={nftDetail?.User}/>
-              <ButtonsDetails/>
+              <ButtonsDetails />
 
               <div className='w-full flex justify-center'>
                 <p className='mt-4 text-md self-auto text-neutral-400 tracking-wider'>By clicking &quot;Buy now&quot; or &quot;Make an offer&quot;, you agree to the Terms of Service</p>
