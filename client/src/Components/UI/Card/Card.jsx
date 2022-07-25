@@ -7,7 +7,7 @@ import { addToCart } from '../../../Redux/Actions/ActionsCart'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../../Home/toast.css'
-
+import { motion } from 'framer-motion'
 export default function Card ({ title, image, price, id }) {
   const { Cart } = useSelector(state => state)
   const dispatch = useDispatch()
@@ -64,7 +64,11 @@ export default function Card ({ title, image, price, id }) {
   }
 
   return (
-    <div className={Classes.container}>
+    <motion.div
+    className={Classes.container}
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    >
       <div className={Classes.card}>
         <div className={Classes.imgBx}>
           <Link to={`/detail/${id}`}>
@@ -80,6 +84,6 @@ export default function Card ({ title, image, price, id }) {
           <button hidden={'hidden'} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}>Buy Now</button>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

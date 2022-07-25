@@ -3,7 +3,7 @@ import style from './faq.module.css'
 import box from '../../assests/illustration-box-desktop.svg'
 import arrow from '../../assests/icon-arrow-down.svg'
 import { Data } from './Data'
-
+import { motion } from 'framer-motion'
 export default function Faq () {
   const [selected, setSelected] = useState(null)
 
@@ -15,7 +15,12 @@ export default function Faq () {
   }
 
   return (
-    <div className={style.main}>
+    <motion.div
+    className={style.main}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    >
     <main className={style.wrapper}>
         <div className={style.image__wrapper}>
             <div className={style.image__wrapper_inner}>
@@ -44,6 +49,6 @@ export default function Faq () {
         </div>
     </div>
     </main>
-</div>
+</motion.div>
   )
 }

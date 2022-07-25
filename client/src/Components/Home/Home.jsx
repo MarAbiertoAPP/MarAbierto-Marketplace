@@ -13,11 +13,12 @@ import Footer from '../Footer/Footer'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../Home/toast.css'
+import { motion } from 'framer-motion'
+
 const cartFromLocal = JSON.parse(localStorage.getItem('Cart'))
 
 export default function Home () {
   const { isAuthenticated, user } = useAuth0()
-
   useEffect(() => {
     window.scrollTo(0, 0)
     dispatch(cartFromLocalStorage(cartFromLocal))
@@ -123,15 +124,21 @@ export default function Home () {
   }
 
   return (
-    <div className={Classes.div}>
+    <motion.div
+    className={Classes.div}
+    >
       <Nav />
       <Filters>
-        <div className={`${Classes.main} place-content-center`}>
+        <motion.div
+        className={`${Classes.main} place-content-center`}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        >
           {dataAPI && dataAPI.nft?.map(item => item.path ? <Card key={item.id} title={item.title} image={item.path} price={item.price} id={item.id} /> : null)}
-        </div>
+        </motion.div>
       </Filters>
       <Pagination />
       <Footer />
-    </div>
+    </motion.div>
   )
 }
