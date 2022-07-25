@@ -126,6 +126,9 @@ export default function Home () {
   return (
     <motion.div
     className={Classes.div}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
     >
       <Nav />
       <Filters>
