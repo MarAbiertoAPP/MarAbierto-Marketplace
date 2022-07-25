@@ -3,12 +3,12 @@ import Classes from './card.module.css'
 import PropTypes from 'prop-types'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../../Home/toast.css'
 import { motion } from 'framer-motion'
 import { passDetail } from '../../../Redux/Actions/ActionsDetail'
+import { addToCart } from '../../../Redux/Actions/ActionsCart'
 export default function Card ({ title, image, price, id }) {
   const dispatch = useDispatch()
   const handleDetail = () => {
@@ -62,6 +62,15 @@ export default function Card ({ title, image, price, id }) {
         icon: 'success',
         title: 'item added to your shopping cart'
       })
+      return dispatch(
+        addToCart({
+          title,
+          image,
+          price,
+          id
+        }
+        )
+      )
     }
   }
 
