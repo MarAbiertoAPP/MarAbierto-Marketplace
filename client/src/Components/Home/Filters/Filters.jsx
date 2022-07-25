@@ -1,75 +1,114 @@
-import React, { /* useEffect, */ Fragment, useState } from 'react'
+import React, { /* useEffect, */ Fragment, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
-import { filterByCategory, setPage } from '../../../Redux/Actions'
+import { filterByCategory, setPage, setSort } from '../../../Redux/Actions'
 import { XIcon } from '@heroicons/react/outline'
-import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
+import { FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
 import PropTypes from 'prop-types'
-
-const sortOptions = [
-  { name: 'Ascending (A-Z) ↑', href: '#', current: true },
-  { name: 'Descending (Z-A) ↓', href: '#', current: false },
-  { name: 'From Lower-Higher ↑', href: '#', current: false },
-  { name: 'From Higher-Lower ↓', href: '#', current: false }
-]
-
-/* const filters = [
-  {
-    id: 'color',
-    name: 'Color',
-    options: [
-      { value: 'white', label: 'White', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: true },
-      { value: 'brown', label: 'Brown', checked: false },
-      { value: 'green', label: 'Green', checked: false },
-      { value: 'purple', label: 'Purple', checked: false }
-    ]
-  }
-] */
-
-function classNames (...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+import { useLocation } from 'react-router-dom'
+import SearchBar from '../SearchBar/SearchBar'
+import FilterPrice from './FilterPrice'
 
 export default function Filters ({ children }) {
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const dispatch = useDispatch()
-  const [checked, setChecked] = useState({
-    category: []
-  })
-  const categories = useSelector(state => state.categories)
   Filters.propTypes = {
     children: PropTypes.node
   }
 
+  const dispatch = useDispatch()
+  const location = useLocation()
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const { order, categoryId } = useSelector(state => state.filter)
+  const categories = useSelector(state => state.categories)
+
+  // Local state that consume from redux to set if a checkbox if checked
+  const [checkedState, setCheckedState] = useState(
+    new Array(9).fill(false)
+  )
+
+  // Local state to control checkbox checked
+  // The render has to be from redux not the localState
+  const [checked, setChecked] = useState([])
+
+  // Handle to set the checked state and set the state in redux
   const handleOnChange = (e) => {
     const { value } = e.target
     if (e.target.checked) {
-      setChecked({
-        ...checked, category: [...checked.category, value]
-      })
-      if ([...checked.category, value].length > 0) {
-        dispatch(filterByCategory([...checked.category, value].join('_')))
+      setChecked([...checked, value])
+      if ([...checked, value].length > 0) {
+        dispatch(filterByCategory([...checked, value].join('_')))
       }
     }
     if (!e.target.checked) {
-      console.log(e.target.value)
-      setChecked({
-        ...checked, category: [...checked.category.filter(c => c !== value)]
-      })
-      if ([...checked.category.filter(c => c !== value)].length > 0) {
-        dispatch(filterByCategory([...checked.category.filter(c => c !== value)].join('_')))
+      setChecked([...checked.filter(c => c !== value)])
+      if ([...checked.filter(c => c !== value)].length > 0) {
+        dispatch(filterByCategory([...checked.filter(c => c !== value)].join('_')))
       }
-      if ([...checked.category.filter(c => c !== value)].length === 0) {
+      if ([...checked.filter(c => c !== value)].length === 0) {
         dispatch(filterByCategory(null))
       }
     }
-    dispatch(setPage(0))
+    dispatch(setPage(1))
+  }
+
+  // Component update when the redux state change and set the local state that control the checked
+  useEffect(() => {
+    if (categoryId === null) {
+      setCheckedState([...checkedState].fill(false))
+      setChecked([])
+    }
+    if (categoryId) {
+      const arrCheckedBoxes = categoryId.split('_')
+      const newState = [...checkedState].fill(false)
+      for (const id of arrCheckedBoxes) {
+        const category = categories.find(c => c.id === id)
+        const indexCategory = categories.indexOf(category)
+        newState[indexCategory] = true
+      }
+      setCheckedState(newState)
+    }
+  }, [categoryId])
+
+  // When page is refresh set the values of the checked boxes we have to use LocalStorage
+  useEffect(() => {
+    const stateFromRedux = urlToState(location.search)
+    const arrCategoriesFromRedux = stateFromRedux?.categoryId ? stateFromRedux.categoryId.split('_') : []
+    setChecked(arrCategoriesFromRedux || [])
+    const newState = [...checkedState].fill(false)
+    for (const id of arrCategoriesFromRedux) {
+      const category = categories.find(c => c.id === id)
+      const indexCategory = categories.indexOf(category)
+      newState[indexCategory] = true
+    }
+    setCheckedState(newState)
+  }, [categories])
+
+  const urlToState = (url) => {
+    if (url === '') return
+    const arrQuerys = url.slice(1).split('&')
+    const newState = {}
+    const numbersKeys = ['page', 'max', 'cardsPerPage']
+    for (const query of arrQuerys) {
+      const key = query.split('=')[0]
+      const value = query.split('=')[1]
+      if (numbersKeys.includes(key)) {
+        newState[key] = Number(value)
+      } else {
+        newState[key] = value
+      }
+    }
+    return newState
+  }
+
+  // Handle to set the order value on redux
+  const onChangeHandlerSort = (e) => {
+    e.preventDefault()
+    dispatch(setSort(e.target.value))
+
+    dispatch(setPage(1))
   }
 
   return (
-    <div>
+    <div className='max-w-screen-2xl w-full'>
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -83,7 +122,7 @@ export default function Filters ({ children }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-black bg-opacity-25"/>
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
             </Transition.Child>
 
             <div className="fixed inset-0 flex z-40">
@@ -106,15 +145,12 @@ export default function Filters ({ children }) {
                       onClick={() => setMobileFiltersOpen(false)}
                     >
                       <span className="sr-only">Close menu</span>
-                      <XIcon className="h-6 w-6" aria-hidden="true"/>
+                      <XIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
 
                   {/* Filters */}
-                  <form className="mt-4 border-t border-gray-200" onChange={(e) => handleOnChange(e)}>
-                    <h3 className="sr-only">Categories</h3>
-                    <ul role="list" className="font-medium text-gray-900 px-2 py-3">
-                    </ul>
+                  <form className="mt-4 border-t border-gray-200">
                     {/* ALGO A CAMBIAR CUANDO HAYA MAS TIPOS DE FILTRADOS ESTO ES PARA EL CELULAR */}
                     <Disclosure as="div" key={'Category'} className="border-t border-gray-200 px-4 py-6">
                       {({ open }) => (
@@ -124,29 +160,31 @@ export default function Filters ({ children }) {
                               className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
                               <span className="font-medium text-gray-900">Category</span>
                               <span className="ml-6 flex items-center">
-                                  {open
-                                    ? (
-                                      <MinusSmIcon className="h-5 w-5" aria-hidden="true"/>
-                                      )
-                                    : (
-                                      <PlusSmIcon className="h-5 w-5" aria-hidden="true"/>
-                                      )}
-                                </span>
+                                {open
+                                  ? (
+                                    <MinusSmIcon className="h-5 w-5" aria-hidden="true" />
+                                    )
+                                  : (
+                                    <PlusSmIcon className="h-5 w-5" aria-hidden="true" />
+                                    )}
+                              </span>
                             </Disclosure.Button>
                           </h3>
                           <Disclosure.Panel className="pt-6">
                             <div className="space-y-6">
                               {categories && categories.map((option, optionIdx) => (
-                                <div key={option.id} className="flex items-center">
+                                <div key={option.id} className="flex items-center ">
                                   <input
-                                    id='Category'
+                                    id={`Category-${option.id}`}
                                     value={option.id}
                                     type="checkbox"
-                                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                    checked={!!checkedState[optionIdx]}
+                                    onChange={(e) => handleOnChange(e)}
+                                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500 cursor-pointer"
                                   />
                                   <label
-                                    htmlFor={`filter-mobile-Category-${optionIdx}`}
-                                    className="ml-3 min-w-0 flex-1 text-gray-500"
+                                    htmlFor={`Category-${option.id}`}
+                                    className="ml-3 text-sm text-black cursor-pointer"
                                   >
                                     {option.name}
                                   </label>
@@ -164,59 +202,40 @@ export default function Filters ({ children }) {
           </Dialog>
         </Transition.Root>
 
-        <main className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900"></h1>
+        <main className="w-full max-w-screen-2xl mt-6 px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 flex items-baseline justify-between pt-16 pb-6 border-b border-gray-200">
+            {/* SearchBar */}
+            <div className="w-2/6">
+              <Menu as="div" className="relative inline-block text-left w-full">
+                <SearchBar />
+              </Menu>
+            </div>
 
+            {/* Ordering div */}
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
-                  <Menu.Button
-                    className="group inline-flex justify-center text-sm font-medium text-white hover:text-gray-600">
-                    Sort
-                    <ChevronDownIcon
-                      className="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                  </Menu.Button>
+                  <select className={'font-medium bg-black text-white outline-none cursor-pointer'} value={order} name="Order" id="Order" onChange={(e) => {
+                    onChangeHandlerSort(e)
+                  }}>
+                    <optgroup className={'text-gray-500 bg-slate-200'} label="Reset">
+                      <option value="id_ASC" className={'text-gray-500 bg-white'}>Order by (Default)</option>
+                    </optgroup>
+                    <optgroup className={'text-gray-500 bg-slate-200'} label="Name">
+                      <option value="title_ASC" className={'text-gray-500 bg-white'}>Ascending (A-Z) ↑</option>
+                      <option value="title_DESC" className={'text-gray-500 bg-white'}>Descending (Z-A) ↓</option>
+                    </optgroup>
+                    <optgroup className={'text-gray-500 bg-slate-200'} label="Price">
+                      <option value="price_ASC" className={'text-gray-500 bg-white'}>From Lower-Higher ↑</option>
+                      <option value="price_DESC" className={'text-gray-500 bg-white'}>From Higher-Lower ↓</option>
+                    </optgroup>
+                  </select>
                 </div>
-
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <Menu.Items
-                    className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="py-1">
-                      {sortOptions.map((option) => (
-                        <Menu.Item key={option.name}>
-                          {({ active }) => (
-                            <a
-                              href={option.href}
-                              className={classNames(
-                                option.current ? 'font-medium text-gray-900' : 'text-gray-500',
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm'
-                              )}
-                            >
-                              {option.name}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ))}
-                    </div>
-                  </Menu.Items>
-                </Transition>
               </Menu>
 
               <button type="button" className="p-2 -m-2 ml-5 sm:ml-7 text-gray-400 hover:text-gray-500">
                 <span className="sr-only">View grid</span>
-                <ViewGridIcon className="w-5 h-5" aria-hidden="true"/>
+                <ViewGridIcon className="w-5 h-5" aria-hidden="true" />
               </button>
               <button
                 type="button"
@@ -224,25 +243,23 @@ export default function Filters ({ children }) {
                 onClick={() => setMobileFiltersOpen(true)}
               >
                 <span className="sr-only">Filters</span>
-                <FilterIcon className="w-5 h-5" aria-hidden="true"/>
+                <FilterIcon className="w-5 h-5" aria-hidden="true" />
               </button>
             </div>
           </div>
 
           <section aria-labelledby="products-heading" className="pt-6 pb-24">
-            <h2 id="products-heading" className="sr-only">
+            <h2 id="products-heading" className="sr-only text-white">
               Products
             </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
+            <div className="flex justify-center">
               {/* Filters */}
-              <div className='w-80'>
-                <form className="hidden lg:block w-80" onChange={(e) => handleOnChange(e)}>
-                  <h3 className="sr-only">Categories</h3>
-                  <ul role="list" className="text-sm font-medium text-gray-900 space-y-4 pb-6  ">
-                  </ul>
+              <div className='w-64'>
+                <FilterPrice />
+                <form className="hidden lg:block w-60" >
                   {/* ESTO TAMBIEN HAY QUE CAMBIAR SI VAMOS A COLOCAR MAS OPCIONES DE FILTRADO ESTO ESCRITORIO */}
-                  <Disclosure as="div" key={'Category'} className=" py-6">
+                  <Disclosure as="div" key={'Category'} className=" py-4">
                     {({ open }) => (
                       <>
                         <h3 className="-my-3 flow-root">
@@ -252,27 +269,29 @@ export default function Filters ({ children }) {
                             <span className="ml-6 flex items-center">
                               {open
                                 ? (
-                                  <MinusSmIcon className="h-5 w-5" aria-hidden="true"/>
+                                  <MinusSmIcon className="h-5 w-5" aria-hidden="true" />
                                   )
                                 : (
-                                  <PlusSmIcon className="h-5 w-5" aria-hidden="true"/>
+                                  <PlusSmIcon className="h-5 w-5" aria-hidden="true" />
                                   )}
                             </span>
                           </Disclosure.Button>
                         </h3>
-                        <Disclosure.Panel className="pt-6">
+                        <Disclosure.Panel className="pt-4">
                           <div className="space-y-4">
                             {categories && categories.map((option, optionIdx) => (
-                              <div key={option.id} className="flex items-center">
+                              <div key={option.id} className="flex items-center text-black">
                                 <input
-                                  id='Category'
+                                  id={`Category-${option.id}`}
                                   value={option.id}
                                   type="checkbox"
-                                  className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                  checked={!!checkedState[optionIdx]}
+                                  onChange={(e) => handleOnChange(e)}
+                                  className="h-6 w-6 appearance-none border-slate-50 border rounded-md checked:bg-violet-800 checked:border-purple-600 checked:border-2"
                                 />
                                 <label
-                                  htmlFor={`filter-${option.id}-${optionIdx}`}
-                                  className="ml-3 text-sm text-white"
+                                  htmlFor={`Category-${option.id}`}
+                                  className="ml-3 text-sm text-white cursor-pointer"
                                 >
                                   {option.name}
                                 </label>
@@ -284,17 +303,17 @@ export default function Filters ({ children }) {
                     )}
                   </Disclosure>
                 </form>
+
               </div>
+
               {/* Product grid */}
-              <div className="lg:col-span-3">
-                {/* Replace with your content */}
+              <div className="flex justify-center w-4/5">
                 {children}
-                {/* /End replace */}
               </div>
             </div>
           </section>
         </main>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }

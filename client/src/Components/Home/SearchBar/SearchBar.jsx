@@ -1,18 +1,12 @@
 import React, { useState } from 'react'
-import Classes from './searchbar.module.css'
 import { filterByTitle, resetFilters, setPage } from '../../../Redux/Actions/index'
 import { BiRefresh, BiSearch } from 'react-icons/bi'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import s from './searchbar.module.css'
 
 export default function SearchBar () {
   const [search, setSearch] = useState('')
   const dispatch = useDispatch()
-  const filterShow = useSelector(state => state.filterBar)
-
-  /*   const handleChange = (e) => {
-    e.preventDefault()
-    setSearch(e.target.value)
-  } */
 
   const handleChange = (e) => {
     const inputText = e.target.value.replace(/[^a-z\s#0-9]/gi, '')
@@ -29,33 +23,33 @@ export default function SearchBar () {
     } else {
       dispatch(filterByTitle(search.trim()))
     }
-    dispatch(setPage(0))
+    dispatch(setPage(1))
     setSearch('')
-    console.log(filterShow)
   }
 
   const handleReset = (e) => {
     e.preventDefault()
     dispatch(resetFilters())
-    dispatch(setPage(0))
+    dispatch(setPage(1))
   }
 
   return (
-    <div>
-    <div className={Classes.container1}>
-    <button className={Classes.button} onClick={(e) => handleReset(e)}><BiRefresh/></button>
-    <form className={Classes.container2} onSubmit={(e) => { handleSubmit(e) }}>
-      <input className={Classes.input}
-             name={'search'}
-             value={search}
-             onChange={(e) => { handleChange(e) }}
-             type={'search'}
-             placeholder={'Search NFTs!'}
-      />
-      <button className={Classes.button} type={'submit'}><BiSearch/>Search!</button>
-    </form>
+    <div className='flex justify-start align-middle'>
+      <form className='flex align-middle focus:border-solid focus:border-b focus:border-b-white' onSubmit={(e) => { handleSubmit(e) }}>
+        <input className={`${s.input} bg-transparent outline-none text-white pl-2 pr-2`}
+          name={'search'}
+          value={search}
+          onChange={(e) => { handleChange(e) }}
+          type={'search'}
+          placeholder={'Search NFTs!'}
+        />
+        <div className='flex justify-center w-8 h-8 items-center text-center text-white rounded-full bg-purple-600/[.5] hover:bg-purple-600'>
+          <button type={'submit'}><BiSearch className='text-xl'/></button>
+        </div >
+      </form>
+      <div className='flex justify-center w-8 h-8 items-center text-center text-white rounded-full bg-purple-600/[.5] hover:bg-purple-600 ml-2'>
+        <button onClick={(e) => handleReset(e)}><BiRefresh className='text-2xl' /></button>
+      </div >
     </div>
-    </div>
-
   )
 }

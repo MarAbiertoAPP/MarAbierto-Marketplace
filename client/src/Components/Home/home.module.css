@@ -12,12 +12,24 @@ body::-webkit-scrollbar-thumb {
 } 
 
 .main{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 @media (max-width: 600px){
   .main{
     margin-top: 20%;
   }
+}
+
+.div{
+  min-height: 100vh;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(315deg, rgb(24, 2, 48) 0%, #000000 90%);
+  background-attachment: scroll;
+  background-size: fixed;
 }

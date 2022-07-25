@@ -11,7 +11,10 @@ import {
   SET_PAGE_MAX,
   CREATE_USER,
   GET_ALL_CATEGORIES,
-  CREATE_CATEGORIES
+  CREATE_CATEGORIES,
+  SET_USER,
+  GET_CLIENTE_SECRET,
+  SET_MULTIPLE_FILTERS
 } from './ActionsCreators'
 import axios from 'axios'
 
@@ -71,6 +74,13 @@ export function resetFilters () {
   }
 }
 
+export function setMultipleFilters (payload) {
+  return {
+    type: SET_MULTIPLE_FILTERS,
+    payload
+  }
+}
+
 export function setSort (payload) {
   return {
     type: SET_SORT,
@@ -95,11 +105,22 @@ export function setPageMax (pageMax) {
 export function createUser (obj) {
   return function (dispatch) {
     axios.post('/users/signup', obj)
+      .then(res => window.localStorage.setItem('User', JSON.stringify(res.data)))
       .then(dispatch({ type: CREATE_USER }))
-      .catch(error => console.log(error))
+      .catch(error => console.log(error.message))
   }
 }
-
+export function userFromLocalStorage () {
+  return function (dispatch) {
+    const user = window.localStorage.getItem('User')
+    if (user) {
+      dispatch({
+        type: SET_USER,
+        payload: JSON.parse(user)
+      })
+    }
+  }
+}
 export function getAllCategories () {
   return function (dispatch) {
     axios('/categories')
@@ -116,5 +137,12 @@ export function createCategories (item) {
       .then(dispatch({
         type: CREATE_CATEGORIES
       }))
+  }
+}
+export function getClientPay (data) {
+  return {
+    type: GET_CLIENTE_SECRET,
+    payload: data
+
   }
 }

@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { userFromLocalStorage } from '../../Redux/Actions/index'
 import landing from '../LandingPage/landing.module.css'
 import nftData from '../LandingPage/SliderNftData'
 import EmblaCarousel from './Carousel/EmblaCarousel'
 import logoPMA from '../../assests/LogoPMA.png'
 import { Link } from 'react-router-dom'
-
+import { motion } from 'framer-motion'
 const SLIDE_COUNT = nftData.length
 const slides = Array.from(Array(SLIDE_COUNT).keys())
-
-const Landing = () => {
+export default function Landing () {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(userFromLocalStorage())
+  }, [])
   return (
-      <div className={landing.div}>
+      <motion.div
+      className={landing.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      >
 
         <div className={`xl:${landing.limitH} flex flex-col  w-screen max-w-screen-xl `}>
 
@@ -45,15 +55,12 @@ const Landing = () => {
             <Link to="/home">
               <button className= {`${landing.toHomeButton} mt-8 xl:mt-0 `}>EXPLORE</button>
             </Link>
-
           </div>
 
         </div>
 
       </div>
-    </div>
+    </motion.div>
 
   )
 }
-
-export default Landing
