@@ -14,15 +14,15 @@
 
 
 
-.limitH {
+/* .scrollBar {
   height: 100vh;
-  max-height: 450px;
-}
+  max-height: 550px;
+} */
 
-.limitH::-webkit-scrollbar {
+.scrollBar::-webkit-scrollbar {
   width: 5px;
 }
 
-.limitH::-webkit-scrollbar-thumb {
+.scrollBar::-webkit-scrollbar-thumb {
   background-color: rgb(87, 20, 158);
 }

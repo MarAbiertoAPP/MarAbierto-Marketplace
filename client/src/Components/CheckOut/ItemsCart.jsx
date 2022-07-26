@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import style from './Checkout.module.css'
 
 export default function ItemsCart () {
   const checkoutNft = useSelector(state => state.Cart)
@@ -15,12 +16,12 @@ export default function ItemsCart () {
     <div>
       <div className=''>
         <div className='w-full text-center'>
-          <h1 className='text-4xl text-amber-600'>Confirm Payment</h1>
+          <h1 className='text-5xl text-white mb-2'>Confirm Payment</h1>
         </div>
 
-        <div className='p-4 w-full object-contain overflow-scroll overflow-x-hidden flex flex-col'>
+        <div className={`${style.scrollBar} xl:max-h-limitH p-4 w-full object-contain overflow-scroll overflow-x-hidden flex flex-col`}>
 
-          <div className="mt-8">
+          <div className={'mt-8'}>
             <div className="flow-root">
               <ul role="list" className="-my-6 divide-y divide-gray-200">
                 {checkoutNft.map((e) => (
@@ -37,7 +38,14 @@ export default function ItemsCart () {
                       <div>
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <h3 className='w-5/12 text-white'>{e.title}</h3>
-                          <p className="ml-4 text-amber-600">ETH {e.price}</p>
+                          {/* <div className='w-4/12 bg-white'>
+
+                          </div> */}
+                          <div className='text-center'>
+                            <p className="text-white">{e.price}</p>
+                            <p className="text-white">ETH</p>
+
+                          </div>
                         </div>
 
                       </div>
@@ -56,10 +64,10 @@ export default function ItemsCart () {
 
         </div>
       </div>
-      <div className='grid justify-end mr-4'>
-        <p className='ml-4 text-amber-600 '>Total Price</p>
-        <p className='ml-4 text-amber-600 '>ETH {totalBuy}</p>
-        <p className='ml-4 text-amber-600 '>U$S {totalBuy * 1500}</p>
+      <div className='grid justify-center mt-8 mr-4'>
+        <p className='ml-4 text-white text-xl '>Total Price</p>
+        <p className='ml-4 text-white text-xl '>ETH {totalBuy}</p>
+        <p className='ml-4 text-white text-xl '>U$S {totalBuy * 1500}</p>
       </div>
     </div>
   )

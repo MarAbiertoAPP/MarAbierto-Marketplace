@@ -22,19 +22,63 @@ export default function Checkout () {
     // Fully customizable with appearance API.
     appearance: {
       theme: 'night',
-      labels: 'floating'
+      variables: {
+        fontFamily: ' "Gill Sans", sans-serif',
+        fontLineHeight: '1.5',
+        borderRadius: '10px',
+        // colorBackground: '#FCDF07',
+        colorPrimaryText: '#000000',
+        colorText: '#FFFFFF'
+      },
+      rules: {
+        '.Block': {
+          backgroundColor: 'var(--colorBackground)',
+          boxShadow: 'none',
+          padding: '12px'
+        },
+        '.Input': {
+          padding: '12px'
+        },
+        '.Input:disabled, .Input--invalid:disabled': {
+          color: 'lightgray'
+        },
+        '.Input:focus': {
+          border: 'none',
+          boxShadow: '0px 1px 1px rgba(217, 33, 171, 0.56), 0px 3px 7px rgba(217, 33, 171, 0.56)'
+        },
+        '.Tab': {
+          padding: '10px 12px 8px 12px',
+          border: 'none'
+        },
+        '.Tab:hover': {
+          border: 'none',
+          boxShadow: '0px 1px 1px rgba(217, 33, 171, 0.56), 0px 3px 7px rgba(217, 33, 171, 0.56)'
+        },
+        '.Tab--selected, .Tab--selected:focus, .Tab--selected:hover': {
+          border: 'none',
+          backgroundColor: '#fff',
+          boxShadow: '0 0 0 1.5px rgba(217, 33, 171, 0.56), 0px 1px 1px rgba(217, 33, 171, 0.56), 0px 3px 7px rgba(217, 33, 171, 0.56)'
+        },
+        '.Label': {
+          fontWeight: '500'
+        }
+      }
     }
   }
 
   if (secret) {
     return (
-      <div className='flex justify-center space-x-40 min-h-screen items-center'>
+      <div className='flex flex-col xl:flex-row justify-center xl:space-x-40 min-h-screen items-center'>
         <div>
           <ItemsCart />
         </div>
-        <Elements stripe={stripePromise} options={options}>
-          <CheckoutForm />
-        </Elements>
+        <div className='p-8 rounded-lg'>
+
+          <Elements stripe={stripePromise} options={options}>
+            <CheckoutForm />
+          </Elements>
+
+        </div>
       </div>
     )
   }
