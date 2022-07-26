@@ -6,7 +6,14 @@ module.exports = {
     './src/*.{js,jsx,ts,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxHeight: {
+        limitH: '550px'
+      },
+      colors: {
+        probando: 'rgba(217, 33, 171, 0.56)'
+      }
+    },
     fontFamily: {
       sans: ['Inter var', 'sans-serif'],
       // poppins
