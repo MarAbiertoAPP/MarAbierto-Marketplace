@@ -8,6 +8,7 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
 const stripePromise = loadStripe(
+
   'pk_test_51LOPfmJVPjWVJr6N63nReuOKhebPKvDMrQteVj0tfUMRkNbCCethuo2cTgd1t0xsLQQco6lyYClRaUMUWCiAXL8M00abWXdmci'
 )
 const Checkoutform = () => {
@@ -153,7 +154,6 @@ const Checkoutform = () => {
         {isdata && <h1 className='text-zinc-100 text-5xl'>PAGO REALIZADO CON EXITO</h1>}
         {nodata && <h2 className='text-red-100 text-5xl' > PROCESANDO PAGO...</h2>}
       </div>
-
   </motion.div>
 
   )
