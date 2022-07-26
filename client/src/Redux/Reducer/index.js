@@ -18,7 +18,7 @@ import {
   GET_CLIENTE_SECRET,
   SET_USER,
   DETAIL,
-  BUY_NOW, CLEAN_BUY_NOW
+  BUY_NOW, CLEAN_BUY_NOW, GET_ETHEREUM_CONV
 } from '../Actions/ActionsCreators'
 
 const initialState = {
@@ -39,7 +39,8 @@ const initialState = {
   BuyNow: [],
   User: [],
   payData: [],
-  detail: {}
+  detail: {},
+  Conv: []
 }
 
 export default function rootReducer (state = initialState, action) {
@@ -198,6 +199,11 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state,
         BuyNow: []
+      }
+    case GET_ETHEREUM_CONV:
+      return {
+        ...state,
+        Conv: action.payload
       }
     default:
       return { ...state }
