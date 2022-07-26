@@ -5,7 +5,7 @@ import Faq from './Components/Faq/faq'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { Cart } from './Components/Cart/Cart'
 import RenderDetails from './Components/DetailsNFT/RenderDetails'
-import Checkout from './Components/CheckOut/CheckoutForm'
+import Checkout from './Components/CheckOut/Checkout.jsx'
 import { AnimatePresence } from 'framer-motion'
 
 export default function AnimatedRoutes () {
