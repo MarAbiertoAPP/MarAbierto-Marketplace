@@ -9,8 +9,9 @@ import { CgLogIn, CgLogOut } from 'react-icons/cg'
 import { useAuth0 } from '@auth0/auth0-react'
 import { IoIosCart } from 'react-icons/io'
 import { Cart } from '../../Cart/Cart'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { resetFilters } from '../../../Redux/Actions'
 
 export default function Nav () {
   const [open, setOpen] = useState(false)
@@ -18,6 +19,8 @@ export default function Nav () {
   const [openCart, setOpenCart] = useState(false)
   const cart = useSelector(state => state.Cart)
   const navigate = useNavigate()
+
+  const dispatch = useDispatch()
 
   const showDropdown = () => {
     setOpen(!open)
@@ -31,7 +34,9 @@ export default function Nav () {
     window.localStorage.removeItem('User')
   }
   const handleClick = (e) => {
-    navigate(-1)
+    e.preventDefault()
+    dispatch(resetFilters())
+    navigate('/home?')
   }
   return (
     <div>

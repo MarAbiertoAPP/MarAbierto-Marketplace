@@ -56,10 +56,13 @@ export default function Home () {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    urlToState(location.search)
-    axios.get(`/stores/nft${location.search}`)
-      .then(response => setVariables(response.data))
-      .catch(err => errorHandler(err))
+    if (location.pathname === '/home') {
+      window.scrollTo(0, 0)
+      urlToState(location.search)
+      axios.get(`/stores/nft${location.search}`)
+        .then(response => setVariables(response.data))
+        .catch(err => errorHandler(err))
+    }
   }, [location.search])
 
   const stateToUrl = (stateFilters) => {

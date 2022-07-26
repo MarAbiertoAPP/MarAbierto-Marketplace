@@ -1,16 +1,25 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import style from './Checkout.module.css'
+import { cleanBuyNow } from '../../Redux/Actions/ActionsCart'
 
 export default function ItemsCart () {
-  const checkoutNft = useSelector(state => state.Cart)
-  checkoutNft.sort((a, b) => a.title.localeCompare(b.title))
+  const { BuyNow, Cart } = useSelector(state => state)
+  const dispatch = useDispatch()
 
   let totalBuy = 0
+  const checkoutNft = BuyNow.length ? BuyNow : Cart
+
   checkoutNft.map(item => {
     totalBuy = totalBuy + item.price
     return totalBuy
   })
+
+  useEffect(() => {
+    return () => { dispatch(cleanBuyNow()) }
+  }, [])
+
+  checkoutNft.sort((a, b) => a.title.localeCompare(b.title))
 
   return (
     <div>
@@ -19,14 +28,16 @@ export default function ItemsCart () {
           <h1 className='text-5xl text-white mb-2'>Confirm Payment</h1>
         </div>
 
-        <div className={`${style.scrollBar} xl:max-h-limitH p-4 w-full object-contain overflow-scroll overflow-x-hidden flex flex-col`}>
+        <div
+          className={`${style.scrollBar} xl:max-h-limitH p-4 w-full object-contain overflow-scroll overflow-x-hidden flex flex-col`}>
 
           <div className={'mt-8'}>
             <div className="flow-root">
               <ul role="list" className="-my-6 divide-y divide-gray-200">
                 {checkoutNft.map((e) => (
                   <li key={e.id} className="flex py-6">
-                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border bg-pink-500 opacity-100 border-gray-200">
+                    <div
+                      className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border bg-pink-500 opacity-100 border-gray-200">
                       <img
                         src={e.image}
                         alt={e.title}
