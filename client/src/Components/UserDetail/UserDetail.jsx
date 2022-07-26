@@ -107,7 +107,7 @@ const dataFromApiExample = [{
 }
 ]
 //
-console.log(data) // te he callado eslint
+//console.log(data) // te he callado eslint
 
 const UserDetail = (props) => {
   return (

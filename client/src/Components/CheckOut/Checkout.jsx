@@ -2,20 +2,30 @@ import React, { useEffect, useState } from 'react'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import ItemsCart from './ItemsCart'
-
+import { useSelector } from 'react-redux'
 import CheckoutForm from './FormCheckout'
 import axios from 'axios'
 import Nav from '../UI/Nav/Navigation'
 
-const stripePromise = loadStripe('pk_test_51LOX0hJn83pmuJ1bSTKmW3P4a8D6StL0A8FQqviUBtoDuqKybEKTb2f8chYBTRMsHYmJvNGeafjQXpV3e0b9PydQ00k8iq7OIN')
+const stripePromise = loadStripe('pk_test_51LOPfmJVPjWVJr6N63nReuOKhebPKvDMrQteVj0tfUMRkNbCCethuo2cTgd1t0xsLQQco6lyYClRaUMUWCiAXL8M00abWXdmci')
 
 export default function Checkout () {
   const [secret, setSecret] = useState('')
+  const cartToBuy = useSelector(state => state.Cart)
+  let value = 0
 
   useEffect(() => {
-    axios.get('/secret')
-      .then(response => setSecret(response.data.client_secret))
-  }, [])
+    if (cartToBuy.length) {
+      cartToBuy.map(item => {
+        value = value + item.price
+        return value
+      }
+      )
+
+      axios.post('/secret', { amount: value })
+        .then(response => setSecret(response.data.client_secret))
+    }
+  }, [cartToBuy])
 
   const options = {
     // passing the client secret obtained in step 2
@@ -86,6 +96,6 @@ export default function Checkout () {
   }
 
   return (
-    <h1>Probablemente estoy valiendo vrg</h1>
+    <h1 className='text-white'>CARGANDO</h1>
   )
 }

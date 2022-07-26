@@ -21,7 +21,7 @@ router.get('/profile', userController.signUp)
  * Iniciar sesion
  */
 router.post('/signin', userController.signIn)
-router.post('/getpay', userController.payNft)
+// router.post('/getpay', userController.payNft)
 // /users/getsecret
 
 module.exports = router

@@ -8,6 +8,7 @@ import RenderDetails from './Components/DetailsNFT/RenderDetails'
 import Checkout from './Components/CheckOut/Checkout.jsx'
 import { AnimatePresence } from 'framer-motion'
 import UserDetail from './Components/UserDetail/UserDetail'
+import ThanksForBuying from './Components/thanksForBuying/ThanksForBuying'
 
 export default function AnimatedRoutes () {
   const location = useLocation()
@@ -21,6 +22,7 @@ export default function AnimatedRoutes () {
         <Route path="/detail/:id" element={<RenderDetails/>}/>
         <Route path="/faq" element={<Faq/>}/>
         <Route path='/user' element={<UserDetail/>}/>
+        <Route path='thanks' element={<ThanksForBuying/>}/>
       </Routes>
     </AnimatePresence>
   )

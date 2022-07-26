@@ -2,7 +2,7 @@ const { createUser, searchUser } = require('../dao/user.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 /* const { emailRegisterUser } = require('../dao/sendMails.js') */
-const Stripe = require('stripe')
+// const Stripe = require('stripe')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize
@@ -64,7 +64,7 @@ exports.signIn = async (req, res) => {
   }
 }
 
-const stripe = new Stripe('sk_test_51LOPfmJVPjWVJr6NDta3q2uCWz3RWP6yUKDCMd9H0K8WMrsxPUXmNztykwbtRNkZSYU2GPF6qXfgO4jxz9GhdrS000PyVtq2T6')
+/* const stripe = new Stripe('sk_test_51LOPfmJVPjWVJr6NDta3q2uCWz3RWP6yUKDCMd9H0K8WMrsxPUXmNztykwbtRNkZSYU2GPF6qXfgO4jxz9GhdrS000PyVtq2T6')
 exports.payNft = async (req, res) => {
   const { id, amount } = req.body
   try {
@@ -81,3 +81,4 @@ exports.payNft = async (req, res) => {
     res.json({ message: `Pay rejected due: ${error.raw.message}` })
   }
 }
+ */
