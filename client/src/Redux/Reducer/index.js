@@ -1,4 +1,25 @@
-import { CREATE_NFT, FILTER_BY_PRICE, FILTER_BY_CATEGORY, FILTER_BY_TITLE, FILTER_BY_STATE, FILTER_BY_USER, RESET_FILTERS, SET_SORT, SET_PAGE, SET_PAGE_MAX, CREATE_USER, GET_ALL_CATEGORIES, ADD_TO_CART, REMOVE_FROM_CART, CART_FROM_LOCAL_STORAGE, SET_MULTIPLE_FILTERS, GET_CLIENTE_SECRET, SET_USER, DETAIL } from '../Actions/ActionsCreators'
+import {
+  CREATE_NFT,
+  FILTER_BY_PRICE,
+  FILTER_BY_CATEGORY,
+  FILTER_BY_TITLE,
+  FILTER_BY_STATE,
+  FILTER_BY_USER,
+  RESET_FILTERS,
+  SET_SORT,
+  SET_PAGE,
+  SET_PAGE_MAX,
+  CREATE_USER,
+  GET_ALL_CATEGORIES,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  CART_FROM_LOCAL_STORAGE,
+  SET_MULTIPLE_FILTERS,
+  GET_CLIENTE_SECRET,
+  SET_USER,
+  DETAIL,
+  BUY_NOW, CLEAN_BUY_NOW
+} from '../Actions/ActionsCreators'
 
 const initialState = {
   filter: {
@@ -15,6 +36,7 @@ const initialState = {
   categories: [],
   filterBar: false,
   Cart: [],
+  BuyNow: [],
   User: [],
   payData: [],
   detail: {}
@@ -146,7 +168,6 @@ export default function rootReducer (state = initialState, action) {
 
     case REMOVE_FROM_CART:
       return {
-
         ...state,
         Cart: [...state.Cart.filter((item) => item.id !== action.payload)]
       }
@@ -168,7 +189,16 @@ export default function rootReducer (state = initialState, action) {
         detail: action.payload
 
       }
-
+    case BUY_NOW:
+      return {
+        ...state,
+        BuyNow: [action.payload]
+      }
+    case CLEAN_BUY_NOW:
+      return {
+        ...state,
+        BuyNow: []
+      }
     default:
       return { ...state }
   }

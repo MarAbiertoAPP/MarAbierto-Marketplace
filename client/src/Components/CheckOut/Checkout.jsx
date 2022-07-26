@@ -5,6 +5,7 @@ import ItemsCart from './ItemsCart'
 
 import CheckoutForm from './FormCheckout'
 import axios from 'axios'
+import Nav from '../UI/Nav/Navigation'
 
 const stripePromise = loadStripe('pk_test_51LOX0hJn83pmuJ1bSTKmW3P4a8D6StL0A8FQqviUBtoDuqKybEKTb2f8chYBTRMsHYmJvNGeafjQXpV3e0b9PydQ00k8iq7OIN')
 
@@ -69,6 +70,7 @@ export default function Checkout () {
   if (secret) {
     return (
       <div className='flex flex-col xl:flex-row justify-center xl:space-x-40 min-h-screen items-center'>
+        <Nav/>
         <div>
           <ItemsCart />
         </div>

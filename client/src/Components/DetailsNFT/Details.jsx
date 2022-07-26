@@ -21,7 +21,7 @@ const Details = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    // console.log('in')
+    console.log('in')
     axios.get(`/stores/nft/${id}`)
       .then(response => setNftDetail(response.data))
   }, [])
