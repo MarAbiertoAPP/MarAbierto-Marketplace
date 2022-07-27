@@ -12,19 +12,19 @@ const stripePromise = loadStripe('pk_test_51LOPfmJVPjWVJr6N63nReuOKhebPKvDMrQteV
 export default function Checkout () {
   const [secret, setSecret] = useState('')
   const cartToBuy = useSelector(state => state.Cart)
-  let value = 0
 
   useEffect(() => {
-    if (cartToBuy.length) {
-      cartToBuy.map(item => {
-        value = value + item.price
-        return value
-      }
-      )
-
-      axios.post('/secret', { amount: value })
-        .then(response => setSecret(response.data.client_secret))
+    let totalBuy = ''
+    // se crea total buy como string
+    cartToBuy.map(item => {
+      totalBuy = (totalBuy + item.price).toString()
+      // se convierte a string para poder ser enviado por body en el metodo post
+      return totalBuy
     }
+    )
+
+    axios.post('/secret', { totalBuy })
+      .then(response => setSecret(response.data.client_secret))
   }, [cartToBuy])
 
   const options = {
