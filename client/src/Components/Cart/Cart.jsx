@@ -21,8 +21,7 @@ export function Cart ({ open, setOpen }) {
     open: PropTypes.bool,
     setOpen: PropTypes.func
   }
-  const handleCleanCart = (e) => {
-    e.preventDefault()
+  const handleCleanCart = () => {
     dispatch(cleanAllCart())
   }
   useEffect(() => {
@@ -150,12 +149,12 @@ export function Cart ({ open, setOpen }) {
                         <p className='text-orange-600'>USD {((ethValue || '') * totalBuy).toFixed(2) }</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                      <div className="mt-6">
+                      <div className="mt-6 flex justify-between">
                         <Link to={'/checkout'}>
                           <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'> CHECKOUT</button>
 
                       </Link>
-                      <button onClick={() => handleCleanCart()}>CLEAN CART</button>
+                      <button onClick={handleCleanCart} className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'>CLEAN CART</button>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>

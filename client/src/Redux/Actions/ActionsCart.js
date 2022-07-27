@@ -37,6 +37,6 @@ export function cleanBuyNow () {
 export function cleanAllCart () {
   return {
     type: REMOVE_ALL_FROM_CART,
-    payload: null
+    payload: []
   }
 }

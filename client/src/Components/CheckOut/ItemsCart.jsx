@@ -79,7 +79,7 @@ export default function ItemsCart () {
       </div>
       <div className='grid justify-center mt-8 mr-4'>
         <p className='ml-4 text-white text-xl '>Total Price</p>
-        <p className='ml-4 text-white text-xl '>ETH {totalBuy}</p>
+        <p className='ml-4 text-white text-xl '>ETH {totalBuy.toFixed(3)}</p>
         <p className='ml-4 text-white text-xl '>U$S {((ethValue || '') * totalBuy).toFixed(2) }</p>
       </div>
     </div>
