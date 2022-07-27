@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CART_FROM_LOCAL_STORAGE, BUY_NOW, CLEAN_BUY_NOW } from './ActionsCreators'
+import { ADD_TO_CART, REMOVE_FROM_CART, CART_FROM_LOCAL_STORAGE, BUY_NOW, CLEAN_BUY_NOW, REMOVE_ALL_FROM_CART } from './ActionsCreators'
 
 export function addToCart (id) {
   return {
@@ -31,5 +31,12 @@ export function cleanBuyNow () {
   return {
     type: CLEAN_BUY_NOW,
     payload: null
+  }
+}
+
+export function cleanAllCart () {
+  return {
+    type: REMOVE_ALL_FROM_CART,
+    payload: []
   }
 }

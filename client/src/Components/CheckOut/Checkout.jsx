@@ -12,20 +12,24 @@ const stripePromise = loadStripe('pk_test_51LOPfmJVPjWVJr6N63nReuOKhebPKvDMrQteV
 export default function Checkout () {
   const [secret, setSecret] = useState('')
   const cartToBuy = useSelector(state => state.Cart)
-
+  const ethereumValue = useSelector(state => state.Conv.ethereum.usd)
+  console.log(ethereumValue)
   useEffect(() => {
     let totalBuy = 0
 
     cartToBuy.map(item => {
-      totalBuy = totalBuy + item.price
+      totalBuy = totalBuy + Number(item.price.toFixed(3))
 
       return totalBuy
+    })
+    const nftValue = {
+      totalBuy,
+      ethereumValue
     }
 
-    )
     console.log(totalBuy)
     if (cartToBuy.length) {
-      axios.post('/secret', { totalBuy })
+      axios.post('/secret', { nftValue })
         .then(response => setSecret(response.data.client_secret))
     }
   }, [cartToBuy])

@@ -5,13 +5,15 @@ import { cleanBuyNow } from '../../Redux/Actions/ActionsCart'
 
 export default function ItemsCart () {
   const { BuyNow, Cart } = useSelector(state => state)
+  const ethereumValue = useSelector(state => state.Conv.ethereum)
+  const ethValue = ethereumValue?.usd
   const dispatch = useDispatch()
 
   let totalBuy = 0
   const checkoutNft = BuyNow.length ? BuyNow : Cart
 
   checkoutNft.map(item => {
-    totalBuy = totalBuy + item.price
+    totalBuy = totalBuy + Number(item.price.toFixed(3))
     return totalBuy
   })
 
@@ -77,8 +79,8 @@ export default function ItemsCart () {
       </div>
       <div className='grid justify-center mt-8 mr-4'>
         <p className='ml-4 text-white text-xl '>Total Price</p>
-        <p className='ml-4 text-white text-xl '>ETH {totalBuy}</p>
-        <p className='ml-4 text-white text-xl '>U$S {totalBuy * 1500}</p>
+        <p className='ml-4 text-white text-xl '>ETH {totalBuy.toFixed(3)}</p>
+        <p className='ml-4 text-white text-xl '>U$S {((ethValue || '') * totalBuy).toFixed(2) }</p>
       </div>
     </div>
   )

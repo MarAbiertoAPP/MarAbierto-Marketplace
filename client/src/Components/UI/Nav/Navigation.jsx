@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import DropDownTail from '../../Home/Dropdown/Dropdown'
 import Classes from './navigation.module.css'
 import Logo from '../../../assests/LogoPMA.png'
@@ -13,25 +13,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { resetFilters } from '../../../Redux/Actions'
 
-import { getEthereumConv } from '../../../Redux/Actions/Convertion'
-
 export default function Nav () {
   const [open, setOpen] = useState(false)
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
   const [openCart, setOpenCart] = useState(false)
   const cart = useSelector(state => state.Cart)
-  const { Conv } = useSelector(state => state)
+
   const navigate = useNavigate()
-  console.log(Conv)
+
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getEthereumConv())
-  }, [])
-
-  // setInterval(() => {
-  //   dispatch(getEthereumConv())
-  // }, 10000)
 
   const showDropdown = () => {
     setOpen(!open)
@@ -52,10 +42,6 @@ export default function Nav () {
   return (
     <div>
       <nav className={Classes.nav}>
-      {/* <div className='flex text-orange-600 text-sm'>
-        <p>1 u$s-</p>
-        <p>{Conv.ethereum?.usd} Eth</p>
-      </div> */}
         <div onClick={(e) => handleClick(e)}>
           <img src={Logo} alt="logo" className={`${Classes.logo} cursor-pointer`} />
         </div>
