@@ -13,6 +13,7 @@ import {
   GET_ALL_CATEGORIES,
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  REMOVE_ALL_FROM_CART,
   CART_FROM_LOCAL_STORAGE,
   SET_MULTIPLE_FILTERS,
   GET_CLIENTE_SECRET,
@@ -44,6 +45,7 @@ const initialState = {
 }
 
 export default function rootReducer (state = initialState, action) {
+  console.log(action.payload)
   switch (action.type) {
     case CREATE_NFT:
       return {
@@ -171,6 +173,12 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state,
         Cart: [...state.Cart.filter((item) => item.id !== action.payload)]
+      }
+
+    case REMOVE_ALL_FROM_CART:
+      return {
+        ...state,
+        Cart: action.payload
       }
 
     case GET_CLIENTE_SECRET:
