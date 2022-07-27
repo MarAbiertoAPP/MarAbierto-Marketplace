@@ -1,0 +1,10 @@
+.Wallet {
+    background: rgba(24,28,30,0.4);
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    margin-top: 45px;
+}
+.button {
+    margin-right: 20px;
+}
