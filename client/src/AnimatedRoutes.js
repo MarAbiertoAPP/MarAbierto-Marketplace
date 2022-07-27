@@ -9,6 +9,7 @@ import Checkout from './Components/CheckOut/Checkout.jsx'
 import { AnimatePresence } from 'framer-motion'
 import UserDetail from './Components/UserDetail/UserDetail'
 import ThanksForBuying from './Components/thanksForBuying/ThanksForBuying'
+import WalletCardEthers from './Components/metamask/Metamask'
 
 export default function AnimatedRoutes () {
   const location = useLocation()
@@ -16,6 +17,7 @@ export default function AnimatedRoutes () {
     <AnimatePresence exitBeforeEnter>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Landing/>}/>
+        <Route path='/wallet' element={<WalletCardEthers/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/checkout" element={<Checkout/>}/>

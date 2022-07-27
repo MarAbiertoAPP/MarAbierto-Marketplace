@@ -27,7 +27,8 @@
     "pg": "^8.7.3",
     "sequelize": "^6.21.3",
     "standard": "^17.0.0",
-    "stripe": "^9.14.0"
+    "stripe": "^9.14.0",
+    "web3": "^1.7.4"
   },
   "devDependencies": {
     "eslint": "^8.20.0",
