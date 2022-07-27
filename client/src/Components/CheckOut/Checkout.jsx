@@ -14,17 +14,20 @@ export default function Checkout () {
   const cartToBuy = useSelector(state => state.Cart)
 
   useEffect(() => {
-    let totalBuy = ''
-    // se crea total buy como string
+    let totalBuy = 0
+
     cartToBuy.map(item => {
-      totalBuy = (totalBuy + item.price).toString()
-      // se convierte a string para poder ser enviado por body en el metodo post
+      totalBuy = totalBuy + item.price
+
       return totalBuy
     }
-    )
 
-    axios.post('/secret', { totalBuy })
-      .then(response => setSecret(response.data.client_secret))
+    )
+    console.log(totalBuy)
+    if (cartToBuy.length) {
+      axios.post('/secret', { totalBuy })
+        .then(response => setSecret(response.data.client_secret))
+    }
   }, [cartToBuy])
 
   const options = {

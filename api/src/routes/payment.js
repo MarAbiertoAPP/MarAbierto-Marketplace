@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
   const idValue = totalBuy
 
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: idValue * 1000,
+    amount: idValue * 150000,
     currency: 'usd',
     automatic_payment_methods: { enabled: true }
   })
