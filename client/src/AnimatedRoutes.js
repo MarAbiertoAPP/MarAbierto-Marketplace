@@ -10,6 +10,7 @@ import { AnimatePresence } from 'framer-motion'
 import UserDetail from './Components/UserDetail/UserDetail'
 import ThanksForBuying from './Components/thanksForBuying/ThanksForBuying'
 import WalletCardEthers from './Components/metamask/Metamask'
+import NewHome from './Components/NewHome/NewHome'
 
 export default function AnimatedRoutes () {
   const location = useLocation()
@@ -25,6 +26,7 @@ export default function AnimatedRoutes () {
         <Route path="/faq" element={<Faq/>}/>
         <Route path='/user' element={<UserDetail/>}/>
         <Route path='thanks' element={<ThanksForBuying/>}/>
+        <Route path='/newHome' element={<NewHome/>}/>
       </Routes>
     </AnimatePresence>
   )

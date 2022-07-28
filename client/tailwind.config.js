@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       maxHeight: {
-        limitH: '550px'
+        limitH: '550px',
+        limitHnewHome: '700px'
       },
       colors: {
         probando: 'rgba(217, 33, 171, 0.56)'
