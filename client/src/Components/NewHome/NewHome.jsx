@@ -9,6 +9,7 @@ import mini from '../../assests/demo/fotouser.jpeg'
 import photo2 from '../../assests/demo/background.webp'
 
 
+
 export default function NewHome () {
   return (
     <div className={style.div}>
@@ -52,7 +53,7 @@ export default function NewHome () {
 
       {/* /------el primer componente esta de aqui para arriba, de aqui para abajo el segundo-------- */}
 
-      <div className='w-full max-w-screen-xl mt-24 space-y-14'>
+      <div className='w-full max-w-screen-xl mt-24 space-y-14 flex flex-col justify-center'>
         <h1 className='text-3xl text-center text-neutral-300'> Last Drops</h1>
 
         <div className='w-full'>
@@ -66,6 +67,29 @@ export default function NewHome () {
 
       </div>
       {/* /------el segundo componente --> carusel -> esta de aqui para arriba, de aqui para abajo el tercero-------- */}
+
+      <div className='w-full max-w-screen-xl mt-14'>
+        <h1 className='text-3xl text-center text-neutral-300 mb-14'> Top Collections</h1>
+
+        <div className='w-full'>
+          
+          <div className='mb-20'>
+           <Carousel/>
+           
+           <div className='w-full flex justify-center mt-8'>
+             <button className='text-white text-3xl p-4 px-6  bg-purple-700 hover:bg-purple-900 rounded-lg'>Go to rankings</button>
+           </div>
+
+          </div>
+
+        </div>
+        
+
+      </div>
+
+      {/* /------el tercer componente --> carusel TOP -> esta de aqui para arriba, de aqui para abajo el 4to-------- */}
+       
+
 
     </div>
   )
