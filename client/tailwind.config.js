@@ -9,10 +9,17 @@ module.exports = {
     extend: {
       maxHeight: {
         limitH: '550px',
-        limitHnewHome: '700px'
+        limitHnewHome: '800px',
+        limitCardCarousel: '600px'
       },
       colors: {
         probando: 'rgba(217, 33, 171, 0.56)'
+      },
+      width: {
+        cardCarousel: '450px'
+      },
+      height: {
+        cardCarousel: '600px'
       }
     },
     fontFamily: {
