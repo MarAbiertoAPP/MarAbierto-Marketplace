@@ -1,7 +1,8 @@
 /* const { createUser } = require('../dao/user.js') */
 const { NFTs } = require('./prechargue.js')
 const { findNameOrCreate: createCat } = require('../helpers/category.js')
-const { createNFT } = require('../helpers/nft.js')
+const { createNFT, deleteAllNft } = require('../helpers/nft.js')
+const { createCollection, getCollection, deleteAllCollect } = require('../helpers/collection.js')
 // https://www.datos.gov.co/resource/xdk5-pm3f.json
 // https://apis.datos.gob.ar/georef/api/provincias
 // https://apis.datos.gob.ar/georef/api/municipios?provincia=14&campos=nombre&max=428
@@ -16,87 +17,25 @@ const { createNFT } = require('../helpers/nft.js')
  * temporary while the database is just filled and the "force" becomes false.
  * DELETE ENTIRE INIT FOLDER BEFORE DEPLOYING
  */
-/* const users = [
-  {
-    name: 'nicolas',
-    lastname: 'suarez',
-    password: '2jmk3218',
-    dni: '1049653787',
-    email: '2jmk3@gmail.com',
-    phone: '3177833860'
-  },
-  {
-    name: 'rafael',
-    lastname: 'quiroga',
-    password: '2jmk3218',
-    dni: '123',
-    email: 'correo1@gmail.com',
-    phone: '12345'
-  },
-  {
-    name: 'jesus',
-    lastname: 'arenas',
-    password: '2jmk3218',
-    dni: '123',
-    email: 'correo2@gmail.com',
-    phone: '12345'
-  },
-  {
-    name: 'gustavo',
-    lastname: 'foscarini',
-    password: '2jmk3218',
-    dni: '123',
-    email: 'correo3@gmail.com',
-    phone: '12345'
-  },
-  {
-    name: 'julian',
-    lastname: 'soto',
-    password: '2jmk3218',
-    dni: '123',
-    email: 'correo4@gmail.com',
-    phone: '12345'
-  },
-  {
-    name: 'marcelo',
-    lastname: 'godoy',
-    password: '2jmk3218',
-    dni: '123',
-    email: 'correo5@gmail.com',
-    phone: '12345'
-  },
-  {
-    name: 'tiago',
-    lastname: 'cornalo',
-    password: '2jmk3218',
-    dni: '123',
-    email: 'correo6@gmail.com',
-    phone: '12345'
-  },
-  {
-    name: 'joaquin',
-    lastname: 'muñoz',
-    password: '2jmk3218',
-    dni: '123',
-    email: 'correo7@gmail.com',
-    phone: '12345'
-  }
-] */
+const users = ['24d140e1-9da7-48bb-85b6-5ac2a535d5d3'] // 24d140e1-9da7-48bb-85b6-5ac2a535d5d3
+
 const chargue = async () => {
   try {
-    /* const arrUsersID = []
-    for (let i = 0; i < users.length; i++) {
-      const { name, lastname, password, dni, profilePicture, email, phone } = users[i]
-      const idUser = await createUser(name, lastname, password, dni, profilePicture, email, phone, 'N')
-      arrUsersID.push(idUser.dataValues.id)
-    } */
-
+    console.log(await deleteAllNft())
+    console.log(await deleteAllCollect())
     for (let i = 0; i < NFTs.length; i++) {
-    /*   const rand = Math.floor(Math.random() * arrUsersID.length)
-      const rValue = arrUsersID[rand] */
-      const { title, description, img: path, price, category } = NFTs[i]
+      const rand = Math.floor(Math.random() * users.length)
+      const rValue = users[rand]
+      const { title, description, img: path, price, category, collection } = NFTs[i]
       const catId = await createCat(category)
-      await createNFT(title, description, path, price, catId[0].dataValues.id /* rValue */)
+      let collectionId = await getCollection(collection)
+      if (collectionId) {
+        collectionId = collectionId.dataValues.id
+      } else {
+        collectionId = await createCollection(rValue, collection)
+        collectionId = collectionId.dataValues.id
+      }
+      await createNFT(title, description, path, price, catId[0].dataValues.id, collectionId)
     }
     console.log('sucessfully')
   } catch (error) {
