@@ -32,17 +32,13 @@ const getNftId = async (id) => {
     return await nft.findOne({
       where: { id },
       include: [{
-        model: user,
-        attributes: []
-      },
-      {
         model: category,
         attributes: []
       }
       ],
       attributes: [
         'id', 'title', 'description', 'path', 'price', 'isActive',
-        [Sequelize.literal('"user"."name"'), 'User'],
+        // [Sequelize.literal('"user"."name"'), 'User'],
         [Sequelize.literal('"category"."name"'), 'Category']
       ]
     })
