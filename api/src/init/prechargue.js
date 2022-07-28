@@ -7,17 +7,10 @@ exports.NFTs = [
     category: 'art'
   },
   {
-    title: 'phase #202',
-    description: 'This project is a visual representation of realities that are out of phase. Interference patterns, colorful echoes, and emerging secrets are explored. Mathematical functions produce constant motion, but rarely, a peaceful scene resolves within the chaos. Click or press any key to pause. *Photosensitive seizure warning: These artworks contain flashing colors and moving patterns.',
-    price: 3,
-    img: 'https://generator.artblocks.io/0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270/143000202',
-    category: 'art'
-  },
-  {
-    title: 'The Family Mooks #872',
-    description: 'The Family Mooks by Mr. Kaves is the genesis token for the Doodle Labs platform. The Family Mooks originally debuted as a comic strip in Mass Appeal Magazine in 1999. Doodle Labs, in collaboration with Mr. Kaves, has brought The Family Mooks back to life in a mashup of 3,951, fully on-chain generative NFT works of art.',
-    price: 0.129,
-    img: 'https://generator.artblocks.io/0x28f2d3805652fb5d359486dffb7d08320d403240/872',
+    title: 'Gatin Gatito',
+    description: 'Hi, I\'m a cat who likes to collect nfts, I\'m degenerate and I have pure waifus, I\'ve been attracted to Chinese monkeys since I was 1 year old, my father was a fan of anime, and the degenerate hit me, one day he left me mother and bought a Japanese version inflatable doll, since that day, I feel like I\'m cursed, I can\'t watch an anime without grabbing my dick',
+    price: 10,
+    img: 'https://external-preview.redd.it/4wkWYYZ4SRPaI9_kjz6nzhOaTkp_gPXTGhO69WmndQA.png?format=pjpg&auto=webp&s=8f5bfd7dac84cbaa7270db8acf597def9911fbf6',
     category: 'art'
   },
   {
@@ -74,13 +67,6 @@ exports.NFTs = [
     description: "Rich Poole's 'Toha' is a generative series exploring particle motion and the creation of texture in digital art. The pieces challenge the viewer to find their own meaning in the organic layers, shapes, and colors.",
     price: 0.69,
     img: 'https://img.seadn.io/files/d7c4d8d0d982cb453eff60043a099946.png?fit=max&w=600',
-    category: 'art'
-  },
-  {
-    title: 'Return #216',
-    description: "Rich Poole's 'Toha' is a generative series exploring particle motion and the creation of texture in digital art. The pieces challenge the viewer to find their own meaning in the organic layers, shapes, and colors.",
-    price: 6,
-    img: 'https://generator.artblocks.io/77000216',
     category: 'art'
   },
   {
@@ -314,13 +300,64 @@ exports.NFTs = [
     img: 'https://lh3.googleusercontent.com/S3drsSNF5gYVRmyV-n3q51_j-MZTp_U32_2IrVM-szWaheIW__Gr48mD_tfoVfKHu5AfhbhTIdO_PYU1M8IfAJ-GhkYerG2xIscZaA=w600',
     category: 'Collectibles'
   },
+  ///
   {
-    title: 'operaram7.crypto',
+    title: 'Sergio_Denis.org',
     description: 'A .crypto blockchain domain. Use it to resolve your cryptocurrency addresses and decentralized websites.',
     price: 0.003,
     img: 'https://openseauserdata.com/files/278bced8cf9fcba711769399ba539d01.svg',
     category: 'Domain Names'
   },
+  {
+    title: 'gadin.eth',
+    description: 'A .crypto blockchain domain. Use it to resolve your cryptocurrency addresses and decentralized websites.',
+    price: 0.05,
+    img: 'https://openseauserdata.com/files/e1dc571f2836902051ecfb4a4190e29c.svg',
+    category: 'Domain Names'
+  },
+  {
+    title: 'pelni.eth',
+    description: 'A .crypto blockchain domain. Use it to resolve your cryptocurrency addresses and decentralized websites.',
+    price: 300,
+    img: 'https://openseauserdata.com/files/8cc436729b64884d27fa751f337d64f4.svg',
+    category: 'Domain Names'
+  },
+  {
+    title: '🍌boredape.eth',
+    description: 'A .crypto blockchain domain. Use it to resolve your cryptocurrency addresses and decentralized websites.',
+    price: 0.8,
+    img: 'https://openseauserdata.com/files/46444480215f71f68126806717a1c3be.svg',
+    category: 'Domain Names'
+  },
+  {
+    title: 'gencrypto.eth',
+    description: 'A .crypto blockchain domain. Use it to resolve your cryptocurrency addresses and decentralized websites.',
+    price: 30,
+    img: 'https://openseauserdata.com/files/160d13759c76a6d67d7a07cefbfbf488.svg',
+    category: 'Domain Names'
+  },
+  {
+    title: 'kamiah.eth',
+    description: 'A .crypto blockchain domain. Use it to resolve your cryptocurrency addresses and decentralized websites.',
+    price: 0.05,
+    img: 'https://openseauserdata.com/files/bb420d95261286ba5396a178685a1f17.svg',
+    category: 'Domain Names'
+  },
+  {
+    title: '🥷🥷🥷.eth',
+    description: 'A .crypto blockchain domain. Use it to resolve your cryptocurrency addresses and decentralized websites.',
+    price: 0.1,
+    img: 'https://openseauserdata.com/files/14e95e85c7890b2b4254eeb656d0742b.svg',
+    category: 'Domain Names'
+  },
+  {
+    title: '🧘.eth ',
+    description: 'A .crypto blockchain domain. Use it to resolve your cryptocurrency addresses and decentralized websites.',
+    price: 0.489,
+    img: 'https://openseauserdata.com/files/5be6187a2befc8a1b19f85f3fb0dbd9e.svg',
+    category: 'Domain Names'
+  },
+  ///
   {
     title: 'RAVE PIGS #923',
     description: 'By GiffyPop',
