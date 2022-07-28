@@ -1,7 +1,7 @@
 /* const { createUser } = require('../dao/user.js') */
 const { NFTs } = require('./prechargue.js')
-const { findNameOrCreate: createCat } = require('../dao/category.js')
-const { createNFT } = require('../dao/nft.js')
+const { findNameOrCreate: createCat } = require('../helpers/category.js')
+const { createNFT } = require('../helpers/nft.js')
 // https://www.datos.gov.co/resource/xdk5-pm3f.json
 // https://apis.datos.gob.ar/georef/api/provincias
 // https://apis.datos.gob.ar/georef/api/municipios?provincia=14&campos=nombre&max=428

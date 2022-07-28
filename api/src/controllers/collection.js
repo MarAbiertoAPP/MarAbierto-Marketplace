@@ -1,4 +1,4 @@
-const { createCategory: create, findName, getAll } = require('../helpers/category.js')
+const { createCollection } = require('../helpers/collection.js')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize
@@ -6,10 +6,10 @@ const { createCategory: create, findName, getAll } = require('../helpers/categor
 /**
  * route create Category
  */
-exports.createCategory = async (req, res) => {
+exports.createCollection = async (req, res) => {
   try {
-    const { name } = req.body
-    const response = await create(name)
+    const { userId, name } = req.body
+    const response = await createCollection(userId, name)
     return res.status(200).send(response)
   } catch (error) {
     return res.status(400).send({ msg: error })
@@ -19,10 +19,10 @@ exports.createCategory = async (req, res) => {
 /**
  * route get category
  */
-exports.getCategory = async (req, res) => {
+/** exports.getCollection = async (req, res) => {
   const { name } = req.query
   if (name) {
-    const find = await findName(name)
+    const find = await getCollection(name)
     return find
       ? res.status(200).send(find)
       : res.status(404).send({ msg: 'Not found' })
@@ -32,4 +32,4 @@ exports.getCategory = async (req, res) => {
       ? res.status(200).send(find)
       : res.status(404).send({ msg: 'Not found' })
   }
-}
+} */
