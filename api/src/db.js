@@ -7,6 +7,7 @@ const modelOder = require('./models/Order.js')
 const modelFavorite = require('./models/Favorite.js')
 const modelLike = require('./models/Like.js')
 const modelShoppingCar = require('./models/ShoppingCar.js')
+const modelCollection = require('./models/Collection.js')
 
 /**
  * @author Nicolas Alejandro Suarez
@@ -30,6 +31,7 @@ const sequelize = new Sequelize(
  * Create models in database
  */
 modelUser(sequelize)
+modelCollection(sequelize)
 modelCategory(sequelize)
 modelNft(sequelize)
 modelOder(sequelize)
@@ -42,6 +44,7 @@ modelShoppingCar(sequelize)
  */
 const {
   user,
+  collection,
   category,
   nft,
   order,
@@ -53,8 +56,13 @@ const {
 nft.belongsTo(category)
 category.hasMany(nft)
 
-user.hasMany(nft)
-nft.belongsTo(user)
+user.hasMany(collection)
+collection.belongsTo(user)
+
+collection.hasMany(nft)
+nft.belongsTo(collection)
+// user.hasMany(nft)
+// nft.belongsTo(user)
 
 user.belongsToMany(nft, { through: shoppingCar })
 nft.belongsToMany(user, { through: shoppingCar })

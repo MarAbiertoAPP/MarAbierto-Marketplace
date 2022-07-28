@@ -1,4 +1,4 @@
-const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../dao/nft')
+const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../helpers/nft')
 
 /**
  * route create Category

@@ -1,5 +1,5 @@
 const { nft, user, category, favorite } = require('../db.js')
-const { findUser } = require('../dao/user')
+const { findUser } = require('../helpers/user')
 const { Sequelize } = require('sequelize')
 /**
  * @author Nicolas Alejandro Suarez
@@ -8,14 +8,14 @@ const { Sequelize } = require('sequelize')
 /**
  * Create nft
  */
-const createNFT = async (title, description, path, price, categoryId, userId) => {
+const createNFT = async (title, description, path, price, categoryId, collectionId) => {
   try {
     return await nft.create({
       title: title.toUpperCase(),
       description,
       path,
       price,
-      userId,
+      collectionId,
       categoryId
     })
   } catch (error) {
@@ -85,9 +85,20 @@ const getFavoritesPerId = async (iduser) => {
   }
 }
 
+const deleteAllNft = async () => {
+  try {
+    return await nft.destroy({
+      where: {}
+    })
+  } catch (error) {
+    throw error.message
+  }
+}
+
 module.exports = {
   createNFT,
   getNftId,
   addFavorite,
-  getFavoritesPerId
+  getFavoritesPerId,
+  deleteAllNft
 }

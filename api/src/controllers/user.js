@@ -1,4 +1,4 @@
-const { createUser, searchUser } = require('../dao/user.js')
+const { createUser, searchUser } = require('../helpers/user.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 /* const { emailRegisterUser } = require('../dao/sendMails.js') */
