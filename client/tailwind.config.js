@@ -18,6 +18,9 @@ module.exports = {
       },
       height: {
         exploreCard: '500px'
+      },
+      boxShadow: {
+        rafagod: '0 0 60px -15px #7e22ce'
       }
     },
     fontFamily: {

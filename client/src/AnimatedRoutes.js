@@ -10,7 +10,7 @@ import { AnimatePresence } from 'framer-motion'
 import UserDetail from './Components/UserDetail/UserDetail'
 import ThanksForBuying from './Components/thanksForBuying/ThanksForBuying'
 import WalletCardEthers from './Components/metamask/Metamask'
-import ExploreCollection from './Components/Explore_collection'
+import ExploreCollection from './Components/ExploreCollections/Explore_collection'
 
 export default function AnimatedRoutes () {
   const location = useLocation()
