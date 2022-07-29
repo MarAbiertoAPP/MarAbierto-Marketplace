@@ -19,8 +19,8 @@ module.exports = {
         cardCarousel: '450px'
       },
       height: {
-        cardCarousel: '600px'
-        exploreCard: '200px'
+        cardCarousel: '600px',
+        exploreCard: '200px',
         exploreCard2: '500px'
       },
       boxShadow: {

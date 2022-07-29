@@ -13,7 +13,6 @@ import WalletCardEthers from './Components/metamask/Metamask'
 import NewHome from './Components/NewHome/NewHome'
 import ExploreCollection from './Components/ExploreCollections/Explore_collection'
 
-
 export default function AnimatedRoutes () {
   const location = useLocation()
   return (
