@@ -12,6 +12,12 @@ module.exports = {
       },
       colors: {
         probando: 'rgba(217, 33, 171, 0.56)'
+      },
+      width: {
+        exploreCard: '200px'
+      },
+      height: {
+        exploreCard: '500px'
       }
     },
     fontFamily: {
@@ -19,6 +25,7 @@ module.exports = {
       // poppins
       poppins: ['Poppins', 'sans-serif']
     }
+
   },
   plugins: []
 }
