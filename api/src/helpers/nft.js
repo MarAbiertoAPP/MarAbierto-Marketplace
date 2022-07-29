@@ -1,4 +1,4 @@
-const { nft, user, category, favorite } = require('../db.js')
+const { nft, category, favorite } = require('../db.js')
 const { findUser } = require('../helpers/user')
 const { Sequelize } = require('sequelize')
 /**

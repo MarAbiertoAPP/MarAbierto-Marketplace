@@ -17,7 +17,7 @@ const { createCollection, getCollection, deleteAllCollect } = require('../helper
  * temporary while the database is just filled and the "force" becomes false.
  * DELETE ENTIRE INIT FOLDER BEFORE DEPLOYING
  */
-const users = ['24d140e1-9da7-48bb-85b6-5ac2a535d5d3'] // 24d140e1-9da7-48bb-85b6-5ac2a535d5d3
+const users = ['86e0d3e4-58b6-4a8b-88b0-378c8d60ad1a', 'c825a6c5-edb2-4a9f-80b8-f163dc534862'] // 24d140e1-9da7-48bb-85b6-5ac2a535d5d3
 
 const chargue = async () => {
   try {
