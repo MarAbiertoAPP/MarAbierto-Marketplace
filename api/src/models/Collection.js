@@ -11,6 +11,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
+    frontPage: {
+      type: DataTypes.STRING,
+      defaultValue: 'https://cdn.dribbble.com/users/1165166/screenshots/3394646/media/d7adc8caca2611cd33ea23061df411fc.png'
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,

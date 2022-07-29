@@ -1,7 +1,8 @@
 const { Router } = require('express')
 const router = Router()
-const { nft, Op } = require('../db.js')
+const { nft, Op, collection, category, user } = require('../db.js')
 const nftController = require('../controllers/nft.js')
+const { Sequelize } = require('sequelize')
 
 /* // Route GET all NFT's
 router.get('/all', async (req, res) => {
@@ -56,10 +57,26 @@ router.get('/nft', async (req, res) => {
     const count = await nft.count({
       where: whereQuery
     })
-
     // Get the data with pagination
     const nftsFiltered = await nft.findAll({
       where: whereQuery,
+      include: [{
+        model: collection,
+        attributes: ['id', 'name'],
+        include: [{
+          model: user,
+          attributes: ['nickname']
+        }]
+      },
+      {
+        model: category,
+        attributes: []
+      }
+      ],
+      attributes: [
+        'id', 'title', 'description', 'path', 'price', 'isActive',
+        [Sequelize.literal('"category"."name"'), 'Category']
+      ],
       order: [
         orderQuery
       ],
@@ -73,6 +90,7 @@ router.get('/nft', async (req, res) => {
       totalPage: Math.ceil(count / limit)
     })
   } catch (error) {
+    console.log(error)
     return res.status(400).send({ msg: error })
   }
 })
