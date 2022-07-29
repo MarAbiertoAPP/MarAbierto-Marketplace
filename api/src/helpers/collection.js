@@ -1,4 +1,4 @@
-const { collection } = require('../db.js')
+const { collection, nft, category } = require('../db.js')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize
@@ -6,17 +6,22 @@ const { collection } = require('../db.js')
 /**
  * creates a Collections in the database based in name
  */
-const createCollection = async (userId, name) => {
+const createCollection = async (userId, name, frontPage) => {
   try {
     return await collection.create({
       name: eliminarDiacriticos(name).toUpperCase(),
-      userId
+      userId,
+      frontPage
     })
   } catch (error) {
     throw error.message
   }
 }
-
+/**
+ * GET COLLECTION PER NAME
+ * @param {*} name
+ * @returns
+ */
 const getCollection = async (name) => {
   try {
     return await collection.findOne({
@@ -24,6 +29,59 @@ const getCollection = async (name) => {
         name: eliminarDiacriticos(name).toUpperCase()
       }
     })
+  } catch (error) {
+    throw error.message
+  }
+}
+/**
+ * get all
+ */
+
+const getAllCollections = async (offset = 0, limit = 25) => {
+  try {
+    return await collection.findAll({
+      where: {},
+      offset: offset * limit,
+      limit
+    })
+  } catch (error) {
+    throw error.message
+  }
+}
+
+/**
+ * Get Per id
+ * @param {*} id
+ * @returns
+ */
+const getCollectionPerID = async (id) => {
+  try {
+    const collectionS = await collection.findOne({
+      where:
+      {
+        id
+      },
+      attributes: ['id', 'name']
+    })
+    const nfts = await nft.findAll({
+      where: {
+        collectionId: id
+      },
+      attributes: ['id', 'title', 'description', 'path', 'price', 'isActive'],
+      include: [{
+        model: collection,
+        attributes: ['id', 'name']
+      },
+      {
+        model: category,
+        attributes: ['id', 'name']
+      }
+      ]
+    })
+    return {
+      collectionS,
+      nfts
+    }
   } catch (error) {
     throw error.message
   }
@@ -54,5 +112,7 @@ const deleteAllCollect = async () => {
 module.exports = {
   createCollection,
   getCollection,
-  deleteAllCollect
+  deleteAllCollect,
+  getCollectionPerID,
+  getAllCollections
 }

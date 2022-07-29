@@ -11,8 +11,8 @@ const collectionController = require('../controllers/collection.js')
  */
 router.post('/', collectionController.createCollection)
 /**
- * route to get a place
+ * route to get per id
  */
-// router.get('/', categoryController.getCategory)
+router.get('/', collectionController.getCollection)
 
 module.exports = router
