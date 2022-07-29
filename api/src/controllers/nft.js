@@ -1,12 +1,12 @@
-const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../dao/nft')
+const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../helpers/nft')
 
 /**
  * route create Category
  */
 exports.createNFT = async (req, res) => {
   try {
-    const { title, description, price, path, categoryId, userId } = req.body
-    const response = await createNFT(title, description, path, price, categoryId, userId)
+    const { title, description, price, path, collectionId, categoryId } = req.body
+    const response = await createNFT(title, description, path, price, categoryId, collectionId)
     return res.status(200).send(response)
   } catch (error) {
     return res.status(400).send({ msg: error })

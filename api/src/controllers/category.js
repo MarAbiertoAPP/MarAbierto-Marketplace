@@ -1,4 +1,4 @@
-const { createCategory: create, findName, getAll } = require('../dao/category.js')
+const { createCategory: create, findName, getAll } = require('../helpers/category.js')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize

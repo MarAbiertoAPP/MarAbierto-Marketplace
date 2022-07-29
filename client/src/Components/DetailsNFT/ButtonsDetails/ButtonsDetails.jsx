@@ -11,8 +11,6 @@ const ButtonsDetails = (props) => {
 
   const navigate = useNavigate()
 
-  console.log('detalle', detail)
-
   const handleBuyNow = () => {
     Swal.fire({
       title: 'Are you sure?',

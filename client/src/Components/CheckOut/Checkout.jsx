@@ -11,9 +11,11 @@ const stripePromise = loadStripe('pk_test_51LOPfmJVPjWVJr6N63nReuOKhebPKvDMrQteV
 
 export default function Checkout () {
   const [secret, setSecret] = useState('')
+
   const cartToBuy = useSelector(state => state.Cart)
+
   const ethereumValue = useSelector(state => state.Conv.ethereum.usd)
-  console.log(ethereumValue)
+
   useEffect(() => {
     let totalBuy = 0
 
@@ -27,7 +29,6 @@ export default function Checkout () {
       ethereumValue
     }
 
-    console.log(totalBuy)
     if (cartToBuy.length) {
       axios.post('/secret', { nftValue })
         .then(response => setSecret(response.data.client_secret))
