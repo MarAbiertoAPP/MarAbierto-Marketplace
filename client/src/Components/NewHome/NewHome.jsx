@@ -89,6 +89,17 @@ export default function NewHome () {
 
       {/* /------el tercer componente --> carusel TOP -> esta de aqui para arriba, de aqui para abajo el 4to-------- */}
        
+       <div className=' bg-white w-full max-w-screen-xl flex'>
+
+        <div className='basis-1/12 bg-black'>
+a
+        </div>
+
+        <div className='basis-2/12 bg-cyan-400'>
+
+        </div>
+ 
+       </div>
 
 
     </div>
