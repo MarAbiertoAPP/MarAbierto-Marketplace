@@ -8,27 +8,25 @@ module.exports = {
   theme: {
     extend: {
       maxHeight: {
-        limitH: '550px'
+        limitH: '550px',
+        limitHnewHome: '800px',
+        limitCardCarousel: '600px'
       },
       colors: {
         probando: 'rgba(217, 33, 171, 0.56)'
       },
       width: {
-        exploreCard: '200px'
+        cardCarousel: '450px'
       },
       height: {
-        exploreCard: '500px'
+        cardCarousel: '600px'
+        exploreCard: '200px'
+        exploreCard2: '500px'
       },
       boxShadow: {
         rafagod: '0 0 60px -15px #7e22ce'
       }
-    },
-    fontFamily: {
-      sans: ['Inter var', 'sans-serif'],
-      // poppins
-      poppins: ['Poppins', 'sans-serif']
     }
-
   },
   plugins: []
 }
