@@ -25,8 +25,8 @@ export function Cart ({ open, setOpen }) {
     dispatch(cleanAllCart())
   }
   useEffect(() => {
-    localStorage.setItem('Cart', JSON.stringify(cartToBuy))
     dispatch(getEthereumConv())
+    localStorage.setItem('Cart', JSON.stringify(cartToBuy))
   }, [cartToBuy])
 
   let totalBuy = 0
