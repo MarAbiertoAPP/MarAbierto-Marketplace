@@ -7,6 +7,8 @@ import { Fade } from 'react-slideshow-image';
 import photo from '../../assests/newHomePhoto.jpg'
 import mini from '../../assests/demo/fotouser.jpeg'
 import photo2 from '../../assests/demo/background.webp'
+import CarouselLanding from './newHomeResources/CarouselLanding';
+import { Link } from 'react-router-dom';
 
 const fadeImages = [
   {
@@ -47,7 +49,9 @@ export default function NewHome () {
           <p className='text-2xl text-neutral-500'>MarAbierto is the world&apos;s first and largest NFT marketplace</p>
 
           <div className='flex w-full space-x-20'>
-            <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>Explore</button>
+            <Link to='/collection'>
+              <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>Explore</button>
+            </Link>
             <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>Create</button>
           </div>
           
@@ -63,24 +67,28 @@ export default function NewHome () {
 
         <div className='basis-5/12 flex flex-col items-center justify-center p-8'>
 
-          <div className='shadow-2xl shadow-purple-700 flex  items-center rounded-lg'>
+          <div className='shadow-2xl shadow-purple-700 flex flex-col  rounded-lg'>
         
-      <Fade {...fadeProperties} className='h-fit'>   
+      {/* <Fade {...fadeProperties} className=''>   
       {fadeImages.map((e, index)=> (
-            <div className="h-96 flex items-center bg-white w-full" key={index}>
-             <img className='object-contain' src={e.url}/>                        
+            <div className="" key={index}>
+             <img className='h-96 w-96 object-cover' src={e.url}/>
+             <h1 className='text-white text-xl ml-2'>NOMBRE DE LA COLECCION</h1>       
+
               </div>           
           ))} 
     
-      </Fade>
+      </Fade> */}
     
 
-            {/* <img className='max-h-limitH max-w-xl m-4 rounded-md' src={photo2}></img> */}
-            {/* <div className='flex items-center m-4'>              
+            <img className='max-h-limitH max-w-xl m-4 rounded-md' src={photo2}></img>
+            <div className='flex m-4 items-center'>              
               <img className='rounded-full h-10 w-10' src={mini}></img>
-              <h1 className='text-white text-xl ml-2'>NOMBRE DE LA COLECCION</h1>
-            </div> */}
+              <h1 className='text-white text-xl ml-2'>freepik 4k collections</h1>
+            </div>
+            {/* <CarouselLanding data={fadeImages}/> */}
           </div>
+
 
         </div>
 
@@ -128,7 +136,7 @@ export default function NewHome () {
        <div className=' bg-white w-full max-w-screen-xl flex'>
 
         <div className='basis-1/12 bg-black'>
-a
+
         </div>
 
         <div className='basis-2/12 bg-cyan-400'>
