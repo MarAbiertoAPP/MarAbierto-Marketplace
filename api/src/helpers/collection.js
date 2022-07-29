@@ -48,6 +48,23 @@ const getAllCollections = async (offset = 0, limit = 25) => {
     throw error.message
   }
 }
+/**
+ * get Collections per userID
+ */
+
+const getCollectionUser = async (userId, offset = 0, limit = 10) => {
+  try {
+    return await collection.findAll({
+      where: {
+        userId
+      },
+      offset: offset * limit,
+      limit
+    })
+  } catch (error) {
+    throw error.message
+  }
+}
 
 /**
  * Get Per id
@@ -114,5 +131,6 @@ module.exports = {
   getCollection,
   deleteAllCollect,
   getCollectionPerID,
-  getAllCollections
+  getAllCollections,
+  getCollectionUser
 }

@@ -1,4 +1,4 @@
-const { createCollection, getCollectionPerID, getAllCollections } = require('../helpers/collection.js')
+const { createCollection, getCollectionPerID, getAllCollections, getCollectionUser } = require('../helpers/collection.js')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize
@@ -30,6 +30,17 @@ exports.getCollection = async (req, res) => {
     } else {
       return res.status(200).send(await getAllCollections())
     }
+  } catch (error) {
+    res.status(404).send({ msg: error })
+  }
+}
+/**
+ * get collection of user per id
+ */
+exports.getCollectioOfUser = async (req, res) => {
+  const { userId } = req.query
+  try {
+    return res.status(200).send(await getCollectionUser(userId))
   } catch (error) {
     res.status(404).send({ msg: error })
   }

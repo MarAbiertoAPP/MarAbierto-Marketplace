@@ -15,4 +15,9 @@ router.post('/', collectionController.createCollection)
  */
 router.get('/', collectionController.getCollection)
 
+/**
+ * route to get per id
+ */
+router.get('/user/', collectionController.getCollectioOfUser)
+
 module.exports = router
