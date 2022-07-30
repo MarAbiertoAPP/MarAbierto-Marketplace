@@ -1,8 +1,7 @@
-/* const { createUser } = require('../dao/user.js') */
-// const { NFTs } = require('./prechargue.js')
+const { NFTs } = require('./prechargue.js')
 const { Collections } = require('./prechargeCollections.js')
 const { findNameOrCreate: createCat } = require('../helpers/category.js')
-const { /** createNFT */ deleteAllNft } = require('../helpers/nft.js')
+const { createNFT, deleteAllNft } = require('../helpers/nft.js')
 const { createCollection, getCollection, deleteAllCollect } = require('../helpers/collection.js')
 // https://www.datos.gov.co/resource/xdk5-pm3f.json
 // https://apis.datos.gob.ar/georef/api/provincias
@@ -30,30 +29,20 @@ const chargue = async () => {
       const { name, category, frontPage, mini, description } = Collections[i]
       const catId = await createCat(category)
       let collectionId = await getCollection(name)
-      if (collectionId) {
-        // collectionId = collectionId.dataValues.id
-      } else {
+      if (!collectionId) {
         console.log(catId[0].dataValues.id + ' ' + i)
         collectionId = await createCollection(rValue, name, catId[0].dataValues.id, frontPage, mini, description)
-        // collectionId = collectionId.dataValues.id
       }
     }
-    /**  for (let i = 0; i < NFTs.length; i++) {
-    // const rand = Math.floor(Math.random() * users.length)
-    //  const rValue = users[rand]
-    //  const { title, description, img: path, price, category, collection, frontPage } = NFTs[i]
-      const catId = await createCat(category)
+    for (let i = 0; i < NFTs.length; i++) {
+      const { title, description, img: path, price, collection } = NFTs[i]
       let collectionId = await getCollection(collection)
       if (collectionId) {
         collectionId = collectionId.dataValues.id
-      } else {
-        collectionId = await createCollection(rValue, collection, frontPage)
-        collectionId = collectionId.dataValues.id
       }
 
-    // await createNFT(title, description, path, price, catId[0].dataValues.id, collectionId)
-    } */
-    
+      await createNFT(title, description, path, price, collectionId)
+    }
     console.log('sucessfully')
   } catch (error) {
     console.log(error)

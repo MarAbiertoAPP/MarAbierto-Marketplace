@@ -29,16 +29,7 @@ const createNFT = async (title, description, path, price, collectionId) => {
 const getNftId = async (id) => {
   try {
     return await nft.findOne({
-      where: { id },
-      /** include: [{
-        model: category,
-        attributes: []
-      ], */
-      attributes: [
-        'id', 'title', 'description', 'path', 'price', 'isActive'
-        // [Sequelize.literal('"user"."name"'), 'User'],
-        // [Sequelize.literal('"category"."name"'), 'Category']
-      ]
+      where: { id }
     })
   } catch (error) {
     throw error.message

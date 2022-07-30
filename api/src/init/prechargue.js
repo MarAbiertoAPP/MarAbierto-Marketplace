@@ -5,7 +5,7 @@ exports.NFTs = [
     price: 7.7,
     img: 'https://img.seadn.io/files/fc1b697662d7b7ae34e4c9ca23b34938.png?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'Decentraland Names'
   },
   {
     title: 'Gatin Gatito',
@@ -13,7 +13,7 @@ exports.NFTs = [
     price: 10,
     img: 'https://external-preview.redd.it/4wkWYYZ4SRPaI9_kjz6nzhOaTkp_gPXTGhO69WmndQA.png?format=pjpg&auto=webp&s=8f5bfd7dac84cbaa7270db8acf597def9911fbf6',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'Decentraland Names'
   },
   {
     title: 'Shibuya Crossing by Larienne - Core Crypto 2021 (64 of 150)',
@@ -21,7 +21,7 @@ exports.NFTs = [
     price: 0.099,
     img: 'https://img.seadn.io/files/a89ffcc1a2d3fa58c64bafe8a301879c.jpg?fit=max&h=1200&w=1200&auto=format',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'ENS: Ethereum Name Service'
   },
   {
     title: 'Wavelength #62',
@@ -29,7 +29,7 @@ exports.NFTs = [
     price: 1,
     img: 'https://img.seadn.io/files/bbe4dad46608c35ee98cf329689b3f54.png?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'Memories of Qilin'
   },
   {
     title: 'InC #54',
@@ -37,7 +37,7 @@ exports.NFTs = [
     price: 0.9,
     img: 'https://img.seadn.io/files/0ab7c3b4a72ccee13028e2eb65e8af46.png?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'Anticyclone'
   },
   {
     title: 'Fjäll #336',
@@ -45,7 +45,7 @@ exports.NFTs = [
     price: 0.28,
     img: 'https://img.seadn.io/files/f59388fd9344ebcda432f90e69b82966.png?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'Anticyclone'
   },
   {
     title: 'Swamp Thing',
@@ -53,7 +53,7 @@ exports.NFTs = [
     price: 1.5,
     img: 'https://lh3.googleusercontent.com/rbWn7v-bJb-GBoFWUlhhglAFLyhC4PIxgbExDGVpgMXhcW2wZIs3MKJTcP4Y30abqNy7VybTFGdFy_bhpBXohkKdeACb56uUNVdx_Lw=w600',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'The Metascapes'
   },
   {
     title: 'Bent #280',
@@ -61,7 +61,7 @@ exports.NFTs = [
     price: 1.9,
     img: 'https://img.seadn.io/files/265c0d0dc325bf8a8c3d8d3adc54580e.png?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'Snoop Dogg on Sound XYZ'
   },
   {
     title: 'Aerial View #972',
@@ -69,7 +69,7 @@ exports.NFTs = [
     price: 1.4,
     img: 'https://img.seadn.io/files/ef6bd09a68555892c650bf288ce6129a.png?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'Snoop Dogg on Sound XYZ'
   },
   {
     title: 'Toha #213',
@@ -77,7 +77,7 @@ exports.NFTs = [
     price: 0.69,
     img: 'https://img.seadn.io/files/d7c4d8d0d982cb453eff60043a099946.png?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'Snoop Dogg on Sound XYZ'
   },
   {
     title: 'Future',
@@ -85,7 +85,7 @@ exports.NFTs = [
     price: 0.34,
     img: 'https://img.seadn.io/files/64860bd7d29269b49cbc878fcc0b6e38.jpg?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'Audioglyphs'
   },
   {
     title: 'Cold Blooded Creepz #399',
@@ -93,7 +93,7 @@ exports.NFTs = [
     price: 1.2,
     img: 'https://img.seadn.io/files/6eb5d256316f3b23313b20394cb405e7.png?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'Audioglyphs'
   },
   {
     title: 'Running Moon #175',
@@ -101,7 +101,7 @@ exports.NFTs = [
     price: 2.89,
     img: 'https://img.seadn.io/files/fe5be891a4142953cdfb25dc664b2a9b.png?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba'
+    collection: 'Audioglyphs'
   },
   {
     title: 'Waifusion #2506',
@@ -109,8 +109,7 @@ exports.NFTs = [
     price: 0.03,
     img: 'https://lh3.googleusercontent.com/l1TDVUJpfz2cY_tLr6t6IomAfaLFLqhoY_UdEt5eOh9nu6Rfl2VanE-RQ9MJJV2HNDeGW8xr1oYFccJpuVFYOrwhYdaBliswVGTYcg=s0',
     category: 'Collectibles',
-    collection: 'Waifusion',
-    frontPage: 'https://lh3.googleusercontent.com/o93386L-fvk98ozt0VHxAPABav90JNDJiiBigE5AUICIvKg_hou8YCJXD1dteV9OiiNBu8LvZc3jxPc_HjRcnqdinIojs6al1KVa=h400'
+    collection: 'Waifusion'
   },
   {
     title: 'Waifusion #3773',
