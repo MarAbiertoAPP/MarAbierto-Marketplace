@@ -26,16 +26,16 @@ const chargue = async () => {
     for (let i = 0; i < NFTs.length; i++) {
       const rand = Math.floor(Math.random() * users.length)
       const rValue = users[rand]
-      const { title, description, img: path, price, category, collection } = NFTs[i]
+      const { title, description, img: path, price, category, collection, frontPage } = NFTs[i]
       const catId = await createCat(category)
       let collectionId = await getCollection(collection)
       if (collectionId) {
         collectionId = collectionId.dataValues.id
       } else {
-        collectionId = await createCollection(rValue, collection)
+        collectionId = await createCollection(rValue, collection , frontPage)
         collectionId = collectionId.dataValues.id
       }
-      await createNFT(title, description, path, price, catId[0].dataValues.id, collectionId)
+      await createNFT(title, description, path, price, catId[0].dataValues.id, collectionId )
     }
     console.log('sucessfully')
   } catch (error) {
