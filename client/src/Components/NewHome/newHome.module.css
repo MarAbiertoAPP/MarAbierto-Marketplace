@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .div {
 
   min-height: 100vh;
@@ -6,21 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-image: linear-gradient(315deg, rgb(24, 2, 48) 0%, #000000 90%); */
+  background-image: linear-gradient(315deg, rgb(24, 2, 48) 0%, #000000 90%);
   background-attachment: scroll;
   background-size: fixed;
 }
-=======
-.div{
-    
-    min-height: 100vh;
-    height: max-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: linear-gradient(315deg, rgb(24, 2, 48) 0%, #000000 90%);
-    background-attachment: scroll;
-    background-size: fixed;
-  }
-  
->>>>>>> 4d5f5af56704ebd5af095f68f4b83153b331a1df

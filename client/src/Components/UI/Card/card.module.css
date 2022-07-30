@@ -14,9 +14,21 @@
   margin: 1rem;
 }
 
+.container2 .card {
+  position: relative;
+  width: 310px;
+  max-width: 200px;
+  height: 300px;
+  max-height: 300px;
+  background: transparent;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 1rem;
+}
 
 
-.container .card:after{
+
+.container .card:after {
   position: relative;
   top: 30%;
   left: -20%;
@@ -25,6 +37,17 @@
   font-style: italic;
   color: rgba(255, 255, 25, 0.05)
 }
+
+.container .card2:after {
+  position: relative;
+  top: 30%;
+  left: -20%;
+  font-size: 12em;
+  font-weight: 800;
+  font-style: italic;
+  color: rgba(255, 255, 25, 0.05)
+}
+
 
 .container .card .imgBx {
   opacity: 0.6;
@@ -36,6 +59,12 @@
   height: 100px;
   max-height: 100px;
   transition: 0.5s;
+}
+
+.container .card:hover .imgBx {
+  top: 35%;
+  transform: translateY(0%);
+  opacity: 1;
 }
 
 .container .card:hover .imgBx {
@@ -140,7 +169,7 @@
   margin-top: 10px;
   text-decoration: none;
   font-weight: 800;
-  color:#d4d4d4;
+  color: #d4d4d4;
   opacity: 0;
   transform: translateY(50px);
   transition: 0.5s;
