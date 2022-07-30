@@ -1,0 +1,27 @@
+{
+    "Title": {
+        "id": 1,
+        "title": "¿Que es Mar abierto?",
+        "answer": "Mar abierto es una plataforma para comprar y vender NFT's donde podes adquirirla don facilidad al poder abonarla con tarjeta de credito"
+    },
+    "nft": {
+        "id": 2,
+        "title": "¿What is an NFT?",
+        "answer": " NFT significa Token No Fungible , un tipo de activo que no se puede modificar debido a que es Unico. por ejemplo una pieza de arte"
+    },
+    "buy": {
+        "id": 3,
+        "title": "¿How can i buy in an NFT?",
+        "answer": "In Mar Abierto we give you the facility to be able to buy your NFT with your card if you wish, we make the change to crypto for you!"
+    },
+    "marcoin": {
+        "id": 4,
+        "title": "¿What is a MarCoin?",
+        "answer": "The MarCoin is the internal currency of our website, with it you can buy your NFTs"
+    },
+    "sell": {
+        "id": 5,
+        "title": "¿Can i sell my NFTs?",
+        "answer": "For shure! in Mar Abierto you can post and sell your NFTs"
+    }
+}
