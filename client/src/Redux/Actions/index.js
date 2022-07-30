@@ -14,7 +14,8 @@ import {
   CREATE_CATEGORIES,
   SET_USER,
   GET_CLIENTE_SECRET,
-  SET_MULTIPLE_FILTERS
+  SET_MULTIPLE_FILTERS,
+  GET_ALL_COLLECTION
 } from './ActionsCreators'
 import axios from 'axios'
 
@@ -144,5 +145,16 @@ export function getClientPay (data) {
     type: GET_CLIENTE_SECRET,
     payload: data
 
+  }
+}
+
+export function getAllCollection () {
+  return function (dispatch) {
+    axios('/collections')
+      .then(res => dispatch({
+        type: GET_ALL_COLLECTION,
+        payload: res.data
+      }))
+      .catch(error => console.log(error.message))
   }
 }
