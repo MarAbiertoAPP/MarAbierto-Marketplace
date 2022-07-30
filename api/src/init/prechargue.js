@@ -110,7 +110,7 @@ exports.NFTs = [
     img: 'https://lh3.googleusercontent.com/l1TDVUJpfz2cY_tLr6t6IomAfaLFLqhoY_UdEt5eOh9nu6Rfl2VanE-RQ9MJJV2HNDeGW8xr1oYFccJpuVFYOrwhYdaBliswVGTYcg=s0',
     category: 'Collectibles',
     collection: 'Waifusion',
-    frontPage:'https://lh3.googleusercontent.com/o93386L-fvk98ozt0VHxAPABav90JNDJiiBigE5AUICIvKg_hou8YCJXD1dteV9OiiNBu8LvZc3jxPc_HjRcnqdinIojs6al1KVa=h400'
+    frontPage: 'https://lh3.googleusercontent.com/o93386L-fvk98ozt0VHxAPABav90JNDJiiBigE5AUICIvKg_hou8YCJXD1dteV9OiiNBu8LvZc3jxPc_HjRcnqdinIojs6al1KVa=h400'
   },
   {
     title: 'Waifusion #3773',
@@ -191,7 +191,7 @@ exports.NFTs = [
     img: 'https://lh3.googleusercontent.com/gnfrlI7KpzTPN7IjyDwLQWpcapXU1HPzn9bRKRCpvcy0EEcC9bnE2ryueH-jNVNbhB5h7rt9z8Wao7VLxaT2H42A7RGss-n369_YYkc=w600',
     category: 'Collectibles',
     collection: 'Rick & Morty',
-    frontPage:'https://hbomax-images.warnermediacdn.com/images/GXkRjxwjR68PDwwEAABKJ/tileburnedin?size=1280x720&partner=hbomaxcom&v=a1b309dcec5d1c926cdc9e8178e5bafe&host=art-gallery.api.hbo.com&language=es-419&w=1280'
+    frontPage: 'https://hbomax-images.warnermediacdn.com/images/GXkRjxwjR68PDwwEAABKJ/tileburnedin?size=1280x720&partner=hbomaxcom&v=a1b309dcec5d1c926cdc9e8178e5bafe&host=art-gallery.api.hbo.com&language=es-419&w=1280'
   },
   {
     title: 'Rick and Morty',
@@ -330,7 +330,6 @@ exports.NFTs = [
     category: 'Domain Names',
     collection: 'Prueba3'
   },
-  ///
   {
     title: 'RAVE PIGS #923',
     description: 'By GiffyPop',
