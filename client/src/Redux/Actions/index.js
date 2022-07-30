@@ -15,7 +15,8 @@ import {
   SET_USER,
   GET_CLIENTE_SECRET,
   SET_MULTIPLE_FILTERS,
-  GET_ALL_COLLECTION
+  GET_ALL_COLLECTION,
+  GET_COLLECTION_BY_NAME
 } from './ActionsCreators'
 import axios from 'axios'
 
@@ -153,6 +154,17 @@ export function getAllCollection () {
     axios('/collections')
       .then(res => dispatch({
         type: GET_ALL_COLLECTION,
+        payload: res.data
+      }))
+      .catch(error => console.log(error.message))
+  }
+}
+
+export function getCollectionByName (id) {
+  return function (dispatch) {
+    axios(`/collections?id=${id}`)
+      .then(res => dispatch({
+        type: GET_COLLECTION_BY_NAME,
         payload: res.data
       }))
       .catch(error => console.log(error.message))

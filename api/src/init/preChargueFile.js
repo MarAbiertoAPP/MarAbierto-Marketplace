@@ -32,10 +32,10 @@ const chargue = async () => {
       if (collectionId) {
         collectionId = collectionId.dataValues.id
       } else {
-        collectionId = await createCollection(rValue, collection , frontPage)
+        collectionId = await createCollection(rValue, collection, frontPage)
         collectionId = collectionId.dataValues.id
       }
-      await createNFT(title, description, path, price, catId[0].dataValues.id, collectionId )
+      await createNFT(title, description, path, price, catId[0].dataValues.id, collectionId)
     }
     console.log('sucessfully')
   } catch (error) {
