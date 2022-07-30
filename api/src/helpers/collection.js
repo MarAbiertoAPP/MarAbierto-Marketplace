@@ -78,7 +78,7 @@ const getCollectionPerID = async (id) => {
       {
         id
       },
-      attributes: ['id', 'name']
+      attributes: ['id', 'name', 'frontPage']
     })
     const nfts = await nft.findAll({
       where: {

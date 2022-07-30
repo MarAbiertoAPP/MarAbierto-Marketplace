@@ -31,7 +31,7 @@ export default function AnimatedRoutes () {
         <Route path='/newHome' element={<NewHome/>}/>
         <Route path = '/collection' element={<ExploreCollection/>}/>
 
-        <Route path='/collection/name' element={<CollectionNewHome/>} />
+        <Route path='/collection/:name' element={<CollectionNewHome/>} />
 
       </Routes>
     </AnimatePresence>

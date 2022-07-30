@@ -1,54 +1,66 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from './CollectionNewHome.module.css'
 
-import foto from '../../assests/demo/fotouser.jpeg'
+// import foto from '../../assests/demo/fotouser.jpeg'
 
 import Nav from '../UI/Nav/Navigation'
 import Card from '../UI/Card/Card'
 import { FaDiscord, FaTwitter, FaShareAlt } from 'react-icons/fa'
 import { AiFillStar, AiOutlineMore } from 'react-icons/ai'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCollectionByName } from '../../Redux/Actions'
+import { useParams } from 'react-router-dom'
 
-const p1 = 'https://img.seadn.io/files/1b67c8533f921855dde46ce73a32028c.png?auto=format&fit=max&w=828'
-const p2 = 'https://img.seadn.io/files/d6a35930f9a75ea90aecd9a0f913bd65.png?auto=format&fit=max&w=640'
-const p3 = 'https://img.seadn.io/files/862a1240dd3ee5a17a9e4073c6f6bc95.png?fit=max&w=600'
-const p4 = 'https://img.seadn.io/files/7144375ec088526d4cafc2897e54a324.png?fit=max&w=600'
-const p5 = 'https://img.seadn.io/files/3bebdb907036b637a2d4963ca9979c74.png?fit=max&w=600'
+// const p1 = 'https://img.seadn.io/files/1b67c8533f921855dde46ce73a32028c.png?auto=format&fit=max&w=828'
+// const p2 = 'https://img.seadn.io/files/d6a35930f9a75ea90aecd9a0f913bd65.png?auto=format&fit=max&w=640'
+// const p3 = 'https://img.seadn.io/files/862a1240dd3ee5a17a9e4073c6f6bc95.png?fit=max&w=600'
+// const p4 = 'https://img.seadn.io/files/7144375ec088526d4cafc2897e54a324.png?fit=max&w=600'
+// const p5 = 'https://img.seadn.io/files/3bebdb907036b637a2d4963ca9979c74.png?fit=max&w=600'
 
-const name1 = 'Music Ape #3777'
-const name2 = 'Music Ape #3333'
-const name3 = 'Music Ape #6666'
-const name4 = 'Music Ape #7777'
-const name5 = 'Music Ape #9999'
-const dataFromApiExample = [
-  { title: name1, image: p1, price: 1.23, id: 1 },
-  { title: name2, image: p2, price: 0.43, id: 2 },
-  { title: name3, image: p3, price: 3.43, id: 3 },
-  { title: name4, image: p4, price: 7.43, id: 4 },
-  { title: name5, image: p5, price: 5.43, id: 5 },
-  { title: name1, image: p1, price: 1.23, id: 1 },
-  { title: name2, image: p2, price: 0.43, id: 2 },
-  { title: name3, image: p3, price: 3.43, id: 3 },
-  { title: name4, image: p4, price: 7.43, id: 4 },
-  { title: name5, image: p5, price: 5.43, id: 5 },
-  { title: name1, image: p1, price: 1.23, id: 1 },
-  { title: name2, image: p2, price: 0.43, id: 2 }
+// const name1 = 'Music Ape #3777'
+// const name2 = 'Music Ape #3333'
+// const name3 = 'Music Ape #6666'
+// const name4 = 'Music Ape #7777'
+// const name5 = 'Music Ape #9999'
+// const dataFromApiExample = [
+//   { title: name1, image: p1, price: 1.23, id: 1 },
+//   { title: name2, image: p2, price: 0.43, id: 2 },
+//   { title: name3, image: p3, price: 3.43, id: 3 },
+//   { title: name4, image: p4, price: 7.43, id: 4 },
+//   { title: name5, image: p5, price: 5.43, id: 5 },
+//   { title: name1, image: p1, price: 1.23, id: 1 },
+//   { title: name2, image: p2, price: 0.43, id: 2 },
+//   { title: name3, image: p3, price: 3.43, id: 3 },
+//   { title: name4, image: p4, price: 7.43, id: 4 },
+//   { title: name5, image: p5, price: 5.43, id: 5 },
+//   { title: name1, image: p1, price: 1.23, id: 1 },
+//   { title: name2, image: p2, price: 0.43, id: 2 }
 
-]
+// ]
 
 export default function CollectionNewHome (props) {
+  const dispatch = useDispatch()
+  const { name } = useParams()
+
+  const { CollName } = useSelector(state => state)
+  console.log(CollName)
+  useEffect(() => {
+    dispatch(getCollectionByName(name))
+  }, [])
+
   return (
     <div className={style.div} >
       <Nav/>
 
       <div className='w-full max-w-screen-xl my-12'>
-        <img className='w-full h-96 object-cover' src='https://openseauserdata.com/files/c4ab577b14d47a1b1693bebb52645019.png'></img>
+        <img className='w-full h-96 object-cover' src={CollName.collectionS?.frontPage}></img>
 
         <div className='w-full flex'>
 
             <div className='basis-8/12'>
-              <img className='ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={foto}></img>
+              <img className='ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={CollName.collectionS?.frontPage}></img>
               <div className='flex flex-col space-y-2 text-start mt-2'>
-                <h1 className='text-purple-700 text-3xl font-bold'>Name of collection</h1>
+                <h1 className='text-purple-700 text-3xl font-bold'>{CollName.collectionS?.name}</h1>
                 <h1 className='text-neutral-300 text-xl'>{'By: \'user of collection \' '}</h1>
                 <h1 className='text-neutral-300 text-lg'>The Music Ape Club is a collection of NFTs (unique digital collectibles) stored as ERC-721 tokens on the Ethereum blockchain. With more than 180+ hand drawn traits, each NFT is unique and rewards you with a proportional percentage of revenue share from a legal cannabis microbusiness. Step into the world of web3 with the STAC Family. With more than 180+ hand drawn traits, each NFT is unique and comes with a membership to an exclusive group of successful indie musicians and real estate investors. Feel the beat with our private community with endless benefits and utilities.</h1>
               </div>
@@ -76,8 +88,8 @@ export default function CollectionNewHome (props) {
           <div className='space-x-20 basis-8/12 flex'>
 
             <div className='flex flex-col'>
-              <h1 className='text-purple-700 font-semibold text-3xl'>{'4.4K'}</h1>
-              <h1 className='text-neutral-300 text-xl font-bold'>items</h1>
+              <h1 className='text-purple-700 font-semibold text-3xl'>{CollName.nfts?.length}</h1>
+              <h1 className='text-neutral-300 text-xl font-bold'>Items</h1>
             </div>
 
             <div className='flex flex-col'>
@@ -138,8 +150,8 @@ export default function CollectionNewHome (props) {
 
         <div className='w-full flex flex-row flex-wrap justify-center'>
 
-            {dataFromApiExample?.map(e => {
-              return <Card key={e.id} title={e.title} image={e.image} price={e.price} id={e.id} />
+            {CollName.nfts?.map(e => {
+              return <Card key={e.id} title={e.title} image={e.path} price={e.price} id={e.id} />
             })}
 
         </div>
