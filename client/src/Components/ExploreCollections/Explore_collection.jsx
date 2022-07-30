@@ -73,7 +73,7 @@ const ExploreCollection = () => {
 
       <div className='w-full mt-10 flex flex-row flex-wrap justify-center'>
         {Collection?.map(({ name, frontPage, id }) => {
-          return <CardExploreCollections key={id} frontPage={frontPage} mini={frontPage} name={name}/>
+          return <CardExploreCollections key={id} id={id} frontPage={frontPage} mini={frontPage} name={name}/>
         })}
 
       </div>

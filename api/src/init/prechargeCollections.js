@@ -134,7 +134,7 @@ exports.Collections = [
   },
   {
     name: 'We Are All Going to Die',
-    category: 'Photography',
+    category: 'Collectibles',
     frontPage: 'https://openseauserdata.com/files/ce2155565454004cfe71e6278b1312c8.png',
     mini: 'https://lh3.googleusercontent.com/3y3MythDHRH46bNeSGSwYo3pK8J_3ngKMUAwPyvl5cdKn9JiLSL46KWxZtEVo7V8ILraMEANA5RB-r_LrKmwq0qZebpa1pHqybJ7gQ=h128-w128',
     description: 'We Are All Going to Die'

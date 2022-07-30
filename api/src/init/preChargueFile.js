@@ -50,8 +50,10 @@ const chargue = async () => {
         collectionId = await createCollection(rValue, collection, frontPage)
         collectionId = collectionId.dataValues.id
       }
+
     // await createNFT(title, description, path, price, catId[0].dataValues.id, collectionId)
     } */
+    
     console.log('sucessfully')
   } catch (error) {
     console.log(error)

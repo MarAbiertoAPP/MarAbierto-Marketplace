@@ -267,12 +267,12 @@ exports.NFTs = [
   },
   ///
   {
-    title: 'Sergio_Denis.org',
+    title: 'SergioDenis.eth',
     description: 'A .crypto blockchain domain. Use it to resolve your cryptocurrency addresses and decentralized websites.',
     price: 0.003,
     img: 'https://openseauserdata.com/files/278bced8cf9fcba711769399ba539d01.svg',
     category: 'Domain Names',
-    collection: 'Prueba3'
+    collection: 'ENS: Ethereum Name Service'
   },
   {
     title: 'gadin.eth',
@@ -280,7 +280,7 @@ exports.NFTs = [
     price: 0.05,
     img: 'https://openseauserdata.com/files/e1dc571f2836902051ecfb4a4190e29c.svg',
     category: 'Domain Names',
-    collection: 'Prueba3'
+    collection: 'ENS: Ethereum Name Service'
   },
   {
     title: 'pelni.eth',
@@ -288,7 +288,7 @@ exports.NFTs = [
     price: 300,
     img: 'https://openseauserdata.com/files/8cc436729b64884d27fa751f337d64f4.svg',
     category: 'Domain Names',
-    collection: 'Prueba3'
+    collection: 'ENS: Ethereum Name Service'
   },
   {
     title: '🍌boredape.eth',
@@ -296,7 +296,7 @@ exports.NFTs = [
     price: 0.8,
     img: 'https://openseauserdata.com/files/46444480215f71f68126806717a1c3be.svg',
     category: 'Domain Names',
-    collection: 'Prueba3'
+    collection: 'ENS: Ethereum Name Service'
   },
   {
     title: 'gencrypto.eth',
@@ -304,7 +304,7 @@ exports.NFTs = [
     price: 30,
     img: 'https://openseauserdata.com/files/160d13759c76a6d67d7a07cefbfbf488.svg',
     category: 'Domain Names',
-    collection: 'Prueba3'
+    collection: 'ENS: Ethereum Name Service'
   },
   {
     title: 'kamiah.eth',
@@ -312,7 +312,7 @@ exports.NFTs = [
     price: 0.05,
     img: 'https://openseauserdata.com/files/bb420d95261286ba5396a178685a1f17.svg',
     category: 'Domain Names',
-    collection: 'Prueba3'
+    collection: 'ENS: Ethereum Name Service'
   },
   {
     title: '🥷🥷🥷.eth',
@@ -320,7 +320,7 @@ exports.NFTs = [
     price: 0.1,
     img: 'https://openseauserdata.com/files/14e95e85c7890b2b4254eeb656d0742b.svg',
     category: 'Domain Names',
-    collection: 'Prueba3'
+    collection: 'ENS: Ethereum Name Service'
   },
   {
     title: '🧘.eth ',
@@ -328,14 +328,246 @@ exports.NFTs = [
     price: 0.489,
     img: 'https://openseauserdata.com/files/5be6187a2befc8a1b19f85f3fb0dbd9e.svg',
     category: 'Domain Names',
-    collection: 'Prueba3'
+    collection: 'ENS: Ethereum Name Service'
   },
   {
-    title: 'RAVE PIGS #923',
-    description: 'By GiffyPop',
-    price: 0.01,
-    img: 'https://lh3.googleusercontent.com/O2c78_fFUp09RUFAHjbytrmi0Cndjr0xM4aHzgD9bnh8JhCtA4-KFaD-Jeh5vAqs-UTnt7dehKfeacjpSXX6KTrDHJj0RfNwsZBY',
-    category: 'music',
-    collection: 'Prueba3'
+    title: 'GAME.eth',
+    description: 'A .crypto blockchain domain. Use it to resolve your cryptocurrency addresses and decentralized websites.',
+    price: 0.35,
+    img: 'https://openseauserdata.com/files/be17d7e0cfbc7398aa732725ed8f3c26.svg',
+    category: 'Domain Names',
+    collection: 'ENS: Ethereum Name Service'
+  },
+  {
+    title: 'We Are All Going to Die #1235',
+    description: 'We Are All Going to Die',
+    price: 888,
+    img: 'https://img.seadn.io/files/75fdb2e3e66932f1c0088dcfea4453c4.png?auto=format&fit=max&w=512',
+    category: 'Collectibles',
+    collection: 'We Are All Going to Die'
+  },
+  {
+    title: 'We Are All Going to Die #1234',
+    description: 'We Are All Going to Die',
+    price: 666,
+    img: 'https://img.seadn.io/files/e3ddd50d9f66da16f0413f74cc0e7131.png?auto=format&fit=max&w=512',
+    category: 'Collectibles',
+    collection: 'We Are All Going to Die'
+  },
+  {
+    title: 'We Are All Going to Die #1233',
+    description: 'We Are All Going to Die',
+    price: 123,
+    img: 'https://img.seadn.io/files/42374defb2ed8cf3edd5fb01ad059d9f.png?auto=format&fit=max&w=512',
+    category: 'Collectibles',
+    collection: 'We Are All Going to Die'
+  },
+  {
+    title: 'We Are All Going to Die #1232',
+    description: 'We Are All Going to Die',
+    price: 654,
+    img: 'https://img.seadn.io/files/5d4420d3c123b5915943cf7e740ed4f6.png?auto=format&fit=max&w=512',
+    category: 'Collectibles',
+    collection: 'We Are All Going to Die'
+  },
+  {
+    title: 'We Are All Going to Die #1231',
+    description: 'We Are All Going to Die',
+    price: 333,
+    img: 'https://img.seadn.io/files/2324083ec15e21ab5556821a651208fa.png?auto=format&fit=max&w=512',
+    category: 'Collectibles',
+    collection: 'We Are All Going to Die'
+  },
+  {
+    title: 'We Are All Going to Die #1230',
+    description: 'We Are All Going to Die',
+    price: 456,
+    img: 'https://img.seadn.io/files/6dbe433910d0b2888f499a57752e770e.png?auto=format&fit=max&w=512',
+    category: 'Collectibles',
+    collection: 'We Are All Going to Die'
+  },
+  {
+    title: 'We Are All Going to Die #1229',
+    description: 'We Are All Going to Die',
+    price: 111,
+    img: 'https://img.seadn.io/files/55143370ea0ce1c2b5951edc6cbbcc2f.png?auto=format&fit=max&w=512',
+    category: 'Collectibles',
+    collection: 'We Are All Going to Die'
+  },
+  {
+    title: 'We Are All Going to Die #1228',
+    description: 'We Are All Going to Die',
+    price: 911,
+    img: 'https://img.seadn.io/files/1998014181257440f7c175693c64177f.png?auto=format&fit=max&w=512',
+    category: 'Collectibles',
+    collection: 'We Are All Going to Die'
+  },
+  {
+    title: 'We Are All Going to Die #1227',
+    description: '',
+    price: 101,
+    img: 'https://img.seadn.io/files/3462e4020cfd2f48347313cae099cc29.png?auto=format&fit=max&w=512',
+    category: 'Collectibles',
+    collection: 'We Are All Going to Die'
+  },
+  {
+    title: 'We Are All Going to Die #1226',
+    description: 'We Are All Going to Die',
+    price: 212,
+    img: 'https://img.seadn.io/files/ad044d6b06bd682411eb401eb0695981.png?auto=format&fit=max&w=512',
+    category: 'Collectibles',
+    collection: 'We Are All Going to Die'
+  },
+  {
+    title: '0:RIVERS #030',
+    description: 'They’ve stayed. They’ve crossed. They’ve placed a coin under their tongue.',
+    price: 13,
+    img: 'https://openseauserdata.com/files/3a6039a376e6abe66970413e9fe13a76.gif',
+    category: 'Photography',
+    collection: '0:RIVERS'
+  },
+  {
+    title: '0:RIVERS #029',
+    description: 'They’ve stayed. They’ve crossed. They’ve placed a coin under their tongue.',
+    price: 12,
+    img: 'https://lh3.googleusercontent.com/5xhbTqbRXxooD35sXM9GoPXmOjKWWmYfif1Fl-grh8TGZwoLI0FoF9YCXw-Un40iZuJgD1B1vBj0zhhf8csguFTw3xqf5hqGB4STnBE=w417',
+    category: 'Photography',
+    collection: '0:RIVERS'
+  },
+  {
+    title: '0:RIVERS #028',
+    description: 'They’ve stayed. They’ve crossed. They’ve placed a coin under their tongue.',
+    price: 1,
+    img: 'https://openseauserdata.com/files/fad2c96bee9dd0c3f67d35296b566a00.gif',
+    category: 'Photography',
+    collection: '0:RIVERS'
+  },
+  {
+    title: '0:RIVERS #027',
+    description: 'They’ve stayed. They’ve crossed. They’ve placed a coin under their tongue.',
+    price: 85,
+    img: 'https://openseauserdata.com/files/ed84e3931da575c8b947e6da4e12fa2a.gif',
+    category: 'Photography',
+    collection: '0:RIVERS'
+  },
+  {
+    title: '0:RIVERS #026',
+    description: 'They’ve stayed. They’ve crossed. They’ve placed a coin under their tongue.',
+    price: 33,
+    img: 'https://openseauserdata.com/files/7291dead87b42c69d1bf41677074a6ac.gif',
+    category: 'Photography',
+    collection: '0:RIVERS'
+  },
+  {
+    title: '0:RIVERS #025',
+    description: 'They’ve stayed. They’ve crossed. They’ve placed a coin under their tongue.',
+    price: 66,
+    img: 'https://lh3.googleusercontent.com/5avVj_gHT2Z4aBvTqFqsrfPGHXZa8FpYfDOV5FQXHegx8PJ-rRsEnSHe6rVUJQG2O37ecos8laj7Mf8FxYVG0r7oWe03udu-XWfpaw=w417',
+    category: 'Photography',
+    collection: '0:RIVERS'
+  },
+  {
+    title: '0:RIVERS #024',
+    description: 'They’ve stayed. They’ve crossed. They’ve placed a coin under their tongue.',
+    price: 1,
+    img: 'https://openseauserdata.com/files/b183fcb62a390d3896a4f4c86a97e81a.gif',
+    category: 'Photography',
+    collection: '0:RIVERS'
+  },
+  {
+    title: '0:RIVERS #023',
+    description: 'They’ve stayed. They’ve crossed. They’ve placed a coin under their tongue.',
+    price: 634,
+    img: 'https://openseauserdata.com/files/59a64a4a6d3e1dd44e0ef1489185ec68.gif',
+    category: 'Photography',
+    collection: '0:RIVERS'
+  },
+  {
+    title: '0:RIVERS #022',
+    description: 'They’ve stayed. They’ve crossed. They’ve placed a coin under their tongue.',
+    price: 4234,
+    img: 'https://openseauserdata.com/files/b239dbf90fd82263d409568499f6566a.gif',
+    category: 'Photography',
+    collection: '0:RIVERS'
+  },
+  {
+    title: '0:RIVERS  #021',
+    description: 'They’ve stayed. They’ve crossed. They’ve placed a coin under their tongue.',
+    price: 123,
+    img: 'https://openseauserdata.com/files/4c97771bc35a8ee0c395738bd70f33fb.gif',
+    category: 'Photography',
+    collection: '0:RIVERS'
+  },
+  {
+    title: 'CryptoAvatars #01',
+    description: 'Despite it has several congenital and hereditary conditions that affects its health, this creature rulez in a galaxy not so far away.',
+    price: 4,
+    img: 'https://lh3.googleusercontent.com/K3BXyStVuNsa41M51titEKiocZsTTumlQD4FNW4YHQyuiP5qXySKWa2AmYz2-Htn_L9dxKsMyGzY1Bvg2QQ1d8kPj4v5Mrs-2tnN=w417',
+    category: 'Virtual Worlds',
+    collection: 'CryptoAvatars'
+  },
+  {
+    title: 'CryptoAvatars #05',
+    description: 'Despite it has several congenital and hereditary conditions that affects its health, this creature rulez in a galaxy not so far away.',
+    price: 12,
+    img: 'https://lh3.googleusercontent.com/FuCMGKxN2OSkn7xGuFuVczpCi_0qqUrgYM9VDH6hV1ZbGnFzfb-EcBvoQ-78lQm0CEaE4fhaHgEi-7FEgr-cn8Q_n0swoMuDItBjGyE=w417',
+    category: 'Virtual Worlds',
+    collection: 'CryptoAvatars'
+  },
+  {
+    title: 'CryptoAvatars #02',
+    description: 'Despite it has several congenital and hereditary conditions that affects its health, this creature rulez in a galaxy not so far away.',
+    price: 34,
+    img: 'https://lh3.googleusercontent.com/B0jecPqM-kqXW0784A-ojo4zz7DgDMewYwC-PKv3RX6jcV6E9-uqOHbBDfCqGfcVR6IpxAjryn5KvHsylEF6dIUb9WGlLXNLRd2jLg=w417',
+    category: 'Virtual Worlds',
+    collection: 'CryptoAvatars'
+  },
+  {
+    title: 'CryptoAvatars #03',
+    description: 'Despite it has several congenital and hereditary conditions that affects its health, this creature rulez in a galaxy not so far away.',
+    price: 5,
+    img: 'https://lh3.googleusercontent.com/B0jecPqM-kqXW0784A-ojo4zz7DgDMewYwC-PKv3RX6jcV6E9-uqOHbBDfCqGfcVR6IpxAjryn5KvHsylEF6dIUb9WGlLXNLRd2jLg=w417',
+    category: 'Virtual Worlds',
+    collection: 'CryptoAvatars'
+  },
+  {
+    title: 'CryptoAvatars #04',
+    description: 'Despite it has several congenital and hereditary conditions that affects its health, this creature rulez in a galaxy not so far away.',
+    price: 7,
+    img: 'https://lh3.googleusercontent.com/W7GUUFM_506lcqbaoQyLZK9h1x-NH8wHFcFBxeS9NatEG3XuZdjmTpJFw5AMu9imL2-mNDHUrGnpNzCaEnOxAdZrQonwycJC8nMLPjg=w417',
+    category: 'Virtual Worlds',
+    collection: 'CryptoAvatars'
+  },
+  {
+    title: 'UR-P #123',
+    description: 'A small, uncommon, Si-type asteroid',
+    price: 8,
+    img: 'https://openseauserdata.com/files/ba4a6606a7e25ceca169d055794cf75d.svg',
+    category: 'Virtual Worlds',
+    collection: 'Influence Asteroids'
+  },
+  {
+    title: 'UR-P #125',
+    description: 'A small, uncommon, Si-type asteroid',
+    price: 0.5,
+    img: 'https://openseauserdata.com/files/3b350b30216c0a6ebb1faa44652b8ecf.svg',
+    category: 'Virtual Worlds',
+    collection: 'Influence Asteroids'
+  },
+  {
+    title: 'UR-P #122',
+    description: 'A small, uncommon, Si-type asteroid',
+    price: 0.4,
+    img: 'https://openseauserdata.com/files/108e56b9179f787ab72d9a7d9dfbc713.svg',
+    category: 'Virtual Worlds',
+    collection: 'Influence Asteroids'
+  },
+  {
+    title: 'UR-P #121',
+    description: 'A small, uncommon, Si-type asteroid',
+    price: 1,
+    img: 'https://img.seadn.io/files/56b70b8b31b3e8f9a6e0f4708b328e52.png?auto=format&fit=max&w=384',
+    category: 'Virtual Worlds',
+    collection: 'Influence Asteroids'
   }
 ]
