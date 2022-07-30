@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import CollectionNewHome from '../CollectionNewHome/CollectionNewHome'
 import CardExploreCollections from '../ExploreCollections/ExploreCollectionsResources/CardExploreCollections'
 import Nav from '../UI/Nav/Navigation'
 import style from './Create.module.css'
 import CreateCard from './CreateCard/CreateCard'
+import CreateDemoCollection from './CreateDemoCollection/CreateDemoCollecion'
 import CreateDetailNFT from './CreateDetailNFT/CreateDetailNFT'
 
 const simulatedData = {
@@ -131,7 +131,7 @@ export default function Create () {
         {status === 'Collection' &&
           <div className='w-full flex flex-col my-20 '>
             <h1 className='text-4xl text-white text-center'>Pre-visualization Collection</h1>
-            <CollectionNewHome background={'https://openseauserdata.com/files/1db4e44dd52dcc1db78d2b43dd33e751.png'} mini={'https://openseauserdata.com/files/22284fa002c7612a875381ab66b22abf.gif'}
+            <CreateDemoCollection background={'https://openseauserdata.com/files/1db4e44dd52dcc1db78d2b43dd33e751.png'} mini={'https://openseauserdata.com/files/22284fa002c7612a875381ab66b22abf.gif'}
             name='Lady Ape Club' userCreator={'LadyApeLabs'} description={descriptionSimulated}/>
           </div>
         }

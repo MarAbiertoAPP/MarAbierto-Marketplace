@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React from 'react'
 import style from './CollectionNewHome.module.css'
 
@@ -20,40 +19,38 @@ const name2 = 'Music Ape #3333'
 const name3 = 'Music Ape #6666'
 const name4 = 'Music Ape #7777'
 const name5 = 'Music Ape #9999'
-
 const dataFromApiExample = [
-  { title: name1, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 1.23, id: 1 },
-  { title: name2, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 0.43, id: 2 },
-  { title: name3, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 3.43, id: 3 },
-  { title: name4, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 7.43, id: 4 },
-  { title: name5, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 5.43, id: 5 },
-  { title: name1, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 1.23, id: 1 },
-  { title: name2, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 0.43, id: 2 },
-  { title: name3, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 3.43, id: 3 },
-  { title: name4, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 7.43, id: 4 },
-  { title: name5, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 5.43, id: 5 },
-  { title: name1, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 1.23, id: 1 },
-  { title: name2, image: 'https://loquesigue.tv/wp-content/uploads/2019/03/img-html.jpg', price: 0.43, id: 2 }
+  { title: name1, image: p1, price: 1.23, id: 1 },
+  { title: name2, image: p2, price: 0.43, id: 2 },
+  { title: name3, image: p3, price: 3.43, id: 3 },
+  { title: name4, image: p4, price: 7.43, id: 4 },
+  { title: name5, image: p5, price: 5.43, id: 5 },
+  { title: name1, image: p1, price: 1.23, id: 1 },
+  { title: name2, image: p2, price: 0.43, id: 2 },
+  { title: name3, image: p3, price: 3.43, id: 3 },
+  { title: name4, image: p4, price: 7.43, id: 4 },
+  { title: name5, image: p5, price: 5.43, id: 5 },
+  { title: name1, image: p1, price: 1.23, id: 1 },
+  { title: name2, image: p2, price: 0.43, id: 2 }
 
 ]
 
 export default function CollectionNewHome (props) {
-
   return (
     <div className={style.div} >
       <Nav/>
 
       <div className='w-full max-w-screen-xl my-12'>
-        <img className='w-full h-96 object-cover bg-white' src={props.background}></img>
+        <img className='w-full h-96 object-cover' src='https://openseauserdata.com/files/c4ab577b14d47a1b1693bebb52645019.png'></img>
 
         <div className='w-full flex'>
 
             <div className='basis-8/12'>
-              <img className='ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={props.mini}></img>
+              <img className='ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={foto}></img>
               <div className='flex flex-col space-y-2 text-start mt-2'>
-                <h1 className='text-purple-700 text-3xl font-bold'>{props.name}</h1>
-                <h1 className='text-neutral-300 text-xl'>{`By: ${props.userCreator} `}</h1>
-                <h1 className='text-neutral-300 text-lg'>{props.description}</h1>
+                <h1 className='text-purple-700 text-3xl font-bold'>Name of collection</h1>
+                <h1 className='text-neutral-300 text-xl'>{'By: \'user of collection \' '}</h1>
+                <h1 className='text-neutral-300 text-lg'>The Music Ape Club is a collection of NFTs (unique digital collectibles) stored as ERC-721 tokens on the Ethereum blockchain. With more than 180+ hand drawn traits, each NFT is unique and rewards you with a proportional percentage of revenue share from a legal cannabis microbusiness. Step into the world of web3 with the STAC Family. With more than 180+ hand drawn traits, each NFT is unique and comes with a membership to an exclusive group of successful indie musicians and real estate investors. Feel the beat with our private community with endless benefits and utilities.</h1>
               </div>
 
             </div>
@@ -148,7 +145,6 @@ export default function CollectionNewHome (props) {
         </div>
 
       </div>
-
     </div>
   )
 }

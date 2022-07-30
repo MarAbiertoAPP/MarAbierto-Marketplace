@@ -2,10 +2,10 @@
 import React from 'react'
 import style from './CreateDemoCollection.module.css'
 
-import foto from '../../assests/demo/fotouser.jpeg'
 
-import Nav from '../UI/Nav/Navigation'
-import Card from '../UI/Card/Card'
+
+import Nav from '../../UI/Nav/Navigation'
+import Card from '../../UI/Card/Card'
 import { FaDiscord, FaTwitter, FaShareAlt } from 'react-icons/fa'
 import { AiFillStar, AiOutlineMore } from 'react-icons/ai'
 
