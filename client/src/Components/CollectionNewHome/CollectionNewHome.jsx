@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import style from './CollectionNewHome.module.css'
 
-import foto from '../../assests/demo/fotouser.jpeg'
+// import foto from '../../assests/demo/fotouser.jpeg'
 
 import Nav from '../UI/Nav/Navigation'
 import Card from '../UI/Card/Card'
@@ -46,19 +46,19 @@ export default function CollectionNewHome (props) {
   console.log(CollName)
   useEffect(() => {
     dispatch(getCollectionByName(name))
-  }, [dispatch])
+  }, [])
 
   return (
     <div className={style.div} >
       <Nav/>
 
       <div className='w-full max-w-screen-xl my-12'>
-        <img className='w-full h-96 object-cover' src='https://openseauserdata.com/files/c4ab577b14d47a1b1693bebb52645019.png'></img>
+        <img className='w-full h-96 object-cover' src={CollName.collectionS?.frontPage}></img>
 
         <div className='w-full flex'>
 
             <div className='basis-8/12'>
-              <img className='ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={foto}></img>
+              <img className='ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={CollName.collectionS?.frontPage}></img>
               <div className='flex flex-col space-y-2 text-start mt-2'>
                 <h1 className='text-purple-700 text-3xl font-bold'>{CollName.collectionS?.name}</h1>
                 <h1 className='text-neutral-300 text-xl'>{'By: \'user of collection \' '}</h1>
@@ -89,7 +89,7 @@ export default function CollectionNewHome (props) {
 
             <div className='flex flex-col'>
               <h1 className='text-purple-700 font-semibold text-3xl'>{CollName.nfts?.length}</h1>
-              <h1 className='text-neutral-300 text-xl font-bold'>items</h1>
+              <h1 className='text-neutral-300 text-xl font-bold'>Items</h1>
             </div>
 
             <div className='flex flex-col'>
