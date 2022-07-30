@@ -1,4 +1,4 @@
-const { collection, nft, category } = require('../db.js')
+const { collection, nft } = require('../db.js')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize
@@ -6,14 +6,18 @@ const { collection, nft, category } = require('../db.js')
 /**
  * creates a Collections in the database based in name
  */
-const createCollection = async (userId, name, frontPage) => {
+const createCollection = async (userId, name, categoryId, frontPage, mini, description) => {
   try {
     return await collection.create({
-      name: eliminarDiacriticos(name).toUpperCase(),
+      name: eliminarDiacriticos(name).toLowerCase(),
       userId,
-      frontPage
+      categoryId,
+      frontPage,
+      mini,
+      description: eliminarDiacriticos(description)
     })
   } catch (error) {
+    console.log(error)
     throw error.message
   }
 }
@@ -26,7 +30,7 @@ const getCollection = async (name) => {
   try {
     return await collection.findOne({
       where: {
-        name: eliminarDiacriticos(name).toUpperCase()
+        name: eliminarDiacriticos(name).toLowerCase()
       }
     })
   } catch (error) {
@@ -78,7 +82,7 @@ const getCollectionPerID = async (id) => {
       {
         id
       },
-      attributes: ['id', 'name', 'frontPage']
+      attributes: ['id', 'name', 'description', 'mini', 'frontPage']
     })
     const nfts = await nft.findAll({
       where: {
@@ -87,10 +91,6 @@ const getCollectionPerID = async (id) => {
       attributes: ['id', 'title', 'description', 'path', 'price', 'isActive'],
       include: [{
         model: collection,
-        attributes: ['id', 'name']
-      },
-      {
-        model: category,
         attributes: ['id', 'name']
       }
       ]
