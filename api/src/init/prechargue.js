@@ -5,8 +5,7 @@ exports.NFTs = [
     price: 7.7,
     img: 'https://img.seadn.io/files/fc1b697662d7b7ae34e4c9ca23b34938.png?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba' , 
-    frontPage:'https://lh3.googleusercontent.com/o93386L-fvk98ozt0VHxAPABav90JNDJiiBigE5AUICIvKg_hou8YCJXD1dteV9OiiNBu8LvZc3jxPc_HjRcnqdinIojs6al1KVa=h400'
+    collection: 'Prueba' 
   },
   {
     title: 'Gatin Gatito',
@@ -110,7 +109,8 @@ exports.NFTs = [
     price: 0.03,
     img: 'https://lh3.googleusercontent.com/l1TDVUJpfz2cY_tLr6t6IomAfaLFLqhoY_UdEt5eOh9nu6Rfl2VanE-RQ9MJJV2HNDeGW8xr1oYFccJpuVFYOrwhYdaBliswVGTYcg=s0',
     category: 'Collectibles',
-    collection: 'Prueba1'
+    collection: 'Waifusion',
+    frontPage:'https://lh3.googleusercontent.com/o93386L-fvk98ozt0VHxAPABav90JNDJiiBigE5AUICIvKg_hou8YCJXD1dteV9OiiNBu8LvZc3jxPc_HjRcnqdinIojs6al1KVa=h400'
   },
   {
     title: 'Waifusion #3773',
@@ -118,7 +118,7 @@ exports.NFTs = [
     price: 0.09,
     img: 'https://lh3.googleusercontent.com/E5wbCp5uqMpYbs29v3b4NiRJ4XlRU7cv3Ms_HkEF120IrjEWKdejdxMSWNUyVuLvoai8P9v4u-cVAb8DcXG6x-ZDwYNHebwnNnHa=w600',
     category: 'Collectibles',
-    collection: 'Prueba1'
+    collection: 'Waifusion'
   },
   {
     title: 'Waifusion #1447',
@@ -126,7 +126,7 @@ exports.NFTs = [
     price: 0.05,
     img: 'https://lh3.googleusercontent.com/qSzom5YHCoqRVbKzDwc3r2MwsTbIr-34HYculStWwMjpMNFGEeFTfs7aJejcY7Gdh6cao35T5vS9tI_MQO-lYsOO9Gq2t_gVwY4JTw=w600',
     category: 'Collectibles',
-    collection: 'Prueba1'
+    collection: 'Waifusion'
   },
   {
     title: 'Waifusion #4888',
@@ -134,15 +134,15 @@ exports.NFTs = [
     price: 0.05,
     img: 'https://lh3.googleusercontent.com/1cYkKhjYFiqOo49QOxpl3pijeW-q2hjseBSE7WFrJ5DI1I79MpWnTiU9Xmmcbq2ZhLJcvfzC0xU9Ita5R13_nBXMtcSYPF_1-jBXZg=w600',
     category: 'Collectibles',
-    collection: 'Prueba1'
+    collection: 'Waifusion'
   },
   {
-    title: 'Maren x Waifusion Commemorative',
+    title: 'Maren x Waifusion',
     description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
     price: 0.02,
     img: 'https://lh3.googleusercontent.com/2-dXsHdfEMk0My0Ch4eSfRD0YibnvYH7yoYQejMXm47RlKCVqAncHONptwQreHh9NooXvRRMevdnzEKcu5coFEh4pQ-iuqSoScYIuls=w600',
     category: 'Collectibles',
-    collection: 'Prueba1'
+    collection: 'Waifusion'
   },
   {
     title: 'Waifusion #9957',
@@ -150,7 +150,7 @@ exports.NFTs = [
     price: 0.04,
     img: 'https://lh3.googleusercontent.com/WpvQT3gPl2X-Z5DJJlza728VS_vuSekgg37cCSewwa8UnyOoKuaHwrDCCTao6FvSmt40QhII00btfe2-my8Wp-uKH6pkmqYvW_L9=w600',
     category: 'Collectibles',
-    collection: 'Prueba1'
+    collection: 'Waifusion'
   },
   {
     title: 'Waifusion #12318',
@@ -158,7 +158,7 @@ exports.NFTs = [
     price: 0.9,
     img: 'https://lh3.googleusercontent.com/5i8VRAcu8Bwjlfe5h_u1HmXYi6i4CGJz7dMnHFwswFJx1SCfR6HI82mJFJm-EBq-EO0MfkCesH5Fx5xAcFmz_8I_A2LvpniZUU-I=w600',
     category: 'Collectibles',
-    collection: 'Prueba1'
+    collection: 'Waifusion'
   },
   {
     title: 'Waifusion #2541',
@@ -166,7 +166,7 @@ exports.NFTs = [
     price: 1.1,
     img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Waifusion'
   },
   {
     title: 'Waifusion #12970',
@@ -174,7 +174,7 @@ exports.NFTs = [
     price: 0.7,
     img: 'https://lh3.googleusercontent.com/Gprnov8RxGszr2MKw4Vq-H-rXG2k5s2B7P2aBVgj-GgGxnnxixFlkiVbnYV5uSsofK43FAGX8NZcg83wqTzVt9daIwCSvD9q5m6vXQ=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Waifusion'
   },
   {
     title: 'Waifusion #13401',
@@ -182,7 +182,7 @@ exports.NFTs = [
     price: 0.25,
     img: 'https://lh3.googleusercontent.com/S3drsSNF5gYVRmyV-n3q51_j-MZTp_U32_2IrVM-szWaheIW__Gr48mD_tfoVfKHu5AfhbhTIdO_PYU1M8IfAJ-GhkYerG2xIscZaA=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Waifusion'
   },
   {
     title: 'Rick and Morty',
@@ -190,7 +190,8 @@ exports.NFTs = [
     price: 0.02,
     img: 'https://lh3.googleusercontent.com/gnfrlI7KpzTPN7IjyDwLQWpcapXU1HPzn9bRKRCpvcy0EEcC9bnE2ryueH-jNVNbhB5h7rt9z8Wao7VLxaT2H42A7RGss-n369_YYkc=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Rick & Morty',
+    frontPage:'https://hbomax-images.warnermediacdn.com/images/GXkRjxwjR68PDwwEAABKJ/tileburnedin?size=1280x720&partner=hbomaxcom&v=a1b309dcec5d1c926cdc9e8178e5bafe&host=art-gallery.api.hbo.com&language=es-419&w=1280'
   },
   {
     title: 'Rick and Morty',
@@ -198,7 +199,7 @@ exports.NFTs = [
     price: 0.02,
     img: 'https://lh3.googleusercontent.com/Ilk9ZtmYt6nGsSkZMFvlW5NRwmlfJJu5Tu0SlJxWY4Bd8Fe2GKYaw6SDA-kixhmLg9GeWTjKTEJK0xlR8Qcc-iwnN4RYwBpZJilN=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Rick & Morty'
   },
   {
     title: 'Rick and Morty',
@@ -206,7 +207,7 @@ exports.NFTs = [
     price: 0.2,
     img: 'https://lh3.googleusercontent.com/0oi3nSr57JLhBr2-xTfhjVmKYHtV0_czmHqHzz7AMlwoUg4kibx288ZTvBnYuNLpV81EJPlTAl_gVF5t2cYEfC66GcPgLzqFzu25=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Rick & Morty'
   },
   {
     title: 'Rick and Morty',
@@ -214,7 +215,7 @@ exports.NFTs = [
     price: 0.019,
     img: 'https://lh3.googleusercontent.com/N2PRR9lcFEvViIF8in5o9Rqp5a_ecIGuxAHqcekTOrjGsGVEtLJKsut7KMpKTF7NcyFP6vTm0mMDU4o2L2dR0A_ap98n7i5H2BpeDQ=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Rick & Morty'
   },
   {
     title: 'Rick and Morty',
@@ -222,7 +223,7 @@ exports.NFTs = [
     price: 0.02,
     img: 'https://lh3.googleusercontent.com/34zMLdRoPgSShFbke_vlbQdzVDL1Y8YB5M9hxcGQzgDbjOQPttjB289ioZbdEYA7ByQOq8_X_jFKl8E2IVO3DsiW9kRxv4rLMwtI=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Rick & Morty'
   },
   {
     title: 'Rick and Morty',
@@ -230,7 +231,7 @@ exports.NFTs = [
     price: 0.04,
     img: 'https://lh3.googleusercontent.com/39sibGYYAVzGD_J8R3o-ApoNgGzxYxiM64-Jr4eVb8Jl7wQtSAKtnpykgr2s_PKi0qjKSMrIbG7AGvW_kuSAo9Iams8FBN6nDXyTtQ=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Rick & Morty'
   },
   {
     title: 'Rick and Morty #1',
@@ -238,7 +239,7 @@ exports.NFTs = [
     price: 0.03,
     img: 'https://lh3.googleusercontent.com/-l7jRjA_309tPXqYlg5Rhtp2JfTmZyoRuvmHeiqftFftRfkoDkIrdh1EpmLzFx9OoT46MmKJXFAq-Sm_zXPMIvcytnekxMFLUT53FKg=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Rick & Morty'
   },
   {
     title: 'Mutant Rick And Morty #222',
@@ -246,7 +247,7 @@ exports.NFTs = [
     price: 0.05,
     img: 'https://lh3.googleusercontent.com/mkiQmS0XEb6boy4rGwpNJe3muJZ0GkJ2-WsQOhmAUveJcXVU6BI6dRGFhW4EglksnkMK4LKAdwivr7KYOZNqt7MUcoT-flIJ6XxEMA=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Rick & Morty'
   },
   {
     title: 'Mutant Rick And Morty',
@@ -254,7 +255,7 @@ exports.NFTs = [
     price: 0.12,
     img: 'https://lh3.googleusercontent.com/Q_HIHk9oJ9T9QFNO23eTsb1vXtG5xwBJynxgRhTOHzLQBy0n9UEoMC7pAknKHg7SfejD6ylMdWZ0bASXfJHhzpTVaw3VqhBE1ln0hGM=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
+    collection: 'Rick & Morty'
   },
   {
     title: 'Rick and Morty',
@@ -262,87 +263,7 @@ exports.NFTs = [
     price: 0.4,
     img: 'https://lh3.googleusercontent.com/cPH6Ux16frM_J_98YUR6iTalfSSI2vXq0U4wsSD26JyU5nOMSFyS9qL8ZtupV5OEKsXQFpjW12oDcBcxpVNEA0Widfrsqgl5ODMbZ4I=w600',
     category: 'Collectibles',
-    collection: 'Prueba2'
-  },
-  {
-    title: 'Waifusion #2506',
-    description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-    price: 0.03,
-    img: 'https://lh3.googleusercontent.com/l1TDVUJpfz2cY_tLr6t6IomAfaLFLqhoY_UdEt5eOh9nu6Rfl2VanE-RQ9MJJV2HNDeGW8xr1oYFccJpuVFYOrwhYdaBliswVGTYcg=s0',
-    category: 'Collectibles',
-    collection: 'Prueba2'
-  },
-  {
-    title: 'Waifusion #3773',
-    description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-    price: 0.09,
-    img: 'https://lh3.googleusercontent.com/E5wbCp5uqMpYbs29v3b4NiRJ4XlRU7cv3Ms_HkEF120IrjEWKdejdxMSWNUyVuLvoai8P9v4u-cVAb8DcXG6x-ZDwYNHebwnNnHa=w600',
-    category: 'Collectibles',
-    collection: 'Prueba2'
-  },
-  {
-    title: 'Waifusion #1447',
-    description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-    price: 0.05,
-    img: 'https://lh3.googleusercontent.com/qSzom5YHCoqRVbKzDwc3r2MwsTbIr-34HYculStWwMjpMNFGEeFTfs7aJejcY7Gdh6cao35T5vS9tI_MQO-lYsOO9Gq2t_gVwY4JTw=w600',
-    category: 'Collectibles',
-    collection: 'Prueba3'
-  },
-  {
-    title: 'Waifusion #4888',
-    description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-    price: 0.05,
-    img: 'https://lh3.googleusercontent.com/1cYkKhjYFiqOo49QOxpl3pijeW-q2hjseBSE7WFrJ5DI1I79MpWnTiU9Xmmcbq2ZhLJcvfzC0xU9Ita5R13_nBXMtcSYPF_1-jBXZg=w600',
-    category: 'Collectibles',
-    collection: 'Prueba3'
-  },
-  {
-    title: 'Maren x Waifusion Commemorative',
-    description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-    price: 0.02,
-    img: 'https://lh3.googleusercontent.com/2-dXsHdfEMk0My0Ch4eSfRD0YibnvYH7yoYQejMXm47RlKCVqAncHONptwQreHh9NooXvRRMevdnzEKcu5coFEh4pQ-iuqSoScYIuls=w600',
-    category: 'Virtual Worlds',
-    collection: 'Prueba3'
-  },
-  {
-    title: 'Waifusion #9957',
-    description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-    price: 0.04,
-    img: 'https://lh3.googleusercontent.com/WpvQT3gPl2X-Z5DJJlza728VS_vuSekgg37cCSewwa8UnyOoKuaHwrDCCTao6FvSmt40QhII00btfe2-my8Wp-uKH6pkmqYvW_L9=w600',
-    category: 'Utility',
-    collection: 'Prueba3'
-  },
-  {
-    title: 'Waifusion #12318',
-    description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-    price: 0.9,
-    img: 'https://lh3.googleusercontent.com/5i8VRAcu8Bwjlfe5h_u1HmXYi6i4CGJz7dMnHFwswFJx1SCfR6HI82mJFJm-EBq-EO0MfkCesH5Fx5xAcFmz_8I_A2LvpniZUU-I=w600',
-    category: 'Trading Cards',
-    collection: 'Prueba3'
-  },
-  {
-    title: 'Waifusion #2541',
-    description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-    price: 1.1,
-    img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-    category: 'Sports',
-    collection: 'Prueba3'
-  },
-  {
-    title: 'Waifusion #12970',
-    description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-    price: 0.7,
-    img: 'https://lh3.googleusercontent.com/Gprnov8RxGszr2MKw4Vq-H-rXG2k5s2B7P2aBVgj-GgGxnnxixFlkiVbnYV5uSsofK43FAGX8NZcg83wqTzVt9daIwCSvD9q5m6vXQ=w600',
-    category: 'Photography',
-    collection: 'Prueba3'
-  },
-  {
-    title: 'Waifusion #13401',
-    description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-    price: 0.25,
-    img: 'https://lh3.googleusercontent.com/S3drsSNF5gYVRmyV-n3q51_j-MZTp_U32_2IrVM-szWaheIW__Gr48mD_tfoVfKHu5AfhbhTIdO_PYU1M8IfAJ-GhkYerG2xIscZaA=w600',
-    category: 'Collectibles',
-    collection: 'Prueba3'
+    collection: 'Rick & Morty'
   },
   ///
   {
