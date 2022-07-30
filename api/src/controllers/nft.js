@@ -5,8 +5,8 @@ const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../help
  */
 exports.createNFT = async (req, res) => {
   try {
-    const { title, description, price, path, collectionId, categoryId } = req.body
-    const response = await createNFT(title, description, path, price, categoryId, collectionId)
+    const { title, description, price, path, collectionId } = req.body
+    const response = await createNFT(title, description, path, price, collectionId)
     return res.status(200).send(response)
   } catch (error) {
     return res.status(400).send({ msg: error })

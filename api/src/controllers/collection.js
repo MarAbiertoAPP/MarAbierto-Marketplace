@@ -8,8 +8,8 @@ const { createCollection, getCollectionPerID, getAllCollections, getCollectionUs
  */
 exports.createCollection = async (req, res) => {
   try {
-    const { userId, name, frontPage } = req.body
-    const response = await createCollection(userId, name, frontPage)
+    const { userId, name, categoryId, frontPage, mini, description } = req.body
+    const response = await createCollection(userId, name, categoryId, frontPage, mini, description)
     return res.status(200).send(response)
   } catch (error) {
     return res.status(400).send({ msg: error })

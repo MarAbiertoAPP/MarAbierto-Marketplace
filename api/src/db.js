@@ -53,8 +53,8 @@ const {
   shoppingCar
 } = sequelize.models
 
-nft.belongsTo(category)
-category.hasMany(nft)
+collection.belongsTo(category)
+category.hasMany(collection)
 
 user.hasMany(collection)
 collection.belongsTo(user)
