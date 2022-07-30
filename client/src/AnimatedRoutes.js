@@ -12,7 +12,7 @@ import ThanksForBuying from './Components/thanksForBuying/ThanksForBuying'
 import WalletCardEthers from './Components/metamask/Metamask'
 import NewHome from './Components/NewHome/NewHome'
 import ExploreCollection from './Components/ExploreCollections/Explore_collection'
-import CollectionDetail from './Components/CollectionDetail'
+import CollectionNewHome from './Components/CollectionNewHome/CollectionNewHome'
 
 export default function AnimatedRoutes () {
   const location = useLocation()
@@ -30,8 +30,9 @@ export default function AnimatedRoutes () {
         <Route path='/thanks' element={<ThanksForBuying/>}/>
         <Route path='/newHome' element={<NewHome/>}/>
         <Route path = '/collection' element={<ExploreCollection/>}/>
-        <Route path='/userdetail' element={<UserDetail/>}/>
-        <Route path='/collection/:name' element={<CollectionDetail/>}/>
+
+        <Route path='/collection/name' element={<CollectionNewHome/>} />
+
       </Routes>
     </AnimatePresence>
   )

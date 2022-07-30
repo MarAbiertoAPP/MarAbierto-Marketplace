@@ -92,7 +92,7 @@ export default function Card ({ title, image, price, id }) {
             <h3>Price :</h3>
             <span>{price} ETH</span>
           </div>
-          <button hidden={'hidden'} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}>ADD TO CART</button>
+          <button className='bg-purple-700 hover:bg-purple-900' hidden={'hidden'} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}>ADD TO CART</button>
         </div>
       </div>
     </motion.div>

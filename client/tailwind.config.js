@@ -19,8 +19,14 @@ module.exports = {
         cardCarousel: '450px'
       },
       height: {
+<<<<<<< HEAD
         cardCarousel: '600px'
 
+=======
+        cardCarousel: '600px',
+        exploreCard: '200px',
+        exploreCard2: '500px'
+>>>>>>> 4d5f5af56704ebd5af095f68f4b83153b331a1df
       },
       boxShadow: {
         rafagod: '0 0 60px -15px #7e22ce'

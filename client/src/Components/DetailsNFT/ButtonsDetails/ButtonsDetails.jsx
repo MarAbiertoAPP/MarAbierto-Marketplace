@@ -14,7 +14,6 @@ const ButtonsDetails = (props) => {
   const handleBuyNow = () => {
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -28,9 +27,9 @@ const ButtonsDetails = (props) => {
           price: detail.price,
           id: detail.id
         }))
+        navigate('/checkout')
       }
     })
-    navigate('/checkout')
   }
 
   const handleAddToCart = () => {
