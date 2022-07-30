@@ -5,7 +5,7 @@ exports.NFTs = [
     price: 7.7,
     img: 'https://img.seadn.io/files/fc1b697662d7b7ae34e4c9ca23b34938.png?fit=max&w=600',
     category: 'art',
-    collection: 'Prueba' 
+    collection: 'Prueba'
   },
   {
     title: 'Gatin Gatito',
