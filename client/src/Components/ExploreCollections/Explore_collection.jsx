@@ -58,6 +58,7 @@ const ExploreCollection = () => {
       <h1 className='text-3xl text-white'>Explore Collections</h1>
 
       <div className='w-full flex space-x-10 mt-8'>
+
       <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>All</h1>
         <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Top</h1>
         <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Art</h1>

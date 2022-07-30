@@ -13,6 +13,7 @@ import WalletCardEthers from './Components/metamask/Metamask'
 import NewHome from './Components/NewHome/NewHome'
 import ExploreCollection from './Components/ExploreCollections/Explore_collection'
 import CollectionNewHome from './Components/CollectionNewHome/CollectionNewHome'
+import Create from './Components/Create/Create'
 
 export default function AnimatedRoutes () {
   const location = useLocation()
@@ -32,6 +33,7 @@ export default function AnimatedRoutes () {
         <Route path = '/collection' element={<ExploreCollection/>}/>
 
         <Route path='/collection/name' element={<CollectionNewHome/>} />
+        <Route path='/create' element={<Create/>} />
 
       </Routes>
     </AnimatePresence>

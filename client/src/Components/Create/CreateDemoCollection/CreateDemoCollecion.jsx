@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React from 'react'
-import style from './CollectionNewHome.module.css'
+import style from './CreateDemoCollection.module.css'
 
 import foto from '../../assests/demo/fotouser.jpeg'
 
@@ -37,7 +37,7 @@ const dataFromApiExample = [
 
 ]
 
-export default function CollectionNewHome (props) {
+export default function CreateDemoCollection (props) {
 
   return (
     <div className={style.div} >
