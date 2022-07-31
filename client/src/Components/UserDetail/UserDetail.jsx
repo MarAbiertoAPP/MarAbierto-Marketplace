@@ -4,14 +4,17 @@ import style from './UserDetail.module.css'
 import Nav from '../UI/Nav/Navigation'
 import Footer from '../Footer/Footer'
 // import Card from '../UI/Card/Card'
+import { useTranslation } from 'react-i18next'
+
 import CardUserDetail from './UseDetailResources/CardUserDetail'
-//
+
 import { AiOutlineTwitter, AiOutlineMore } from 'react-icons/ai'
 import { FaShareAlt } from 'react-icons/fa'
 
 // aqui va la data simulada
 import fotouser from '../../assests/demo/fotouser.jpeg'
 import background from '../../assests/demo/background.webp'
+
 
 const data = {
   name: 'gatingatito',
@@ -110,8 +113,11 @@ const dataFromApiExample = [{
 //console.log(data) // te he callado eslint
 
 const UserDetail = (props) => {
+  const [t] = useTranslation('faq')
   return (
+    
     <div className={style.div}>
+      
       <Nav/>
       <div className='w-full max-w-screen-xl'>
 
@@ -150,16 +156,16 @@ const UserDetail = (props) => {
           </div>
 
           <div className='w-full p-6 flex space-x-20'>
-            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Collected</h1>
-            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Created</h1>
-            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Favorites</h1>
+            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t("Collected.Collected")}</h1>
+            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t("Created.Created")}</h1>
+            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t("Favorites.Favorites")}</h1>
           </div>
 
         </div>
 
         <div className='flex flex-row flex-wrap justify-center'>
-          {dataFromApiExample?.map(item => {
-            return <CardUserDetail key={item.id} title={item.title} image={item.img} price={item.price} id={item.id} />
+          {dataFromApiExample?.map((item, index) => {
+            return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id} />
           })}
         </div>
 
