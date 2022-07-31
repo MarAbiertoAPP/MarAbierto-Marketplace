@@ -1,6 +1,6 @@
-const { nft, category, favorite } = require('../db.js')
+const { nft, favorite } = require('../db.js')
 const { findUser } = require('../helpers/user')
-const { Sequelize } = require('sequelize')
+// const { Sequelize } = require('sequelize')
 /**
  * @author Nicolas Alejandro Suarez
  * @param {} sequelize
@@ -8,15 +8,14 @@ const { Sequelize } = require('sequelize')
 /**
  * Create nft
  */
-const createNFT = async (title, description, path, price, categoryId, collectionId) => {
+const createNFT = async (title, description, path, price, collectionId) => {
   try {
     return await nft.create({
-      title: title.toUpperCase(),
+      title: title.toLowerCase(),
       description,
       path,
       price,
-      collectionId,
-      categoryId
+      collectionId
     })
   } catch (error) {
     throw error.message
@@ -30,17 +29,7 @@ const createNFT = async (title, description, path, price, categoryId, collection
 const getNftId = async (id) => {
   try {
     return await nft.findOne({
-      where: { id },
-      include: [{
-        model: category,
-        attributes: []
-      }
-      ],
-      attributes: [
-        'id', 'title', 'description', 'path', 'price', 'isActive',
-        // [Sequelize.literal('"user"."name"'), 'User'],
-        [Sequelize.literal('"category"."name"'), 'Category']
-      ]
+      where: { id }
     })
   } catch (error) {
     throw error.message
