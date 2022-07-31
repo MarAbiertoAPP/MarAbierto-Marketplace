@@ -12,6 +12,7 @@ import { Cart } from '../../Cart/Cart'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { resetFilters } from '../../../Redux/Actions'
+import LanguajeButton from '../../LanguajeButton/LanguajeButton'
 
 export default function Nav () {
   const [open, setOpen] = useState(false)
@@ -45,16 +46,19 @@ export default function Nav () {
         <div onClick={(e) => handleClick(e)}>
           <img src={Logo} alt="logo" className={`${Classes.logo} cursor-pointer`} />
         </div>
+
         <ul className={Classes.navbar_menu}>
           {cart.length > 0 && (<li style={{ color: '#8a00ff', fontWeight: 'bolder', fontSize: '1.5em' }}>
             {cart.length}
           </li>)}
+          <LanguajeButton/>
           <li onClick={() => showCart()}>
             <IconContext.Provider value={{ className: `${Classes.dots}` }}>
 
               <IoIosCart />
             </IconContext.Provider>
           </li>
+
           <li>
             <Cart open={openCart} setOpen={setOpenCart} />
           </li>

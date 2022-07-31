@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCollectionByName } from '../../Redux/Actions'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import LanguajeButton from '../LanguajeButton/LanguajeButton'
 
 // const p1 = 'https://img.seadn.io/files/1b67c8533f921855dde46ce73a32028c.png?auto=format&fit=max&w=828'
 // const p2 = 'https://img.seadn.io/files/d6a35930f9a75ea90aecd9a0f913bd65.png?auto=format&fit=max&w=640'
@@ -78,11 +77,7 @@ export default function CollectionNewHome (props) {
 
             <div className='basis-4/12 flex space-x-8 mt-4'>
                 <div className='flex space-x-10 h-fit items-center'>
-                  <LanguajeButton/>
-                {/* <div className='flex flex-row'>
-      <button onClick={() => i18n.changeLanguage('en')} className={'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mr-2'}>en</button>
-     <button onClick={() => i18n.changeLanguage('es')} className={'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'}>es</button>
-    </div> */}
+
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-neutral-300" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clipRule="evenodd" />
                   </svg>
@@ -107,22 +102,22 @@ export default function CollectionNewHome (props) {
 
             <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'1.6K'}</h1>
-              <h1 className='text-neutral-300 text-xl font-bold'>owners</h1>
+              <h1 className='text-neutral-300 text-xl font-bold'>{t('owner.owner')}</h1>
             </div>
 
             <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'3000'}</h1>
-              <h1 className='text-neutral-300 text-xl font-bold'>solded</h1>
+              <h1 className='text-neutral-300 text-xl font-bold'>{t('solded.solded')}</h1>
             </div>
 
             <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'1.4'}</h1>
-              <h1 className='text-neutral-300 text-xl font-bold'>floor price</h1>
+              <h1 className='text-neutral-300 text-xl font-bold'>{t('floorPrice.floorPrice')}</h1>
             </div>
 
             <div className='flex flex-col'>
               <h1 className='text-purple-700 font-semibold text-3xl'>{'44.4'}</h1>
-              <h1 className='text-neutral-300 text-xl font-bold'>ceil price</h1>
+              <h1 className='text-neutral-300 text-xl font-bold'>{t('CeilPrice.CeilPrice')}</h1>
             </div>
 
           </div>

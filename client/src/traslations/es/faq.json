@@ -38,5 +38,29 @@
     },
     "nftPrice": {
         "price": "Precio"
+    },
+    "owner": {
+        "owner": "Dueño"
+    },
+    "solded": {
+        "solded": "Vendidos"
+    },
+    "floorPrice": {
+        "floorPrice": "Precio Base"
+    },
+    "CeilPrice": {
+        "CeilPrice": "Precio maximo"
+    },
+    "newHomeTitle": {
+        "newHomeTitle": "Descubre, colleciona y vende extraordinarias NFT's "
+    },
+    "newHomedetailInfo": {
+        "newHomedetailInfo": "MarAbierto es el primer y mas grande marketplace de NFT's"
+    },
+    "explore": {
+        "explore": "Explora"
+    },
+    "create": {
+        "create": "Crea"
     }
 }

@@ -9,6 +9,7 @@ import mini from '../../assests/demo/fotouser.jpeg'
 import photo2 from '../../assests/demo/background.webp'
 import CarouselLanding from './newHomeResources/CarouselLanding';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'
 
 const fadeImages = [
   {
@@ -38,6 +39,8 @@ const fadeProperties = {
 }
 
 export default function NewHome () {
+  const [t] = useTranslation('faq')
+
   return (
     <div className={style.div}>
       <Nav/>
@@ -45,14 +48,14 @@ export default function NewHome () {
       <div className={'mt-20 w-full max-w-screen-xl flex xl:max-h-limitHnewHome'}>
 
         <div className='basis-6/12 space-y-8 p-6 flex flex-col justify-center'>
-          <h1 className='text-neutral-300 text-5xl'>Discover, collect, and sell extraordinary NFTs</h1>
-          <p className='text-2xl text-neutral-500'>MarAbierto is the world&apos;s first and largest NFT marketplace</p>
+          <h1 className='text-neutral-300 text-5xl'>{t("newHomeTitle.newHomeTitle")}</h1>
+          <p className='text-2xl text-neutral-500'>{t("newHomedetailInfo.newHomedetailInfo")}</p>
 
           <div className='flex w-full space-x-20'>
             <Link to='/collection'>
-              <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>Explore</button>
+              <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>{t("explore.explore")}</button>
             </Link>
-            <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>Create</button>
+            <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>{t("create.create")}</button>
           </div>
           
           <div>
