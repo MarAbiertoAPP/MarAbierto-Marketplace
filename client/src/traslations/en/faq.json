@@ -55,7 +55,7 @@
         "newHomeTitle": "Discover, collect, and sell extraordinary NFTs"
     },
     "newHomedetailInfo": {
-        "newHomedetailInfo": "MarAbierto is the world&apos;s first and largest NFT marketplace"
+        "newHomedetailInfo": "MarAbierto is the {world&apos;s first and largest NFT marketplace"
     },
     "explore": {
         "explore": "Explore"
@@ -63,7 +63,40 @@
     "create": {
         "create": "Create"
     },
-    "BuyNow": {
-        "BuyNow": "BuyNow"
+    "buyNow": {
+        "buyNow": "Buy Now"
+    },
+    "makeOffer": {
+        "makeOffer": "Make Offer"
+    },
+    "AddToCart": {
+        "AddToCart": "Add to Cart"
+    },
+    "currentPrice": {
+        "currentPrice": "Current Price"
+    },
+    "OwnedBy": {
+        "OwnedBy": "Owned By: "
+    },
+    "MarketPlace Web Info": {
+        "MarketPlace Web Info": "MarketPlace Web Info"
+    },
+    "Technologies Used": {
+        "Technologies Used": "Technologies Used"
+    },
+    "Contact Us": {
+        "Contact Us": "Contact Us"
+    },
+    "Created": {
+        "Created": "Created"
+    },
+    "Collected": {
+        "Collected": "Collected"
+    },
+    "Favorites": {
+        "Favorites": "Favorites"
+    },
+    "ExploreCollections": {
+        "ExploreCollections": "ExploreCollections"
     }
 }

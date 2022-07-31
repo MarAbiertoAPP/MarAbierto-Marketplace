@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 const LanguajeButton = () => {
   const [t, i18n] = useTranslation('faq')
-  const [lan, setlan] = useState(false)
+  const [lan, setlan] = useState(true)
 
   const handleLan = () => {
     setlan(!lan)
