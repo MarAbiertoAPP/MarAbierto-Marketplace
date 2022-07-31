@@ -35,6 +35,7 @@ const getAllCollections = async (offset = 0, limit = 25) => {
   try {
     return await collection.findAll({
       where: {},
+      attributes: ['id', 'frontPage', 'mini', 'name'],
       offset: offset * limit,
       limit
     })
@@ -72,12 +73,11 @@ const getCollectionPerID = async (id) => {
       where: {
         collectionId: id
       },
-      attributes: ['id', 'title', 'description', 'path', 'price', 'isActive'],
+      attributes: ['id', 'title', 'description', 'img', 'price', 'isActive'],
       include: [{
         model: collection,
         attributes: ['id', 'name']
-      }
-      ]
+      }]
     })
     return {
       collectionS,

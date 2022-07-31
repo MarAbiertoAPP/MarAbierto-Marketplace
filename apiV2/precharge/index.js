@@ -3,7 +3,7 @@ const { createCategory, getAllCategoryId } = require('../src/utils/category')
 const User = require('./user')
 const { createUser, allUserId } = require('../src/utils/user')
 const Collections = require('./collections')
-const { createCollection, getAllCollectionsID } = require('../src/utils/collection')
+const { createCollection } = require('../src/utils/collection')
 const NFTs = require('./nft')
 const { createNFT } = require('../src/utils/nft')
 

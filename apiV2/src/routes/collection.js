@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const { createCollection, getAllCollections, getCollectionPerID, getCollectionUser } = require('../utils/collection')
+const { collection } = require('../db')
+const { findName } = require('../utils/category')
+const { createCollection, getCollectionPerID, getCollectionUser, getCollectionByName } = require('../utils/collection')
 
 // route to create a collection
 router.post('/', async (req, res) => {
@@ -14,17 +16,38 @@ router.post('/', async (req, res) => {
 })
 
 // route to get collection by id
-router.get('/', async (req, res) => {
-  const { id } = req.query
+router.get('/detail/:name', async (req, res) => {
+  const { name } = req.params
   try {
-    if (id) {
-      const find = await getCollectionPerID(id)
-      return find
-        ? res.status(200).send(find)
-        : res.status(404).send({ msg: 'Not found' })
-    } else {
-      return res.status(200).send(await getAllCollections())
+    if (name) {
+      const collectionSelected = await getCollectionByName(name)
+      if (!collectionSelected) return res.send('collection don\'t exist')
+      const collectionIdByName = collectionSelected.dataValues.id
+      console.log(collectionIdByName)
+      const detailCollection = await getCollectionPerID(collectionIdByName)
+      return res.status(200).json(detailCollection)
     }
+    res.send('working')
+  } catch (error) {
+    res.status(404).send({ msg: error })
+  }
+})
+
+// Get all collections if a query category exist, filter by name
+router.get('/all', async (req, res) => {
+  try {
+    const { category } = req.query
+    const whereQuery = {}
+
+    if (category) {
+      const categoryFilter = await findName(category)
+      if (categoryFilter) whereQuery.categoryId = categoryFilter.id
+    }
+    const allCollections = await collection.findAll({
+      where: whereQuery,
+      attributes: ['id', 'frontPage', 'mini', 'name']
+    })
+    res.json(allCollections)
   } catch (error) {
     res.status(404).send({ msg: error })
   }
