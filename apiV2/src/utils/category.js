@@ -18,7 +18,8 @@ const findName = async (name) => {
     return await category.findOne({
       where: {
         name: eliminarDiacriticos(name).toUpperCase()
-      }
+      },
+      raw: true
     })
   } catch (error) {
     return false

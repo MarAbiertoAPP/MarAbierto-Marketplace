@@ -51,7 +51,7 @@ router.get('/nft', async (req, res) => {
       }
       ],
       attributes: [
-        'id', 'title', 'description', 'path', 'price', 'isActive',
+        'id', 'title', 'description', 'img', 'price', 'isActive',
         [Sequelize.literal('"category"."name"'), 'Category']
       ],
       order: [
