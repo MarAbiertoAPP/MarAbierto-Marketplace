@@ -62,5 +62,41 @@
     },
     "create": {
         "create": "Crea"
+    },
+    "buyNow": {
+        "buyNow": "Comprar"
+    },
+    "makeOffer": {
+        "makeOffer": "OFERTAR"
+    },
+    "AddToCart": {
+        "AddToCart": "Agregar al Carrito "
+    },
+    "currentPrice": {
+        "currentPrice": "Precio Actual"
+    },
+    "OwnedBy": {
+        "OwnedBy": "Comprada por: "
+    },
+    "MarketPlace Web Info": {
+        "MarketPlace Web Info": "Información del Sitio"
+    },
+    "Technologies Used": {
+        "Technologies Used": "Tecnologias Aplicadas"
+    },
+    "Contact Us": {
+        "Contact Us": "Contactenos"
+    },
+    "Collected": {
+        "Collected": "Collección"
+    },
+    "Created": {
+        "Created": "Creadas"
+    },
+    "Favorites": {
+        "Favorites": "Favoritas"
+    },
+    "ExploreCollections": {
+        "ExploreCollections": "Explorar Colecciones"
     }
 }

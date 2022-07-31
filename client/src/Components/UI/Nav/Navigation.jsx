@@ -48,10 +48,11 @@ export default function Nav () {
         </div>
 
         <ul className={Classes.navbar_menu}>
+        <LanguajeButton/>
           {cart.length > 0 && (<li style={{ color: '#8a00ff', fontWeight: 'bolder', fontSize: '1.5em' }}>
             {cart.length}
           </li>)}
-          <LanguajeButton/>
+
           <li onClick={() => showCart()}>
             <IconContext.Provider value={{ className: `${Classes.dots}` }}>
 
