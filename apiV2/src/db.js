@@ -15,13 +15,13 @@ const sequelize = new Sequelize(
   process.env.DATABASE_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`,
   {
     logging: false,
-    native: false
-    /*     dialectOptions: {
+    /* native: false */
+    dialectOptions: {
       ssl: {
         require: true,
         rejectUnauthorized: false
       }
-    } */
+    }
   }
 )
 /**
