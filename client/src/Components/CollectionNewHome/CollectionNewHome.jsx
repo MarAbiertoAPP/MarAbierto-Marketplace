@@ -66,11 +66,11 @@ export default function CollectionNewHome (props) {
         <div className='w-full flex'>
 
             <div className='basis-8/12'>
-              <img className='ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={CollName.collectionS?.frontPage}></img>
+              <img className='ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={CollName.collectionS?.mini}></img>
               <div className='flex flex-col space-y-2 text-start mt-2'>
-                <h1 className='text-purple-700 text-3xl font-bold'>{CollName.collectionS?.name}</h1>
+                <h1 className='text-purple-700 text-3xl font-bold capitalize'>{CollName.collectionS?.name}</h1>
                 <h1 className='text-neutral-300 text-xl'>{'By: \'user of collection \' '}</h1>
-                <h1 className='text-neutral-300 text-lg'>{t('music.nftDetail')}</h1>
+                <h1 className='text-neutral-300 text-lg'>{CollName.collectionS?.description}</h1>
               </div>
 
             </div>
@@ -159,7 +159,7 @@ export default function CollectionNewHome (props) {
         <div className=' w-full  flex flex-row flex-wrap justify-center '>
 
             {CollName.nfts?.map(e => {
-              return <Card key={e.id} title={e.title} image={e.path} price={e.price} id={e.id} secondWidth={width} />
+              return <Card key={e.id} title={e.title} image={e.img} price={e.price} id={e.id} secondWidth={width} />
             })}
 
         </div>
