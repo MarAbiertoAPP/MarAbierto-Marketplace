@@ -11,7 +11,7 @@ import { passDetail } from '../../../Redux/Actions/ActionsDetail'
 import { addToCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
 
-export default function Card ({ title, image, price, id, secondWidth, languaje }) {
+export default function Card ({ title, image, price, id, secondWidth }) {
   const [t] = useTranslation('faq')
   const dispatch = useDispatch()
   const handleDetail = () => {
@@ -94,7 +94,7 @@ export default function Card ({ title, image, price, id, secondWidth, languaje }
         <div className={Classes.contentBx}>
           <h2>{title}</h2>
           <div className={Classes.color}>
-            <h3>Price :</h3>
+            <h3>{t('nftPrice.price')}: </h3>
             <span>{price} ETH</span>
           </div>
           <button className='bg-purple-700 hover:bg-purple-900' hidden={'hidden'} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}>{t('card.addToCart')}</button>

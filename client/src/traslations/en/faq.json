@@ -32,5 +32,11 @@
     },
     "card": {
         "addToCart": "ADD TO CART"
+    },
+    "priceFilter": {
+        "pricefilter": "Price low to hight"
+    },
+    "nftPrice": {
+        "price": "Price"
     }
 }
