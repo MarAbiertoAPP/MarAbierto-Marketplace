@@ -37,17 +37,31 @@ router.get('/detail/:name', async (req, res) => {
 router.get('/all', async (req, res) => {
   try {
     const { category } = req.query
+    const offset = (req.query.page - 1) || 0
+    const limit = req.query.limit || 10
     const whereQuery = {}
 
     if (category) {
       const categoryFilter = await findName(category)
       if (categoryFilter) whereQuery.categoryId = categoryFilter.id
     }
+
+    const count = await collection.count({
+      where: whereQuery
+    })
+
     const allCollections = await collection.findAll({
       where: whereQuery,
-      attributes: ['id', 'frontPage', 'mini', 'name']
+      attributes: ['id', 'frontPage', 'mini', 'name'],
+      offset: offset * limit,
+      limit
     })
-    res.json(allCollections)
+    res.json({
+      collections: allCollections,
+      currentPage: (offset + 1),
+      totalCollections: count,
+      totalPages: Math.ceil(count / limit)
+    })
   } catch (error) {
     res.status(404).send({ msg: error })
   }
