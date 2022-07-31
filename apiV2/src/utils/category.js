@@ -3,9 +3,9 @@ const { category } = require('../db.js')
 // creates a categorie in the database based in name
 const createCategory = async (name) => {
   try {
-    name = name.toUpperCase()
+    name = name.toLowerCase()
     return await category.create({
-      name: eliminarDiacriticos(name).toUpperCase()
+      name: eliminarDiacriticos(name).toLowerCase()
     })
   } catch (error) {
     throw error.message
@@ -17,7 +17,7 @@ const findName = async (name) => {
   try {
     return await category.findOne({
       where: {
-        name: eliminarDiacriticos(name).toUpperCase()
+        name: eliminarDiacriticos(name).toLowerCase()
       },
       raw: true
     })
@@ -31,7 +31,7 @@ const findNameOrCreate = async (name) => {
   try {
     return await category.findOrCreate({
       where: {
-        name: eliminarDiacriticos(name).toUpperCase()
+        name: eliminarDiacriticos(name).toLowerCase()
       }
     })
   } catch (error) {
