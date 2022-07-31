@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './CollectionNewHome.module.css'
 
 // import foto from '../../assests/demo/fotouser.jpeg'
@@ -6,10 +6,12 @@ import style from './CollectionNewHome.module.css'
 import Nav from '../UI/Nav/Navigation'
 import Card from '../UI/Card/Card'
 import { FaDiscord, FaTwitter, FaShareAlt } from 'react-icons/fa'
+import { BsGridFill, BsGrid3X3GapFill } from 'react-icons/bs'
 import { AiFillStar, AiOutlineMore } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCollectionByName } from '../../Redux/Actions'
 import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 // const p1 = 'https://img.seadn.io/files/1b67c8533f921855dde46ce73a32028c.png?auto=format&fit=max&w=828'
 // const p2 = 'https://img.seadn.io/files/d6a35930f9a75ea90aecd9a0f913bd65.png?auto=format&fit=max&w=640'
@@ -39,8 +41,14 @@ import { useParams } from 'react-router-dom'
 // ]
 
 export default function CollectionNewHome (props) {
+  const [t] = useTranslation('faq')
   const dispatch = useDispatch()
   const { name } = useParams()
+  const [width, setWidth] = useState(false)
+
+  const changeWidth = () => {
+    setWidth(!width)
+  }
 
   const { CollName } = useSelector(state => state)
   console.log(CollName)
@@ -62,7 +70,7 @@ export default function CollectionNewHome (props) {
               <div className='flex flex-col space-y-2 text-start mt-2'>
                 <h1 className='text-purple-700 text-3xl font-bold'>{CollName.collectionS?.name}</h1>
                 <h1 className='text-neutral-300 text-xl'>{'By: \'user of collection \' '}</h1>
-                <h1 className='text-neutral-300 text-lg'>The Music Ape Club is a collection of NFTs (unique digital collectibles) stored as ERC-721 tokens on the Ethereum blockchain. With more than 180+ hand drawn traits, each NFT is unique and rewards you with a proportional percentage of revenue share from a legal cannabis microbusiness. Step into the world of web3 with the STAC Family. With more than 180+ hand drawn traits, each NFT is unique and comes with a membership to an exclusive group of successful indie musicians and real estate investors. Feel the beat with our private community with endless benefits and utilities.</h1>
+                <h1 className='text-neutral-300 text-lg'>{t('music.nftDetail')}</h1>
               </div>
 
             </div>
@@ -94,22 +102,22 @@ export default function CollectionNewHome (props) {
 
             <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'1.6K'}</h1>
-              <h1 className='text-neutral-300 text-xl font-bold'>owners</h1>
+              <h1 className='text-neutral-300 text-xl font-bold'>{t('owner.owner')}</h1>
             </div>
 
             <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'3000'}</h1>
-              <h1 className='text-neutral-300 text-xl font-bold'>solded</h1>
+              <h1 className='text-neutral-300 text-xl font-bold'>{t('solded.solded')}</h1>
             </div>
 
             <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'1.4'}</h1>
-              <h1 className='text-neutral-300 text-xl font-bold'>floor price</h1>
+              <h1 className='text-neutral-300 text-xl font-bold'>{t('floorPrice.floorPrice')}</h1>
             </div>
 
             <div className='flex flex-col'>
               <h1 className='text-purple-700 font-semibold text-3xl'>{'44.4'}</h1>
-              <h1 className='text-neutral-300 text-xl font-bold'>ceil price</h1>
+              <h1 className='text-neutral-300 text-xl font-bold'>{t('CeilPrice.CeilPrice')}</h1>
             </div>
 
           </div>
@@ -129,7 +137,7 @@ export default function CollectionNewHome (props) {
             <select className='w-full text-xl text-center'>
                 <option>Default</option>
 
-                <option>Price low to hight</option>
+                <option>{t('priceFilter.pricefilter')}</option>
                 <option>Price high to low</option>
 
                 <option>Low Popularity</option>
@@ -141,17 +149,17 @@ export default function CollectionNewHome (props) {
             </select>
           </div>
 
-          <div className='basis-3/12 bg-white flex place-content-around p-2'>
-            <h1>X</h1>
-            <h1>X</h1>
+          <div className='basis-3/12  flex place-content-around p-2' >
+            {width ? <button className='text-orange-500 text-2xl' onClick={changeWidth }><BsGridFill/></button> : <button className='text-orange-500 text-3xl ' onClick={changeWidth }><BsGrid3X3GapFill/></button> }
+
           </div>
 
         </div>
 
-        <div className='w-full flex flex-row flex-wrap justify-center'>
+        <div className=' w-full  flex flex-row flex-wrap justify-center '>
 
             {CollName.nfts?.map(e => {
-              return <Card key={e.id} title={e.title} image={e.path} price={e.price} id={e.id} />
+              return <Card key={e.id} title={e.title} image={e.path} price={e.price} id={e.id} secondWidth={width} />
             })}
 
         </div>

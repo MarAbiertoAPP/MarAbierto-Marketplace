@@ -9,7 +9,10 @@ import '../../Home/toast.css'
 import { motion } from 'framer-motion'
 import { passDetail } from '../../../Redux/Actions/ActionsDetail'
 import { addToCart } from '../../../Redux/Actions/ActionsCart'
-export default function Card ({ title, image, price, id }) {
+import { useTranslation } from 'react-i18next'
+
+export default function Card ({ title, image, price, id, secondWidth }) {
+  const [t] = useTranslation('faq')
   const dispatch = useDispatch()
   const handleDetail = () => {
     dispatch(passDetail({
@@ -26,7 +29,9 @@ export default function Card ({ title, image, price, id }) {
     title: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.number,
-    id: PropTypes.string
+    id: PropTypes.string,
+    secondWidth: PropTypes.bool,
+    languaje: PropTypes.string
   }
   const { isAuthenticated, loginWithRedirect } = useAuth0()
   const handleBuy = () => {
@@ -76,7 +81,7 @@ export default function Card ({ title, image, price, id }) {
 
   return (
     <motion.div
-    className={Classes.container}
+    className={ secondWidth ? Classes.container2 : Classes.container }
     initial={{ opacity: 0 }}
     whileInView={{ opacity: 1 }}
     >
@@ -89,10 +94,10 @@ export default function Card ({ title, image, price, id }) {
         <div className={Classes.contentBx}>
           <h2>{title}</h2>
           <div className={Classes.color}>
-            <h3>Price :</h3>
+            <h3>{t('nftPrice.price')}: </h3>
             <span>{price} ETH</span>
           </div>
-          <button className='bg-purple-700 hover:bg-purple-900' hidden={'hidden'} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}>ADD TO CART</button>
+          <button className='bg-purple-700 hover:bg-purple-900' hidden={'hidden'} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}>{t('card.addToCart')}</button>
         </div>
       </div>
     </motion.div>

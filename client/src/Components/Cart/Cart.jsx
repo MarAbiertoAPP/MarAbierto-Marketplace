@@ -75,7 +75,7 @@ export function Cart ({ open, setOpen }) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md  bg-white ">
-                  <div className="flex h-full flex-col overflow-y-scroll   shadow-xl">
+                  <div className="flex h-full flex-col overflow-y-scroll   shadow-xl  bg-gradient-to-b from-violet-800 via-indigo-500 to-purple-400 ">
                     <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-lg font-medium  text-indigo-600"> Shopping cart </Dialog.Title>
@@ -109,7 +109,7 @@ export function Cart ({ open, setOpen }) {
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
                                       </h3>
-                                      <p className="ml-4 text-orange-600">ETH {e.price}</p>
+                                      <p className="ml-4 text-orange-200 text-lg">ETH {e.price}</p>
                                     </div>
 
                                   </div>
@@ -125,7 +125,7 @@ export function Cart ({ open, setOpen }) {
                                       </button> */}
                                       <FaTrashAlt
                                       type="button"
-                                      className="font-medium text-indigo-600 hover:text-indigo-500 cursor-pointer "
+                                      className="font-medium text-lime-500 hover:text-indigo-500 cursor-pointer "
                                       onClick={ () => handleDelete(e.id)
 
                                       }
@@ -144,9 +144,9 @@ export function Cart ({ open, setOpen }) {
 
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
-                        <p className='text-orange-600'>Subtotal</p>
-                        <p className='text-orange-600'>ETH {totalBuy.toFixed(3)}</p>
-                        <p className='text-orange-600'>USD {((ethValue || '') * totalBuy).toFixed(2) }</p>
+                        <p className='text-lime-900 font-bold'>Subtotal</p>
+                        <p className='text-lime-900 font-bold'>ETH {totalBuy.toFixed(3)}</p>
+                        <p className='text-lime-900 font-bold'>USD {((ethValue || '') * totalBuy).toFixed(2) }</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6 flex justify-between">

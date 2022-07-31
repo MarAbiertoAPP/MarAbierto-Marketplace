@@ -28,13 +28,11 @@ export default function AnimatedRoutes () {
         <Route path="/detail/:id" element={<RenderDetails/>}/>
         <Route path="/faq" element={<Faq/>}/>
         <Route path='/user' element={<UserDetail/>}/>
-        <Route path='thanks' element={<ThanksForBuying/>}/>
+        <Route path='/thanks' element={<ThanksForBuying/>}/>
         <Route path='/newHome' element={<NewHome/>}/>
         <Route path = '/collection' element={<ExploreCollection/>}/>
         <Route path='/create' element={<Create/>} />
         <Route path='/collection/:name' element={<CollectionNewHome/>} />
-
-
       </Routes>
     </AnimatePresence>
   )

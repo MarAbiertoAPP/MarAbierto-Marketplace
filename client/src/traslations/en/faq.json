@@ -1,0 +1,66 @@
+{
+    "Title": {
+        "id": 1,
+        "title": "¿What is Mar abierto?",
+        "answer": "Mar abierto is a platform for buying and selling NFTs where you can acquire the NFTs you want with the ease of being able to pay by credit card"
+    },
+    "nft": {
+        "id": 2,
+        "title": "¿What is an NFT?",
+        "answer": " NFT means Non-Fungible Tokens or an «not fungible asset», a type of asset that cannot be modified, that is unique. For example, a work of art."
+    },
+    "buy": {
+        "id": 3,
+        "title": "¿How can i buy in an NFT?",
+        "answer": "In Mar Abierto we give you the facility to be able to buy your NFT with your card if you wish, we make the change to crypto for you!"
+    },
+    "marcoin": {
+        "id": 4,
+        "title": "¿What is a MarCoin?",
+        "answer": "The MarCoin is the internal currency of our website, with it you can buy your NFTs"
+    },
+    "sell": {
+        "id": 5,
+        "title": "¿Can i sell my NFTs?",
+        "answer": "For shure! in Mar Abierto you can post and sell your NFTs"
+    },
+    "music": {
+        "nftDetail": "he Music Ape Club is a collection of NFTs (unique digital collectibles) stored as ERC-721 tokens on the Ethereum blockchain. With more than 180+ hand drawn traits, each NFT is unique and rewards you with a proportional percentage of revenue share from a legal cannabis microbusiness. Step into the world of web3 with the STAC Family. With more than 180+ hand drawn traits, each NFT is unique and comes with a membership to an exclusive group of successful indie musicians and real estate investors. Feel the beat with our private community with endless benefits and utilities"
+    },
+    "collectionName": {
+        "collectionName": "Collection Name"
+    },
+    "card": {
+        "addToCart": "ADD TO CART"
+    },
+    "priceFilter": {
+        "pricefilter": "Price low to hight"
+    },
+    "nftPrice": {
+        "price": "Price"
+    },
+    "owner": {
+        "owner": "owner"
+    },
+    "solded": {
+        "solded": "Solded"
+    },
+    "floorPrice": {
+        "floorPrice": "Floor price"
+    },
+    "CeilPrice": {
+        "CeilPrice": "Ceil price"
+    },
+    "newHomeTitle": {
+        "newHomeTitle": "Discover, collect, and sell extraordinary NFTs"
+    },
+    "newHomedetailInfo": {
+        "newHomedetailInfo": "MarAbierto is the world&apos;s first and largest NFT marketplace"
+    },
+    "explore": {
+        "explore": "Explore"
+    },
+    "create": {
+        "create": "Create"
+    }
+}

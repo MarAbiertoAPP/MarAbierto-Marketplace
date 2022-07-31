@@ -5,7 +5,12 @@ import arrow from '../../assests/icon-arrow-down.svg'
 import { Data } from './Data'
 import { motion } from 'framer-motion'
 import Nav from '../UI/Nav/Navigation'
+
+import { useTranslation } from 'react-i18next'
+
 export default function Faq () {
+  const [t, i18n] = useTranslation('faq')
+  console.log(t('Title.title'))
   const [selected, setSelected] = useState(null)
 
   const toggle = (i) => {
@@ -14,6 +19,9 @@ export default function Faq () {
     }
     setSelected(i)
   }
+
+  console.log(t('Title.title'))
+  console.log(t('Title.answer'))
 
   return (
 
@@ -26,6 +34,11 @@ export default function Faq () {
 
     <main className={style.wrapper}>
     <Nav/>
+    <div>
+    <button onClick={() => i18n.changeLanguage('en')} className={'bg-lime-300'}>en</button>
+    <button onClick={() => i18n.changeLanguage('es')} className={'bg-lime-300'}>es</button>
+    </div>
+
         <div className={style.image__wrapper}>
             <div className={style.image__wrapper_inner}>
 
@@ -51,6 +64,7 @@ export default function Faq () {
                 ))}
 
         </div>
+
     </div>
     </main>
 </motion.div>
