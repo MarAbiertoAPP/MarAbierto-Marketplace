@@ -151,7 +151,7 @@ export function getClientPay (data) {
 
 export function getAllCollection () {
   return function (dispatch) {
-    axios('/collections')
+    axios('/collections/all')
       .then(res => dispatch({
         type: GET_ALL_COLLECTION,
         payload: res.data

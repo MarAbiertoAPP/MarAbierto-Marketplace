@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from './Components/Home/Home'
+/* import Home from './Components/Home/Home' */
 import Landing from './Components/LandingPage/Landing'
 import Faq from './Components/Faq/faq'
 import { Route, Routes, useLocation } from 'react-router-dom'
@@ -22,7 +22,7 @@ export default function AnimatedRoutes () {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Landing/>}/>
         <Route path='/wallet' element={<WalletCardEthers/>}/>
-        <Route path="/home" element={<Home/>}/>
+        {/* <Route path="/home" element={<NewHome/>}/> */}
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/checkout" element={<Checkout/>}/>
         <Route path="/detail/:id" element={<RenderDetails/>}/>
