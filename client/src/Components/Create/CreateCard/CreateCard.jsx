@@ -3,7 +3,7 @@ import Classes from './CreateCard.module.css'
 import PropTypes from 'prop-types'
 import '../../Home/toast.css'
 import { motion } from 'framer-motion'
-
+import { useTranslation } from 'react-i18next'
 export default function CreateCard ({ title, image, price, id }) {
   CreateCard.propTypes = {
     title: PropTypes.string,
@@ -11,7 +11,7 @@ export default function CreateCard ({ title, image, price, id }) {
     price: PropTypes.number,
     id: PropTypes.string
   }
-
+  const [t] = useTranslation('faq')
   return (
     <motion.div
     className={Classes.container}
@@ -30,7 +30,7 @@ export default function CreateCard ({ title, image, price, id }) {
             <h3>Price :</h3>
             <span>{price} ETH</span>
           </div>
-          <button className='bg-purple-700 hover:bg-purple-900'>ADD TO CART</button>
+          <button className='bg-purple-700 hover:bg-purple-900'>{t('AddToCart.AddToCart')}</button>
         </div>
       </div>
     </motion.div>

@@ -35,6 +35,7 @@ import { getAllCategories, getFilterCollection } from '../../Redux/Actions'
 // ]
 
 const ExploreCollection = () => {
+  const [t] = useTranslation('faq')
   // const [collection, setcollection] = useState()
 
   // useEffect(() => {
@@ -51,7 +52,6 @@ const ExploreCollection = () => {
   const allCategories = useSelector(state => state.categories)
 
   console.log(filterCollection, 'soy el filter')
-  const [t] = useTranslation('faq')
 
   useEffect(() => {
     dispatch(getAllCategories())
@@ -70,9 +70,9 @@ const ExploreCollection = () => {
 
       <div className='w-full flex space-x-10 mt-8'>
 
-      <button onClick={(e) => handleClick(e)} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>All</button>
+      <button onClick={(e) => handleClick(e)} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('all.all')}</button>
       {allCategories?.map(e => {
-        return <button key={e.id} value={e.name} id={e.id} onClick={handleClick} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{e.name}</button>
+        return <button key={e.id} value={e.name} id={e.id} onClick={handleClick} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t(`${e.name}.${e.name}`)}</button>
       })}
         {/* <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Top</h1>
         <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Art</h1>
