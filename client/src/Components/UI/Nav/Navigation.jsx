@@ -38,7 +38,7 @@ export default function Nav () {
   const handleClick = (e) => {
     e.preventDefault()
     dispatch(resetFilters())
-    navigate('/?')
+    navigate('/')
   }
   return (
     <div>

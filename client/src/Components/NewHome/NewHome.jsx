@@ -2,44 +2,30 @@
 import React from 'react'
 import Nav from '../UI/Nav/Navigation'
 import Carousel from './newHomeResources/Carousel'
+import Footer from '../Footer/Footer'
 import style from './newHome.module.css'
 import { Fade } from 'react-slideshow-image';
 import photo from '../../assests/newHomePhoto.jpg'
 import mini from '../../assests/demo/fotouser.jpeg'
 import photo2 from '../../assests/demo/background.webp'
 import CarouselLanding from './newHomeResources/CarouselLanding';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCollection } from '../../Redux/Actions';
+import { useEffect } from 'react';
 
-const fadeImages = [
-  {
-  url: 'https://us.123rf.com/450wm/nexusplexus/nexusplexus1303/nexusplexus130301309/18747570-gato-divertido-suave-y-esponjosa-en-un-collage-business-traje.jpg?ver=6',
-  caption: 'First Slide'
-  },
-  {
-  url: 'https://www.lalocadelosgatos.com/wp-content/uploads/2013/06/gato-traje.jpg',
-  caption: 'Second Slide'
-  },
-  {
-  url: 'https://media.istockphoto.com/photos/scottish-fold-cat-in-a-suit-businessman-picture-id508514140?k=20&m=508514140&s=612x612&w=0&h=j3mFJzzQOl_n8nGe8x_Bnu8Kyo9EMSF06HITSdMK_EA=',
-  caption: 'Third Slide'
-  },
-];
-
-const fadeProperties = {
-  autoplay: true,
-  duration: 1500,
-  transitionDuration: 800,
-  infinite: true,
-  indicators: true,
-  arrows: false,
-  onChange: (oldIndex, newIndex) => {
-    console.log(`fade transition from ${oldIndex} to ${newIndex}`);
-  }
-}
 
 export default function NewHome () {
   const [t] = useTranslation('faq')
+  const dispatch = useDispatch()
+  const Collection = useSelector(state => state.Collection)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    dispatch(getAllCollection())
+  }, [])
 
   return (
     <div className={style.div}>
@@ -55,7 +41,10 @@ export default function NewHome () {
             <Link to='/collection'>
               <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>{t("explore.explore")}</button>
             </Link>
-            <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>{t("create.create")}</button>
+
+            <Link to='/create'>
+              <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>{t("create.create")}</button> 
+            </Link>
           </div>
           
           <div>
@@ -70,7 +59,7 @@ export default function NewHome () {
 
         <div className='basis-5/12 flex flex-col items-center justify-center p-8'>
 
-          <div className='shadow-2xl shadow-purple-700 flex flex-col  rounded-lg'>
+          <div onClick={()=> navigate('/collection/waifusion')} className='shadow-2xl shadow-purple-700 flex flex-col  rounded-lg hover:shadow-white'>
         
       {/* <Fade {...fadeProperties} className=''>   
       {fadeImages.map((e, index)=> (
@@ -84,10 +73,10 @@ export default function NewHome () {
       </Fade> */}
     
 
-            <img className='max-h-limitH max-w-xl m-4 rounded-md' src={photo2}></img>
+            <img className='max-h-limitH max-w-xl m-4 rounded-2xl' src={'https://lh3.googleusercontent.com/N9PAvOmcM6aKvnO4lthhz_cNvs1uGykOdHqL4FSFRB97jGqWCeoK0tG8-IwI7TVY7-CK5F60mB7cxK-vl70IrMoDfpG_12QQBKSY9mc=w600'}></img>
             <div className='flex m-4 items-center'>              
-              <img className='rounded-full h-10 w-10' src={mini}></img>
-              <h1 className='text-white text-xl ml-2'>freepik 4k collections</h1>
+              <img className='rounded-full h-10 w-10' src={'https://lh3.googleusercontent.com/TrltscwBLgNJMM_jgHDU9f1GMR5xEfvC2SNwyqest2_3yN6icrtWQIvQTJRTA1WyGKP3qkOskrHMGyKDiXclLC0BWTB77mD0BWQ5xg=s168'}></img>
+              <h1 className='text-white text-xl ml-2'>Waifusion</h1>
             </div>
             {/* <CarouselLanding data={fadeImages}/> */}
           </div>
@@ -112,7 +101,7 @@ export default function NewHome () {
         <div className='w-full'>
           
           <div className='mb-20'>
-           <Carousel/>
+           <Carousel data={Collection.collections}/>
           </div>
 
         </div>
@@ -127,11 +116,11 @@ export default function NewHome () {
         <div className='w-full'>
           
           <div className='mb-20'>
-           <Carousel/>
+           <Carousel data={Collection.collections}/>
            
-           <div className='w-full flex justify-center mt-8'>
+           {/* <div className='w-full flex justify-center mt-8'>
              <button className='text-white text-3xl p-4 px-6  bg-purple-700 hover:bg-purple-900 rounded-lg'>Go to rankings</button>
-           </div>
+           </div> */}
 
           </div>
 
@@ -142,17 +131,7 @@ export default function NewHome () {
 
       {/* /------el tercer componente --> carusel TOP -> esta de aqui para arriba, de aqui para abajo el 4to-------- */}
        
-       <div className=' bg-white w-full max-w-screen-xl flex'>
-
-        <div className='basis-1/12 bg-black'>
-
-        </div>
-
-        <div className='basis-2/12 bg-cyan-400'>
-
-        </div>
- 
-       </div>
+      <Footer/>
      
     </div>
     

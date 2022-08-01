@@ -52,7 +52,7 @@ export default function Landing () {
           <div className="basis-5/12 m-11 flex flex-col items-center -mt-4 xl:mt-16">
             <p className="xl:p-10 xl:py-20 text-center w-12/12 text-2xl md:text-4xl text-neutral-200">NFTs are designed to give you something that cant be copied.</p>
 
-            <Link to="/home">
+            <Link to="/newhome">
               <button className= {`${landing.toHomeButton} mt-8 xl:mt-0 `}>EXPLORE</button>
             </Link>
           </div>
