@@ -15,7 +15,7 @@ import { cleanAllCart } from '../../Redux/Actions/ActionsCart'
 export function Cart ({ open, setOpen }) {
   const dispatch = useDispatch()
   const ethereumValue = useSelector(state => state.Conv.ethereum)
-  console.log(ethereumValue)
+
   const ethValue = ethereumValue?.usd
   const cartToBuy = useSelector(state => state.Cart)
   Cart.propTypes = {

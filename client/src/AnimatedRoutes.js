@@ -20,7 +20,7 @@ export default function AnimatedRoutes () {
   return (
     <AnimatePresence exitBeforeEnter>
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Landing/>}/>
+        <Route path="/landing" element={<Landing/>}/>
         <Route path='/wallet' element={<WalletCardEthers/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/cart" element={<Cart/>}/>
@@ -29,8 +29,8 @@ export default function AnimatedRoutes () {
         <Route path="/faq" element={<Faq/>}/>
         <Route path='/user' element={<UserDetail/>}/>
         <Route path='/thanks' element={<ThanksForBuying/>}/>
-        <Route path='/newHome' element={<NewHome/>}/>
-        <Route path = '/collection' element={<ExploreCollection/>}/>
+        <Route path='/' element={<NewHome/>}/>
+        <Route path ='/collection' element={<ExploreCollection/>}/>
         <Route path='/create' element={<Create/>} />
         <Route path='/collection/:name' element={<CollectionNewHome/>} />
       </Routes>
