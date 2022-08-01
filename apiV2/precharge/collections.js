@@ -9,7 +9,7 @@ const Collections = [
   {
     name: 'Rick & Morty',
     category: 'Collectibles',
-    frontPage: 'https://lh3.googleusercontent.com/Cs8s9kzOUBswLhrCYbMVJSaS5ywrXqKmzc1ssd1X92JVFp46T8KB0rerheYHgrD5GiW5ogeKAjYZhXcUd8l2aqoa8dGZWURSGe3lFg=h400',
+    frontPage: 'https://hbomax-images.warnermediacdn.com/images/GXkRjxwjR68PDwwEAABKJ/tileburnedin?size=1280x720&partner=hbomaxcom&v=a1b309dcec5d1c926cdc9e8178e5bafe&host=art-gallery.api.hbo.com&language=es-419&w=1280',
     mini: 'https://lh3.googleusercontent.com/Cs8s9kzOUBswLhrCYbMVJSaS5ywrXqKmzc1ssd1X92JVFp46T8KB0rerheYHgrD5GiW5ogeKAjYZhXcUd8l2aqoa8dGZWURSGe3lFg=h400',
     description: 'Best Rick & Morty NFT collection on the internet '
   },
