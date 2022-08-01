@@ -16,7 +16,8 @@ import {
   GET_CLIENTE_SECRET,
   SET_MULTIPLE_FILTERS,
   GET_ALL_COLLECTION,
-  GET_COLLECTION_BY_NAME
+  GET_COLLECTION_BY_NAME,
+  GET_FILTER_COLLECTION
 } from './ActionsCreators'
 import axios from 'axios'
 
@@ -125,7 +126,7 @@ export function userFromLocalStorage () {
 }
 export function getAllCategories () {
   return function (dispatch) {
-    axios('/categories')
+    axios('/category')
       .then(res => dispatch({
         type: GET_ALL_CATEGORIES,
         payload: res.data
@@ -165,6 +166,17 @@ export function getCollectionByName (name) {
     axios(`/collection/detail/${name}`)
       .then(res => dispatch({
         type: GET_COLLECTION_BY_NAME,
+        payload: res.data
+      }))
+      .catch(error => console.log(error.message))
+  }
+}
+
+export function getFilterCollection (type) {
+  return function (dispatch) {
+    axios(`/collection/all?category=${type}`)
+      .then(res => dispatch({
+        type: GET_FILTER_COLLECTION,
         payload: res.data
       }))
       .catch(error => console.log(error.message))
