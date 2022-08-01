@@ -14,7 +14,7 @@ const CurrentPriceDetail = (props) => {
 
       <div className='flex my-2'>
         <FaEthereum className='text-white text-xl'/>
-        <p className=' ml-2 text-xl self-auto text-white tracking-wider'>{`${props.price} MONEDA`}</p>
+        <p className=' ml-2 text-xl self-auto text-white tracking-wider'>{`${props.price} ETH`}</p>
       </div>
 
     </div>

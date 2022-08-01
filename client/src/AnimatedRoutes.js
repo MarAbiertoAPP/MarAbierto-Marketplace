@@ -22,9 +22,7 @@ export default function AnimatedRoutes () {
     <AnimatePresence exitBeforeEnter>
       <Routes location={location} key={location.pathname}>
 
-
         <Route path="/" element={<NewHome/>}/>
-
 
         <Route path='/wallet' element={<WalletCardEthers/>}/>
         {/* <Route path="/home" element={<NewHome/>}/> */}

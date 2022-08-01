@@ -18,9 +18,8 @@ import {
   GET_ALL_COLLECTION,
 
   GET_COLLECTION_BY_NAME,
-  GET_FILTER_COLLECTION,
+  GET_FILTER_COLLECTION
 
-  GET_COLLECTION_BY_NAME,
   // GET_LAST_DROPS,
   // GET_TOP_DROPS
 
@@ -178,7 +177,6 @@ export function getCollectionByName (name) {
   }
 }
 
-
 export function getFilterCollection (type) {
   return function (dispatch) {
     axios(`/collection/all?category=${type}`)
@@ -195,4 +193,3 @@ export function getFilterCollection (type) {
 //     axios.get()
 //   }
 // }
-

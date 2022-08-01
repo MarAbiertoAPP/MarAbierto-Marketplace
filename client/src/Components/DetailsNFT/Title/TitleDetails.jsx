@@ -7,7 +7,7 @@ const TitleDetails = ({ title }) => {
   }
   return (
         <div className='text-center'>
-          <h1 className='my-6 text-3xl md:text-6xl tracking-wider text-amber-600 mx-8'>{title}</h1>
+          <h1 className='my-6 text-3xl md:text-6xl tracking-wider text-purple-700 mx-8'>{title}</h1>
 
           {/* <div className='flex justify-center items-center -my-10'>
             <Link to='/'>

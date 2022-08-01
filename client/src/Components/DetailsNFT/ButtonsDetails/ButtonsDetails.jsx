@@ -82,9 +82,9 @@ const ButtonsDetails = (props) => {
 
   return (
     <div className='flex flex-col md:flex-row space-around mt-20 space-y-4 md:space-y-0'>
-        <button onClick={handleBuyNow} className='basis-4/12 bg-amber-600 mx-8 text-2xl py-4'>{t('buyNow.buyNow')}</button>
+        <button onClick={handleBuyNow} className='basis-4/12 bg-purple-700 hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('buyNow.buyNow')}</button>
        {/*  <button className='basis-4/12 bg-amber-600 mx-8 text-2xl py-4'>{t('makeOffer.makeOffer')}</button> */}
-        <button onClick={handleAddToCart} className='basis-4/12 bg-amber-600 mx-8 text-2xl py-4'>{t('AddToCart.AddToCart')}</button>
+        <button onClick={handleAddToCart} className='basis-4/12 bg-purple-700 hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('AddToCart.AddToCart')}</button>
     </div>
   )
 }
