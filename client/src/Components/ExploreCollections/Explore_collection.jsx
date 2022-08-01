@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next'
 // import user from '../../assests/demo/fotouser.jpeg'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getAllCategories, getAllCollection, getFilterCollection } from '../../Redux/Actions'
+import { getAllCategories, getFilterCollection } from '../../Redux/Actions'
 
 // const dataFromApiExample = [
 //   { img: p1, name: 'The Potatoz', mini: user },
@@ -45,7 +45,7 @@ const ExploreCollection = () => {
 
   const dispatch = useDispatch()
 
-  const allCollections = useSelector(state => state.Collection.collections)
+  // const allCollections = useSelector(state => state.Collection.collections)
   const filterCollection = useSelector(state => state.CollByCategory.collections)
 
   const allCategories = useSelector(state => state.categories)
@@ -54,8 +54,8 @@ const ExploreCollection = () => {
   const [t] = useTranslation('faq')
 
   useEffect(() => {
-    dispatch(getAllCollection())
     dispatch(getAllCategories())
+    dispatch(getFilterCollection())
   }, [dispatch])
 
   const handleClick = (e) => {
@@ -87,7 +87,7 @@ const ExploreCollection = () => {
       </div>
 
       <div className='w-full mt-10 flex flex-row flex-wrap justify-center'>
-        {allCollections?.map(({ name, frontPage, id, mini }) => {
+        {filterCollection?.map(({ name, frontPage, id, mini }) => {
           return <CardExploreCollections key={id} id={id} frontPage={frontPage} mini={mini} name={name}/>
         })}
 
