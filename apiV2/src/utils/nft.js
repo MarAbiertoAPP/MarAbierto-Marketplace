@@ -1,6 +1,6 @@
-const { nft, favorite } = require('../db.js')
+const { nft /* favorite */ } = require('../db.js')
 const { getCollectionIdByName } = require('./collection.js')
-const { findUser } = require('../utils/user')
+// const { findUser } = require('../utils/user')
 
 // Create nft
 const createNFT = async (title, description, img, price, collectionName) => {
@@ -44,7 +44,7 @@ const deleteAllNft = async () => {
 module.exports = {
   createNFT,
   getNftId,
-  addFavorite,
-  getFavoritesPerId,
+  // addFavorite,
+  // getFavoritesPerId,
   deleteAllNft
 }
