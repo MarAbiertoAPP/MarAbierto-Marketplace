@@ -17,6 +17,8 @@ import {
   SET_MULTIPLE_FILTERS,
   GET_ALL_COLLECTION,
   GET_COLLECTION_BY_NAME
+  // GET_LAST_DROPS,
+  // GET_TOP_DROPS
 } from './ActionsCreators'
 import axios from 'axios'
 
@@ -170,3 +172,9 @@ export function getCollectionByName (name) {
       .catch(error => console.log(error.message))
   }
 }
+
+// export function getLastDrops(){
+//   return function(dispatch){
+//     axios.get()
+//   }
+// }
