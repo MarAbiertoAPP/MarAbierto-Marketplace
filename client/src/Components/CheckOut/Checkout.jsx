@@ -30,7 +30,7 @@ export default function Checkout () {
     }
 
     if (checkoutNft.length) {
-      axios.post('/secret', { nftValue })
+      axios.post('/payment', { nftValue })
         .then(response => setSecret(response.data.client_secret))
     }
   }, [checkoutNft])

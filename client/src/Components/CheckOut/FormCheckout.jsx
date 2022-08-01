@@ -51,7 +51,7 @@ const CheckoutForm = () => {
 
           : ('PAY')}</button>
       {/* Show error message to your customers */}
-{loading && <h1 className='text-white text-xl text-lime-600' >ENVIANDO PAGO...</h1>}
+{loading && <h1 className='text-xl text-lime-600' >ENVIANDO PAGO...</h1>}
       {errorMessage && <div className='text-white'>{errorMessage}</div>}
     </form>
   )
