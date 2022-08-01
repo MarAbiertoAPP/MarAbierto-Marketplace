@@ -19,7 +19,7 @@ import {
   GET_CLIENTE_SECRET,
   SET_USER,
   DETAIL,
-  BUY_NOW, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME
+  BUY_NOW, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION
 } from '../Actions/ActionsCreators'
 
 const initialState = {
@@ -43,7 +43,8 @@ const initialState = {
   detail: {},
   Conv: [],
   Collection: [],
-  CollName: []
+  CollName: [],
+  CollByCategory: []
 }
 
 export default function rootReducer (state = initialState, action) {
@@ -223,6 +224,11 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state,
         CollName: action.payload
+      }
+    case GET_FILTER_COLLECTION:
+      return {
+        ...state,
+        CollByCategory: action.payload
       }
     default:
       return { ...state }

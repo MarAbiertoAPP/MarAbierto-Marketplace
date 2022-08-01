@@ -51,7 +51,7 @@ export default function CollectionNewHome (props) {
   }
 
   const { CollName } = useSelector(state => state)
-  console.log(CollName)
+
   useEffect(() => {
     dispatch(getCollectionByName(name))
   }, [])

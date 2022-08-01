@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next'
 // import user from '../../assests/demo/fotouser.jpeg'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getAllCollection } from '../../Redux/Actions'
+import { getAllCategories, getFilterCollection } from '../../Redux/Actions'
 
 // const dataFromApiExample = [
 //   { img: p1, name: 'The Potatoz', mini: user },
@@ -42,16 +42,25 @@ const ExploreCollection = () => {
   //     .then(response => setcollection(response.data.nft))
   // }, [])
   // console.log(collection)
+
   const dispatch = useDispatch()
 
-  const allCollections = useSelector(state => state.Collection.collections)
+  // const allCollections = useSelector(state => state.Collection.collections)
+  const filterCollection = useSelector(state => state.CollByCategory.collections)
 
+  const allCategories = useSelector(state => state.categories)
+
+  console.log(filterCollection, 'soy el filter')
   const [t] = useTranslation('faq')
 
   useEffect(() => {
-    dispatch(getAllCollection())
+    dispatch(getAllCategories())
+    dispatch(getFilterCollection())
   }, [dispatch])
 
+  const handleClick = (e) => {
+    dispatch(getFilterCollection(e.target.value))
+  }
   return (
     <div className={style.div}>
 
@@ -61,8 +70,11 @@ const ExploreCollection = () => {
 
       <div className='w-full flex space-x-10 mt-8'>
 
-      <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>All</h1>
-        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Top</h1>
+      <button onClick={(e) => handleClick(e)} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>All</button>
+      {allCategories?.map(e => {
+        return <button key={e.id} value={e.name} id={e.id} onClick={handleClick} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{e.name}</button>
+      })}
+        {/* <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Top</h1>
         <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Art</h1>
         <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Collectibles</h1>
         <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Virtual Worlds</h1>
@@ -71,11 +83,11 @@ const ExploreCollection = () => {
         <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Sports</h1>
         <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Photography</h1>
         <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Domain Names</h1>
-        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Music</h1>
+        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Music</h1> */}
       </div>
 
       <div className='w-full mt-10 flex flex-row flex-wrap justify-center'>
-        {allCollections?.map(({ name, frontPage, id, mini }) => {
+        {filterCollection?.map(({ name, frontPage, id, mini }) => {
           return <CardExploreCollections key={id} id={id} frontPage={frontPage} mini={mini} name={name}/>
         })}
 
