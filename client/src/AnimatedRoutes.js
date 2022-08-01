@@ -1,4 +1,5 @@
 import React from 'react'
+
 /* import Home from './Components/Home/Home' */
 /* import Landing from './Components/LandingPage/Landing' */
 import Faq from './Components/Faq/faq'
@@ -20,7 +21,9 @@ export default function AnimatedRoutes () {
   return (
     <AnimatePresence exitBeforeEnter>
       <Routes location={location} key={location.pathname}>
-       {/*  <Route path="/" element={<Landing/>}/> */}
+
+        <Route path="/" element={<NewHome/>}/>
+
         <Route path='/wallet' element={<WalletCardEthers/>}/>
         {/* <Route path="/home" element={<NewHome/>}/> */}
         <Route path="/cart" element={<Cart/>}/>
@@ -29,7 +32,6 @@ export default function AnimatedRoutes () {
         <Route path="/faq" element={<Faq/>}/>
         <Route path='/user' element={<UserDetail/>}/>
         <Route path='/thanks' element={<ThanksForBuying/>}/>
-        <Route path='/' element={<NewHome/>}/>
         <Route path = '/collection' element={<ExploreCollection/>}/>
         <Route path='/create' element={<Create/>} />
         <Route path='/collection/:name' element={<CollectionNewHome/>} />
