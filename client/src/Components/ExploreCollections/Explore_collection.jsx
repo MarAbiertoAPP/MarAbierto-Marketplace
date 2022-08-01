@@ -44,7 +44,8 @@ const ExploreCollection = () => {
   // console.log(collection)
   const dispatch = useDispatch()
 
-  const { Collection } = useSelector(state => state)
+  const allCollections = useSelector(state => state.Collection.collections)
+  console.log(allCollections)
 
   useEffect(() => {
     dispatch(getAllCollection())
@@ -73,7 +74,7 @@ const ExploreCollection = () => {
       </div>
 
       <div className='w-full mt-10 flex flex-row flex-wrap justify-center'>
-        {Collection?.map(({ name, frontPage, id, mini }) => {
+        {allCollections?.map(({ name, frontPage, id, mini }) => {
           return <CardExploreCollections key={id} id={id} frontPage={frontPage} mini={mini} name={name}/>
         })}
 
