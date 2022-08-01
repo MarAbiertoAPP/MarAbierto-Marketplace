@@ -21,7 +21,7 @@ const Details = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    axios.get(`/nft/${id}`)
+    axios.get(`/nft/detail/${id}`)
       .then(response => setNftDetail(response.data))
   }, [])
 
