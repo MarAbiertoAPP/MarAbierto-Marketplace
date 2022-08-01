@@ -44,13 +44,9 @@ const ExploreCollection = () => {
   // console.log(collection)
   const dispatch = useDispatch()
 
-
   const allCollections = useSelector(state => state.Collection.collections)
 
-
   const [t] = useTranslation('faq')
-
-
 
   useEffect(() => {
     dispatch(getAllCollection())
