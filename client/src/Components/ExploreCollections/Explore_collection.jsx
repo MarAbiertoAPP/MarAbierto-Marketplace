@@ -3,7 +3,7 @@ import style from './Explore_collection.module.css'
 
 import Nav from '../UI/Nav/Navigation'
 import CardExploreCollections from './ExploreCollectionsResources/CardExploreCollections'
-
+import { useTranslation } from 'react-i18next'
 // import p1 from '../../assests/demoCollections/1.png'
 // import p2 from '../../assests/demoCollections/2.png'
 // import p3 from '../../assests/demoCollections/3.gif'
@@ -44,7 +44,13 @@ const ExploreCollection = () => {
   // console.log(collection)
   const dispatch = useDispatch()
 
-  const { Collection } = useSelector(state => state)
+
+  const allCollections = useSelector(state => state.Collection.collections)
+
+
+  const [t] = useTranslation('faq')
+
+
 
   useEffect(() => {
     dispatch(getAllCollection())
@@ -55,7 +61,7 @@ const ExploreCollection = () => {
 
       <Nav/>
       <div className='mt-16 w-full max-w-screen-xl'>
-      <h1 className='text-3xl text-white'>Explore Collections</h1>
+      <h1 className='text-3xl text-white'>{t('ExploreCollections.ExploreCollections')}</h1>
 
       <div className='w-full flex space-x-10 mt-8'>
 
@@ -73,8 +79,8 @@ const ExploreCollection = () => {
       </div>
 
       <div className='w-full mt-10 flex flex-row flex-wrap justify-center'>
-        {Collection?.map(({ name, frontPage, id }) => {
-          return <CardExploreCollections key={id} id={id} frontPage={frontPage} mini={frontPage} name={name}/>
+        {allCollections?.map(({ name, frontPage, id, mini }) => {
+          return <CardExploreCollections key={id} id={id} frontPage={frontPage} mini={mini} name={name}/>
         })}
 
       </div>

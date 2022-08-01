@@ -21,7 +21,7 @@ const Details = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    axios.get(`/stores/nft/${id}`)
+    axios.get(`/nft/detail/${id}`)
       .then(response => setNftDetail(response.data))
   }, [])
 
@@ -39,7 +39,7 @@ const Details = () => {
 
         <div className={`my-6 flex flex-col xl:flex-row w-full min-h-min xl:${style.limitH} pb-9`}>
 
-          <RenderImg img={nftDetail?.path}/>
+          <RenderImg img={nftDetail?.img}/>
           <div className='flex flex-col basis-8/12 '>
 
             <TitleLikesXL title={nftDetail?.title}/>

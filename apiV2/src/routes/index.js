@@ -10,7 +10,7 @@ const router = Router()
 router.use('/payment', payment)
 router.use('/category', category)
 router.use('/collection', collection)
-router.use('./nft', nft)
+router.use('/nft', nft)
 router.use('/users', user)
 router.use('/favorite', favorite)
 
