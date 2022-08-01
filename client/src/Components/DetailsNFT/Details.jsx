@@ -14,8 +14,12 @@ import ButtonsDetails from './ButtonsDetails/ButtonsDetails'
 import Nav from '../UI/Nav/Navigation'
 import Footer from '../Footer/Footer'
 import { motion } from 'framer-motion'
+import { useSelector } from 'react-redux'
 
 const Details = () => {
+  const { name, description } = useSelector(state => state.CollName.collectionS)
+  const { title } = useSelector(state => state.detail)
+  console.log(title)
   const { id } = useParams()
   const [nftDetail, setNftDetail] = useState({})
 
@@ -30,20 +34,20 @@ const Details = () => {
     className={style.div}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
+    exit={{ opacity: 0 }}security
     >
       <div className={'mt-10 flex flex-col items-center w-screen max-w-screen-xl'} >
       <Nav/>
-        <TitleDetails />
-        <TitleLikesSM title={nftDetail?.title}/>
+        <TitleDetails title={name.toUpperCase()} />
+        <TitleLikesSM title={title}/>
 
         <div className={`my-6 flex flex-col xl:flex-row w-full min-h-min xl:${style.limitH} pb-9`}>
 
           <RenderImg img={nftDetail?.img}/>
           <div className='flex flex-col basis-8/12 '>
 
-            <TitleLikesXL title={nftDetail?.title}/>
-            <DetailsDescription description={nftDetail?.description}/>
+            <TitleLikesXL title={title}/>
+            <DetailsDescription description={description}/>
 
             <div className='w-full p-4 md:px-14 xl:p-8 '>
 
