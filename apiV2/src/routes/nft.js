@@ -7,7 +7,8 @@ const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../util
 // Route GET with search by name and filters
 // params came by body
 // pagination came by query
-router.get('/nft', async (req, res) => {
+router.get('/', async (req, res) => {
+  console.log('in')
   try {
     const input = req.query
     // Get query to order
@@ -26,10 +27,11 @@ router.get('/nft', async (req, res) => {
       const priceMinMax = input.price.split('_')
       whereQuery.price = { [Op.between]: [Number(priceMinMax[0]), Number(priceMinMax[1])] }
     }
-    if (input.categoryId) whereQuery.categoryId = input.categoryId.split('_')
+    if (input.collectionId) whereQuery.collectionId = input.collectionId.split('_')
     if (input.isActive) whereQuery.isActive = input.isActive
     if (input.userId) whereQuery.userId = input.userId
 
+    console.log(whereQuery)
     // Count the total data filtered
     const count = await nft.count({
       where: whereQuery
@@ -39,20 +41,15 @@ router.get('/nft', async (req, res) => {
       where: whereQuery,
       include: [{
         model: collection,
-        attributes: ['id', 'name'],
+        attributes: ['id', 'name', 'categoryId'],
         include: [{
           model: user,
           attributes: ['nickname']
         }]
-      },
-      {
-        model: category,
-        attributes: []
       }
       ],
       attributes: [
-        'id', 'title', 'description', 'img', 'price', 'isActive',
-        [Sequelize.literal('"category"."name"'), 'Category']
+        'id', 'title', 'description', 'img', 'price', 'isActive'
       ],
       order: [
         orderQuery
@@ -64,6 +61,7 @@ router.get('/nft', async (req, res) => {
     return res.status(200).json({
       nft: nftsFiltered,
       currentPage: offset,
+      totalNFT: count,
       totalPage: Math.ceil(count / limit)
     })
   } catch (error) {
@@ -129,7 +127,7 @@ router.get('/nft/fav', async (req, res) => {
 })
 
 // GetNft per Id
-router.get('/nft/:id', async (req, res) => {
+router.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params
     const response = await getNftId(id)

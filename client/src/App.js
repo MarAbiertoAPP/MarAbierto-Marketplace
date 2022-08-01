@@ -10,6 +10,7 @@ const clientId = process.env.REACT_APP_AUTH0
 export default function App () {
   return (
     <Fragment>
+
       <BrowserRouter>
         <Auth0Provider
           domain={domain}
