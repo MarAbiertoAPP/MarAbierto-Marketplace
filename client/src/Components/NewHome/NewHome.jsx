@@ -107,7 +107,7 @@ export default function NewHome () {
 
         <div className='w-full'>
           
-          <div className='mb-20'>
+          <div className='mb-20 capitalize'>
            <Carousel data={Collection.collections}/>
           </div>
 

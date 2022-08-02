@@ -5,19 +5,24 @@ import CardExploreCollections from './ExploreCollectionsResources/CardExploreCol
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
-import { getFilterCollection, setPageMaxCollec } from '../../Redux/Actions'
+import { createUser, getFilterCollection, setPageMaxCollec } from '../../Redux/Actions'
 import PaginationCollection from './PaginationCollection/PaginationCollection'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import FilterCollections from './FiltersCollections/FilterCollections'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const ExploreCollection = () => {
   const dispatch = useDispatch()
-
+  const { isAuthenticated, user } = useAuth0()
   const [t] = useTranslation('faq')
 
   useEffect(() => {
     dispatch(getFilterCollection())
+    window.scrollTo(0, 0)
+    if (isAuthenticated) {
+      dispatch(createUser(user))
+    }
   }, [])
 
   // const handleClick = (e) => {
