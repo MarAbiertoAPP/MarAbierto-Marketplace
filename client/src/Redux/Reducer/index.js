@@ -19,7 +19,7 @@ import {
   GET_CLIENTE_SECRET,
   SET_USER,
   DETAIL,
-  BUY_NOW, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION
+  BUY_NOW, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC
 } from '../Actions/ActionsCreators'
 
 const initialState = {
@@ -44,7 +44,15 @@ const initialState = {
   Conv: [],
   Collection: [],
   CollName: [],
-  CollByCategory: []
+  CollByCategory: [],
+  filterCollec: {
+    title: null,
+    categoryName: null,
+    userId: null,
+    page: 1,
+    max: undefined,
+    cardsPerPage: 10
+  }
 }
 
 export default function rootReducer (state = initialState, action) {
@@ -230,6 +238,32 @@ export default function rootReducer (state = initialState, action) {
         ...state,
         CollByCategory: action.payload
       }
+    case FILTER_COLLEC_BY_CATEGORY:
+      return {
+        ...state,
+        filterCollec: {
+          ...state.filterCollec,
+          categoryName: action.payload
+        }
+      }
+    case SET_PAGE_COLLEC:
+      return {
+        ...state,
+        filterCollec: {
+          ...state.filterCollec,
+          page: action.payload
+        }
+      }
+
+    case SET_PAGE_MAX_COLLEC:
+      return {
+        ...state,
+        filterCollec: {
+          ...state.filterCollec,
+          max: action.payload
+        }
+      }
+
     default:
       return { ...state }
   }

@@ -18,7 +18,10 @@ import {
   GET_ALL_COLLECTION,
 
   GET_COLLECTION_BY_NAME,
-  GET_FILTER_COLLECTION
+  GET_FILTER_COLLECTION,
+  FILTER_COLLEC_BY_CATEGORY,
+  SET_PAGE_COLLEC,
+  SET_PAGE_MAX_COLLEC
 
   // GET_LAST_DROPS,
   // GET_TOP_DROPS
@@ -185,6 +188,27 @@ export function getFilterCollection (type) {
         payload: res.data
       }))
       .catch(error => console.log(error.message))
+  }
+}
+
+export function filterCollecByCategory (categoryName) {
+  return {
+    type: FILTER_COLLEC_BY_CATEGORY,
+    payload: categoryName
+  }
+}
+
+export function setPageCollec (page) {
+  return {
+    type: SET_PAGE_COLLEC,
+    payload: page
+  }
+}
+
+export function setPageMaxCollec (pageMax) {
+  return {
+    type: SET_PAGE_MAX_COLLEC,
+    payload: pageMax
   }
 }
 
