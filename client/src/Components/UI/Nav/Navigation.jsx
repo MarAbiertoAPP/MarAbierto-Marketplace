@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import DropDownTail from '../../Home/Dropdown/Dropdown'
 import Classes from './navigation.module.css'
 import Logo from '../../../assests/LogoPMA.png'
@@ -14,12 +14,12 @@ import { useNavigate } from 'react-router-dom'
 import { resetFilters } from '../../../Redux/Actions'
 import LanguajeButton from '../../LanguajeButton/LanguajeButton'
 
-export default function Nav () {
+function Nav () {
   const [open, setOpen] = useState(false)
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
   const [openCart, setOpenCart] = useState(false)
   const cart = useSelector(state => state.Cart)
-
+  console.log(isAuthenticated)
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
@@ -92,6 +92,8 @@ export default function Nav () {
     </div>
   )
 }
+
+export default memo(Nav)
 /* function Dropdown () {
   const {
     loginWithRedirect, isAuthenticated,

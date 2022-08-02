@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from 'react'
+
 import Nav from '../UI/Nav/Navigation'
 import Carousel from './newHomeResources/Carousel'
 import Footer from '../Footer/Footer'
@@ -14,6 +14,9 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCollection } from '../../Redux/Actions';
 import { useEffect } from 'react';
+import ChatbotMar from '../Chatbox/ChatBot'
+
+
 
 
 export default function NewHome () {
@@ -21,6 +24,9 @@ export default function NewHome () {
   const dispatch = useDispatch()
   const Collection = useSelector(state => state.Collection)
   const navigate = useNavigate()
+
+
+
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -30,6 +36,7 @@ export default function NewHome () {
   return (
     <div className={style.div}>
       <Nav/>
+      
 
       <div className={'mt-20 w-full max-w-screen-xl flex xl:max-h-limitHnewHome'}>
 
@@ -46,7 +53,7 @@ export default function NewHome () {
               <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>{t("create.create")}</button> 
             </Link>
           </div>
-          
+          <ChatbotMar/>
           <div>
             <h1 className='text-lg text-white text-purple-500'>Learn more about MarAbierto</h1>
           </div>
@@ -81,7 +88,7 @@ export default function NewHome () {
             {/* <CarouselLanding data={fadeImages}/> */}
           </div>
           <div>
-            
+           
           
 
 
@@ -91,7 +98,7 @@ export default function NewHome () {
         </div>
 
       </div>
-
+      
 
       {/* /------el primer componente esta de aqui para arriba, de aqui para abajo el segundo-------- */}
 
