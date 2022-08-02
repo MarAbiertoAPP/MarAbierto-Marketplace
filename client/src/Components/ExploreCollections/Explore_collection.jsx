@@ -116,9 +116,9 @@ const ExploreCollection = () => {
 
       </div>
       <div className='w-full mt-10 flex flex-row flex-wrap justify-center'>
-        {dataAPI && dataAPI.collections?.map(({ name, frontPage, id, mini }) => {
-          return <CardExploreCollections key={id} id={id} frontPage={frontPage} mini={mini} name={name}/>
-        })}
+        {dataAPI && dataAPI.collections?.map(({ name, frontPage, id, mini }) => frontPage
+          ? <CardExploreCollections key={id} id={id} frontPage={frontPage} mini={mini} name={name}/>
+          : null)}
       </div>
 <PaginationCollection/>
       </div>

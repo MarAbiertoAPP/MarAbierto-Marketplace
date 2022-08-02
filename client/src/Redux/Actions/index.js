@@ -21,7 +21,8 @@ import {
   GET_FILTER_COLLECTION,
   FILTER_COLLEC_BY_CATEGORY,
   SET_PAGE_COLLEC,
-  SET_PAGE_MAX_COLLEC
+  SET_PAGE_MAX_COLLEC,
+  CLEAN_COLLECTION_BY_NAME
 
   // GET_LAST_DROPS,
   // GET_TOP_DROPS
@@ -177,6 +178,13 @@ export function getCollectionByName (name) {
         payload: res.data
       }))
       .catch(error => console.log(error.message))
+  }
+}
+
+export function cleanCollectionByName () {
+  return {
+    type: CLEAN_COLLECTION_BY_NAME,
+    payload: {}
   }
 }
 
