@@ -6,6 +6,7 @@ const DetailsDescription = ({ description }) => {
 
     description: PropTypes.any
   }
+
   return (
      <div className='w-full px-4 md:px-14 xl:px-8 py-6 '>
         <p className='text-md self-auto text-white tracking-wider'>{name}</p>

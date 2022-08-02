@@ -14,6 +14,7 @@ import FilterCollections from './FiltersCollections/FilterCollections'
 const ExploreCollection = () => {
   const dispatch = useDispatch()
 
+
   const [t] = useTranslation('faq')
 
   useEffect(() => {
@@ -29,9 +30,11 @@ const ExploreCollection = () => {
   /// //////////////////////////////////////////////////////////////////
   const filterConfig = useSelector(state => state.filterCollec)
 
+
   const [dataAPI, setDataAPI] = useState({})
   const navigate = useNavigate()
   const location = useLocation()
+
 
   useEffect(() => {
     let url = stateToUrl(filterConfig)
@@ -107,13 +110,13 @@ const ExploreCollection = () => {
   }
   return (
     <div className={style.div}>
-
       <Nav/>
       <div className='mt-16 w-full max-w-screen-xl'>
       <h1 className='text-3xl text-white'>{t('ExploreCollections.ExploreCollections')}</h1>
 
       <div className='w-full flex space-x-10 mt-8'>
       <FilterCollections/>
+     
       </div>
       <div className='w-full mt-10 flex flex-row flex-wrap justify-center'>
         {dataAPI && dataAPI.collections?.map(({ name, frontPage, id, mini }) => {

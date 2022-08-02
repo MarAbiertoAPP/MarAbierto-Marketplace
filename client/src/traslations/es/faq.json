@@ -24,7 +24,7 @@
         "title": "¿Can i sell my NFTs?",
         "answer": "For shure! in Mar Abierto you can post and sell your NFTs"
     },
-    "music": {
+    "musicc": {
         "nftDetail": "El Music Ape Club es una colección de NFT (coleccionables digitales únicos) almacenados como tokens ERC-721 en la cadena de bloques Ethereum. Con más de 180 rasgos dibujados a mano, cada NFT es único y lo recompensa con un porcentaje proporcional de participación en los ingresos de una microempresa de cannabis legal. Ingrese al mundo de web3 con la familia STAC. Con más de 180 rasgos dibujados a mano, cada NFT es único y viene con una membresía a un grupo exclusivo de exitosos músicos independientes e inversores inmobiliarios. Siente el ritmo con nuestra comunidad privada con un sinfín de beneficios y utilidades"
     },
     "collectionName": {
@@ -98,5 +98,38 @@
     },
     "ExploreCollections": {
         "ExploreCollections": "Explorar Colecciones"
+    },
+    "art": {
+        "art": "Arte"
+    },
+    "collectibles": {
+        "collectibles": "Collecionables"
+    },
+    "virtual worlds": {
+        "virtual worlds": "Mundo Virtual"
+    },
+    "utility": {
+        "utility": "Utilidades"
+    },
+    "trading": {
+        "trading": "Comerciales"
+    },
+    "cards": {
+        "cards": "Cartas"
+    },
+    "sports": {
+        "sports": "Deportes"
+    },
+    "photography": {
+        "photography": "Fotografia"
+    },
+    "domain names": {
+        "domain names": "Dominios"
+    },
+    "music": {
+        "music": "Musica"
+    },
+    "all": {
+        "all": "Todos"
     }
 }

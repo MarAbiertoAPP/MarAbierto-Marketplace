@@ -24,7 +24,7 @@
         "title": "¿Can i sell my NFTs?",
         "answer": "For shure! in Mar Abierto you can post and sell your NFTs"
     },
-    "music": {
+    "musicc": {
         "nftDetail": "he Music Ape Club is a collection of NFTs (unique digital collectibles) stored as ERC-721 tokens on the Ethereum blockchain. With more than 180+ hand drawn traits, each NFT is unique and rewards you with a proportional percentage of revenue share from a legal cannabis microbusiness. Step into the world of web3 with the STAC Family. With more than 180+ hand drawn traits, each NFT is unique and comes with a membership to an exclusive group of successful indie musicians and real estate investors. Feel the beat with our private community with endless benefits and utilities"
     },
     "collectionName": {
@@ -55,9 +55,7 @@
         "newHomeTitle": "Discover, collect, and sell extraordinary NFTs"
     },
     "newHomedetailInfo": {
-
         "newHomedetailInfo": "MarAbierto is the world's first and largest NFT marketplace"
-
     },
     "explore": {
         "explore": "Explore"
@@ -100,5 +98,38 @@
     },
     "ExploreCollections": {
         "ExploreCollections": "ExploreCollections"
+    },
+    "art": {
+        "art": "Art"
+    },
+    "collectibles": {
+        "collectibles": "Collectibles"
+    },
+    "virtual worlds": {
+        "virtual worlds": "virtual worlds"
+    },
+    "utility": {
+        "utility": "Utility"
+    },
+    "trading": {
+        "trading": "Trading"
+    },
+    "cards": {
+        "cards": "Cards"
+    },
+    "sports": {
+        "sports": "sports"
+    },
+    "photography": {
+        "photography": "photography"
+    },
+    "domain names": {
+        "domain names": "Domain Names"
+    },
+    "music": {
+        "music": "music"
+    },
+    "all": {
+        "all": "ALL"
     }
 }

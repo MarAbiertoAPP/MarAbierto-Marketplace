@@ -17,6 +17,7 @@ export default function App () {
           clientId={clientId}
           redirectUri={`${window.location.origin}`}
         >
+
           <AnimatedRoutes />
         </Auth0Provider>
       </BrowserRouter>
