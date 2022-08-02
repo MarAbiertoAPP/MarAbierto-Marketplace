@@ -9,7 +9,7 @@ import { FaDiscord, FaTwitter, FaShareAlt } from 'react-icons/fa'
 import { BsGridFill, BsGrid3X3GapFill } from 'react-icons/bs'
 import { AiFillStar, AiOutlineMore } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCollectionByName } from '../../Redux/Actions'
+import { cleanCollectionByName, getCollectionByName } from '../../Redux/Actions'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -54,6 +54,7 @@ export default function CollectionNewHome (props) {
 
   useEffect(() => {
     dispatch(getCollectionByName(name))
+    return () => dispatch(cleanCollectionByName())
   }, [])
 
   return (
