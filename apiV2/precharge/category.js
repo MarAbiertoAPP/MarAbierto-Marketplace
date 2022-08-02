@@ -12,12 +12,6 @@ const Categories = [
     name: 'Utility'
   },
   {
-    name: 'Trading'
-  },
-  {
-    name: 'Cards'
-  },
-  {
     name: 'Sports'
   },
   {
@@ -28,6 +22,9 @@ const Categories = [
   },
   {
     name: 'Music'
+  },
+  {
+    name: 'Trading Cards'
   }
 ]
 

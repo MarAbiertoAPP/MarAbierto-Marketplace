@@ -1,99 +1,126 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './Explore_collection.module.css'
-
 import Nav from '../UI/Nav/Navigation'
 import CardExploreCollections from './ExploreCollectionsResources/CardExploreCollections'
 import { useTranslation } from 'react-i18next'
-// import p1 from '../../assests/demoCollections/1.png'
-// import p2 from '../../assests/demoCollections/2.png'
-// import p3 from '../../assests/demoCollections/3.gif'
-// import p4 from '../../assests/demoCollections/4.png'
-
-// import user from '../../assests/demo/fotouser.jpeg'
 import { useDispatch, useSelector } from 'react-redux'
-
-import { getAllCategories, getFilterCollection } from '../../Redux/Actions'
-
-// const dataFromApiExample = [
-//   { img: p1, name: 'The Potatoz', mini: user },
-//   { img: p2, name: 'Grande Gatin gatito', mini: user },
-//   { img: p3, name: 'Wisin & Yandel', mini: user },
-//   { img: p4, name: 'el bogs bunny brr', mini: user },
-//   { img: p1, name: 'The Potatoz', mini: user },
-//   { img: p2, name: 'Grande Gatin gatito', mini: user },
-//   { img: p3, name: 'Wisin & Yandel', mini: user },
-//   { img: p4, name: 'el bogs bunny brr', mini: user },
-//   { img: p1, name: 'The Potatoz', mini: user },
-//   { img: p2, name: 'Grande Gatin gatito', mini: user },
-//   { img: p3, name: 'Wisin & Yandel', mini: user },
-//   { img: p4, name: 'el bogs bunny brr', mini: user },
-//   { img: p1, name: 'The Potatoz', mini: user },
-//   { img: p2, name: 'Grande Gatin gatito', mini: user },
-//   { img: p3, name: 'Wisin & Yandel', mini: user },
-//   { img: p4, name: 'el bogs bunny brr', mini: user }
-
-// ]
+import Swal from 'sweetalert2'
+import { getFilterCollection, setPageMaxCollec } from '../../Redux/Actions'
+import PaginationCollection from './PaginationCollection/PaginationCollection'
+import { useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import FilterCollections from './FiltersCollections/FilterCollections'
 
 const ExploreCollection = () => {
-  const [t] = useTranslation('faq')
-  // const [collection, setcollection] = useState()
-
-  // useEffect(() => {
-  //   axios.get('/stores/nft?offset10=&limit=8')
-  //     .then(response => setcollection(response.data.nft))
-  // }, [])
-  // console.log(collection)
-
   const dispatch = useDispatch()
 
-  // const allCollections = useSelector(state => state.Collection.collections)
-  const filterCollection = useSelector(state => state.CollByCategory.collections)
-
-  const allCategories = useSelector(state => state.categories)
-
-  // console.log(filterCollection, 'soy el filter')
+  const [t] = useTranslation('faq')
 
   useEffect(() => {
-    dispatch(getAllCategories())
     dispatch(getFilterCollection())
-  }, [dispatch])
+  }, [])
 
-  const handleClick = (e) => {
-    dispatch(getFilterCollection(e.target.value))
+  // const handleClick = (e) => {
+  //   dispatch(getFilterCollection(e.target.value))
+  // }
+
+  /// //////////////////////////////////////////////////////////////////
+  // PAGINATION
+  /// //////////////////////////////////////////////////////////////////
+  const filterConfig = useSelector(state => state.filterCollec)
+
+  const [dataAPI, setDataAPI] = useState({})
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  useEffect(() => {
+    let url = stateToUrl(filterConfig)
+    url = url.slice(0, -1)
+    if (url !== 'collection?') {
+      navigate(`/${url}`, { push: true })
+    }
+  }, [filterConfig])
+
+  useEffect(() => {
+    if (location.pathname === '/collection') {
+      urlToState(location.search)
+      axios.get(`/collection/all${location.search}`)
+        .then(response => setVariables(response.data))
+        .catch(err => errorHandler(err))
+    }
+  }, [location.search])
+
+  const stateToUrl = (stateFilters) => {
+    let url = 'collection?'
+    if (stateFilters.title) url += `title=${stateFilters.title}&`
+    if (stateFilters.categoryName) url += `category=${stateFilters.categoryName}&`
+    if (stateFilters.isActive) url += `isActive=${stateFilters.isActive}&`
+    if (stateFilters.userId) url += `userId=${stateFilters.userId}&`
+    if (stateFilters.page && stateFilters.page !== 1) url += `page=${stateFilters.page}&`
+    if (stateFilters.cardsPerPage && stateFilters.cardsPerPage !== 10) url += `cardsPerPage=${stateFilters.cardsPerPage}&`
+
+    return url
+  }
+
+  const urlToState = (url) => {
+    if (url === '') return
+    const arrQuerys = url.slice(1).split('&')
+    const newState = {}
+    const numbersKeys = ['page', 'max', 'cardsPerPage']
+    for (const query of arrQuerys) {
+      const key = query.split('=')[0]
+      const value = query.split('=')[1]
+      if (numbersKeys.includes(key)) {
+        newState[key] = Number(value)
+      } else {
+        newState[key] = value
+      }
+    }
+  }
+
+  const setVariables = (data) => {
+    if (data.collections.length === 0) {
+      errorHandler()
+    } else {
+      setDataAPI(data)
+      dispatch(setPageMaxCollec(data.totalPages))
+    }
+  }
+
+  const errorHandler = () => {
+    navigate('/collection', { push: true })
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-right',
+      iconColor: 'white',
+      customClass: {
+        popup: 'colored_toast'
+      },
+      showConfirmButton: false,
+      timer: 1800,
+      timerProgressBar: true
+    })
+    Toast.fire({
+      icon: 'error',
+      title: 'Nothing found'
+    })
   }
   return (
     <div className={style.div}>
-
       <Nav/>
-
       <div className='mt-16 w-full max-w-screen-xl'>
       <h1 className='text-3xl text-white'>{t('ExploreCollections.ExploreCollections')}</h1>
 
       <div className='w-full flex space-x-10 mt-8'>
+      <FilterCollections/>
 
-      <button onClick={(e) => handleClick(e)} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('all.all')}</button>
-      {allCategories?.map(e => {
-        return <button key={e.id} value={e.name} id={e.id} onClick={handleClick} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t(`${e.name}.${e.name}`)}</button>
-      })}
-        {/* <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Top</h1>
-        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Art</h1>
-        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Collectibles</h1>
-        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Virtual Worlds</h1>
-        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Utility</h1>
-        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Trading Cards</h1>
-        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Sports</h1>
-        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Photography</h1>
-        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Domain Names</h1>
-        <h1 className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>Music</h1> */}
       </div>
-
       <div className='w-full mt-10 flex flex-row flex-wrap justify-center'>
-        {filterCollection?.map(({ name, frontPage, id, mini }) => {
+        {dataAPI && dataAPI.collections?.map(({ name, frontPage, id, mini }) => {
           return <CardExploreCollections key={id} id={id} frontPage={frontPage} mini={mini} name={name}/>
         })}
-
       </div>
-
+<PaginationCollection/>
       </div>
     </div>
 

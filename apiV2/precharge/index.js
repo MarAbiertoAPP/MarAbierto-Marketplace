@@ -1,5 +1,5 @@
 const Categories = require('./category')
-const { createCategory, getAllCategoryId } = require('../src/utils/category')
+const { createCategory, findName } = require('../src/utils/category')
 const User = require('./user')
 const { createUser, allUserId } = require('../src/utils/user')
 const Collections = require('./collections')
@@ -20,7 +20,6 @@ const chargue = async () => {
       await createCategory(category.name)
     }
     // Get an array of all categories ID
-    const allCategoryId = await getAllCategoryId()
 
     // Charge all users
     for (const user of User) {
@@ -33,12 +32,12 @@ const chargue = async () => {
     // Charge all collections
     for (const c of Collections) {
       const userIndex = rndNumber(allUsersId.length)
-      const categoryIndex = rndNumber(allCategoryId.length)
+      const cat = await findName(c.category)
 
       await createCollection(
         allUsersId[userIndex].id,
         c.name,
-        allCategoryId[categoryIndex].id,
+        cat.id,
         c.frontPage,
         c.mini,
         c.description)

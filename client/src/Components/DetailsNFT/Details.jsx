@@ -19,7 +19,6 @@ import { useSelector } from 'react-redux'
 const Details = () => {
   const { name, description } = useSelector(state => state.CollName.collectionS)
   const { title } = useSelector(state => state.detail)
-  console.log(title)
   const { id } = useParams()
   const [nftDetail, setNftDetail] = useState({})
 
