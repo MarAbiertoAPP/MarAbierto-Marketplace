@@ -120,7 +120,7 @@
   transition: 600ms;
   user-select: none;
 }
-.icons:hover{
+.iconsOn{
   width: 45px;
   height: 45px;
   filter: grayscale(0) opacity(1);
