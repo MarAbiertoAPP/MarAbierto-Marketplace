@@ -6,55 +6,40 @@ import style from './CollectionNewHome.module.css'
 import Nav from '../UI/Nav/Navigation'
 import Card from '../UI/Card/Card'
 import { FaDiscord, FaTwitter, FaShareAlt } from 'react-icons/fa'
+import { RiFilterFill, RiFilterOffFill } from 'react-icons/ri'
 import { BsGridFill, BsGrid3X3GapFill } from 'react-icons/bs'
 import { AiFillStar, AiOutlineMore } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCollectionByName } from '../../Redux/Actions'
+import { cleanCollectionByName, getCollectionByName } from '../../Redux/Actions'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-
-// const p1 = 'https://img.seadn.io/files/1b67c8533f921855dde46ce73a32028c.png?auto=format&fit=max&w=828'
-// const p2 = 'https://img.seadn.io/files/d6a35930f9a75ea90aecd9a0f913bd65.png?auto=format&fit=max&w=640'
-// const p3 = 'https://img.seadn.io/files/862a1240dd3ee5a17a9e4073c6f6bc95.png?fit=max&w=600'
-// const p4 = 'https://img.seadn.io/files/7144375ec088526d4cafc2897e54a324.png?fit=max&w=600'
-// const p5 = 'https://img.seadn.io/files/3bebdb907036b637a2d4963ca9979c74.png?fit=max&w=600'
-
-// const name1 = 'Music Ape #3777'
-// const name2 = 'Music Ape #3333'
-// const name3 = 'Music Ape #6666'
-// const name4 = 'Music Ape #7777'
-// const name5 = 'Music Ape #9999'
-// const dataFromApiExample = [
-//   { title: name1, image: p1, price: 1.23, id: 1 },
-//   { title: name2, image: p2, price: 0.43, id: 2 },
-//   { title: name3, image: p3, price: 3.43, id: 3 },
-//   { title: name4, image: p4, price: 7.43, id: 4 },
-//   { title: name5, image: p5, price: 5.43, id: 5 },
-//   { title: name1, image: p1, price: 1.23, id: 1 },
-//   { title: name2, image: p2, price: 0.43, id: 2 },
-//   { title: name3, image: p3, price: 3.43, id: 3 },
-//   { title: name4, image: p4, price: 7.43, id: 4 },
-//   { title: name5, image: p5, price: 5.43, id: 5 },
-//   { title: name1, image: p1, price: 1.23, id: 1 },
-//   { title: name2, image: p2, price: 0.43, id: 2 }
-
-// ]
+import SearchBar from './SearchBar'
+import FilterPrice from './FilterPrice'
 
 export default function CollectionNewHome (props) {
   const [t] = useTranslation('faq')
   const dispatch = useDispatch()
   const { name } = useParams()
   const [width, setWidth] = useState(false)
+  const [filt, setFilt] = useState(false)
 
   const changeWidth = () => {
     setWidth(!width)
   }
 
   const { CollName } = useSelector(state => state)
+  const { title } = useSelector(state => state.filterCollec)
+  const { price } = useSelector(state => state.filterCollec)
 
   useEffect(() => {
-    dispatch(getCollectionByName(name))
-  }, [])
+    const collectionCofig = {
+      name,
+      title,
+      price
+    }
+    dispatch(getCollectionByName(collectionCofig))
+    return () => dispatch(cleanCollectionByName())
+  }, [title, price])
 
   return (
     <div className={style.div} >
@@ -123,45 +108,31 @@ export default function CollectionNewHome (props) {
           </div>
         </div>
 
-        <div className='w-full mt-8 flex'>
-
-          <div className='basis-1/12  text-center'>
-            <h1 className='p-1 text-white text-2xl'>X</h1>
+        {/* Filtros y renderizado */}
+        <div className='w-full mt-8 flex justify-between items-center border border-x-transparent border-t-transparent border-b-white pb-2'>
+          < SearchBar/>
+          <div className='flex'>
+            <div className='basis-1/12  flex place-content-around p-2' >
+              {width ? <button className='text-orange-500 text-2xl' onClick={changeWidth }><BsGridFill/></button> : <button className='text-orange-500 text-3xl ' onClick={changeWidth }><BsGrid3X3GapFill/></button> }
+            </div>
+            <div className='basis-1/12  flex place-content-around p-2' >
+              {filt ? <button className='text-orange-500 text-2xl' onClick={() => setFilt(!filt)}><RiFilterOffFill/></button> : <button className='text-orange-500 text-3xl ' onClick={() => setFilt(!filt)}><RiFilterFill/></button> }
           </div>
-
-          <div className='basis-5/12  flex items-center'>
-            <input className='m-1 w-full h-fit text-xl rounded-xl bg-transparent border-white border-2 text-neutral-300'></input>
-          </div>
-
-          <div className='basis-3/12 bg-black  flex items-center'>
-            <select className='w-full text-xl text-center'>
-                <option>Default</option>
-
-                <option>{t('priceFilter.pricefilter')}</option>
-                <option>Price high to low</option>
-
-                <option>Low Popularity</option>
-                <option>Hight Popularity</option>
-
-                <option>A - Z</option>
-                <option>Z - A</option>
-
-            </select>
-          </div>
-
-          <div className='basis-3/12  flex place-content-around p-2' >
-            {width ? <button className='text-orange-500 text-2xl' onClick={changeWidth }><BsGridFill/></button> : <button className='text-orange-500 text-3xl ' onClick={changeWidth }><BsGrid3X3GapFill/></button> }
-
           </div>
 
         </div>
-
-        <div className=' w-full  flex flex-row flex-wrap justify-center '>
-
-            {CollName.nfts?.map(e => {
-              return <Card key={e.id} title={e.title} image={e.img} price={e.price} id={e.id} secondWidth={width} />
-            })}
-
+        <div className='w-full flex'>
+          {
+            filt &&
+            <div>
+              < FilterPrice/>
+            </div>
+          }
+            <div className=' w-full  flex flex-row flex-wrap justify-center '>
+              {CollName.nfts?.map(e => {
+                return <Card key={e.id} title={e.title} image={e.img} price={e.price} id={e.id} secondWidth={width} />
+              })}
+          </div>
         </div>
 
       </div>

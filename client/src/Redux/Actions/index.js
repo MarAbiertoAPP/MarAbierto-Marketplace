@@ -20,8 +20,11 @@ import {
   GET_COLLECTION_BY_NAME,
   GET_FILTER_COLLECTION,
   FILTER_COLLEC_BY_CATEGORY,
+  FILTER_BY_TITLE_CAT,
+  FILTER_BY_PRICE_CAT,
   SET_PAGE_COLLEC,
-  SET_PAGE_MAX_COLLEC
+  SET_PAGE_MAX_COLLEC,
+  CLEAN_COLLECTION_BY_NAME
 
   // GET_LAST_DROPS,
   // GET_TOP_DROPS
@@ -169,14 +172,54 @@ export function getAllCollection () {
   }
 }
 
-export function getCollectionByName (name) {
+export function getCollectionByName ({ name, title, price }) {
   return function (dispatch) {
-    axios(`/collection/detail/${name}`)
+    let query = '?'
+    if (title) {
+      title = title.replace('#', '')
+      query += `title=${title}&`
+    }
+    if (price) {
+      query += `price=${price}&`
+    }
+    query = query.slice(0, -1)
+    console.log(query)
+    axios(`/collection/detail/${name}${query}`)
       .then(res => dispatch({
         type: GET_COLLECTION_BY_NAME,
         payload: res.data
       }))
       .catch(error => console.log(error.message))
+  }
+}
+
+export function filterTitleCollec (payload) {
+  return {
+    type: FILTER_BY_TITLE_CAT,
+    payload
+  }
+}
+
+export function filterPriceCollec (min, max) {
+  if (!min && !max) {
+    return {
+      type: FILTER_BY_PRICE_CAT,
+      payload: null
+    }
+  }
+
+  if (!min) min = 0
+  if (!max) max = 999
+  return {
+    type: FILTER_BY_PRICE_CAT,
+    payload: `${min}_${max}`
+  }
+}
+
+export function cleanCollectionByName () {
+  return {
+    type: CLEAN_COLLECTION_BY_NAME,
+    payload: {}
   }
 }
 

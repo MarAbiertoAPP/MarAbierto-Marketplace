@@ -1,4 +1,4 @@
-const { nft /* favorite */ } = require('../db.js')
+const { nft, collection /* favorite */ } = require('../db.js')
 const { getCollectionIdByName } = require('./collection.js')
 // const { findUser } = require('../utils/user')
 
@@ -23,7 +23,12 @@ const createNFT = async (title, description, img, price, collectionName) => {
 const getNftId = async (id) => {
   try {
     return await nft.findOne({
-      where: { id }
+      where: { id },
+      attributes: ['id', 'title', 'description', 'img', 'price', 'isActive'],
+      include: [{
+        model: collection,
+        attributes: ['name', 'description']
+      }]
     })
   } catch (error) {
     throw error.message

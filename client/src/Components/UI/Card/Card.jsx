@@ -30,7 +30,7 @@ export default function Card ({ title, image, price, id, collectionName, secondW
     title: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.number,
-    id: PropTypes.string,
+    id: PropTypes.number,
     collectionName: PropTypes.string,
     secondWidth: PropTypes.bool
   }
@@ -83,8 +83,8 @@ export default function Card ({ title, image, price, id, collectionName, secondW
   return (
     <motion.div
     className={ secondWidth
-      ? 'w-60 mx-4 my-2 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]'
-      : 'w-72 mx-6 my-4 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]' }
+      ? 'w-60 mx-2 my-2 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]'
+      : 'w-72 mx-4 my-4 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]' }
 
     initial={{ opacity: 0 }}
     whileInView={{ opacity: 1 }}
