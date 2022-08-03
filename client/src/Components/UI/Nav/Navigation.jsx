@@ -10,7 +10,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { IoIosCart } from 'react-icons/io'
 import { Cart } from '../../Cart/Cart'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { resetFilters } from '../../../Redux/Actions'
 import LanguajeButton from '../../LanguajeButton/LanguajeButton'
 
@@ -64,7 +64,12 @@ function Nav () {
             <Cart open={openCart} setOpen={setOpenCart} />
           </li>
           <li>
-            <img src={User} alt="user" className={Classes.icons} />
+            {isAuthenticated
+              ? <Link to='/user'>
+            <img src={User} alt="user" className={Classes.iconsOn} />
+            </Link>
+              : <img src={User} alt="user" className={Classes.icons} />
+            }
           </li>
           <li onClick={() => showDropdown()}>
             <IconContext.Provider value={{ className: `${Classes.dots}` }}>
