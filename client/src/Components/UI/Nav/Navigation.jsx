@@ -19,7 +19,7 @@ function Nav () {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
   const [openCart, setOpenCart] = useState(false)
   const cart = useSelector(state => state.Cart)
-  console.log(isAuthenticated)
+
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
