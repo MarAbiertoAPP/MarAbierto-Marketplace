@@ -20,6 +20,7 @@ const cartFromLocal = JSON.parse(localStorage.getItem('Cart'))
 
 export default function Home () {
   const { isAuthenticated, user } = useAuth0()
+
   useEffect(() => {
     window.scrollTo(0, 0)
     dispatch(cartFromLocalStorage(cartFromLocal))

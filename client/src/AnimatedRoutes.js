@@ -15,6 +15,7 @@ import NewHome from './Components/NewHome/NewHome'
 import ExploreCollection from './Components/ExploreCollections/Explore_collection'
 import CollectionNewHome from './Components/CollectionNewHome/CollectionNewHome'
 import Create from './Components/Create/Create'
+import Home from './Components/Home/Home'
 
 export default function AnimatedRoutes () {
   const location = useLocation()
@@ -35,6 +36,7 @@ export default function AnimatedRoutes () {
         <Route path = '/collection' element={<ExploreCollection/>}/>
         <Route path='/create' element={<Create/>} />
         <Route path='/collection/:name' element={<CollectionNewHome/>} />
+        <Route path='/home' element={<Home/>} />
 
       </Routes>
     </AnimatePresence>
