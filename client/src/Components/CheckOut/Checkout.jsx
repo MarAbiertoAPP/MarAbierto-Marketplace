@@ -87,8 +87,9 @@ export default function Checkout () {
 
   if (secret) {
     return (
-      <div className='flex flex-col xl:flex-row justify-center xl:space-x-40 min-h-screen items-center'>
+      <div>
         <Nav/>
+      <div className='flex flex-col xl:flex-row justify-center xl:space-x-40 min-h-screen items-center'>
         <div>
           <ItemsCart />
         </div>
@@ -99,6 +100,7 @@ export default function Checkout () {
           </Elements>
 
         </div>
+      </div>
       </div>
     )
   }
