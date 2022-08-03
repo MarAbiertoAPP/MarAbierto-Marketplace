@@ -1,4 +1,4 @@
-const { collection, nft, user } = require('../db.js')
+const { collection, nft, user, Op } = require('../db.js')
 
 // creates a Collections in the database based in name
 const createCollection = async (userId, name, categoryId, frontPage, mini, description) => {
@@ -60,7 +60,7 @@ const getCollectionUser = async (userId, offset = 0, limit = 10) => {
 }
 
 // Get collection per ID
-const getCollectionPerID = async (id) => {
+const getCollectionPerID = async (id, title, price) => {
   try {
     const collectionS = await collection.findOne({
       where:
@@ -73,10 +73,15 @@ const getCollectionPerID = async (id) => {
         attributes: ['name', 'nickname']
       }]
     })
+    const whereQuery = {}
+    whereQuery.collectionId = id
+    if (title) whereQuery.title = { [Op.iLike]: `%${title}%` }
+    if (price) {
+      const priceMinMax = price.split('_')
+      whereQuery.price = { [Op.between]: [Number(priceMinMax[0]), Number(priceMinMax[1])] }
+    }
     const nfts = await nft.findAll({
-      where: {
-        collectionId: id
-      },
+      where: whereQuery,
       attributes: ['id', 'title', 'description', 'img', 'price', 'isActive'],
       include: [{
         model: collection,

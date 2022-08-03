@@ -19,6 +19,8 @@ import {
   GET_CLIENTE_SECRET,
   SET_USER,
   DETAIL,
+  FILTER_BY_TITLE_CAT,
+  FILTER_BY_PRICE_CAT,
   BUY_NOW, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC, CLEAN_COLLECTION_BY_NAME
 } from '../Actions/ActionsCreators'
 
@@ -118,6 +120,15 @@ export default function rootReducer (state = initialState, action) {
           order: 'id_ASC',
           page: 1,
           max: undefined
+        },
+        filterCollec: {
+          title: null,
+          price: null,
+          categoryName: null,
+          userId: null,
+          page: 1,
+          max: undefined,
+          cardsPerPage: 10
         }
       }
     }
@@ -237,6 +248,18 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state,
         CollName: action.payload
+      }
+
+    case FILTER_BY_TITLE_CAT:
+      return {
+        ...state,
+        filterCollec: { ...state.filterCollec, title: action.payload }
+      }
+
+    case FILTER_BY_PRICE_CAT:
+      return {
+        ...state,
+        filterCollec: { ...state.filterCollec, price: action.payload }
       }
 
     case GET_FILTER_COLLECTION:

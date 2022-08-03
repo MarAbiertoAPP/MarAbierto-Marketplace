@@ -215,7 +215,7 @@ export default function Filters ({ children }) {
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
-                  <select className={'font-medium bg-black text-lime-500 outline-none cursor-pointer focus:text-violet '} value={order} name="Order" id="Order" onChange={(e) => {
+                  <select className={'font-medium bg-transparent text-white outline-none cursor-pointer focus:text-violet '} value={order} name="Order" id="Order" onChange={(e) => {
                     onChangeHandlerSort(e)
                   }}>
                     <optgroup className={'text-lime-200 bg-black'} label="Reset">

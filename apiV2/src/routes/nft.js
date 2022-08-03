@@ -1,7 +1,6 @@
 const { Router } = require('express')
 const router = Router()
-const { nft, Op, collection, category, user } = require('../db.js')
-const { Sequelize } = require('sequelize')
+const { nft, Op, collection, user } = require('../db.js')
 const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../utils/nft')
 
 // Route GET with search by name and filters
