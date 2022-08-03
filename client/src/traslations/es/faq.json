@@ -1,0 +1,135 @@
+{
+    "Title": {
+        "id": 1,
+        "title": "¿Que es Mar abierto?",
+        "answer": "Mar abierto es una plataforma para comprar y vender NFT's donde podes adquirirla don facilidad al poder abonarla con tarjeta de credito"
+    },
+    "nft": {
+        "id": 2,
+        "title": "¿What is an NFT?",
+        "answer": " NFT significa Token No Fungible , un tipo de activo que no se puede modificar debido a que es Unico. por ejemplo una pieza de arte"
+    },
+    "buy": {
+        "id": 3,
+        "title": "¿How can i buy in an NFT?",
+        "answer": "In Mar Abierto we give you the facility to be able to buy your NFT with your card if you wish, we make the change to crypto for you!"
+    },
+    "marcoin": {
+        "id": 4,
+        "title": "¿What is a MarCoin?",
+        "answer": "The MarCoin is the internal currency of our website, with it you can buy your NFTs"
+    },
+    "sell": {
+        "id": 5,
+        "title": "¿Can i sell my NFTs?",
+        "answer": "For shure! in Mar Abierto you can post and sell your NFTs"
+    },
+    "musicc": {
+        "nftDetail": "El Music Ape Club es una colección de NFT (coleccionables digitales únicos) almacenados como tokens ERC-721 en la cadena de bloques Ethereum. Con más de 180 rasgos dibujados a mano, cada NFT es único y lo recompensa con un porcentaje proporcional de participación en los ingresos de una microempresa de cannabis legal. Ingrese al mundo de web3 con la familia STAC. Con más de 180 rasgos dibujados a mano, cada NFT es único y viene con una membresía a un grupo exclusivo de exitosos músicos independientes e inversores inmobiliarios. Siente el ritmo con nuestra comunidad privada con un sinfín de beneficios y utilidades"
+    },
+    "collectionName": {
+        "collectionName": "Nombre de la Coleccion"
+    },
+    "card": {
+        "addToCart": "AGREGAR AL CARRITO"
+    },
+    "priceFilter": {
+        "pricefilter": "Precio mas bajo a mas Alto"
+    },
+    "nftPrice": {
+        "price": "Precio"
+    },
+    "owner": {
+        "owner": "Dueño"
+    },
+    "solded": {
+        "solded": "Vendidos"
+    },
+    "floorPrice": {
+        "floorPrice": "Precio Base"
+    },
+    "CeilPrice": {
+        "CeilPrice": "Precio maximo"
+    },
+    "newHomeTitle": {
+        "newHomeTitle": "Descubre, colleciona y vende extraordinarias NFT's "
+    },
+    "newHomedetailInfo": {
+        "newHomedetailInfo": "MarAbierto es el primer y mas grande marketplace de NFT's"
+    },
+    "explore": {
+        "explore": "Explora"
+    },
+    "create": {
+        "create": "Crea"
+    },
+    "buyNow": {
+        "buyNow": "Comprar"
+    },
+    "makeOffer": {
+        "makeOffer": "OFERTAR"
+    },
+    "AddToCart": {
+        "AddToCart": "Agregar al Carrito "
+    },
+    "currentPrice": {
+        "currentPrice": "Precio Actual"
+    },
+    "OwnedBy": {
+        "OwnedBy": "Comprada por: "
+    },
+    "MarketPlace Web Info": {
+        "MarketPlace Web Info": "Información del Sitio"
+    },
+    "Technologies Used": {
+        "Technologies Used": "Tecnologias Aplicadas"
+    },
+    "Contact Us": {
+        "Contact Us": "Contactenos"
+    },
+    "Collected": {
+        "Collected": "Collección"
+    },
+    "Created": {
+        "Created": "Creadas"
+    },
+    "Favorites": {
+        "Favorites": "Favoritas"
+    },
+    "ExploreCollections": {
+        "ExploreCollections": "Explorar Colecciones"
+    },
+    "art": {
+        "art": "Arte"
+    },
+    "collectibles": {
+        "collectibles": "Collecionables"
+    },
+    "virtual worlds": {
+        "virtual worlds": "Mundo Virtual"
+    },
+    "utility": {
+        "utility": "Utilidades"
+    },
+    "trading": {
+        "trading": "Comerciales"
+    },
+    "cards": {
+        "cards": "Cartas"
+    },
+    "sports": {
+        "sports": "Deportes"
+    },
+    "photography": {
+        "photography": "Fotografia"
+    },
+    "domain names": {
+        "domain names": "Dominios"
+    },
+    "music": {
+        "music": "Musica"
+    },
+    "all": {
+        "all": "Todos"
+    }
+}

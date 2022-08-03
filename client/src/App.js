@@ -10,13 +10,15 @@ const clientId = process.env.REACT_APP_AUTH0
 export default function App () {
   return (
     <Fragment>
+
       <BrowserRouter>
-      <Auth0Provider
-      domain={domain}
-      clientId={clientId}
-      redirectUri={`${window.location.origin}`}
-    >
-        <AnimatedRoutes/>
+        <Auth0Provider
+          domain={domain}
+          clientId={clientId}
+          redirectUri={window.location.origin}
+        >
+
+          <AnimatedRoutes />
         </Auth0Provider>
       </BrowserRouter>
 

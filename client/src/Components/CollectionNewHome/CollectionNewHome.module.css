@@ -1,0 +1,13 @@
+.div {
+
+    min-height: 100vh;
+    height: max-content;
+    display: flex;
+    
+    flex-direction: column;
+
+    align-items: center;
+
+    background-attachment: scroll;
+    background-size: fixed;
+  }

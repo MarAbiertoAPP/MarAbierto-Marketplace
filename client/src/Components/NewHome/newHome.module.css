@@ -1,0 +1,11 @@
+.div {
+
+  min-height: 100vh;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(315deg, rgb(24, 2, 48) 0%, #000000 90%);
+  background-attachment: scroll;
+  background-size: fixed;
+}

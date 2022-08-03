@@ -5,6 +5,7 @@ import arrow from '../../assests/icon-arrow-down.svg'
 import { Data } from './Data'
 import { motion } from 'framer-motion'
 import Nav from '../UI/Nav/Navigation'
+
 export default function Faq () {
   const [selected, setSelected] = useState(null)
 
@@ -26,6 +27,7 @@ export default function Faq () {
 
     <main className={style.wrapper}>
     <Nav/>
+
         <div className={style.image__wrapper}>
             <div className={style.image__wrapper_inner}>
 
@@ -51,6 +53,7 @@ export default function Faq () {
                 ))}
 
         </div>
+
     </div>
     </main>
 </motion.div>

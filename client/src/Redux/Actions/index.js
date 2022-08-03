@@ -14,7 +14,21 @@ import {
   CREATE_CATEGORIES,
   SET_USER,
   GET_CLIENTE_SECRET,
-  SET_MULTIPLE_FILTERS
+  SET_MULTIPLE_FILTERS,
+  GET_ALL_COLLECTION,
+
+  GET_COLLECTION_BY_NAME,
+  GET_FILTER_COLLECTION,
+  FILTER_COLLEC_BY_CATEGORY,
+  FILTER_BY_TITLE_CAT,
+  FILTER_BY_PRICE_CAT,
+  SET_PAGE_COLLEC,
+  SET_PAGE_MAX_COLLEC,
+  CLEAN_COLLECTION_BY_NAME
+
+  // GET_LAST_DROPS,
+  // GET_TOP_DROPS
+
 } from './ActionsCreators'
 import axios from 'axios'
 
@@ -123,7 +137,7 @@ export function userFromLocalStorage () {
 }
 export function getAllCategories () {
   return function (dispatch) {
-    axios('/categories')
+    axios('/category')
       .then(res => dispatch({
         type: GET_ALL_CATEGORIES,
         payload: res.data
@@ -146,3 +160,103 @@ export function getClientPay (data) {
 
   }
 }
+
+export function getAllCollection () {
+  return function (dispatch) {
+    axios('/collection/all')
+      .then(res => dispatch({
+        type: GET_ALL_COLLECTION,
+        payload: res.data
+      }))
+      .catch(error => console.log(error.message))
+  }
+}
+
+export function getCollectionByName ({ name, title, price }) {
+  return function (dispatch) {
+    let query = '?'
+    if (title) {
+      title = title.replace('#', '')
+      query += `title=${title}&`
+    }
+    if (price) {
+      query += `price=${price}&`
+    }
+    query = query.slice(0, -1)
+    console.log(query)
+    axios(`/collection/detail/${name}${query}`)
+      .then(res => dispatch({
+        type: GET_COLLECTION_BY_NAME,
+        payload: res.data
+      }))
+      .catch(error => console.log(error.message))
+  }
+}
+
+export function filterTitleCollec (payload) {
+  return {
+    type: FILTER_BY_TITLE_CAT,
+    payload
+  }
+}
+
+export function filterPriceCollec (min, max) {
+  if (!min && !max) {
+    return {
+      type: FILTER_BY_PRICE_CAT,
+      payload: null
+    }
+  }
+
+  if (!min) min = 0
+  if (!max) max = 999
+  return {
+    type: FILTER_BY_PRICE_CAT,
+    payload: `${min}_${max}`
+  }
+}
+
+export function cleanCollectionByName () {
+  return {
+    type: CLEAN_COLLECTION_BY_NAME,
+    payload: {}
+  }
+}
+
+export function getFilterCollection (type) {
+  return function (dispatch) {
+    axios(`/collection/all?category=${type}`)
+      .then(res => dispatch({
+        type: GET_FILTER_COLLECTION,
+        payload: res.data
+      }))
+      .catch(error => console.log(error.message))
+  }
+}
+
+export function filterCollecByCategory (categoryName) {
+  return {
+    type: FILTER_COLLEC_BY_CATEGORY,
+    payload: categoryName
+  }
+}
+
+export function setPageCollec (page) {
+  return {
+    type: SET_PAGE_COLLEC,
+    payload: page
+  }
+}
+
+export function setPageMaxCollec (pageMax) {
+  return {
+    type: SET_PAGE_MAX_COLLEC,
+    payload: pageMax
+  }
+}
+
+// export function getLastDrops(){
+//   return function(dispatch){
+//     axios.get()
+//   }
+// }

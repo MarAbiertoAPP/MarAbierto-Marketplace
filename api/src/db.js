@@ -7,6 +7,7 @@ const modelOder = require('./models/Order.js')
 const modelFavorite = require('./models/Favorite.js')
 const modelLike = require('./models/Like.js')
 const modelShoppingCar = require('./models/ShoppingCar.js')
+const modelCollection = require('./models/Collection.js')
 
 /**
  * @author Nicolas Alejandro Suarez
@@ -16,20 +17,21 @@ const { DB_USER, DB_PASSWORD, DB_HOST } = process.env
 const sequelize = new Sequelize(
   process.env.DATABASE_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`,
   {
-    logging: false
-    // native: false
-    /* dialectOptions: {
+    logging: false,
+    // native: false,
+    dialectOptions: {
       ssl: {
         require: true,
         rejectUnauthorized: false
       }
-    } */
+    }
   }
 )
 /**
  * Create models in database
  */
 modelUser(sequelize)
+modelCollection(sequelize)
 modelCategory(sequelize)
 modelNft(sequelize)
 modelOder(sequelize)
@@ -42,6 +44,7 @@ modelShoppingCar(sequelize)
  */
 const {
   user,
+  collection,
   category,
   nft,
   order,
@@ -50,11 +53,16 @@ const {
   shoppingCar
 } = sequelize.models
 
-nft.belongsTo(category)
-category.hasMany(nft)
+collection.belongsTo(category)
+category.hasMany(collection)
 
-user.hasMany(nft)
-nft.belongsTo(user)
+user.hasMany(collection)
+collection.belongsTo(user)
+
+collection.hasMany(nft)
+nft.belongsTo(collection)
+// user.hasMany(nft)
+// nft.belongsTo(user)
 
 user.belongsToMany(nft, { through: shoppingCar })
 nft.belongsToMany(user, { through: shoppingCar })

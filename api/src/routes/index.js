@@ -4,6 +4,8 @@ const { Router } = require('express')
 const user = require('./user.js')
 const store = require('./store.js')
 const category = require('./category.js')
+const payment = require('./payment')
+const collection = require('./collection.js')
 
 const router = Router()
 
@@ -12,5 +14,7 @@ const router = Router()
 router.use('/users', user)
 router.use('/stores', store)
 router.use('/categories', category)
+router.use('/secret', payment)
+router.use('/collections', collection)
 
 module.exports = router

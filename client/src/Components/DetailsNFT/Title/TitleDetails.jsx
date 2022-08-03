@@ -1,10 +1,13 @@
 import React from 'react'
 // import { Link } from 'react-router-dom'
-
-const TitleDetails = () => {
+import PropTypes from 'prop-types'
+const TitleDetails = ({ title }) => {
+  TitleDetails.propTypes = {
+    title: PropTypes.string
+  }
   return (
         <div className='text-center'>
-          <h1 className='my-6 text-3xl md:text-6xl tracking-wider text-amber-600 mx-8'>WAIFU COLLECTION BLABLABLA</h1>
+          <h1 className='my-6 text-3xl md:text-6xl tracking-wider text-purple-700 mx-8 capitalize'>{title}</h1>
 
           {/* <div className='flex justify-center items-center -my-10'>
             <Link to='/'>

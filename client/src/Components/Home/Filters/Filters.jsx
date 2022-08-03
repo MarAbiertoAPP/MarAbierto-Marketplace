@@ -215,19 +215,19 @@ export default function Filters ({ children }) {
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
-                  <select className={'font-medium bg-black text-white outline-none cursor-pointer'} value={order} name="Order" id="Order" onChange={(e) => {
+                  <select className={'font-medium bg-transparent text-white outline-none cursor-pointer focus:text-violet '} value={order} name="Order" id="Order" onChange={(e) => {
                     onChangeHandlerSort(e)
                   }}>
-                    <optgroup className={'text-gray-500 bg-slate-200'} label="Reset">
-                      <option value="id_ASC" className={'text-gray-500 bg-white'}>Order by (Default)</option>
+                    <optgroup className={'text-lime-200 bg-black'} label="Reset">
+                      <option value="id_ASC" className={'text-lime-500 bg-black'}>Order by (Default)</option>
                     </optgroup>
-                    <optgroup className={'text-gray-500 bg-slate-200'} label="Name">
-                      <option value="title_ASC" className={'text-gray-500 bg-white'}>Ascending (A-Z) ↑</option>
-                      <option value="title_DESC" className={'text-gray-500 bg-white'}>Descending (Z-A) ↓</option>
+                    <optgroup className={'text-lime-200 bg-black'} label="Name">
+                      <option value="title_ASC" className={'text-orange-500 bg-black'}>Ascending (A-Z) ↑</option>
+                      <option value="title_DESC" className={'text-orange-500 bg-black m-2'}>Descending (Z-A) ↓</option>
                     </optgroup>
-                    <optgroup className={'text-gray-500 bg-slate-200'} label="Price">
-                      <option value="price_ASC" className={'text-gray-500 bg-white'}>From Lower-Higher ↑</option>
-                      <option value="price_DESC" className={'text-gray-500 bg-white'}>From Higher-Lower ↓</option>
+                    <optgroup className={'text-lime-200 bg-black'} label="Price">
+                      <option value="price_ASC" className={'text-orange-500 bg-black'}>From Lower-Higher ↑</option>
+                      <option value="price_DESC" className={'text-orange-500 bg-black focus:ring-amber-600   dark:text-violet dark:focus:ring-orange-500'}>From Higher-Lower ↓</option>
                     </optgroup>
                   </select>
                 </div>
