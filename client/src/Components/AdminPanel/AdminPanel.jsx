@@ -1,8 +1,11 @@
 /*eslint-disable*/
 import React, { useState } from 'react'
 import style from './AdminPanel.module.css'
+import AdminCollections from './AdminPanelResources/AdminCollections'
 import AdminDashboard from './AdminPanelResources/AdminDashboard'
+import AdminNfts from './AdminPanelResources/AdminNfts'
 import AdminReports from './AdminPanelResources/AdminReports'
+import AdminUsers from './AdminPanelResources/AdminUsers'
 
 export default function AdminPanel () {
   const [rendering, setRendering] = useState('Dashboard')
@@ -31,6 +34,7 @@ export default function AdminPanel () {
     e.preventDefault()
     setRendering('NFTs')
   }
+  
 
   return (
     <div className={style.div}>
@@ -56,7 +60,7 @@ export default function AdminPanel () {
                 </button>
 
                 <button onClick={handleRendering4}  value='Collections' className='p-4 mx-4 text-center rounded-2xl border-xl bg-purple-900  border-neutral-300 hover:bg-purple-700'>
-                  <h1 className='text-2xl text-neutral-300'>Collections</h1>
+                  <h1 className={`text-2xl text-neutral-300`}>Collections</h1>
                 </button>
 
                 <button onClick={handleRendering5}  value='NFTs' className='p-4 mx-4 text-center rounded-2xl border-xl bg-purple-900  border-neutral-300 hover:bg-purple-700'>
@@ -70,9 +74,9 @@ export default function AdminPanel () {
           <div className='border border-xl border-neutral-700 basis-9/12 flex justify-center'>
             {rendering === 'Dashboard' && <AdminDashboard/>}
             {rendering === 'Reports' && <AdminReports/>}
-            {rendering === 'Users' && <h1 className='text-white text-4xl'>HELLO LITTLE FUCKER3</h1>}
-            {rendering === 'Collections' && <h1 className='text-white text-4xl'>HELLO LITTLE FUCKER4</h1>}
-            {rendering === 'NFTs' && <h1 className='text-white text-4xl'>HELLO LITTLE FUCKER5</h1>}
+            {rendering === 'Users' && <AdminUsers/>}
+            {rendering === 'Collections' && <AdminCollections/>}
+            {rendering === 'NFTs' && <AdminNfts/>}
           </div>
 
         </div>
