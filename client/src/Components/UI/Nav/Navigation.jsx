@@ -38,7 +38,7 @@ function Nav () {
   const handleClick = (e) => {
     e.preventDefault()
     dispatch(resetFilters())
-    navigate('/')
+    navigate(-1)
   }
   return (
 

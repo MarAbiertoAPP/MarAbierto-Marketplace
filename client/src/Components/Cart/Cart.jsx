@@ -152,10 +152,9 @@ export function Cart ({ open, setOpen }) {
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6 flex justify-between">
                         <Link to={'/checkout'}>
-                          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'> CHECKOUT</button>
-
+                          <button disabled={cartToBuy.length === 0} className='bg-blue-500 enabled:hover:bg-blue-700 disabled:opacity-75 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded'> CHECKOUT</button>
                       </Link>
-                      <button onClick={handleCleanCart} className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'>CLEAN CART</button>
+                      <button disabled={cartToBuy.length === 0} onClick={handleCleanCart} className='bg-red-500 enabled:hover:bg-red-700 disabled:opacity-75 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded'>CLEAN CART</button>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
