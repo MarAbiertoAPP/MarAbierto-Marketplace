@@ -9,7 +9,7 @@ import DetailsDescription from './DetailsDescription/DetailsDescription'
 import CurrentPriceDetail from './CurrentPriceDetail/CurrentPriceDetail'
 import CurrentOwner from './CurrentOwner/CurrentOwner'
 import ButtonsDetails from './ButtonsDetails/ButtonsDetails'
-import loadingNFT from '../../../assests/loadingnft.gif'
+
 // import Footer from '../../Footer/Footer'
 import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
@@ -24,6 +24,7 @@ export default function CreateDetailNFT (props) {
     collection: PropTypes.any
 
   }
+  const loadingNFT = 'https://i0.wp.com/techweez.com/wp-content/uploads/2018/05/minion.gif?fit=748%2C561&ssl=1'
   return (
     <motion.div
     className={style.div}
