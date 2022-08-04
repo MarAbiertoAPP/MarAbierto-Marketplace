@@ -1,4 +1,4 @@
-/*eslint-disable */
+
 import React from 'react'
 import style from './UserDetail.module.css'
 import Nav from '../UI/Nav/Navigation'
@@ -12,9 +12,9 @@ import { AiOutlineTwitter, AiOutlineMore } from 'react-icons/ai'
 import { FaShareAlt } from 'react-icons/fa'
 
 // aqui va la data simulada
-import fotouser from '../../assests/demo/fotouser.jpeg'
+// import fotouser from '../../assests/demo/fotouser.jpeg'
 import background from '../../assests/demo/background.webp'
-
+import { useAuth0 } from '@auth0/auth0-react'
 
 const data = {
   name: 'gatingatito',
@@ -110,23 +110,25 @@ const dataFromApiExample = [{
 }
 ]
 //
-//console.log(data) // te he callado eslint
+// console.log(data) // te he callado eslint
 
 const UserDetail = (props) => {
+  const { user } = useAuth0()
+  console.log(user)
   const [t] = useTranslation('faq')
   return (
-    
+
     <div className={style.div}>
-      
+
       <Nav/>
-      <div className='w-full max-w-screen-xl'>
+       <div className='w-full max-w-screen-xl'>
 
         <div className='object-contain mt-12 w-full h-96 max-w-screen-xl'>
           <img className='w-full h-full' src={background}></img>
         </div>
 
         <div className='w-full flex justify-center xl:justify-start'>
-          <img className='aspect-auto	shadow-2xl shadow-black box -mt-40 xl:ml-20 w-72 h-72 md:w-96 md:h-96 xl:w-48 xl:h-48 rounded-full' src={fotouser}></img>
+          <img className='aspect-auto shadow-2xl shadow-black box -mt-40 xl:ml-20 w-72 h-72 md:w-96 md:h-96 xl:w-48 xl:h-48 rounded-full' src={user?.picture}></img>
         </div>
 
         <div className='-mt-10 w-full'>
@@ -134,9 +136,9 @@ const UserDetail = (props) => {
           <div className='w-full mt-10 flex flex-col xl:flex-row'>
 
             <div className='basis-5/12 space-y-2 text-center xl:text-start'>
-              <h1 className='text-white text-6xl'>{data.name}</h1>
+              <h1 className='text-white text-6xl capitalize'>{user?.nickname}</h1>
               {/* <h1 className='text-white text-xl'>{data.address}</h1> */}
-              <h1 className='text-white'>{`Joined ${data.joined}`}</h1>
+              <h1 className='text-white'>{`Joined ${user?.updated_at.slice(0, 10)}`}</h1>
               <p className='text-white'>{data.description}</p>
             </div>
 
@@ -156,9 +158,9 @@ const UserDetail = (props) => {
           </div>
 
           <div className='w-full p-6 flex space-x-20'>
-            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t("Collected.Collected")}</h1>
-            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t("Created.Created")}</h1>
-            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t("Favorites.Favorites")}</h1>
+            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Collected.Collected')}</h1>
+            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Created.Created')}</h1>
+            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Favorites.Favorites')}</h1>
           </div>
 
         </div>

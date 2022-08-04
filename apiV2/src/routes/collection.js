@@ -18,13 +18,13 @@ router.post('/', async (req, res) => {
 // route to get collection by id
 router.get('/detail/:name', async (req, res) => {
   const { name } = req.params
+  const { title, price } = req.query
   try {
     if (name) {
       const collectionSelected = await getCollectionByName(name)
       if (!collectionSelected) return res.send('collection don\'t exist')
       const collectionIdByName = collectionSelected.dataValues.id
-      console.log(collectionIdByName)
-      const detailCollection = await getCollectionPerID(collectionIdByName)
+      const detailCollection = await getCollectionPerID(collectionIdByName, title, price)
       return res.status(200).json(detailCollection)
     }
     res.send('working')

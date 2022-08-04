@@ -16,6 +16,8 @@ import ExploreCollection from './Components/ExploreCollections/Explore_collectio
 import CollectionNewHome from './Components/CollectionNewHome/CollectionNewHome'
 import Create from './Components/Create/Create'
 import AdminPanel from './Components/AdminPanel/AdminPanel'
+import Home from './Components/Home/Home'
+
 
 export default function AnimatedRoutes () {
   const location = useLocation()
@@ -37,6 +39,9 @@ export default function AnimatedRoutes () {
         <Route path='/create' element={<Create/>} />
         <Route path='/collection/:name' element={<CollectionNewHome/>} />
         <Route path='/AdminPanel' element={<AdminPanel/>} />
+        <Route path='/home' element={<Home/>} />
+
+
       </Routes>
     </AnimatePresence>
   )
