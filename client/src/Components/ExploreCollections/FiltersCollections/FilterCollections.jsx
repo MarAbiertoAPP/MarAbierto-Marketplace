@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { filterCollecByCategory, getAllCategories, setPageCollec } from '../../../Redux/Actions'
-
+import { useTranslation } from 'react-i18next'
 function FilterCollections () {
+  const [t] = useTranslation('faq')
   const dispatch = useDispatch()
   const location = useLocation()
   const { categoryName } = useSelector(state => state.filterCollec)
@@ -84,10 +85,10 @@ function FilterCollections () {
   }
 
   return (
-    <div className='w-full flex space-x-10 mt-8'>
+    <div className='w-full text-lime-600 flex space-x-10 mt-8'>
          <button onClick={handleClick} value='All' checked={!!checkedState} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current capitalize'>All</button>
     {allCategories?.map(e => {
-      return <button key={e.id} value={e.name} checked={!!checkedState} id={e.id} onClick={handleClick} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current capitalize'>{e.name}</button>
+      return <button key={e.id} value={e.name} checked={!!checkedState} id={e.id} onClick={handleClick} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current capitalize'>{t(`${e.name}.${e.name}`)}</button>
     })}
     </div>
   )

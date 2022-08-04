@@ -4,14 +4,19 @@ import PropTypes from 'prop-types'
 import '../../Home/toast.css'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import loadingNFT from '../../../assests/loadingnft.gif'
+
 export default function CreateCard ({ title, image, price, id }) {
+  console.log(image.type)
   CreateCard.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.number,
     id: PropTypes.string
   }
+
   const [t] = useTranslation('faq')
+
   return (
     <motion.div
     className={Classes.container}
@@ -21,7 +26,7 @@ export default function CreateCard ({ title, image, price, id }) {
       <div className={Classes.card}>
         <div className={Classes.imgBx}>
 
-            <img src={image} alt="pic"></img>
+            <img className='text-lime-300' src={ typeof image.type === 'string' ? loadingNFT : image } alt={'here de image'} ></img>
 
         </div>
         <div className={Classes.contentBx}>

@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import CardExploreCollections from '../ExploreCollections/ExploreCollectionsResources/CardExploreCollections'
 import Nav from '../UI/Nav/Navigation'
@@ -18,6 +19,14 @@ const collection = 'Meebits'
 
 export default function Create () {
   const [status, setStatus] = useState('NFT')
+  const [imageSelected, setImageSelected] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU_DzzLsV5_lO_AQ7Jfcr0dHkWDO7aq7GcwQ&usqp=CAU')
+
+  const uploadImage = () => {
+    const formData = new FormData()
+    formData.append('file', imageSelected)
+    formData.append('upload_preset', 'nft_image')
+    axios.post('https://api.cloudinary.com/v1_1/julian-soto/image/upload', formData).then(response => setImageSelected(response.data.secure_url))
+  }
   return (
     <div className={style.div}>
       <div className='w-full max-w-screen-xl flex flex-col'>
@@ -64,7 +73,7 @@ export default function Create () {
             }
 
             <div className='flex flex-col'>
-              <h1 className='text-xl text-purple-700'>Upload files</h1>
+              <h1 className='text-xl text-purple-700'>Upload your NFT image</h1>
 
               { status === 'Collection' &&
                 <div>
@@ -92,7 +101,10 @@ export default function Create () {
 
                 <div>
                   <h1 className='text-neutral-300 text-sm'>Photo of Card</h1>
-                  <input type='file' className='mr-20 pl-2 w-fit bg-transparent border-white border rounded-lg text-neutral-300'></input>
+                  <input onChange={(e) => {
+                    setImageSelected(e.target.files[0])
+                  }} type='file' className='mr-20 pl-2 w-fit bg-transparent border-white border rounded-lg text-neutral-300'></input>
+                  <button onClick={() => { uploadImage() }} className={'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'}>enviar</button>
                 </div>
 
               </div>
@@ -108,7 +120,7 @@ export default function Create () {
 
             <h1 className='text-4xl text-white'>Pre-visualization Card</h1>
 
-            <CreateCard title={simulatedData.title} image={simulatedData.image} price={simulatedData.price}/>
+            <CreateCard title={simulatedData.title} image={imageSelected || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU_DzzLsV5_lO_AQ7Jfcr0dHkWDO7aq7GcwQ&usqp=CAU?precharge '} price={simulatedData.price}/>
           </div>
           }
 
@@ -124,7 +136,7 @@ export default function Create () {
         {status === 'NFT' &&
           <div className='w-full flex flex-col my-20 '>
             <h1 className='text-4xl text-white text-center'>Pre-visualization NFT Detail</h1>
-            <CreateDetailNFT title={simulatedData.title} path={simulatedData.image} price={simulatedData.price} description={descriptionSimulated} user={'Juako'} collection={collection}/>
+            <CreateDetailNFT title={simulatedData.title} path={imageSelected || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU_DzzLsV5_lO_AQ7Jfcr0dHkWDO7aq7GcwQ&usqp=CAU?precharge '} price={simulatedData.price} description={descriptionSimulated} user={'Juako'} collection={collection}/>
           </div>
         }
 

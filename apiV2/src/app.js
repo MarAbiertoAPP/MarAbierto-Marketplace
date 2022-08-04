@@ -1,6 +1,7 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
+const cors = require('cors')
 const routes = require('./routes/index')
 
 require('./db.js')
@@ -9,6 +10,7 @@ const server = express()
 
 server.name = 'API'
 
+server.use(cors())
 server.use(express.urlencoded({ extended: false, limit: '50mb' }))
 server.use(express.json({ limit: '50mb' }))
 server.use(cookieParser())

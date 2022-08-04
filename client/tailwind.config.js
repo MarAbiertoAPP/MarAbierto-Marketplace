@@ -14,6 +14,7 @@ module.exports = {
       },
       colors: {
         probando: 'rgba(217, 33, 171, 0.56)'
+
       },
       width: {
         cardCarousel: '450px'
@@ -25,6 +26,7 @@ module.exports = {
       },
       boxShadow: {
         rafagod: '0 0 60px -15px #7e22ce'
+
       }
     }
   },
