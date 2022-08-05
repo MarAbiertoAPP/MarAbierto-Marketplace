@@ -18,9 +18,9 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 const data = {
   name: 'gatingatito',
-  description: 'Hola soy un gato que le gusta coleccionar nfts, soy degenerado y tengo puras waifus,  tengo una atraccion por las monas chinas desde que tenia 1 año de vida, mi padre era fanatico del anime, y me pego lo degenereke, un dia dejo a mi madre y se compro una muñeca inflable version japonesa, desde ese dia, siento que estoy maldito, no puedo ver un anime sin agarrarme la verga',
+  description: 'HERE GOES USER DESCRIPTION',
   joined: '22-Feb-2222',
-  address: '0xb1d0b2a6EE874DC04B493768504A7CE34eD75174'
+  userID: ' here goes use ID'
 
 }
 
@@ -140,6 +140,7 @@ const UserDetail = (props) => {
               {/* <h1 className='text-white text-xl'>{data.address}</h1> */}
               <h1 className='text-white'>{`Joined ${user?.updated_at.slice(0, 10)}`}</h1>
               <p className='text-white'>{data.description}</p>
+              <p className='text-white'> {data.userID}</p>
             </div>
 
             <div className='basis-4/12'>

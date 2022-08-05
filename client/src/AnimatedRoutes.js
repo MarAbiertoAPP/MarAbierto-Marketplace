@@ -17,15 +17,11 @@ import CollectionNewHome from './Components/CollectionNewHome/CollectionNewHome'
 import Create from './Components/Create/Create'
 import AdminPanel from './Components/AdminPanel/AdminPanel'
 import Home from './Components/Home/Home'
-
-
 export default function AnimatedRoutes () {
   const location = useLocation()
   return (
     <AnimatePresence exitBeforeEnter>
       <Routes location={location} key={location.pathname}>
-
-      {/*   <Route path="/" element={<NewHome/>}/> */}
 
         <Route path='/wallet' element={<WalletCardEthers/>}/>
         <Route path="/" element={<NewHome/>}/>
@@ -40,7 +36,6 @@ export default function AnimatedRoutes () {
         <Route path='/collection/:name' element={<CollectionNewHome/>} />
         <Route path='/AdminPanel' element={<AdminPanel/>} />
         <Route path='/home' element={<Home/>} />
-
 
       </Routes>
     </AnimatePresence>

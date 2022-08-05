@@ -6,7 +6,6 @@ function ChatbotMar (handleclick) {
   const [chatbot, setchatbot] = useState(false)
   const openChat = () => {
     setchatbot(!chatbot)
-    console.log(chatbot)
   }
   const steps = [
     {
@@ -45,14 +44,18 @@ function ChatbotMar (handleclick) {
     },
     {
       id: '6A',
-
+      message: 'what would you like to know?',
+      trigger: '6C'
+    },
+    {
+      id: '6C',
       options: [
         { label: 'How to Buy', trigger: '7A' },
         { label: 'How to Pay', trigger: '7A' },
-        { label: 'No', trigger: '6B' }
+        { label: 'Nothing', trigger: '6B' }
       ]
-    },
 
+    },
     {
       id: '6B',
       message: 'Bye bye!!',
@@ -72,7 +75,7 @@ function ChatbotMar (handleclick) {
 
   {chatbot
     ? <div >
-    <button onClick={openChat} className ='text-white '>X</button>
+    <button onClick={openChat} className ='text-white bg-violet-500 w-5 rounded-lg '>X</button>
     <ChatBot steps={steps} handleclick={handleclick} className={''} /></div>
     : <div className='h-12 w-12 ' > <button className=' animate-bounce' onClick={openChat}><img src={chatLogo}></img></button></div>}
   </div>

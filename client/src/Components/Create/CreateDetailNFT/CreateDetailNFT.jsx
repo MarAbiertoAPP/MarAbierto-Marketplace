@@ -8,7 +8,6 @@ import TitleLikesXL from './TitleLikesXL/TitleLikesXL'
 import DetailsDescription from './DetailsDescription/DetailsDescription'
 import CurrentPriceDetail from './CurrentPriceDetail/CurrentPriceDetail'
 import CurrentOwner from './CurrentOwner/CurrentOwner'
-import ButtonsDetails from './ButtonsDetails/ButtonsDetails'
 
 // import Footer from '../../Footer/Footer'
 import { motion } from 'framer-motion'
@@ -34,7 +33,7 @@ export default function CreateDetailNFT (props) {
     >
       <div className={'mt-10 flex flex-col items-center w-screen max-w-screen-xl '} >
 
-        <TitleDetails title={props.collection}/>
+        <TitleDetails title={props.title}/>
         <TitleLikesSM title={props.title}/>
 
         <div className={`my-6 flex flex-col xl:flex-row w-full min-h-min xl:${style.limitH} pb-9`}>
@@ -49,7 +48,6 @@ export default function CreateDetailNFT (props) {
 
               <CurrentPriceDetail price={props.price}/>
               <CurrentOwner user={props.user}/>
-              <ButtonsDetails />
 
             </div>
 

@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="mr-12 hidden lg:block">
           <span className="text-violet-500 text-lg"> {t('Contact Us.Contact Us')}</span>
         </div>
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           <a href="#!" className="mr-6 text-violet-500">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f"
                  className="w-2.5" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ const Footer = () => {
               </path>
             </svg>
           </a>
-        </div>
+        </div> */}
       </div>
       <div className="mx-6 py-10 text-center md:text-left">
         <div className="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
