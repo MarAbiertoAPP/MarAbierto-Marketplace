@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import ChatBot from 'react-simple-chatbot'
-
+import '../Chatbox/chatbox.css'
+import chatLogo from '../../assests/chat.png'
 function ChatbotMar (handleclick) {
   const [chatbot, setchatbot] = useState(false)
   const openChat = () => {
     setchatbot(!chatbot)
-    console.log(chatbot)
   }
   const steps = [
     {
@@ -44,14 +44,18 @@ function ChatbotMar (handleclick) {
     },
     {
       id: '6A',
-
+      message: 'what would you like to know?',
+      trigger: '6C'
+    },
+    {
+      id: '6C',
       options: [
         { label: 'How to Buy', trigger: '7A' },
         { label: 'How to Pay', trigger: '7A' },
-        { label: 'No', trigger: '6B' }
+        { label: 'Nothing', trigger: '6B' }
       ]
-    },
 
+    },
     {
       id: '6B',
       message: 'Bye bye!!',
@@ -67,13 +71,13 @@ function ChatbotMar (handleclick) {
 
   ]
   return (
-  <div className='my-50'>
+  <div className='my-50  '>
 
   {chatbot
-    ? <div>
-    <button onClick={openChat} className ='text-white'>X</button>
+    ? <div >
+    <button onClick={openChat} className ='text-white bg-violet-500 w-5 rounded-lg '>X</button>
     <ChatBot steps={steps} handleclick={handleclick} className={''} /></div>
-    : <div className='h-15 w-15   '> <button className='contain' onClick={openChat}><img src='https://o.remove.bg/downloads/df05e330-e32d-4c01-bb59-9c0834ebae0e/kisspng-chatbot-internet-bot-facebook-messenger-online-cha-chatbots-5b205826153731.7484316415288463740869-removebg-preview.png'></img></button></div>}
+    : <div className='h-12 w-12 ' > <button className=' animate-bounce' onClick={openChat}><img src={chatLogo}></img></button></div>}
   </div>
   )
 }

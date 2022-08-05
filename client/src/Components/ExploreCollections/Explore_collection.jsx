@@ -42,7 +42,7 @@ const ExploreCollection = () => {
     let url = stateToUrl(filterConfig)
     url = url.slice(0, -1)
     if (url !== 'collection?') {
-      navigate(`/${url}`, { push: true })
+      navigate(`/${url}`, { replace: true })
     }
   }, [filterConfig])
 

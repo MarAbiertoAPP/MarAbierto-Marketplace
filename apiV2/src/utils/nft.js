@@ -3,7 +3,7 @@ const { getCollectionIdByName } = require('./collection.js')
 // const { findUser } = require('../utils/user')
 
 // Create nft
-const createNFT = async (title, description, img, price, collectionName) => {
+const createNFT = async (title, description, img, price, collectionName, id) => {
   try {
     const collection = await getCollectionIdByName(collectionName)
     const collectionId = collection.id
@@ -12,7 +12,8 @@ const createNFT = async (title, description, img, price, collectionName) => {
       description,
       img,
       price,
-      collectionId
+      collectionId,
+      id
     })
   } catch (error) {
     throw error.message

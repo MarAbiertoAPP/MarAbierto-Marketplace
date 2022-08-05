@@ -34,7 +34,7 @@ import axios from 'axios'
 
 export function createNFT (obj) {
   return function (dispatch) {
-    axios.post('/stores', obj)
+    axios.post('/nft', obj)
       .then(dispatch({ type: CREATE_NFT }))
       .catch(error => console.log(error.message))
   }

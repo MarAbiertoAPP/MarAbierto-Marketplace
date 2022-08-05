@@ -53,7 +53,10 @@ export default function NewHome () {
               <button className='text-white text-3xl p-4 px-6 my-6 bg-purple-700 hover:bg-purple-900 rounded-lg'>{t("create.create")}</button> 
             </Link>
           </div>
-          <ChatbotMar/>
+          <div className=" z-10 md:z-50 fixed bottom-10 right-0"> 
+          <ChatbotMar  />
+          </div>
+          
           <div>
             <h1 className='text-lg text-white text-purple-500'>Learn more about MarAbierto</h1>
           </div>
