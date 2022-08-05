@@ -31,7 +31,6 @@ export function Cart ({ open, setOpen }) {
   }, [cartToBuy])
 
   let totalBuy = 0
-  // const total = Number(totalBuy.toFixed(4))
   cartToBuy.map(item => {
     totalBuy = totalBuy + Number(item.price.toFixed(3))
     return totalBuy
