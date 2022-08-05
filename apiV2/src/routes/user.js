@@ -4,6 +4,7 @@ const router = express.Router()
 const { createUser, searchUser } = require('../utils/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const { user } = require('../db.js')
 
 // Create New User Register
 router.post('/signup', async (req, res) => {
@@ -55,6 +56,16 @@ router.post('/signin', async (req, res) => {
       name: user.name,
       token
     })
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
+
+router.get('/amount', async(req,res) => {
+  try {
+    const response = await user.findAll();
+    return res.status(201).json(response.length)
   } catch (err) {
     console.log(err)
     res.status(500).send({ error: 'Algo ha ocurrido' })
