@@ -8,6 +8,7 @@ const modelFavorite = require('./models/Favorite')
 const modelLike = require('./models/Like.js')
 const modelShoppingCar = require('./models/ShoppingCar.js')
 const modelCollection = require('./models/Collection.js')
+const modelReport = require('./models/Report.js')
 
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env
 // process.env.DATABASE_URL ||
@@ -35,6 +36,7 @@ modelOder(sequelize)
 modelFavorite(sequelize)
 modelLike(sequelize)
 modelShoppingCar(sequelize)
+modelReport(sequelize)
 
 /**
  * create relationship
@@ -47,7 +49,8 @@ const {
   order,
   favorite,
   like,
-  shoppingCar
+  shoppingCar,
+  report
 } = sequelize.models
 
 category.hasMany(collection)
