@@ -27,10 +27,10 @@ const searchUser = async (email) => {
   }
 }
 
-const searchByName = async (name) => {
+const searchByName = async (nickname) => {
   try {
     return await user.findOne({
-      where: { name}
+      where: { nickname}
     })
   } catch (error) {
     return error
