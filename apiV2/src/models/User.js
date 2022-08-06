@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
     },
     profile_picture: {
       type: DataTypes.STRING,
-      defaultValue: 'https://cdn.dribbble.com/users/1165166/screenshots/3394646/media/d7adc8caca2611cd33ea23061df411fc.png'
+      defaultValue: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsXEEyrd5qQU0aUKbbmjj45VwjWUMkMHOzTbd3Xc0&s'
     },
     email: {
       type: DataTypes.STRING,

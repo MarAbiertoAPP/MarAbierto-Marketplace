@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { user } = require('../db.js')
+const { user, bannedUser } = require('../db.js')
 
 const createUser = async (name, nickname, picture, email, typeUser) => {
   try {
@@ -13,6 +13,15 @@ const createUser = async (name, nickname, picture, email, typeUser) => {
     return newUser
   } catch (error) {
     return error
+  }
+}
+
+const createBannedUser = async (name,id) => {
+  try {
+    return await bannedUser.create({name, id })
+  } catch (error) {
+    console.log(error)
+    throw error.message
   }
 }
 
@@ -69,5 +78,6 @@ module.exports = {
   searchUser,
   allUserId,
   findUser,
-  searchByName
+  searchByName,
+  createBannedUser
 }
