@@ -27,15 +27,10 @@ export default function CardReport(props) {
 
         <h1 className='mt-6 text-center text-xl text-neutral-300'>{props.description}</h1>
 
-        <div className='w-full flex justify-center space-x-20 absolute bottom-14 '>
-          <button className='p-4 mx-4 text-center rounded-2xl border-xl bg-gray-700  border-neutral-300 hover:bg-green-700'>
+        <div className='w-full flex justify-center absolute bottom-14 '>
+          <button className='p-4 mx-4 text-center rounded-2xl border-xl bg-gray-700  border-neutral-300 hover:bg-purple-700'>
             <h1 className='text-lg text-neutral-300'>Mark as resolved</h1>
-          </button>
-
-          <button className='p-4 mx-4 text-center rounded-2xl border-xl bg-gray-700  border-neutral-300 hover:bg-red-700'>
-            <h1 className='text-lg text-neutral-300'>Reject report</h1>
-          </button>
-    
+          </button>    
         </div>
     </div>
   )
