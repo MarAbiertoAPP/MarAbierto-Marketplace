@@ -12,17 +12,22 @@ export default function AdminUsers () {
   const [input, setInput] = useState('')
 
   console.log(dataFromUserForTheCard)
+
   function handleInputChanges (e) {
     e.preventDefault()
-    setInput(e.value)
+    console.log(e.value)
+    setInput(e.target.value)
   }
 
   function PreventDefault (e) {
     e.preventDefault()
+    getdataFromUserForTheCard(input)
   }
 
   async function getdataFromUserForTheCard (nickname) {
+    console.log(nickname)
     const response = await axios.get(`https://marabierto.herokuapp.com/users/getuserdatabyname/${nickname}`).then(r => r.data)
+    console.log(response)
     setdataFromUserForTheCard(response)
   }
 
@@ -33,7 +38,6 @@ export default function AdminUsers () {
     }
 
     getHowManyUsersExist()
-    getdataFromUserForTheCard()
   })
 
   return (
@@ -74,12 +78,14 @@ export default function AdminUsers () {
           <h1 className='text-4xl text-neutral-300 text-center'>Ban an user</h1>
 
           <div className='flex w-full'>
-            <form className='flex w-full' onSubmit={() => getdataFromUserForTheCard()}>
-              <input value={input} onChange={handleInputChanges} className='bg-transparent border border-neutral-200 border-2 text-neutral-300 text-2xl w-11/12 mx-20 rounded-lg px-4 py-2' placeholder='Name of the user'></input>
-              <button onClick={PreventDefault} type='submit'>
+              <form onSubmit={PreventDefault}>
+
+              <input value={input} onChange={(e) => handleInputChanges(e)} className='bg-transparent border border-neutral-200 border-2 text-neutral-300 text-2xl w-11/12 mx-20 rounded-lg px-4 py-2' placeholder='Name of the user'></input>
+              <button type='submit'>
                 <AiOutlineSearch className='text-white text-xl'/>
               </button>
-            </form>
+              </form>
+
           </div>
 
         </div>
