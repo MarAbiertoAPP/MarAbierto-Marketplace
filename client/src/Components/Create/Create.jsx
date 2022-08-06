@@ -36,7 +36,7 @@ export default function Create () {
   }
 
   const handlePriceChange = (input) => {
-    const priceFormat = input.replace(/[^\d.-]/g, '')
+    const priceFormat = input.replace(/[^\d-.]/g, '')
     console.log(priceFormat)
     setInputPrice(parseFloat(priceFormat))
   }
@@ -134,9 +134,10 @@ export default function Create () {
 
               <div className='flex flex-col'>
               <h1 className='text-xl text-purple-700'>Price</h1>
-              <input type="Number" placeholder='Enter Price' value={inputPrice} onChange={(e) => handlePriceChange(e.target.value)} className='mr-20 pl-2 bg-transparent border-white border rounded-lg text-neutral-300'></input>
+              <input type="Number" placeholder='Enter Price' onChange={(e) => handlePriceChange(e.target.value)} className='mr-20 pl-2 bg-transparent border-white border rounded-lg text-neutral-300'></input>
             </div>
             }
+            {inputPrice ? '' : <p className='text-orange-800'> Price is Required</p>}
 
             <div className='flex flex-col'>
               <h1 className='text-xl text-purple-700'>Upload your NFT image</h1>

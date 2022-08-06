@@ -15,11 +15,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllCollection } from '../../Redux/Actions';
 import { useEffect } from 'react';
 import ChatbotMar from '../Chatbox/ChatBot'
-
+import { addToCart } from '../../Redux/Actions/ActionsCart';
+import { useAuth0 } from '@auth0/auth0-react'
+import { string } from 'prop-types';
 
 
 
 export default function NewHome () {
+  const {  user } = useAuth0()
   const [t] = useTranslation('faq')
   const dispatch = useDispatch()
   const Collection = useSelector(state => state.Collection)
@@ -27,11 +30,26 @@ export default function NewHome () {
 
 
 
-
+  
+ 
   useEffect(() => {
     window.scrollTo(0, 0)
+    /* const cartFromLocalStorage = JSON.parse(localStorage.getItem("Cart"))
+if(cartFromLocalStorage&&cartFromLocalStorage.filter((el)=>el.user===user?.sub.slice(6))){
+   dispatch(addToCart(cartFromLocalStorage[0]))
+} */
+
+
     dispatch(getAllCollection())
   }, [])
+
+  
+ 
+ 
+
+  
+
+
 
   return (
     <div className={style.div}>

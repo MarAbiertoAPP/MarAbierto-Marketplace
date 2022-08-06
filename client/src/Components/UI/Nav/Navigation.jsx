@@ -8,13 +8,15 @@ import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { CgLogIn, CgLogOut } from 'react-icons/cg'
 import { useAuth0 } from '@auth0/auth0-react'
 import { IoIosCart } from 'react-icons/io'
-import { Cart } from '../../Cart/Cart'
+import Cart from '../../Cart/Cart'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { resetFilters } from '../../../Redux/Actions'
 import LanguajeButton from '../../LanguajeButton/LanguajeButton'
+// import { cartFromLocalStorage } from '../../../Redux/Actions/ActionsCart'
 
 function Nav () {
+  const cartToBuy = useSelector(state => state.Cart)
   const [open, setOpen] = useState(false)
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
   const [openCart, setOpenCart] = useState(false)
@@ -32,13 +34,16 @@ function Nav () {
   }
 
   const handleLogout = () => {
+    if (cartToBuy.length > 0) {
+      localStorage.setItem('Cart', JSON.stringify(cartToBuy))
+    }
     logout()
-    window.localStorage.removeItem('User')
+    // window.localStorage.clear('User')
   }
   const handleClick = (e) => {
     e.preventDefault()
     dispatch(resetFilters())
-    navigate(-1)
+    navigate('/')
   }
   return (
 

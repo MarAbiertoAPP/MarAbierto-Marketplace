@@ -4,8 +4,8 @@ import Card from '../UI/Card/Card'
 import Nav from '../UI/Nav/Navigation'
 import Filters from './Filters/Filters'
 import { useSelector, useDispatch } from 'react-redux'
-import { setPageMax, resetFilters, getAllCategories, setMultipleFilters, createUser, userFromLocalStorage } from '../../Redux/Actions'
-import { cartFromLocalStorage } from '../../Redux/Actions/ActionsCart'
+import { setPageMax, resetFilters, getAllCategories, setMultipleFilters, createUser /* userFromLocalStorage */ } from '../../Redux/Actions'
+// import { cartFromLocalStorage } from '../../Redux/Actions/ActionsCart'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import Pagination from './Pagination/Pagination'
@@ -16,14 +16,14 @@ import '../Home/toast.css'
 import { motion } from 'framer-motion'
 import Metamask from '../metamask/Metamask'
 
-const cartFromLocal = JSON.parse(localStorage.getItem('Cart'))
+/* const cartFromLocal = JSON.parse(localStorage.getItem('Cart')) */
 
 export default function Home () {
   const { isAuthenticated, user } = useAuth0()
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    dispatch(cartFromLocalStorage(cartFromLocal))
+    /*  dispatch(cartFromLocalStorage(cartFromLocal)) */
   }, [])
 
   // Proximo a mover en la landing page
@@ -37,8 +37,8 @@ export default function Home () {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    dispatch(cartFromLocalStorage(cartFromLocal))
-    dispatch(userFromLocalStorage())
+    /*  dispatch(cartFromLocalStorage(cartFromLocal))
+    dispatch(userFromLocalStorage()) */
     if (isAuthenticated) {
       dispatch(createUser(user))
     }

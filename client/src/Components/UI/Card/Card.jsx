@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../../Home/toast.css'
+
 import { motion } from 'framer-motion'
 import { FaEthereum } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi'
@@ -13,6 +14,7 @@ import { addToCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
 export default function Card ({ title, image, price, id, collectionName, secondWidth }) {
   const [t] = useTranslation('faq')
+  const { user } = useAuth0()
   const dispatch = useDispatch()
   const handleDetail = () => {
     dispatch(passDetail({
@@ -73,7 +75,9 @@ export default function Card ({ title, image, price, id, collectionName, secondW
           title,
           image,
           price,
-          id
+          id,
+          user: user?.sub.slice(6)
+
         }
         )
       )

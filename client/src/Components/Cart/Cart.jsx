@@ -1,23 +1,29 @@
 
 /* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment, useRef, useState, useEffect } from 'react'
+import React, { Fragment, useRef, useState, useEffect, memo } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
+// import { useAuth0 } from '@auth0/auth0-react'
 // import { removeFromCart } from '../../Redux/Actions/ActionsCart'
 import { FaTrashAlt } from 'react-icons/fa'
 import Modal from '../ModalDelete/ModalDeleteFromCart'
 import { Link } from 'react-router-dom'
 import { getEthereumConv } from '../../Redux/Actions/Convertion'
-import { cleanAllCart } from '../../Redux/Actions/ActionsCart'
+import { addToCart, cleanAllCart } from '../../Redux/Actions/ActionsCart'
+import { useAuth0 } from '@auth0/auth0-react'
 
-export function Cart ({ open, setOpen }) {
+function Cart ({ open, setOpen }) {
+  const { user } = useAuth0()
+  const cartFromRedux = useSelector(state => state.Cart)
+  console.log(cartFromRedux)
   const dispatch = useDispatch()
   const ethereumValue = useSelector(state => state.Conv.ethereum)
-
+  // const { user } = useAuth0()
   const ethValue = ethereumValue?.usd
   const cartToBuy = useSelector(state => state.Cart)
+  console.log(cartToBuy)
   Cart.propTypes = {
     open: PropTypes.bool,
     setOpen: PropTypes.func
@@ -25,14 +31,26 @@ export function Cart ({ open, setOpen }) {
   const handleCleanCart = () => {
     dispatch(cleanAllCart())
   }
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem('Cart'))
   useEffect(() => {
     dispatch(getEthereumConv())
-    localStorage.setItem('Cart', JSON.stringify(cartToBuy))
-  }, [cartToBuy])
+    window.scrollTo(0, 0)
+    if (cartFromLocalStorage?.length > cartFromRedux?.length) {
+      if (cartFromLocalStorage[0].user === user?.sub.slice(6).toString()) {
+        cartFromLocalStorage.map((el) =>
+          dispatch(addToCart(el))
+        )
+      }
+    }
+  }, [])
+
+  const prueba = cartFromLocalStorage
+  console.log('esto es local s torage ', prueba)
 
   let totalBuy = 0
   // const total = Number(totalBuy.toFixed(4))
-  cartToBuy.map(item => {
+
+  cartToBuy?.map(item => {
     totalBuy = totalBuy + Number(item.price.toFixed(3))
     return totalBuy
   }
@@ -95,7 +113,7 @@ export function Cart ({ open, setOpen }) {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {cartToBuy.map((e) => (
+                            {cartToBuy?.map((e) => (
                               <li key={e.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border bg-pink-500 opacity-100 border-gray-200">
                                   <img
@@ -179,3 +197,4 @@ export function Cart ({ open, setOpen }) {
     </Transition.Root>
   )
 }
+export default memo(Cart)
