@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from '../AdminPanel.module.css'
+import axios from 'axios'
 
 export default function AdminUsers () {
   const mockupData = {
@@ -12,6 +13,16 @@ export default function AdminUsers () {
     mockupData, mockupData, mockupData
   ]
 
+  const [howManyUsersExist, setHowmanyUsersExist] = useState('?')
+
+  useEffect(() => {
+    async function getHowManyUsersExist () {
+      const response = await axios.get('https://marabierto.herokuapp.com/users/amount').then(r => r.data)
+      setHowmanyUsersExist(response)
+    }
+    getHowManyUsersExist()
+  })
+
   return (
     <div className='w-full flex flex-col items-center'>
 
@@ -21,7 +32,7 @@ export default function AdminUsers () {
 
           <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
 
-            <h1 className='text-neutral-300 text-6xl'>xx999xx</h1>
+            <h1 className='text-neutral-300 text-6xl'>{howManyUsersExist}</h1>
             <h1 className='text-neutral-200 text-2xl'>Actual users</h1>
 
           </div>

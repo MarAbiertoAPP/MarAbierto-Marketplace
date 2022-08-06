@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router()
-const { createUser, searchUser } = require('../utils/user')
+const { createUser, searchUser, searchByName } = require('../utils/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const { user } = require('../db.js')
@@ -66,6 +66,16 @@ router.get('/amount', async(req,res) => {
   try {
     const response = await user.findAll();
     return res.status(201).json(response.length)
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
+
+router.get('/getallusersdata', async(req,res) => {
+  try {
+    const response = await user.findAll()
+    return res.status(201).json(response)
   } catch (err) {
     console.log(err)
     res.status(500).send({ error: 'Algo ha ocurrido' })

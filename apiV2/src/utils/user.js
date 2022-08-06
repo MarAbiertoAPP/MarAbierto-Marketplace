@@ -27,6 +27,16 @@ const searchUser = async (email) => {
   }
 }
 
+const searchByName = async (name) => {
+  try {
+    return await user.findOne({
+      where: { name}
+    })
+  } catch (error) {
+    return error
+  }
+}
+
 // Get all userId
 const allUserId = async () => {
   try {
@@ -58,5 +68,6 @@ module.exports = {
   createUser,
   searchUser,
   allUserId,
-  findUser
+  findUser,
+  searchByName
 }
