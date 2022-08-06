@@ -5,47 +5,56 @@ import { Dialog, Transition } from '@headlessui/react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
-// import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
 // import { removeFromCart } from '../../Redux/Actions/ActionsCart'
 import { FaTrashAlt } from 'react-icons/fa'
 import Modal from '../ModalDelete/ModalDeleteFromCart'
 import { Link } from 'react-router-dom'
 import { getEthereumConv } from '../../Redux/Actions/Convertion'
 import { addToCart, cleanAllCart } from '../../Redux/Actions/ActionsCart'
-import { useAuth0 } from '@auth0/auth0-react'
+import { createUser, userFromLocalStorage } from '../../Redux/Actions'
 
 function Cart ({ open, setOpen }) {
-  const { user } = useAuth0()
+  const { isAuthenticated, user } = useAuth0()
   const cartFromRedux = useSelector(state => state.Cart)
-  console.log(cartFromRedux)
+
   const dispatch = useDispatch()
   const ethereumValue = useSelector(state => state.Conv.ethereum)
   // const { user } = useAuth0()
   const ethValue = ethereumValue?.usd
   const cartToBuy = useSelector(state => state.Cart)
-  console.log(cartToBuy)
+  const userId = useSelector(state => state.User)
+
   Cart.propTypes = {
     open: PropTypes.bool,
     setOpen: PropTypes.func
+
   }
   const handleCleanCart = () => {
     dispatch(cleanAllCart())
   }
   const cartFromLocalStorage = JSON.parse(localStorage.getItem('Cart'))
   useEffect(() => {
+    window.scrollTo(0, 0)
+
+    if (isAuthenticated) {
+      dispatch(createUser(user))
+      return dispatch(userFromLocalStorage())
+    }
+  }, [])
+
+  useEffect(() => {
     dispatch(getEthereumConv())
     window.scrollTo(0, 0)
-    if (cartFromLocalStorage?.length > cartFromRedux?.length) {
-      if (cartFromLocalStorage[0].user === user?.sub.slice(6).toString()) {
+
+    if (cartFromLocalStorage?.length > cartFromRedux.length && isAuthenticated) {
+      if (cartFromLocalStorage[0].user === userId?.id) {
         cartFromLocalStorage.map((el) =>
           dispatch(addToCart(el))
         )
       }
     }
   }, [])
-
-  const prueba = cartFromLocalStorage
-  console.log('esto es local s torage ', prueba)
 
   let totalBuy = 0
   // const total = Number(totalBuy.toFixed(4))

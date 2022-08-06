@@ -12,7 +12,7 @@ import CarouselLanding from './newHomeResources/CarouselLanding';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCollection } from '../../Redux/Actions';
+import { createUser, getAllCollection, userFromLocalStorage } from '../../Redux/Actions';
 import { useEffect } from 'react';
 import ChatbotMar from '../Chatbox/ChatBot'
 import { addToCart } from '../../Redux/Actions/ActionsCart';
@@ -22,26 +22,42 @@ import { string } from 'prop-types';
 
 
 export default function NewHome () {
-  const {  user } = useAuth0()
+  const {  user, isAuthenticated } = useAuth0()
+  
   const [t] = useTranslation('faq')
   const dispatch = useDispatch()
   const Collection = useSelector(state => state.Collection)
   const navigate = useNavigate()
+  const userId = useSelector(state => state.User)
+  const cartFromRedux = useSelector(state => state.Cart)
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem('Cart'))
 
 
-
-  
- 
   useEffect(() => {
     window.scrollTo(0, 0)
-    /* const cartFromLocalStorage = JSON.parse(localStorage.getItem("Cart"))
-if(cartFromLocalStorage&&cartFromLocalStorage.filter((el)=>el.user===user?.sub.slice(6))){
-   dispatch(addToCart(cartFromLocalStorage[0]))
-} */
+    
+    if (isAuthenticated) {
+      dispatch(createUser(user))
+      dispatch(userFromLocalStorage())
+    }
+    
 
+  }, [isAuthenticated])
 
-    dispatch(getAllCollection())
-  }, [])
+ 
+  useEffect(() => {
+    if (cartFromLocalStorage?.length > cartFromRedux.length && isAuthenticated) {
+      if (cartFromLocalStorage[0].user === userId?.id) {
+        cartFromLocalStorage.map((el) =>
+          dispatch(addToCart(el))
+        )
+      }
+    }
+        dispatch(getAllCollection())
+      }, [isAuthenticated])
+    
+  
+
 
   
  

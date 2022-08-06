@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import React, { useState } from 'react'
 import DropDownTail from '../../Home/Dropdown/Dropdown'
 import Classes from './navigation.module.css'
 import Logo from '../../../assests/LogoPMA.png'
@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { resetFilters } from '../../../Redux/Actions'
 import LanguajeButton from '../../LanguajeButton/LanguajeButton'
+import { cleanAllCart } from '../../../Redux/Actions/ActionsCart'
 // import { cartFromLocalStorage } from '../../../Redux/Actions/ActionsCart'
 
 function Nav () {
@@ -36,8 +37,10 @@ function Nav () {
   const handleLogout = () => {
     if (cartToBuy.length > 0) {
       localStorage.setItem('Cart', JSON.stringify(cartToBuy))
+      return dispatch(cleanAllCart())
     }
     logout()
+
     // window.localStorage.clear('User')
   }
   const handleClick = (e) => {
@@ -109,7 +112,7 @@ function Nav () {
   )
 }
 
-export default memo(Nav)
+export default Nav
 /* function Dropdown () {
   const {
     loginWithRedirect, isAuthenticated,

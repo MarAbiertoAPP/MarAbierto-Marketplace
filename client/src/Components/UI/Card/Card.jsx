@@ -14,7 +14,7 @@ import { addToCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
 export default function Card ({ title, image, price, id, collectionName, secondWidth }) {
   const [t] = useTranslation('faq')
-  const { user } = useAuth0()
+  /* const { user } = useAuth0() */
   const dispatch = useDispatch()
   const handleDetail = () => {
     dispatch(passDetail({
@@ -27,7 +27,7 @@ export default function Card ({ title, image, price, id, collectionName, secondW
   }
 
   const { Cart } = useSelector(state => state)
-
+  const userId = useSelector(state => state.User.id)
   Card.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
@@ -76,7 +76,7 @@ export default function Card ({ title, image, price, id, collectionName, secondW
           image,
           price,
           id,
-          user: user?.sub.slice(6)
+          user: userId
 
         }
         )
