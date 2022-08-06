@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { addToCart, buyNow } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
+import { useAuth0 } from '@auth0/auth0-react'
 const ButtonsDetails = (props) => {
   const { Cart } = useSelector(state => state)
   const { detail } = useSelector(state => state)
@@ -11,6 +12,8 @@ const ButtonsDetails = (props) => {
   const dispatch = useDispatch()
   const [t] = useTranslation('faq')
   const navigate = useNavigate()
+
+  const { isAuthenticated, loginWithRedirect } = useAuth0()
 
   const handleBuyNow = () => {
     Swal.fire({
@@ -34,7 +37,7 @@ const ButtonsDetails = (props) => {
   }
 
   const handleAddToCart = () => {
-    if (Cart.find(i => i.id === id)) {
+    if (Cart.find(i => i.id === Number(id))) {
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-right',
@@ -82,9 +85,9 @@ const ButtonsDetails = (props) => {
 
   return (
     <div className='flex flex-col md:flex-row space-around mt-20 space-y-4 md:space-y-0'>
-        <button onClick={handleBuyNow} className='basis-4/12 bg-purple-700 hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('buyNow.buyNow')}</button>
+        <button onClick={(e) => isAuthenticated ? handleBuyNow(e) : loginWithRedirect()} className='basis-4/12 bg-purple-700 hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('buyNow.buyNow')}</button>
        {/*  <button className='basis-4/12 bg-amber-600 mx-8 text-2xl py-4'>{t('makeOffer.makeOffer')}</button> */}
-        <button onClick={handleAddToCart} className='basis-4/12 bg-purple-700 hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('AddToCart.AddToCart')}</button>
+        <button onClick={(e) => isAuthenticated ? handleAddToCart(e) : loginWithRedirect()} className='basis-4/12 bg-purple-700 hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('AddToCart.AddToCart')}</button>
     </div>
   )
 }
