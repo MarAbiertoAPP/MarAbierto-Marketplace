@@ -94,10 +94,10 @@ function Cart ({ open, setOpen }) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md  bg-white ">
-                  <div className="flex h-full flex-col overflow-y-scroll   shadow-xl  bg-gradient-to-b from-violet-800 via-indigo-500 to-purple-400 ">
+                  <div className="flex h-full flex-col overflow-y-scroll   shadow-xl  bg-gradient-to-b from-violet-900 via-indigo-800 to-purple-400 ">
                     <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                       <div className="flex items-start justify-between">
-                        <Dialog.Title className="text-lg font-medium  text-indigo-600"> Shopping cart </Dialog.Title>
+                        <Dialog.Title className="text-xl text-orange-400 font-bold capitalize"> Shopping cart </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
@@ -162,24 +162,24 @@ function Cart ({ open, setOpen }) {
                     </div>
 
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-                      <div className="flex justify-between text-base font-medium text-gray-900">
-                        <p className='text-lime-900 font-bold'>Subtotal</p>
-                        <p className='text-lime-900 font-bold'>ETH {totalBuy.toFixed(3)}</p>
-                        <p className='text-lime-900 font-bold'>USD {((ethValue || '') * totalBuy).toFixed(2) }</p>
+                      <div className="flex justify-between text-base font-medium">
+                        <p className='text-gray-900 font-bold'>Subtotal</p>
+                        <p className='text-gray-900 font-bold'>ETH {totalBuy.toFixed(3)}</p>
+                        <p className='text-gray-900 font-bold'>USD {((ethValue || '') * totalBuy).toFixed(2) }</p>
                       </div>
-                      <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                      <p className="mt-0.5 text-sm text-gray-700">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6 flex justify-between">
                         <Link to={'/checkout'}>
                           <button disabled={cartToBuy.length === 0} className='bg-blue-500 enabled:hover:bg-blue-700 disabled:opacity-75 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded'> CHECKOUT</button>
                       </Link>
                       <button disabled={cartToBuy.length === 0} onClick={handleCleanCart} className='bg-red-500 enabled:hover:bg-red-700 disabled:opacity-75 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded'>CLEAN CART</button>
                       </div>
-                      <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                      <div className="mt-6 flex justify-center text-center text-sm text-gray-700">
                         <p>
                           or{' '}
                           <button
                             type="button"
-                            className="font-medium text-indigo-600 hover:text-indigo-500"
+                            className="font-bold text-violet-600 hover:text-violet-900"
                             onClick={() => setOpen(false)}
                           >
                             Continue Shopping<span aria-hidden="true"> &rarr;</span>
