@@ -82,4 +82,15 @@ router.get('/getallusersdata', async(req,res) => {
   }
 })
 
+router.get('/getuserdatabyname', async(req,res) => {
+  try {
+    const {nickname} = req.query
+    const response = await searchByName(nickname)
+    return res.status(201).json(response)
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
+
 module.exports = router
