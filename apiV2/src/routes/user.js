@@ -82,9 +82,9 @@ router.get('/getallusersdata', async(req,res) => {
   }
 })
 
-router.get('/getuserdatabyname', async(req,res) => {
+router.get('/getuserdatabyname/:nickname', async(req,res) => {
   try {
-    const {nickname} = req.query
+    const {nickname} = req.params
     const response = await searchByName(nickname)
     return res.status(201).json(response)
   } catch (err) {
