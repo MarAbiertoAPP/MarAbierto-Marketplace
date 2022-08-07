@@ -9,20 +9,14 @@ const modelLike = require('./models/Like.js')
 const modelShoppingCar = require('./models/ShoppingCar.js')
 const modelCollection = require('./models/Collection.js')
 const modelReport = require('./models/Report.js')
-/**
- * post car 
- * delete car 
- * delte total car
- * get car by user id
- * 
- */
+
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env
 // process.env.DATABASE_URL ||
 const sequelize = new Sequelize(
   process.env.DATABASE_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`,
   {
     logging: false,
-    /* native: false */
+    // native: false
     dialectOptions: {
       ssl: {
         require: true,

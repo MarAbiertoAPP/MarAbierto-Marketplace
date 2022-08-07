@@ -34,7 +34,6 @@ router.delete('/:userId', async (req, res) => {
 router.get('/:userId', async (req, res) => {
   try {
     const { userId } = req.params
-    console.log('jdhd')
     return res.status(200).send(await getCarByUserID(userId))
   } catch (error) {
     return res.status(400).send({ msg: error })
