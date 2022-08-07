@@ -1,4 +1,4 @@
-import React from 'react'
+import React/* , { useEffect } */ from 'react'
 import PropTypes from 'prop-types'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,8 +10,9 @@ import { motion } from 'framer-motion'
 import { FaEthereum } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi'
 import { passDetail } from '../../../Redux/Actions/ActionsDetail'
-import { addToCart } from '../../../Redux/Actions/ActionsCart'
+import { addToCart, getAllCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
+
 export default function Card ({ title, image, price, id, collectionName, secondWidth }) {
   const [t] = useTranslation('faq')
   /* const { user } = useAuth0() */
@@ -25,6 +26,10 @@ export default function Card ({ title, image, price, id, collectionName, secondW
       collectionName
     }))
   }
+  /* useEffect(() => {
+    dispatch(
+      getAllCart(userId))
+  }, []) */
 
   const { Cart } = useSelector(state => state)
   const userId = useSelector(state => state.User.id)
@@ -73,16 +78,12 @@ export default function Card ({ title, image, price, id, collectionName, secondW
 
       return dispatch(
         addToCart({
-          title,
-          image,
-          price,
-          id,
-          user: userId
-
+          id, userId
         }
         )
       )
     }
+    return dispatch(getAllCart(userId))
   }
 
   return (
