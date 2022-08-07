@@ -118,7 +118,7 @@ const getCollectionIdByName = async (name) => {
       where: {
         name: eliminarDiacriticos(name).toLowerCase()
       },
-      attributes: ['id'],
+      attributes: ['id', 'userId'],
       raw: true,
       nest: true
     })

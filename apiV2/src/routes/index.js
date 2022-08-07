@@ -6,6 +6,7 @@ const nft = require('./nft')
 const user = require('./user')
 const favorite = require('./favorites')
 const report = require('./report')
+const car = require('./car.js')
 const router = Router()
 
 router.use('/payment', payment)
@@ -15,5 +16,5 @@ router.use('/nft', nft)
 router.use('/users', user)
 router.use('/favorite', favorite)
 router.use('/report', report)
-
+router.use('/car', car)
 module.exports = router

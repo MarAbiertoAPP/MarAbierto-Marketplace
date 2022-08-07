@@ -11,11 +11,21 @@ export default function AdminUsers () {
   const [howManyUsersExist, setHowmanyUsersExist] = useState('?')
   const [input, setInput] = useState('')
 
-  console.log(dataFromUserForTheCard)
+  async function banUser (e) {
+    e.preventDefault()
+    const body = { name: dataFromUserForTheCard.nickname, id: dataFromUserForTheCard.id }
+
+    await axios.post('https://marabierto.herokuapp.com/users/banuser', body)
+      .then(function (response) {
+        alert('activity were added succesfully')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
 
   function handleInputChanges (e) {
     e.preventDefault()
-    console.log(e.value)
     setInput(e.target.value)
   }
 
@@ -25,9 +35,7 @@ export default function AdminUsers () {
   }
 
   async function getdataFromUserForTheCard (nickname) {
-    console.log(nickname)
     const response = await axios.get(`https://marabierto.herokuapp.com/users/getuserdatabyname/${nickname}`).then(r => r.data)
-    console.log(response)
     setdataFromUserForTheCard(response)
   }
 
@@ -78,7 +86,7 @@ export default function AdminUsers () {
           <h1 className='text-4xl text-neutral-300 text-center'>Ban an user</h1>
 
           <div className='flex w-full'>
-              <form onSubmit={PreventDefault}>
+              <form className='w-full flex' onSubmit={PreventDefault}>
 
               <input value={input} onChange={(e) => handleInputChanges(e)} className='bg-transparent border border-neutral-200 border-2 text-neutral-300 text-2xl w-11/12 mx-20 rounded-lg px-4 py-2' placeholder='Name of the user'></input>
               <button type='submit'>
@@ -93,12 +101,12 @@ export default function AdminUsers () {
         <div className='w-full my-8 space-y-4 flex flex-col'>
           {dataFromUserForTheCard &&
            <div key={dataFromUserForTheCard.id} className='w-full p-8 border border-t-transparent border-x-transparent border-neutral-300 flex items-center'>
-              <img className='w-20 h-20 rounded-full' alt={'foto'} src={dataFromUserForTheCard.img}></img>
+              <img className='w-20 h-20 rounded-full' alt={'foto'} src={dataFromUserForTheCard.profile_picture}></img>
 
               <div className='flex flex-col items-center w-full'>
                 <h1 className='text-2xl text-neutral-300'>{dataFromUserForTheCard.id}</h1>
                 <h1 className='text-2xl text-neutral-300'>{dataFromUserForTheCard.name}</h1>
-                <button className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Ban User</button>
+                <button onClick={banUser} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Ban User</button>
               </div>
 
             </div>
