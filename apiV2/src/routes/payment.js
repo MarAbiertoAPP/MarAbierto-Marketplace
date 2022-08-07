@@ -1,4 +1,5 @@
 const express = require('express')
+const { statusNft } = require('../utils/nft')
 const router = express.Router()
 
 router.post('/', async (req, res) => {
@@ -12,6 +13,15 @@ router.post('/', async (req, res) => {
   })
   const intent = paymentIntent
   res.json({ client_secret: intent.client_secret })
+})
+
+router.post('/change-status/', async (req, res) => {
+  try {
+    const { id, ownerId } = req.body
+    return res.status(200).send(await statusNft(id, ownerId))
+  } catch (error) {
+    return res.status(400).send({ msg: error })
+  }
 })
 
 module.exports = router

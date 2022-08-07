@@ -28,7 +28,6 @@ const chargue = async () => {
 
     // Get an array of all user's ID
     const allUsersId = await allUserId()
-
     // Charge all collections
     for (const c of Collections) {
       const userIndex = rndNumber(allUsersId.length)
