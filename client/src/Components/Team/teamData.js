@@ -11,7 +11,7 @@ export const data42 = [{
 {
   name: 'Julian Soto',
   contact: 'https://www.linkedin.com/in/julian-soto-dev/',
-  img: 'https://res.cloudinary.com/julian-soto/image/upload/v1659834280/ddngivvdzi3t5xoga6jz.png'
+  img: 'https://media.licdn.com/media/AAYQAQSOAAgAAQAAAAAAAB-zrMZEDXI2T62PSuT6kpB6qg.png'
 },
 {
   name: 'Rafael Quiroga',

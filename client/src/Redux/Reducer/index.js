@@ -11,9 +11,9 @@ import {
   SET_PAGE_MAX,
   CREATE_USER,
   GET_ALL_CATEGORIES,
-  ADD_TO_CART,
+  /* ADD_TO_CART,
   REMOVE_FROM_CART,
-  REMOVE_ALL_FROM_CART,
+  REMOVE_ALL_FROM_CART, */
   CART_FROM_LOCAL_STORAGE,
   SET_MULTIPLE_FILTERS,
   GET_CLIENTE_SECRET,
@@ -21,7 +21,7 @@ import {
   DETAIL,
   FILTER_BY_TITLE_CAT,
   FILTER_BY_PRICE_CAT,
-  BUY_NOW, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC, CLEAN_COLLECTION_BY_NAME
+  BUY_NOW, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC, CLEAN_COLLECTION_BY_NAME, GET_ALL_CART
 } from '../Actions/ActionsCreators'
 
 const initialState = {
@@ -184,13 +184,13 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state, User: action.payload
       }
-    case ADD_TO_CART:
+      /* case ADD_TO_CART:
       return {
-        ...state,
-        Cart: [...state.Cart, action.payload]
-      }
+        ...state
 
-    case REMOVE_FROM_CART:
+      }
+ */
+      /* case REMOVE_FROM_CART:
       return {
         ...state,
         Cart: [...state.Cart.filter((item) => item.id !== action.payload)]
@@ -200,6 +200,13 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state,
         Cart: action.payload
+      } */
+    case GET_ALL_CART:
+      return {
+        ...state,
+
+        Cart: [action.payload]
+
       }
 
     case GET_CLIENTE_SECRET:

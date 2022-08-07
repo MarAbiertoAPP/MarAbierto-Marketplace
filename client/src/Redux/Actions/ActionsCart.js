@@ -1,18 +1,37 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CART_FROM_LOCAL_STORAGE, BUY_NOW, CLEAN_BUY_NOW, REMOVE_ALL_FROM_CART } from './ActionsCreators'
+import { CART_FROM_LOCAL_STORAGE, BUY_NOW, CLEAN_BUY_NOW, GET_ALL_CART } from './ActionsCreators'
+import axios from 'axios'
+export function addToCart ({ userId, nftId }) {
+  return function (dispatch) {
+    /*  console.log(`entre a addto cart con el user id: ${userId} y el nftId: ${nftId}`) */
+    axios.post('/car', { nftId, userId })
+      .then((res) => {
+        console.log(res)
+      })
 
-export function addToCart (id) {
-  return {
-    type: ADD_TO_CART,
-    payload: id
+      .catch(error => console.log(`aqui el error en action ${error.message}`))
   }
 }
-export function removeFromCart (id) {
-  return {
-    type: REMOVE_FROM_CART,
-    payload: id
+
+export function removeFromCart (nftId, userId) {
+  return function () {
+    axios.delete('/car', { nftId, userId })
+
+      .catch(error => console.log(error.message))
   }
 }
-
+export function getAllCart (userId) {
+  console.log('userID del get all cart', userId)
+  return function (dispatch) {
+    axios.get(`/car/${userId}`)
+      .then(res => {
+        console.log('esta es la res de getallcar', res.data)
+        dispatch({
+          type: GET_ALL_CART,
+          payload: res.data
+        })
+      })
+  }
+}
 export function cartFromLocalStorage (cart) {
   return {
     type: CART_FROM_LOCAL_STORAGE,
@@ -34,9 +53,8 @@ export function cleanBuyNow () {
   }
 }
 
-export function cleanAllCart () {
-  return {
-    type: REMOVE_ALL_FROM_CART,
-    payload: []
+export function cleanAllCart (userId) {
+  return function () {
+    axios.delete(`/car/${userId}`)
   }
 }

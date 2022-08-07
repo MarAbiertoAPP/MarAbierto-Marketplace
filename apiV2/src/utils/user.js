@@ -23,11 +23,13 @@ const banAnUser = async (id) => {
         id
       }
     })
+
   } catch (error) {
     console.log(error)
     throw error.message
   }
 }
+
 
 const unbanAnUser = async (id) => {
   try {

@@ -134,5 +134,26 @@
     },
     "trading cards": {
         "trading cards": "Mejores NFTs"
+    },
+    "create new nft": {
+        "create new nft": "Crea tu NFT"
+    },
+    "name": {
+        "name": "Nombre"
+    },
+    "Select a Categorie Class": {
+        "Select a Categorie Class": "Seleccione una Categoria"
+    },
+    "Price": {
+        "Price": "Precio"
+    },
+    "Upload your NFT image": {
+        "Upload your NFT image": "Carga la imagen de tu NFT"
+    },
+    "send": {
+        "send": "Enviar"
+    },
+    "Pre-visualization": {
+        "Pre-visualization": "Previsualizacion"
     }
 }
