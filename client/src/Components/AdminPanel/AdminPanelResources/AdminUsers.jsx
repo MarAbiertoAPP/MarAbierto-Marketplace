@@ -9,6 +9,7 @@ export default function AdminUsers () {
   // ]
   const [dataFromUserForTheCard, setdataFromUserForTheCard] = useState('')
   const [howManyUsersExist, setHowmanyUsersExist] = useState('?')
+  const [howManyBannedUsersExist, setHowManyBannedUsersExist] = useState('?')
   const [input, setInput] = useState('')
 
   async function banUser (e) {
@@ -45,7 +46,13 @@ export default function AdminUsers () {
       setHowmanyUsersExist(response)
     }
 
+    async function getHowManyBannedUsersExist () {
+      const response = await axios.get('https://marabierto.herokuapp.com/users/banuser').then(r => r.data.length)
+      setHowManyBannedUsersExist(response)
+    }
+
     getHowManyUsersExist()
+    getHowManyBannedUsersExist()
   })
 
   return (
@@ -75,7 +82,7 @@ export default function AdminUsers () {
 
           <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
 
-           <h1 className='text-neutral-300 text-6xl'>xx222xx</h1>
+           <h1 className='text-neutral-300 text-6xl'>{howManyBannedUsersExist}</h1>
             <h1 className='text-neutral-200 text-2xl'>Banned users</h1>
 
           </div>
