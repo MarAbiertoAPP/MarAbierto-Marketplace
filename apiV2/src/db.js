@@ -22,7 +22,7 @@ const sequelize = new Sequelize(
         require: true,
         rejectUnauthorized: false
       }
-    } */
+    } 
   }
 )
 /**
