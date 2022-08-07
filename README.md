@@ -1,6 +1,6 @@
 # Mar Abierto - Nft-MarketPlace
 
-## Link Deploy= https://mar-abierto-marketplace.vercel.app/
+### Link Deploy= https://mar-abierto-marketplace.vercel.app/
 
 1. Crear base de datos en postgres "marketplace"
 
