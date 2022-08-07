@@ -1,4 +1,4 @@
-# Mar Abierto - ##Nft-MarketPlace
+# Mar Abierto - Nft-MarketPlace
 
 #### Link Deploy= https://mar-abierto-marketplace.vercel.app/
 
