@@ -7,15 +7,29 @@ export default function AdminUsers () {
   // const simulated = [
   //   mockupData, mockupData, mockupData
   // ]
-  const [dataFromUserForTheCard, setdataFromUserForTheCard] = useState('')
+  const [dataFromUserForTheCard, setdataFromUserForTheCard] = useState([])
   const [howManyUsersExist, setHowmanyUsersExist] = useState('?')
+  const [totalBannedUsers, setTotalBannedUsers] = useState([])
   const [input, setInput] = useState('')
 
-  async function banUser (e) {
+  async function banUser (e, id) {
     e.preventDefault()
-    const body = { name: dataFromUserForTheCard.nickname, id: dataFromUserForTheCard.id }
+    const body = { id }
 
     await axios.post('https://marabierto.herokuapp.com/users/banuser', body)
+      .then(function (response) {
+        alert('activity were added succesfully')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
+
+  async function unbanUser (e, id) {
+    e.preventDefault()
+    const body = { id }
+
+    await axios.post('https://marabierto.herokuapp.com/users/unbanuser', body)
       .then(function (response) {
         alert('activity were added succesfully')
       })
@@ -44,9 +58,14 @@ export default function AdminUsers () {
       const response = await axios.get('https://marabierto.herokuapp.com/users/amount').then(r => r.data)
       setHowmanyUsersExist(response)
     }
-
     getHowManyUsersExist()
   })
+
+  useEffect(() => {
+    axios.get('https://marabierto.herokuapp.com/users/banned')
+      .then(r => r.data)
+      .then(res => setTotalBannedUsers(res))
+  }, [])
 
   return (
     <div className='w-full flex flex-col items-center'>
@@ -75,7 +94,7 @@ export default function AdminUsers () {
 
           <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
 
-           <h1 className='text-neutral-300 text-6xl'>xx222xx</h1>
+           <h1 className='text-neutral-300 text-6xl'>{totalBannedUsers.length || 0}</h1>
             <h1 className='text-neutral-200 text-2xl'>Banned users</h1>
 
           </div>
@@ -99,17 +118,25 @@ export default function AdminUsers () {
         </div>
 
         <div className='w-full my-8 space-y-4 flex flex-col'>
-          {dataFromUserForTheCard &&
-           <div key={dataFromUserForTheCard.id} className='w-full p-8 border border-t-transparent border-x-transparent border-neutral-300 flex items-center'>
-              <img className='w-20 h-20 rounded-full' alt={'foto'} src={dataFromUserForTheCard.profile_picture}></img>
+          {
+            console.log(dataFromUserForTheCard.length)
+          }
+          {(dataFromUserForTheCard.length) &&
+            dataFromUserForTheCard.map(user =>
+            <div key={user.id} className='w-full p-8 border border-t-transparent border-x-transparent border-neutral-300 flex items-center'>
+              <img className='w-20 h-20 rounded-full' alt={'foto'} src={user.profile_picture}></img>
 
               <div className='flex flex-col items-center w-full'>
-                <h1 className='text-2xl text-neutral-300'>{dataFromUserForTheCard.id}</h1>
-                <h1 className='text-2xl text-neutral-300'>{dataFromUserForTheCard.name}</h1>
-                <button onClick={banUser} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Ban User</button>
+                <h1 className='text-2xl text-neutral-300'>{user.id}</h1>
+                <h1 className='text-2xl text-neutral-300'>{user.nickname}</h1>
+                {
+                  user.isBanned
+                    ? <button onClick={(e) => unbanUser(e, user.id)} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Unban User</button>
+                    : <button onClick={(e) => banUser(e, user.id)} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Ban User</button>
+                }
               </div>
-
             </div>
+            )
           }
         </div>
 

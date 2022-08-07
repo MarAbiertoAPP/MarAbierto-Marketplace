@@ -39,6 +39,10 @@ module.exports = (sequelize) => {
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
+    },
+    isBanned: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     timeStamps: false,

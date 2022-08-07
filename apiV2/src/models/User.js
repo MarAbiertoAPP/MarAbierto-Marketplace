@@ -40,13 +40,22 @@ module.exports = (sequelize) => {
       type: DataTypes.DECIMAL(20, 2),
       defaultValue: 0
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec commodo mi non odio viverra, a volutpat ipsum placerat.'
+    },
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
+    },
+    isBanned: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     timeStamps: false,
-    createdAt: false,
+    createdAt: true,
     updatedAt: false
   })
 }

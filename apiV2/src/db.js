@@ -10,21 +10,19 @@ const modelShoppingCar = require('./models/ShoppingCar.js')
 const modelCollection = require('./models/Collection.js')
 const modelReport = require('./models/Report.js')
 
-const modelBannedUser = require('./models/Userbanned.js')
-
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env
 // process.env.DATABASE_URL ||
 const sequelize = new Sequelize(
   process.env.DATABASE_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`,
   {
     logging: false,
-    /* native: false */
+    // native: false
     dialectOptions: {
       ssl: {
         require: true,
         rejectUnauthorized: false
       }
-    }
+    } 
   }
 )
 /**
@@ -39,7 +37,6 @@ modelFavorite(sequelize)
 modelLike(sequelize)
 modelShoppingCar(sequelize)
 modelReport(sequelize)
-modelBannedUser(sequelize)
 
 /**
  * create relationship
@@ -65,6 +62,7 @@ collection.belongsTo(user)
 user.hasMany(nft, {
   foreignKey: 'ownerId'
 })
+
 nft.belongsTo(user, {
   foreignKey: 'ownerId'
 })

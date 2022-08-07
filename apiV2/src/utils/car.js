@@ -1,4 +1,6 @@
-const { shoppingCar, user } = require('../db.js')
+const { shoppingCar } = require('../db.js')
+const { QueryTypes } = require('sequelize')
+const { conn } = require('../db')
 
 /**
  * post intem to car shopping
@@ -14,6 +16,7 @@ const postToCar = async (nftId, userId) => {
       date: Date.now()
     })
   } catch (error) {
+    console.log(error)
     throw error.message
   }
 }
@@ -52,13 +55,12 @@ const deleteTotalCar = async (userId) => {
   }
 }
 /**
- *
+ *get cart by user id
  * @param {*} userId
  */
 const getCarByUserID = async (userId) => {
   try {
-    const userCar = await user.findByPk(userId)
-    return await userCar.getNfts({})
+    return await conn.query(`SELECT nfts.id, nfts.img, nfts.price, nfts.title FROM nfts JOIN "shoppingCars" ON "shoppingCars"."nftId" =  nfts.id JOIN users ON users.id = "shoppingCars"."userId" WHERE  "shoppingCars"."userId" = '${userId}'`, { type: QueryTypes.SELECT })
   } catch (error) {
     throw error.message
   }

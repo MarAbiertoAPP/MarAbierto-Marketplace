@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { user, bannedUser } = require('../db.js')
+const { user, Op } = require('../db.js')
 
 const createUser = async (name, nickname, picture, email, typeUser) => {
   try {
@@ -16,9 +16,28 @@ const createUser = async (name, nickname, picture, email, typeUser) => {
   }
 }
 
-const createBannedUser = async (name, id) => {
+const banAnUser = async (id) => {
   try {
-    return await bannedUser.create({ name, id })
+    return await user.update({ isBanned: true }, {
+      where: {
+        id
+      }
+    })
+
+  } catch (error) {
+    console.log(error)
+    throw error.message
+  }
+}
+
+
+const unbanAnUser = async (id) => {
+  try {
+    return await user.update({ isBanned: false }, {
+      where: {
+        id
+      }
+    })
   } catch (error) {
     console.log(error)
     throw error.message
@@ -27,7 +46,11 @@ const createBannedUser = async (name, id) => {
 
 const getAllBannedUsers = async (name, id) => {
   try {
-    return await bannedUser.findAll()
+    return await user.findAll({
+      where: {
+        isBanned: true
+      }
+    })
   } catch (error) {
     console.log(error)
     throw error.message
@@ -47,8 +70,12 @@ const searchUser = async (email) => {
 
 const searchByName = async (nickname) => {
   try {
-    return await user.findOne({
-      where: { nickname }
+    return await user.findAll({
+      where: {
+        nickname: {
+          [Op.iLike]: `%${nickname}%`
+        }
+      }
     })
   } catch (error) {
     return error
@@ -88,6 +115,7 @@ module.exports = {
   allUserId,
   findUser,
   searchByName,
-  createBannedUser,
+  banAnUser,
+  unbanAnUser,
   getAllBannedUsers
 }

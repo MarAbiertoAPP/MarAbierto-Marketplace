@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router()
-const { createUser, searchUser, searchByName, createBannedUser, getAllBannedUsers } = require('../utils/user')
+const { createUser, searchUser, searchByName, banAnUser, unbanAnUser, getAllBannedUsers } = require('../utils/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const { user } = require('../db.js')
@@ -93,22 +93,32 @@ router.get('/getuserdatabyname/:nickname', async (req, res) => {
   }
 })
 
-router.post('/banuser', async(req,res) => {
+router.post('/banuser', async (req, res) => {
   try {
-    const {id, name} = req.body
-    const response = await createBannedUser(name,id)
-    return res.status(201).json(response)
+    const { id } = req.body
+    await banAnUser(id)
+    return res.status(201).json({ res: 'User is now banned' })
   } catch (err) {
-    res.status(500).send({error:'Algo ha ocurrido'})
+    res.status(500).send({ error: 'Algo ha ocurrido' })
   }
 })
 
-router.get('/banuser', async(req,res) => {
+router.post('/unbanuser', async (req, res) => {
+  try {
+    const { id } = req.body
+    await unbanAnUser(id)
+    return res.status(201).json({ res: 'User is now unbanned' })
+  } catch (err) {
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
+
+router.get('/banned', async (req, res) => {
   try {
     const response = await getAllBannedUsers()
     return res.status(201).json(response)
   } catch (err) {
-    res.status(500).send({error:'Algo ha ocurrido'})
+    res.status(500).send({ error: 'Algo ha ocurrido' })
   }
 })
 
