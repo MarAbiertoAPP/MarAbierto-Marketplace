@@ -62,9 +62,9 @@ router.post('/signin', async (req, res) => {
   }
 })
 
-router.get('/amount', async(req,res) => {
+router.get('/amount', async (req, res) => {
   try {
-    const response = await user.findAll();
+    const response = await user.findAll()
     return res.status(201).json(response.length)
   } catch (err) {
     console.log(err)
@@ -72,7 +72,7 @@ router.get('/amount', async(req,res) => {
   }
 })
 
-router.get('/getallusersdata', async(req,res) => {
+router.get('/getallusersdata', async (req, res) => {
   try {
     const response = await user.findAll()
     return res.status(201).json(response)
@@ -82,9 +82,9 @@ router.get('/getallusersdata', async(req,res) => {
   }
 })
 
-router.get('/getuserdatabyname/:nickname', async(req,res) => {
+router.get('/getuserdatabyname/:nickname', async (req, res) => {
   try {
-    const {nickname} = req.params
+    const { nickname } = req.params
     const response = await searchByName(nickname)
     return res.status(201).json(response)
   } catch (err) {
