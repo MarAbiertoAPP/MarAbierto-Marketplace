@@ -6,6 +6,7 @@ const { getCollectionIdByName } = require('./collection.js')
 const createNFT = async (title, description, img, price, collectionName, id) => {
   try {
     const collection = await getCollectionIdByName(collectionName)
+    const ownerId = collection.userId
     const collectionId = collection.id
     return await nft.create({
       title: title.toLowerCase(),
@@ -13,7 +14,8 @@ const createNFT = async (title, description, img, price, collectionName, id) => 
       img,
       price,
       collectionId,
-      id
+      id,
+      ownerId
     })
   } catch (error) {
     throw error.message
@@ -47,9 +49,23 @@ const deleteAllNft = async () => {
   }
 }
 
+const statusNft = async (id, ownerId) => {
+  try {
+    const nftC = await nft.findByPk(id)
+    const isActive = !nftC.isActive
+    return await nftC.update({
+      ownerId,
+      isActive
+    })
+  } catch (error) {
+    throw error.message
+  }
+}
+
 module.exports = {
   createNFT,
   getNftId,
+  statusNft,
   // addFavorite,
   // getFavoritesPerId,
   deleteAllNft
