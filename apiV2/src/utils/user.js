@@ -68,8 +68,12 @@ const searchUser = async (email) => {
 
 const searchByName = async (nickname) => {
   try {
-    return await user.findOne({
-      where: { [Op.iLike]: nickname }
+    return await user.findAll({
+      where: {
+        nickname: {
+          [Op.iLike]: `%${nickname}%`
+        }
+      }
     })
   } catch (error) {
     return error
