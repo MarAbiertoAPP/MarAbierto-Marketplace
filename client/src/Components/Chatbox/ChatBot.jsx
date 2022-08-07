@@ -2,29 +2,21 @@ import React, { useState } from 'react'
 import ChatBot from 'react-simple-chatbot'
 import '../Chatbox/chatbox.css'
 import chatLogo from '../../assests/chat.png'
+import { useSelector } from 'react-redux'
 function ChatbotMar (handleclick) {
   const [chatbot, setchatbot] = useState(false)
+  const userNick = useSelector(state => state.nickname)
   const openChat = () => {
     setchatbot(!chatbot)
   }
+
   const steps = [
     {
       id: '1',
-      message: "Hello world. I am a chatbot. What's your name?",
+      message: `Hello ${userNick}  world. I am a chatbot`,
       trigger: '2'
     },
-    {
-      id: '2',
-      user: true,
-      validator: (value) => {
-        if (/^[A-Za-z]{1}[a-z]{2,15}$/.test(value)) {
-          return true
-        } else {
-          return 'Please enter a valid name.'
-        }
-      },
-      trigger: '3'
-    },
+
     {
       id: '3',
       message: 'Hi {previousValue}, nice to meet you and Welcome to Mar Abierto!',

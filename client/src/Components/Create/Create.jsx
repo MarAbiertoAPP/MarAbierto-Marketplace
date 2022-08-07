@@ -37,7 +37,7 @@ export default function Create () {
 
   const handlePriceChange = (input) => {
     const priceFormat = input.replace(/[^\d-.]/g, '')
-    console.log(priceFormat)
+
     setInputPrice(parseFloat(priceFormat))
   }
   const prechargeNftImg = (input) => {
@@ -117,18 +117,6 @@ export default function Create () {
               ? ''
               : <h2 className='text-orange-800 ' >
               Description text is required</h2>}
-
-            {/* { status === 'NFT' &&
-
-              <div className='flex flex-col border-xl'>
-              <h1 className='text-xl text-purple-700'>Collection</h1>
-              <select className='text-xl text-neutral-300 bg-transparent border border-white rounded-lg mr-20 pl-2'>
-                <option>None</option>
-                <option>la 1 que tiene el usuario</option>
-                <option>la 2 que tiene el usuario</option>
-              </select>
-            </div>
-            } */}
 
             { status === 'NFT' &&
 

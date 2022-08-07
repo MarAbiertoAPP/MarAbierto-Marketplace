@@ -70,6 +70,7 @@ export default function Card ({ title, image, price, id, collectionName, secondW
         icon: 'success',
         title: 'item added to your shopping cart'
       })
+
       return dispatch(
         addToCart({
           title,
