@@ -40,6 +40,11 @@ module.exports = (sequelize) => {
       type: DataTypes.DECIMAL(20, 2),
       defaultValue: 0
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec commodo mi non odio viverra, a volutpat ipsum placerat. Vestibulum tristique sapien nibh, eu semper justo tincidunt eget. Vestibulum id mauris tellus. Morbi feugiat libero feugiat, auctor massa vitae, congue augue. Interdum et malesuada fames ac ante ipsum primis in faucibus.'
+    },
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true

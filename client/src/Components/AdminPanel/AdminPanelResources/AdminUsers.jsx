@@ -49,10 +49,10 @@ export default function AdminUsers () {
   })
 
   useEffect(() => {
-    axios.get('https://marabierto.herokuapp.com/users/amount')
+    axios.get('https://marabierto.herokuapp.com/users/banned')
       .then(r => r.data)
       .then(res => setTotalBannedUsers(res))
-  })
+  }, [])
 
   return (
     <div className='w-full flex flex-col items-center'>
