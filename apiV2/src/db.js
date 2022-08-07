@@ -22,7 +22,7 @@ const sequelize = new Sequelize(
         require: true,
         rejectUnauthorized: false
       }
-    }
+    } */
   }
 )
 /**
@@ -62,6 +62,7 @@ collection.belongsTo(user)
 user.hasMany(nft, {
   foreignKey: 'ownerId'
 })
+
 nft.belongsTo(user, {
   foreignKey: 'ownerId'
 })

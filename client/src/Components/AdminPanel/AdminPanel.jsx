@@ -9,7 +9,7 @@ import AdminUsers from './AdminPanelResources/AdminUsers'
 
 export default function AdminPanel () {
   const [rendering, setRendering] = useState('Dashboard')
-
+  
   function handleRendering1 (e) {
     e.preventDefault()
     setRendering('Dashboard')
@@ -35,7 +35,6 @@ export default function AdminPanel () {
     setRendering('NFTs')
   }
   
-
   return (
     <div className={style.div}>
         <div className=' w-full max-w-screen-xl  flex h-screen max-h-limitHnewHome'>
@@ -51,7 +50,7 @@ export default function AdminPanel () {
                   <h1 className='text-2xl text-neutral-300'>Dashboard</h1>
                 </button>
 
-                <button onClick={handleRendering2}  value={'Reports'} className='p-4 mx-4 text-center rounded-2xl border-xl bg-purple-900  border-neutral-300 hover:bg-purple-700'>
+                <button onClick={handleRendering2}  value='Reports' className='p-4 mx-4 text-center rounded-2xl border-xl bg-purple-900  border-neutral-300 hover:bg-purple-700'>
                   <h1 className='text-2xl text-neutral-300'>Reports</h1>
                 </button>
 
@@ -75,7 +74,7 @@ export default function AdminPanel () {
             {rendering === 'Dashboard' && <AdminDashboard/>}
             {rendering === 'Reports' && <AdminReports/>}
             {rendering === 'Users' && <AdminUsers/>}
-            {rendering === 'Collections' && <AdminCollections/>}
+            {rendering === 'Collections' && <AdminCollections />}
             {rendering === 'NFTs' && <AdminNfts/>}
           </div>
 

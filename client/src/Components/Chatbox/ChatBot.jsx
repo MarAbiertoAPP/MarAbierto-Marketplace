@@ -2,32 +2,24 @@ import React, { useState } from 'react'
 import ChatBot from 'react-simple-chatbot'
 import '../Chatbox/chatbox.css'
 import chatLogo from '../../assests/chat.png'
+import { useSelector } from 'react-redux'
 function ChatbotMar (handleclick) {
   const [chatbot, setchatbot] = useState(false)
+  const userNick = useSelector(state => state.User.nickname)
   const openChat = () => {
     setchatbot(!chatbot)
   }
+
   const steps = [
     {
       id: '1',
-      message: "Hello world. I am a chatbot. What's your name?",
-      trigger: '2'
-    },
-    {
-      id: '2',
-      user: true,
-      validator: (value) => {
-        if (/^[A-Za-z]{1}[a-z]{2,15}$/.test(value)) {
-          return true
-        } else {
-          return 'Please enter a valid name.'
-        }
-      },
+      message: `Hello ${`${userNick} !` || ''}, I am a chatbot`,
       trigger: '3'
     },
+
     {
       id: '3',
-      message: 'Hi {previousValue}, nice to meet you and Welcome to Mar Abierto!',
+      message: 'Nice to meet you!, and Welcome to Mar Abierto!',
       trigger: '4'
     },
     {
@@ -64,7 +56,7 @@ function ChatbotMar (handleclick) {
 
     {
       id: '7A',
-      message: 'The great about Mar Abierto is that you can pay your NFTs with Credit Card or Marcoins?',
+      message: 'The great about Mar Abierto is that you can pay your NFTs with Credit Card?',
       trigger: '6B'
 
     }

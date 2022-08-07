@@ -7,7 +7,6 @@ const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../util
 // params came by body
 // pagination came by query
 router.get('/', async (req, res) => {
-  console.log('in')
   try {
     const input = req.query
     // Get query to order
@@ -71,11 +70,11 @@ router.get('/', async (req, res) => {
 
 // Route to create a NFT
 router.post('/', async (req, res) => {
-  console.log(req.body)
   try {
     const { title, description, img, price, collectionName, id } = req.body
     const response = await createNFT(title, description, img, price, collectionName, id)
-    return res.status(200).send(response)
+    console.log(response)
+    return res.status(200).send('nftCreada')
   } catch (error) {
     return res.status(400).send({ msg: error })
   }

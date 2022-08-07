@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router()
-const { createUser, searchUser, searchByName } = require('../utils/user')
+const { createUser, searchUser, searchByName, banAnUser, unbanAnUser, getAllBannedUsers } = require('../utils/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const { user } = require('../db.js')
@@ -62,9 +62,9 @@ router.post('/signin', async (req, res) => {
   }
 })
 
-router.get('/amount', async(req,res) => {
+router.get('/amount', async (req, res) => {
   try {
-    const response = await user.findAll();
+    const response = await user.findAll()
     return res.status(201).json(response.length)
   } catch (err) {
     console.log(err)
@@ -72,7 +72,7 @@ router.get('/amount', async(req,res) => {
   }
 })
 
-router.get('/getallusersdata', async(req,res) => {
+router.get('/getallusersdata', async (req, res) => {
   try {
     const response = await user.findAll()
     return res.status(201).json(response)
@@ -82,13 +82,42 @@ router.get('/getallusersdata', async(req,res) => {
   }
 })
 
-router.get('/getuserdatabyname/:nickname', async(req,res) => {
+router.get('/getuserdatabyname/:nickname', async (req, res) => {
   try {
-    const {nickname} = req.params
+    const { nickname } = req.params
     const response = await searchByName(nickname)
     return res.status(201).json(response)
   } catch (err) {
     console.log(err)
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
+
+router.post('/banuser', async (req, res) => {
+  try {
+    const { id } = req.body
+    await banAnUser(id)
+    return res.status(201).json({ res: 'User is now banned' })
+  } catch (err) {
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
+
+router.post('/unbanuser', async (req, res) => {
+  try {
+    const { id } = req.body
+    await unbanAnUser(id)
+    return res.status(201).json({ res: 'User is now unbanned' })
+  } catch (err) {
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
+
+router.get('/banned', async (req, res) => {
+  try {
+    const response = await getAllBannedUsers()
+    return res.status(201).json(response)
+  } catch (err) {
     res.status(500).send({ error: 'Algo ha ocurrido' })
   }
 })

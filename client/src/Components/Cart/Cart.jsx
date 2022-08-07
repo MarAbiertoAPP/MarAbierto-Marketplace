@@ -39,9 +39,9 @@ function Cart ({ open, setOpen }) {
 
     if (isAuthenticated) {
       dispatch(createUser(user))
-      return dispatch(userFromLocalStorage())
+      dispatch(userFromLocalStorage())
     }
-  }, [])
+  }, [isAuthenticated])
 
   useEffect(() => {
     dispatch(getEthereumConv())
@@ -54,7 +54,7 @@ function Cart ({ open, setOpen }) {
         )
       }
     }
-  }, [])
+  }, [userId])
 
   let totalBuy = 0
   // const total = Number(totalBuy.toFixed(4))

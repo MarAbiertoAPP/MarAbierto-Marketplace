@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { user } = require('../db.js')
+const { user, Op } = require('../db.js')
 
 const createUser = async (name, nickname, picture, email, typeUser) => {
   try {
@@ -16,6 +16,45 @@ const createUser = async (name, nickname, picture, email, typeUser) => {
   }
 }
 
+const banAnUser = async (id) => {
+  try {
+    return await user.update({ isBanned: true }, {
+      where: {
+        id
+      }
+    })
+  } catch (error) {
+    console.log(error)
+    throw error.message
+  }
+}
+
+const unbanAnUser = async (id) => {
+  try {
+    return await user.update({ isBanned: false }, {
+      where: {
+        id
+      }
+    })
+  } catch (error) {
+    console.log(error)
+    throw error.message
+  }
+}
+
+const getAllBannedUsers = async (name, id) => {
+  try {
+    return await user.findAll({
+      where: {
+        isBanned: true
+      }
+    })
+  } catch (error) {
+    console.log(error)
+    throw error.message
+  }
+}
+
 // find User per email
 const searchUser = async (email) => {
   try {
@@ -29,8 +68,12 @@ const searchUser = async (email) => {
 
 const searchByName = async (nickname) => {
   try {
-    return await user.findOne({
-      where: { nickname}
+    return await user.findAll({
+      where: {
+        nickname: {
+          [Op.iLike]: `%${nickname}%`
+        }
+      }
     })
   } catch (error) {
     return error
@@ -69,5 +112,8 @@ module.exports = {
   searchUser,
   allUserId,
   findUser,
-  searchByName
+  searchByName,
+  banAnUser,
+  unbanAnUser,
+  getAllBannedUsers
 }
