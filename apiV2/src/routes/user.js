@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router()
-const { createUser, searchUser, searchByName, createBannedUser } = require('../utils/user')
+const { createUser, searchUser, searchByName, createBannedUser, getAllBannedUsers } = require('../utils/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const { user } = require('../db.js')
@@ -97,6 +97,15 @@ router.post('/banuser', async(req,res) => {
   try {
     const {id, name} = req.body
     const response = await createBannedUser(name,id)
+    return res.status(201).json(response)
+  } catch (err) {
+    res.status(500).send({error:'Algo ha ocurrido'})
+  }
+})
+
+router.get('/banuser', async(req,res) => {
+  try {
+    const response = await getAllBannedUsers()
     return res.status(201).json(response)
   } catch (err) {
     res.status(500).send({error:'Algo ha ocurrido'})
