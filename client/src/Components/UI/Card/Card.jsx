@@ -13,7 +13,7 @@ import { passDetail } from '../../../Redux/Actions/ActionsDetail'
 import { addToCart, getAllCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
 
-export default function Card ({ title, image, price, id, collectionName, secondWidth }) {
+export default function Card ({ title, image, price, nftId, collectionName, secondWidth, userId }) {
   const [t] = useTranslation('faq')
   /* const { user } = useAuth0() */
   const dispatch = useDispatch()
@@ -22,7 +22,8 @@ export default function Card ({ title, image, price, id, collectionName, secondW
       title,
       image,
       price,
-      id,
+      nftId,
+
       collectionName
     }))
   }
@@ -32,18 +33,21 @@ export default function Card ({ title, image, price, id, collectionName, secondW
   }, []) */
 
   const { Cart } = useSelector(state => state)
-  const userId = useSelector(state => state.User.id)
+  /* const userId = useSelector(state => state.User.id) */
+
   Card.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.number,
-    id: PropTypes.number,
+    nftId: PropTypes.string,
+    userId: PropTypes.string,
+
     collectionName: PropTypes.string,
     secondWidth: PropTypes.bool
   }
   const { isAuthenticated, loginWithRedirect } = useAuth0()
   const handleBuy = () => {
-    if (Cart.find(i => i.id === id)) {
+    if (Cart.find(i => i.nftId === nftId)) {
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-right',
@@ -77,13 +81,13 @@ export default function Card ({ title, image, price, id, collectionName, secondW
       })
 
       return dispatch(
+
         addToCart({
-          id, userId
-        }
-        )
-      )
+          nftId,
+          userId
+        }),
+        getAllCart(userId))
     }
-    return dispatch(getAllCart(userId))
   }
 
   return (
@@ -96,7 +100,7 @@ export default function Card ({ title, image, price, id, collectionName, secondW
     whileInView={{ opacity: 1 }}
     >
         <div className='h-72 box-border rounded-lg w-full'>
-          <Link className='flex justify-center' onClick={handleDetail} to={`/detail/${id}`}>
+          <Link className='flex justify-center' onClick={handleDetail} to={`/detail/${nftId}`}>
             <img className='object-cover h-72 w-full rounded-lg' src={image} alt="pic"></img>
           </Link>
         </div>

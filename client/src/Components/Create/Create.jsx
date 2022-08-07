@@ -9,12 +9,12 @@ import CreateDetailNFT from './CreateDetailNFT/CreateDetailNFT'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createNFT, getAllCategories } from '../../Redux/Actions'
-
+import { useTranslation } from 'react-i18next'
 const maxLengthInput = 200
 
 export default function Create () {
   const dispatch = useDispatch()
-
+  const [t] = useTranslation('faq')
   useEffect(() => {
     dispatch(getAllCategories())
   }, [])
@@ -75,7 +75,7 @@ export default function Create () {
         <div className='w-full flex'>
 
           <div className='basis-6/12 mt-12 space-y-4 py-8'>
-            <h1 className='text-purple-700 text-4xl'>Create new NFT</h1>
+            <h1 className='text-purple-700 text-4xl'>{t('create new nft.create new nft')}</h1>
 
             {/* <div className='flex space-x-8'>
               { <h1 className='text-xl text-neutral-200' onClick={() => setStatus('Collection')}>Collection</h1> }
@@ -83,12 +83,12 @@ export default function Create () {
             </div> */}
 
             <div className='flex flex-col'>
-              <h1 className='text-xl text-purple-700'>Name</h1>
+              <h1 className='text-xl text-purple-700'>{t('name.name')}</h1>
               <input
                 onChange={(e) => handleInputnameChange(e.target.value)} className='mr-20 pl-2 bg-transparent border-white border rounded-lg text-neutral-300'></input>
             </div>
             {inputName ? '' : <p className='text-orange-800'>Name is required</p>}
-<h1 className='text-xl text-purple-700'>Select a Categorie Class</h1>
+<h1 className='text-xl text-purple-700'>{t('Select a Categorie Class.Select a Categorie Class')}</h1>
 <select className='form-select appearance-none
       block
       w-full
@@ -109,7 +109,7 @@ export default function Create () {
   )}
 </select>
             <div className='flex flex-col border-xl'>
-              <h1 className='text-xl text-purple-700'>Description</h1>
+              <h1 className='text-xl text-purple-700'>{t('Description.Description')}</h1>
               <textarea value={inputDescription} placeholder= 'max text length is 200' maxLength = {maxLengthInput} onChange={(e) => handleInputDescription(e.target.value)} className='h-28 mr-20 pl-2 bg-transparent border-white border rounded-lg  text-neutral-300'></textarea>
               {inputDescription && inputDescription.length > 199 ? <p className='text-orange-800'>max text length is 200</p> : ''}
             </div>
@@ -121,14 +121,14 @@ export default function Create () {
             { status === 'NFT' &&
 
               <div className='flex flex-col'>
-              <h1 className='text-xl text-purple-700'>Price</h1>
+              <h1 className='text-xl text-purple-700'>{t('Price.Price')}</h1>
               <input type="Number" placeholder='Enter Price' onChange={(e) => handlePriceChange(e.target.value)} className='mr-20 pl-2 bg-transparent border-white border rounded-lg text-neutral-300'></input>
             </div>
             }
             {inputPrice ? '' : <p className='text-orange-800'> Price is Required</p>}
 
             <div className='flex flex-col'>
-              <h1 className='text-xl text-purple-700'>Upload your NFT image</h1>
+              <h1 className='text-xl text-purple-700'>{t('Upload your NFT image.Upload your NFT image')}</h1>
 
               {/* { status === 'Collection' &&
                 <div>
@@ -164,7 +164,7 @@ export default function Create () {
                       Preview
                       </button>
 
-                  <button disabled={!inputName || !inputDescription || !inputCategorie || !inputPrice } onClick={() => { enviarNft() }} className={'bg-transparent enabled:hover:bg-lime-500 disabled:cursor-not-allowed  text-blue-700 font-semibold enabled:hover:text-black py-2 px-4 border border-blue-500 enabled:hover:border-transparent rounded'}>enviar</button></div>
+                  <button disabled={!inputName || !inputDescription || !inputCategorie || !inputPrice } onClick={() => { enviarNft() }} className={'bg-transparent enabled:hover:bg-lime-500 disabled:cursor-not-allowed  text-blue-700 font-semibold enabled:hover:text-black py-2 px-4 border border-blue-500 enabled:hover:border-transparent rounded'}>{t('send.send')}</button></div>
 
                 </div>
 
@@ -179,7 +179,7 @@ export default function Create () {
             <div className='basis-6/12  mt-12 flex flex-col items-center py-8'>
             {/* <h1 className='text-neutral-300 text-4xl'>Create new Item</h1> */}
 
-            <h1 className='text-4xl text-white'>Pre-visualization Card</h1>
+            <h1 className='text-4xl text-white'>{t('Pre-visualization.Pre-visualization')}</h1>
 
             <CreateCard title={inputName} image={imageSelected || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU_DzzLsV5_lO_AQ7Jfcr0dHkWDO7aq7GcwQ&usqp=CAU?precharge '} price={inputPrice}/>
           </div>

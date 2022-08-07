@@ -16,16 +16,16 @@ const createUser = async (name, nickname, picture, email, typeUser) => {
   }
 }
 
-const createBannedUser = async (name,id) => {
+const createBannedUser = async (name, id) => {
   try {
-    return await bannedUser.create({name, id })
+    return await bannedUser.create({ name, id })
   } catch (error) {
     console.log(error)
     throw error.message
   }
 }
 
-const getAllBannedUsers = async (name,id) => {
+const getAllBannedUsers = async (name, id) => {
   try {
     return await bannedUser.findAll()
   } catch (error) {
@@ -48,7 +48,7 @@ const searchUser = async (email) => {
 const searchByName = async (nickname) => {
   try {
     return await user.findOne({
-      where: { nickname}
+      where: { nickname }
     })
   } catch (error) {
     return error

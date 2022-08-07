@@ -204,7 +204,9 @@ export default function rootReducer (state = initialState, action) {
     case GET_ALL_CART:
       return {
         ...state,
-        Cart: action.payload
+
+        Cart: [action.payload]
+
       }
 
     case GET_CLIENTE_SECRET:

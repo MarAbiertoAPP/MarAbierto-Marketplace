@@ -134,5 +134,29 @@
     },
     "trading cards": {
         "trading cards": "Trading Cards"
+    },
+    "create new nft": {
+        "create new nft": "Create new NFT"
+    },
+    "name": {
+        "name": "Name"
+    },
+    "Select a Categorie Class": {
+        "Select a Categorie Class": "Select a Categorie Class"
+    },
+    "Price": {
+        "Price": "Price"
+    },
+    "Description": {
+        "Description": "Description"
+    },
+    "Upload your NFT image": {
+        "Upload your NFT image": "Upload your NFT image"
+    },
+    "send": {
+        "send": "send"
+    },
+    "Pre-visualization": {
+        "Pre-visualization": "Pre-visualization"
     }
 }

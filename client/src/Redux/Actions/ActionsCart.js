@@ -1,10 +1,14 @@
 import { CART_FROM_LOCAL_STORAGE, BUY_NOW, CLEAN_BUY_NOW, GET_ALL_CART } from './ActionsCreators'
 import axios from 'axios'
-export function addToCart (id, userId) {
+export function addToCart ({ userId, nftId }) {
   return function (dispatch) {
-    axios.post('/car', { id, userId })
+    /*  console.log(`entre a addto cart con el user id: ${userId} y el nftId: ${nftId}`) */
+    axios.post('/car', { nftId, userId })
+      .then((res) => {
+        console.log(res)
+      })
 
-      .catch(error => console.log(error.message))
+      .catch(error => console.log(`aqui el error en action ${error.message}`))
   }
 }
 
@@ -16,12 +20,16 @@ export function removeFromCart (nftId, userId) {
   }
 }
 export function getAllCart (userId) {
+  console.log('userID del get all cart', userId)
   return function (dispatch) {
-    axios(`/car/${userId}`)
-      .then(res => dispatch({
-        type: GET_ALL_CART,
-        payload: res.data
-      }))
+    axios.get(`/car/${userId}`)
+      .then(res => {
+        console.log('esta es la res de getallcar', res.data)
+        dispatch({
+          type: GET_ALL_CART,
+          payload: res.data
+        })
+      })
   }
 }
 export function cartFromLocalStorage (cart) {

@@ -91,9 +91,7 @@ export default function NewHome () {
           <ChatbotMar  />
           </div>
           
-          <div>
-            <h1 className='text-lg text-white text-purple-500'>Learn more about MarAbierto</h1>
-          </div>
+          
 
         </div>
 

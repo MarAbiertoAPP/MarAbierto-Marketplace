@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ChatBot from 'react-simple-chatbot'
-import '../Chatbox/chatbox.css'
+
 import chatLogo from '../../assests/chat.png'
 import { useSelector } from 'react-redux'
 function ChatbotMar (handleclick) {

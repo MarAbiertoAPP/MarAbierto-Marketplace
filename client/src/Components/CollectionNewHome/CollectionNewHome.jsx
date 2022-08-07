@@ -15,6 +15,7 @@ import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import SearchBar from './SearchBar'
 import FilterPrice from './FilterPrice'
+import ChatbotMar from '../Chatbox/ChatBot'
 
 export default function CollectionNewHome (props) {
   const [t] = useTranslation('faq')
@@ -22,6 +23,7 @@ export default function CollectionNewHome (props) {
   const { name } = useParams()
   const [width, setWidth] = useState(false)
   const [filt, setFilt] = useState(false)
+  const userId = useSelector(state => state.User.id)
 
   const changeWidth = () => {
     setWidth(!width)
@@ -59,7 +61,7 @@ export default function CollectionNewHome (props) {
               </div>
 
             </div>
-
+            <ChatbotMar/>
             <div className='basis-4/12 flex space-x-8 mt-4'>
                 <div className='flex space-x-10 h-fit items-center'>
 
@@ -130,7 +132,7 @@ export default function CollectionNewHome (props) {
           }
             <div className=' w-full  flex flex-row flex-wrap justify-center '>
               {CollName.nfts?.map(e => {
-                return <Card key={e.id} title={e.title} image={e.img} price={e.price} id={e.id} secondWidth={width} />
+                return <Card key={e.id} title={e.title} image={e.img} price={e.price} userId={userId} secondWidth={width} nftId={e.id}/>
               })}
           </div>
         </div>
