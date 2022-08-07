@@ -7,7 +7,6 @@ const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../util
 // params came by body
 // pagination came by query
 router.get('/', async (req, res) => {
-  console.log('in')
   try {
     const input = req.query
     // Get query to order

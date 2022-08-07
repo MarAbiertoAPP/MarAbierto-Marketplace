@@ -9,6 +9,7 @@ import AdminUsers from './AdminPanelResources/AdminUsers'
 
 export default function AdminPanel () {
   const [rendering, setRendering] = useState('Dashboard')
+  
 
   function handleRendering1 (e) {
     e.preventDefault()
@@ -26,9 +27,16 @@ export default function AdminPanel () {
   }
 
   function handleRendering4 (e) {
+    
     e.preventDefault()
     setRendering('Collections')
+
+
   }
+
+
+
+
 
   function handleRendering5 (e) {
     e.preventDefault()
@@ -75,7 +83,7 @@ export default function AdminPanel () {
             {rendering === 'Dashboard' && <AdminDashboard/>}
             {rendering === 'Reports' && <AdminReports/>}
             {rendering === 'Users' && <AdminUsers/>}
-            {rendering === 'Collections' && <AdminCollections/>}
+            {rendering === 'Collections' && <AdminCollections />}
             {rendering === 'NFTs' && <AdminNfts/>}
           </div>
 

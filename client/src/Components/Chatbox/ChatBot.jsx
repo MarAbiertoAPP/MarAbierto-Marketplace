@@ -5,7 +5,7 @@ import chatLogo from '../../assests/chat.png'
 import { useSelector } from 'react-redux'
 function ChatbotMar (handleclick) {
   const [chatbot, setchatbot] = useState(false)
-  const userNick = useSelector(state => state.nickname)
+  const userNick = useSelector(state => state.User.nickname)
   const openChat = () => {
     setchatbot(!chatbot)
   }
@@ -13,13 +13,13 @@ function ChatbotMar (handleclick) {
   const steps = [
     {
       id: '1',
-      message: `Hello ${userNick}  world. I am a chatbot`,
-      trigger: '2'
+      message: `Hello ${`${userNick} !` || ''}, I am a chatbot`,
+      trigger: '3'
     },
 
     {
       id: '3',
-      message: 'Hi {previousValue}, nice to meet you and Welcome to Mar Abierto!',
+      message: 'Nice to meet you!, and Welcome to Mar Abierto!',
       trigger: '4'
     },
     {
@@ -56,7 +56,7 @@ function ChatbotMar (handleclick) {
 
     {
       id: '7A',
-      message: 'The great about Mar Abierto is that you can pay your NFTs with Credit Card or Marcoins?',
+      message: 'The great about Mar Abierto is that you can pay your NFTs with Credit Card?',
       trigger: '6B'
 
     }
