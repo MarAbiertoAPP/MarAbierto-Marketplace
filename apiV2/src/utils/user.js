@@ -25,6 +25,15 @@ const createBannedUser = async (name,id) => {
   }
 }
 
+const getAllBannedUsers = async (name,id) => {
+  try {
+    return await bannedUser.findAll()
+  } catch (error) {
+    console.log(error)
+    throw error.message
+  }
+}
+
 // find User per email
 const searchUser = async (email) => {
   try {
@@ -79,5 +88,6 @@ module.exports = {
   allUserId,
   findUser,
   searchByName,
-  createBannedUser
+  createBannedUser,
+  getAllBannedUsers
 }
