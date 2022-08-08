@@ -57,8 +57,8 @@ export default function Create () {
         description: inputDescription,
         price: inputPrice,
         img: response.data.secure_url,
-        userId: user.sub
-        // categorie: inputCategorie
+        userId: user.sub,
+        collectionName: 'Created By Users'
 
       })
     })

@@ -138,6 +138,13 @@ const Collections = [
     frontPage: 'https://openseauserdata.com/files/ce2155565454004cfe71e6278b1312c8.png',
     mini: 'https://lh3.googleusercontent.com/3y3MythDHRH46bNeSGSwYo3pK8J_3ngKMUAwPyvl5cdKn9JiLSL46KWxZtEVo7V8ILraMEANA5RB-r_LrKmwq0qZebpa1pHqybJ7gQ=h128-w128',
     description: 'We Are All Going to Die'
+  },
+  {
+    name: 'Created By Users',
+    category: 'Collectibles',
+    frontPage: 'https://wallpaper.dog/large/10906199.jpg',
+    mini: 'https://w0.peakpx.com/wallpaper/330/198/HD-wallpaper-purple-violet-blue-glow-moon-neon-retro-sea-sunrise-sunset-vintage-water-waves-thumbnail.jpg',
+    description: 'Collection with Nfts created by users'
   }
 ]
 
