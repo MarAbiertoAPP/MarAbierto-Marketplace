@@ -93,7 +93,7 @@ router.post('/add', async (req, res) => {
         path: n.img,
         price: n.price,
         userId: n.userId,
-        categoryId: n.categoryId
+        collectionName: n.collectionName
       })
     })
 
