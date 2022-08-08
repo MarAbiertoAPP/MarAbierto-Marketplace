@@ -48,7 +48,7 @@ export default function Cart ({ open, setOpen }) {
   useEffect(() => {
     dispatch(getEthereumConv())
     dispatch(getAllCart(userId))
-  }, [])
+  }, [userId])
 
   let totalBuy = 0
   // const total = Number(totalBuy.toFixed(4))
