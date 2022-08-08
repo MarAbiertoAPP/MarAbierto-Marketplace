@@ -23,6 +23,13 @@ export function removeFromCart ({ userId, nftId }) {
   }
 }
 export function getAllCart (userId) {
+  if (!userId) {
+    return {
+      type: GET_ALL_CART,
+      payload: []
+    }
+  }
+
   return function (dispatch) {
     axios.get(`/car/${userId}`)
       .then(res => {

@@ -1,5 +1,4 @@
 import React from 'react'
-
 /* import Home from './Components/Home/Home' */
 /* import Landing from './Components/LandingPage/Landing' */
 import Faq from './Components/Faq/faq'
@@ -16,8 +15,9 @@ import ExploreCollection from './Components/ExploreCollections/Explore_collectio
 import CollectionNewHome from './Components/CollectionNewHome/CollectionNewHome'
 import Create from './Components/Create/Create'
 import AdminPanel from './Components/AdminPanel/AdminPanel'
-import Home from './Components/Home/Home'
 import Team from './Components/Team/Team'
+// import Home from './Components/Home/Home'
+
 export default function AnimatedRoutes () {
   const location = useLocation()
   return (
@@ -36,8 +36,8 @@ export default function AnimatedRoutes () {
         <Route path='/create' element={<Create/>} />
         <Route path='/collection/:name' element={<CollectionNewHome/>} />
         <Route path='/AdminPanel' element={<AdminPanel/>} />
-        <Route path='/home' element={<Home/>} />
         <Route path='/team' element={<Team/>} />
+        {/* <Route path='/home' element={<Home/>} /> */}
 
       </Routes>
     </AnimatePresence>

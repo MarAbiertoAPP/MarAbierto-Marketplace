@@ -39,7 +39,7 @@ export default function Card ({ title, image, price, nftId, collectionName, seco
     title: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.number,
-    nftId: PropTypes.string,
+    nftId: PropTypes.number,
     userId: PropTypes.string,
 
     collectionName: PropTypes.string,
