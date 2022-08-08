@@ -183,7 +183,6 @@ export function getCollectionByName ({ name, title, price }) {
       query += `price=${price}&`
     }
     query = query.slice(0, -1)
-    console.log(query)
     axios(`/collection/detail/${name}${query}`)
       .then(res => dispatch({
         type: GET_COLLECTION_BY_NAME,
