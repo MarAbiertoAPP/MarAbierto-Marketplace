@@ -29,7 +29,7 @@ const ButtonsDetails = (props) => {
       if (result.value) {
         dispatch(buyNow({
           title: detail.title,
-          image: detail.image,
+          img: detail.image,
           price: detail.price,
           id: detail.id
         }))

@@ -12,7 +12,7 @@ export default function ItemsCart () {
   let totalBuy = 0
   const checkoutNft = BuyNow.length ? BuyNow : Cart
 
-  checkoutNft.map(item => {
+  checkoutNft?.map(item => {
     totalBuy = totalBuy + Number(item.price.toFixed(3))
     return totalBuy
   })
@@ -21,7 +21,7 @@ export default function ItemsCart () {
     return () => { dispatch(cleanBuyNow()) }
   }, [])
 
-  checkoutNft.sort((a, b) => a.title.localeCompare(b.title))
+  checkoutNft?.sort((a, b) => a.title.localeCompare(b.title))
 
   return (
     <div>
