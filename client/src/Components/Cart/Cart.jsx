@@ -6,12 +6,13 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios'
 // import { removeFromCart } from '../../Redux/Actions/ActionsCart'
 import { FaTrashAlt } from 'react-icons/fa'
 import Modal from '../ModalDelete/ModalDeleteFromCart'
 import { Link } from 'react-router-dom'
 import { getEthereumConv } from '../../Redux/Actions/Convertion'
-import { cleanAllCart, getAllCart } from '../../Redux/Actions/ActionsCart'
+import { getAllCart } from '../../Redux/Actions/ActionsCart'
 import { createUser, userFromLocalStorage } from '../../Redux/Actions'
 
 export default function Cart ({ open, setOpen }) {
@@ -31,7 +32,8 @@ export default function Cart ({ open, setOpen }) {
 
   }
   const handleCleanCart = () => {
-    dispatch(cleanAllCart(userId))
+    axios.delete(`/car/${userId}`)
+      .then(res => dispatch(getAllCart(userId)))
   }
 
   useEffect(() => {
@@ -54,14 +56,13 @@ export default function Cart ({ open, setOpen }) {
   cartToBuy?.map(item => {
     totalBuy = totalBuy + Number(item.price.toFixed(3))
     return totalBuy
-  }
-
-  )
+  })
 
   const [popModal, setPopModal] = useState(false)
 
   const handleDelete = (e) => {
     setPopModal(true)
+    console.log(e)
     idDelete.current = e
   }
   const idDelete = useRef()
@@ -146,9 +147,7 @@ export default function Cart ({ open, setOpen }) {
                                       <FaTrashAlt
                                       type="button"
                                       className="font-medium text-lime-500 hover:text-indigo-500 cursor-pointer "
-                                      onClick={ () => handleDelete()
-
-                                      }
+                                      onClick={(event) => handleDelete(e.id)}
                                         />
 
                                     </div>

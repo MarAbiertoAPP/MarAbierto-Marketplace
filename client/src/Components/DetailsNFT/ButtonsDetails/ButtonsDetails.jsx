@@ -1,13 +1,15 @@
 import React from 'react'
 import Swal from 'sweetalert2'
+import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { addToCart, buyNow } from '../../../Redux/Actions/ActionsCart'
+import { buyNow, getAllCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
 import { useAuth0 } from '@auth0/auth0-react'
 const ButtonsDetails = (props) => {
   const { Cart } = useSelector(state => state)
   const { detail } = useSelector(state => state)
+  const userId = useSelector(state => state.User.id)
   const { id } = useParams()
   const dispatch = useDispatch()
   const [t] = useTranslation('faq')
@@ -69,17 +71,8 @@ const ButtonsDetails = (props) => {
         icon: 'success',
         title: 'item added to your shopping cart'
       })
-
-      return dispatch(
-        addToCart({
-          title: detail.title,
-          image: detail.image,
-          price: detail.price,
-          id: detail.id
-
-        }
-        )
-      )
+      axios.post('/car', { nftId: detail.nftId, userId })
+        .then((res) => dispatch(getAllCart(userId)))
     }
   }
 

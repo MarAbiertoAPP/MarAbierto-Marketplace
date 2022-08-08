@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
   }
 })
 
-router.delete('/', async (req, res) => {
+router.post('/delete', async (req, res) => {
   try {
     const { nftId, userId } = req.body
     return res.sendStatus(200).send(await deleteTocar(nftId, userId))
