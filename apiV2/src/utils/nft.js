@@ -27,7 +27,7 @@ const getNftId = async (id) => {
   try {
     return await nft.findOne({
       where: { id },
-      attributes: ['id', 'title', 'description', 'img', 'price', 'isActive'],
+      attributes: ['id', 'title', 'description', 'img', 'price', 'isActive', 'isBanned'],
       include: [{
         model: collection,
         attributes: ['name', 'description']
