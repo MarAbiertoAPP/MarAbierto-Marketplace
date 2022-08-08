@@ -22,6 +22,35 @@ const createNFT = async (title, description, img, price, collectionName, id) => 
   }
 }
 
+
+const banANft = async (id) => {
+  try {
+    return await nft.update({ isBanned: true }, {
+      where: {
+        id
+      }
+    })
+
+  } catch (error) {
+    console.log(error)
+    throw error.message
+  }
+}
+
+
+const unbanANft = async (id) => {
+  try {
+    return await nft.update({ isBanned: false }, {
+      where: {
+        id
+      }
+    })
+  } catch (error) {
+    console.log(error)
+    throw error.message
+  }
+}
+
 // get Nft per id incluide name of user and category
 const getNftId = async (id) => {
   try {
@@ -68,5 +97,8 @@ module.exports = {
   statusNft,
   // addFavorite,
   // getFavoritesPerId,
-  deleteAllNft
+  deleteAllNft,
+  banANft,
+  unbanANft
+
 }
