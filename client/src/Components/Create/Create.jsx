@@ -52,7 +52,7 @@ export default function Create () {
         price: inputPrice,
         img: response.data.secure_url,
         userId: user.sub,
-        categorie: inputCategorie
+        collectionName: 'Created By Users'
 
       })
     })

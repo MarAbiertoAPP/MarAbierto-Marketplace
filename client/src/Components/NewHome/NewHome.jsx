@@ -15,9 +15,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createUser, getAllCollection, userFromLocalStorage } from '../../Redux/Actions';
 import { useEffect } from 'react';
 import ChatbotMar from '../Chatbox/ChatBot'
-import { addToCart } from '../../Redux/Actions/ActionsCart';
 import { useAuth0 } from '@auth0/auth0-react'
-import { string } from 'prop-types';
+
 
 
 
@@ -29,8 +28,7 @@ export default function NewHome () {
   const Collection = useSelector(state => state.Collection)
   const navigate = useNavigate()
   const userId = useSelector(state => state.User)
-  const cartFromRedux = useSelector(state => state.Cart)
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem('Cart'))
+
 
 
   useEffect(() => {
@@ -45,23 +43,9 @@ export default function NewHome () {
   }, [isAuthenticated])
 
  
-  useEffect(() => {
-    if (cartFromLocalStorage?.length > cartFromRedux.length && isAuthenticated) {
-      if (cartFromLocalStorage[0].user === userId?.id) {
-        cartFromLocalStorage.map((el) =>
-          dispatch(addToCart(el))
-        )
-      }
-    }
+  useEffect(() => {   
         dispatch(getAllCollection())
       }, [isAuthenticated])
-    
-  
-
-
-  
- 
- 
 
   
 
