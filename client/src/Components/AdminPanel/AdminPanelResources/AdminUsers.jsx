@@ -18,7 +18,7 @@ export default function AdminUsers () {
 
     await axios.post('https://marabierto.herokuapp.com/users/banuser', body)
       .then(function (response) {
-        alert('activity were added succesfully')
+        alert('user was banned succesfully')
       })
       .catch(function (error) {
         console.log(error)
@@ -31,7 +31,7 @@ export default function AdminUsers () {
 
     await axios.post('https://marabierto.herokuapp.com/users/unbanuser', body)
       .then(function (response) {
-        alert('activity were added succesfully')
+        alert('user was unbanned succesfully')
       })
       .catch(function (error) {
         console.log(error)

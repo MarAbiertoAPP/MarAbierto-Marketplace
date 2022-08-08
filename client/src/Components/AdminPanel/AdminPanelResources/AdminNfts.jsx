@@ -1,8 +1,53 @@
 import React, { useState, useEffect } from 'react'
 import style from '../AdminPanel.module.css'
 import axios from 'axios'
+import { AiOutlineSearch } from 'react-icons/ai'
+
 export default function AdminNfts () {
   const [nftQuantity, setnftQuantity] = useState()
+  const [input, setInput] = useState('')
+  const [dataFromNftForTheCard, setdataFromNftForTheCard] = useState()
+
+  async function getdataFromNftForTheCard (id) {
+    const response = await axios.get(`https://marabierto.herokuapp.com/nft/detail/${id}`).then(r => r.data)
+    setdataFromNftForTheCard(response)
+  }
+
+  function PreventDefault (e) {
+    e.preventDefault()
+    getdataFromNftForTheCard(input)
+  }
+
+  async function banNFT (e, id) {
+    e.preventDefault()
+    const body = { id }
+
+    await axios.post('https://marabierto.herokuapp.com/nft/bannft', body)
+      .then(function (response) {
+        alert('user was banned succesfully')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
+
+  async function unbanNFT (e, id) {
+    e.preventDefault()
+    const body = { id }
+
+    await axios.post('https://marabierto.herokuapp.com/nft/unbannft', body)
+      .then(function (response) {
+        alert('user was unbanned succesfully')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
+
+  function handleInputChanges (e) {
+    e.preventDefault()
+    setInput(e.target.value)
+  }
 
   useEffect((nftQuan) => {
     countNft()
@@ -55,25 +100,41 @@ export default function AdminNfts () {
 
         </div>
 
-        <div className='w-full px-10 my-14 flex flex-col items-center space-y-8'>
-          <h1 className='text-4xl text-neutral-300'>Ban a NFT</h1>
-          <input className='bg-transparent border border-neutral-200 border-2 text-neutral-300 text-2xl w-full mx-20 rounded-lg px-4 py-2' placeholder='Name of the user'></input>
+        <div className='w-full px-10 my-14 flex flex-col space-y-8'>
+          <h1 className='text-4xl text-neutral-300 text-center'>Ban a NFT</h1>
+
+          <div className='flex w-full'>
+              <form onSubmit={(e) => PreventDefault(e) } className='w-full flex' >
+
+              <input value={input} onChange={(e) => handleInputChanges(e)} className='bg-transparent border border-neutral-200 border-2 text-neutral-300 text-2xl w-11/12 mx-20 rounded-lg px-4 py-2' placeholder='ID of the NFT'></input>
+              <button type='submit'>
+                <AiOutlineSearch className='text-white text-xl'/>
+              </button>
+              </form>
+
+          </div>
 
         </div>
 
         <div className='w-full my-8 space-y-4 flex flex-col'>
-          {/* {simulated?.map(e => {
-            return <div key={e.id} className='w-full p-8 border border-t-transparent border-x-transparent border-neutral-300 flex items-center'>
-              <img className='w-20 h-20 rounded-full' alt={'foto'} src={e.img}></img>
+
+          {(dataFromNftForTheCard) &&
+
+            <div key={dataFromNftForTheCard.id} className='w-full p-8 border border-t-transparent border-x-transparent border-neutral-300 flex'>
+              <img className='w-96 h-96 rounded-lg object-contain' alt={'foto'} src={dataFromNftForTheCard.img}></img>
 
               <div className='flex flex-col items-center w-full'>
-                <h1 className='text-2xl text-neutral-300'>{e.id}</h1>
-                <h1 className='text-2xl text-neutral-300'>{e.name}</h1>
-                <button className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Ban NFT</button>
+                <h1 className='text-2xl text-neutral-300'>{dataFromNftForTheCard.id}</h1>
+                <h1 className='text-2xl text-neutral-300'>{dataFromNftForTheCard.nickname}</h1>
+                {
+                  dataFromNftForTheCard.isBanned
+                    ? <button onClick={(e) => unbanNFT(e, dataFromNftForTheCard.id)} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Unban NFT</button>
+                    : <button onClick={(e) => banNFT(e, dataFromNftForTheCard.id)} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Ban NFT</button>
+                }
               </div>
-
             </div>
-          })} */}
+
+          }
         </div>
 
       </div>

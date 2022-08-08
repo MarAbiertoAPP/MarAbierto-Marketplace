@@ -58,13 +58,14 @@ export default function AdminPanel () {
                   <h1 className='text-2xl text-neutral-300'>Users</h1>
                 </button>
 
+                <button onClick={handleRendering5}  value='NFTs' className='p-4 mx-4 text-center rounded-2xl border-xl bg-purple-900  border-neutral-300 hover:bg-purple-700'>
+                  <h1 className='text-2xl text-neutral-300'>NFTs</h1>
+                </button>
+                
                 <button onClick={handleRendering4}  value='Collections' className='p-4 mx-4 text-center rounded-2xl border-xl bg-purple-900  border-neutral-300 hover:bg-purple-700'>
                   <h1 className={`text-2xl text-neutral-300`}>Collections</h1>
                 </button>
 
-                <button onClick={handleRendering5}  value='NFTs' className='p-4 mx-4 text-center rounded-2xl border-xl bg-purple-900  border-neutral-300 hover:bg-purple-700'>
-                  <h1 className='text-2xl text-neutral-300'>NFTs</h1>
-                </button>
 
             </div>
 
