@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../../Home/toast.css'
-
+import axios from 'axios'
 import { motion } from 'framer-motion'
 import { FaEthereum } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi'
 import { passDetail } from '../../../Redux/Actions/ActionsDetail'
-import { addToCart } from '../../../Redux/Actions/ActionsCart'
+import { getAllCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
 
 export default function Card ({ title, image, price, nftId, collectionName, secondWidth, userId }) {
@@ -80,11 +80,8 @@ export default function Card ({ title, image, price, nftId, collectionName, seco
         title: 'item added to your shopping cart'
       })
 
-      dispatch(
-        addToCart({
-          nftId,
-          userId
-        }))
+      axios.post('/car', { nftId, userId })
+        .then((res) => dispatch(getAllCart(userId)))
     }
   }
 
