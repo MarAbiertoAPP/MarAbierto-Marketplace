@@ -40,6 +40,10 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
+    collection: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
     isBanned: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
