@@ -21,7 +21,7 @@ import {
   DETAIL,
   FILTER_BY_TITLE_CAT,
   FILTER_BY_PRICE_CAT,
-  BUY_NOW, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC, CLEAN_COLLECTION_BY_NAME, GET_ALL_CART
+  BUY_NOW, CREATE_NFT_STATUS, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC, CLEAN_COLLECTION_BY_NAME, GET_ALL_CART
 } from '../Actions/ActionsCreators'
 
 const initialState = {
@@ -36,6 +36,7 @@ const initialState = {
     max: undefined,
     cardsPerPage: 10
   },
+  created: false,
   categories: [],
   filterBar: false,
   Cart: [],
@@ -62,6 +63,12 @@ export default function rootReducer (state = initialState, action) {
     case CREATE_NFT:
       return {
         ...state
+
+      }
+    case CREATE_NFT_STATUS:
+      return {
+        ...state,
+        created: !state.created
       }
 
     case FILTER_BY_PRICE:
@@ -184,23 +191,7 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state, User: action.payload
       }
-      /* case ADD_TO_CART:
-      return {
-        ...state
 
-      }
- */
-      /* case REMOVE_FROM_CART:
-      return {
-        ...state,
-        Cart: [...state.Cart.filter((item) => item.id !== action.payload)]
-      }
-
-    case REMOVE_ALL_FROM_CART:
-      return {
-        ...state,
-        Cart: action.payload
-      } */
     case GET_ALL_CART:
       return {
         ...state,

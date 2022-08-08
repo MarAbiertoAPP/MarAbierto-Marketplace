@@ -62,7 +62,7 @@ export default function Cart ({ open, setOpen }) {
 
   const handleDelete = (e) => {
     setPopModal(true)
-    console.log(e)
+
     idDelete.current = e
   }
   const idDelete = useRef()

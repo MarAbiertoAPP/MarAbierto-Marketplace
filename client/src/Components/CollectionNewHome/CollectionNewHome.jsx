@@ -61,7 +61,7 @@ export default function CollectionNewHome (props) {
               </div>
 
             </div>
-            <ChatbotMar/>
+
             <div className='basis-4/12 flex space-x-8 mt-4'>
                 <div className='flex space-x-10 h-fit items-center'>
 
@@ -136,7 +136,9 @@ export default function CollectionNewHome (props) {
               })}
           </div>
         </div>
-
+        <div className="z-10 md:z-50 fixed bottom-10 right-0">
+          <ChatbotMar />
+          </div>
       </div>
     </div>
   )

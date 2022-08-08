@@ -33,7 +33,6 @@ export function getAllCart (userId) {
   return function (dispatch) {
     axios.get(`/car/${userId}`)
       .then(res => {
-        console.log('esta es la res de getallcar', res.data)
         dispatch({
           type: GET_ALL_CART,
           payload: res.data

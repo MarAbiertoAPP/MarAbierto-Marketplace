@@ -1,5 +1,5 @@
 import {
-  CREATE_NFT,
+  /* CREATE_NFT, */
   FILTER_BY_PRICE,
   FILTER_BY_TITLE,
   FILTER_BY_CATEGORY,
@@ -24,18 +24,20 @@ import {
   FILTER_BY_PRICE_CAT,
   SET_PAGE_COLLEC,
   SET_PAGE_MAX_COLLEC,
-  CLEAN_COLLECTION_BY_NAME
+  CLEAN_COLLECTION_BY_NAME,
+  CREATE_NFT_STATUS
 
   // GET_LAST_DROPS,
   // GET_TOP_DROPS
 
 } from './ActionsCreators'
-import axios from 'axios'
 
+import axios from 'axios'
 export function createNFT (obj) {
   return function (dispatch) {
     axios.post('/nft', obj)
-      .then(dispatch({ type: CREATE_NFT }))
+      .then(dispatch({ type: CREATE_NFT_STATUS }))
+
       .catch(error => console.log(error.message))
   }
 }

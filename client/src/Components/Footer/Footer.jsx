@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import footer from '../Footer/Footer.module.css'
 import { useTranslation } from 'react-i18next'
 const Footer = () => {
   const [t] = useTranslation('faq')
+
+  const [inputReview, setinputReview] = useState()
+  const handleInputReview = (e) => {
+    setinputReview(e.taget.value.replace(/[^A-Za,-z0-9-]/g, ' '))
+  }
   return (
     <div className={footer.Container}>
       <div className="flex justify-center items-center lg:justify-between p-6 border-b ">
@@ -125,6 +130,8 @@ const Footer = () => {
             </p>
             <p className="mb-4">
               <a href="/home" className="text-violet-500">Home</a>
+            </p>
+            <p className="mb-4 text-orange-400">LEAVE A COMMENT<textarea value={inputReview} placeholder= 'max text length is 200' onChange={(e) => handleInputReview(e.target.value)} className='h-28 mr-20 pl-2 bg-transparent border-white border rounded-lg  text-neutral-300' ></textarea>
             </p>
 
           </div>

@@ -38,7 +38,7 @@ export default function Card ({ title, image, price, nftId, collectionName, seco
   Card.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.string,
     nftId: PropTypes.number,
     userId: PropTypes.string,
 

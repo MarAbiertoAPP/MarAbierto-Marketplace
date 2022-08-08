@@ -6,7 +6,6 @@ import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 
 export default function CreateCard ({ title, image, price, id }) {
-  console.log(image.type)
   CreateCard.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,

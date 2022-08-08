@@ -7,9 +7,14 @@ import CreateCard from './CreateCard/CreateCard'
 // import CreateDemoCollection from './CreateDemoCollection/CreateDemoCollecion'
 import CreateDetailNFT from './CreateDetailNFT/CreateDetailNFT'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useDispatch, useSelector } from 'react-redux'
+import {
+  useDispatch, /* , useSelector  */
+  useSelector
+} from 'react-redux'
+
 import { createNFT, getAllCategories } from '../../Redux/Actions'
 import { useTranslation } from 'react-i18next'
+import Swal from 'sweetalert2'
 const maxLengthInput = 200
 
 export default function Create () {
@@ -18,7 +23,8 @@ export default function Create () {
   useEffect(() => {
     dispatch(getAllCategories())
   }, [])
-  const { categories } = useSelector(state => state)
+  // const { categories } = useSelector(state => state)
+  const { created } = useSelector(state => state)
 
   const { user } = useAuth0()
   const [inputName, setInputName] = useState()
@@ -26,11 +32,11 @@ export default function Create () {
   const [imageSelected, setImageSelected] = useState('https://i.ytimg.com/vi/6wuBl4xVR0g/maxresdefault.jpg')
   const [inputPrice, setInputPrice] = useState()
   const [nftcreate, setnftCreated] = useState({})
-  const [inputCategorie, setInputCategorie] = useState()
+
+  // const [inputCategorie, setInputCategorie] = useState()
   const handleInputnameChange = (input) => {
     setInputName(input.replace(/[^A-Za-z0-9-]/g, ' '))
   }
-
   const handleInputDescription = (input) => {
     setInputDescription(input.replace(/[^A-Za,-z0-9-]/g, ' '))
   }
@@ -51,20 +57,33 @@ export default function Create () {
         description: inputDescription,
         price: inputPrice,
         img: response.data.secure_url,
-        userId: user.sub,
-        categorie: inputCategorie
+        userId: user.sub
+        // categorie: inputCategorie
 
       })
     })
   }
-  const categorieInput = (input) => {
+  /* const categorieInput = (input) => {
     setInputCategorie(input.target.value)
-  }
+  } */
 
   const [status] = useState('NFT')
 
   const enviarNft = () => {
-    return dispatch(createNFT(nftcreate))
+    dispatch(createNFT(nftcreate))
+
+    created &&
+      Swal.fire({
+        title: 'NFT CREATED!!',
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.value) {
+          console.log('nft creado')
+          setImageSelected('https://media4.giphy.com/media/1cXXYmhrXLGqY6gmYt/200w.gif?cid=82a1493biaiertvmjcuwkbuo8ihyx8ylgqf5s3q4oy6ujrw5&rid=200w.gif&ct=g')
+        }
+      })
   }
 
   return (
@@ -88,8 +107,8 @@ export default function Create () {
                 onChange={(e) => handleInputnameChange(e.target.value)} className='mr-20 pl-2 bg-transparent border-white border rounded-lg text-neutral-300'></input>
             </div>
             {inputName ? '' : <p className='text-orange-800'>Name is required</p>}
-<h1 className='text-xl text-purple-700'>{t('Select a Categorie Class.Select a Categorie Class')}</h1>
-<select className='form-select appearance-none
+{/* <h1 className='text-xl text-purple-700'>{t('Select a Categorie Class.Select a Categorie Class')}</h1> */}
+{/* <select className='form-select appearance-none
       block
       w-full
       px-3
@@ -107,7 +126,7 @@ export default function Create () {
   {categories.map((el, index) =>
     <option key={index} value={el.name}>{el.name}</option>
   )}
-</select>
+</select> */}
             <div className='flex flex-col border-xl'>
               <h1 className='text-xl text-purple-700'>{t('Description.Description')}</h1>
               <textarea value={inputDescription} placeholder= 'max text length is 200' maxLength = {maxLengthInput} onChange={(e) => handleInputDescription(e.target.value)} className='h-28 mr-20 pl-2 bg-transparent border-white border rounded-lg  text-neutral-300'></textarea>
@@ -164,7 +183,7 @@ export default function Create () {
                       Preview
                       </button>
 
-                  <button disabled={!inputName || !inputDescription || !inputCategorie || !inputPrice } onClick={() => { enviarNft() }} className={'bg-transparent enabled:hover:bg-lime-500 disabled:cursor-not-allowed  text-blue-700 font-semibold enabled:hover:text-black py-2 px-4 border border-blue-500 enabled:hover:border-transparent rounded'}>{t('send.send')}</button></div>
+                  <button disabled={!inputName || !inputDescription /* || !inputCategorie */ || !inputPrice } onClick={() => { enviarNft() }} className={'bg-transparent enabled:hover:bg-lime-500 disabled:cursor-not-allowed  text-blue-700 font-semibold enabled:hover:text-black py-2 px-4 border border-blue-500 enabled:hover:border-transparent rounded'}>{t('send.send')}</button></div>
 
                 </div>
 
