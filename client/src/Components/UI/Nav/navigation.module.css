@@ -19,7 +19,7 @@
   left: 0;
   right: 0;
   margin: auto;
-  background: rgba(24,28,30,0.4);
+  background: rgba(24,28,30,0.95);
   transition: 200ms ease;
   height: 6%;
   width: 100%;
@@ -108,8 +108,7 @@
   filter: grayscale(0) opacity(1);
 }
 .logo{
-  height: 10rem;
-  width: 10rem;
+  height: 2.4rem;
   user-select: none;
 }
 .icons{

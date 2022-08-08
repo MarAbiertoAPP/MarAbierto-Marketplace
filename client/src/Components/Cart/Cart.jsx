@@ -1,29 +1,30 @@
 
 /* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment, useRef, useState, useEffect, memo } from 'react'
+import React, { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios'
 // import { removeFromCart } from '../../Redux/Actions/ActionsCart'
 import { FaTrashAlt } from 'react-icons/fa'
 import Modal from '../ModalDelete/ModalDeleteFromCart'
 import { Link } from 'react-router-dom'
 import { getEthereumConv } from '../../Redux/Actions/Convertion'
-import { addToCart, cleanAllCart } from '../../Redux/Actions/ActionsCart'
+import { getAllCart } from '../../Redux/Actions/ActionsCart'
 import { createUser, userFromLocalStorage } from '../../Redux/Actions'
 
-function Cart ({ open, setOpen }) {
+export default function Cart ({ open, setOpen }) {
   const { isAuthenticated, user } = useAuth0()
-  const cartFromRedux = useSelector(state => state.Cart)
 
   const dispatch = useDispatch()
   const ethereumValue = useSelector(state => state.Conv.ethereum)
   // const { user } = useAuth0()
   const ethValue = ethereumValue?.usd
   const cartToBuy = useSelector(state => state.Cart)
-  const userId = useSelector(state => state.User)
+
+  const userId = useSelector(state => state.User?.id)
 
   Cart.propTypes = {
     open: PropTypes.bool,
@@ -31,9 +32,10 @@ function Cart ({ open, setOpen }) {
 
   }
   const handleCleanCart = () => {
-    dispatch(cleanAllCart())
+    axios.delete(`/car/${userId}`)
+      .then(res => dispatch(getAllCart(userId)))
   }
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem('Cart'))
+
   useEffect(() => {
     window.scrollTo(0, 0)
 
@@ -45,15 +47,7 @@ function Cart ({ open, setOpen }) {
 
   useEffect(() => {
     dispatch(getEthereumConv())
-    window.scrollTo(0, 0)
-
-    if (cartFromLocalStorage?.length > cartFromRedux.length && isAuthenticated) {
-      if (cartFromLocalStorage[0].user === userId?.id) {
-        cartFromLocalStorage.map((el) =>
-          dispatch(addToCart(el))
-        )
-      }
-    }
+    dispatch(getAllCart(userId))
   }, [userId])
 
   let totalBuy = 0
@@ -62,14 +56,13 @@ function Cart ({ open, setOpen }) {
   cartToBuy?.map(item => {
     totalBuy = totalBuy + Number(item.price.toFixed(3))
     return totalBuy
-  }
-
-  )
+  })
 
   const [popModal, setPopModal] = useState(false)
 
   const handleDelete = (e) => {
     setPopModal(true)
+    console.log(e)
     idDelete.current = e
   }
   const idDelete = useRef()
@@ -126,7 +119,7 @@ function Cart ({ open, setOpen }) {
                               <li key={e.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border bg-pink-500 opacity-100 border-gray-200">
                                   <img
-                                    src={e.image}
+                                    src={e.img}
                                     alt={e.title}
                                     className="h-full w-full object-cover object-center"
                                   />
@@ -154,9 +147,7 @@ function Cart ({ open, setOpen }) {
                                       <FaTrashAlt
                                       type="button"
                                       className="font-medium text-lime-500 hover:text-indigo-500 cursor-pointer "
-                                      onClick={ () => handleDelete(e.id)
-
-                                      }
+                                      onClick={(event) => handleDelete(e.id)}
                                         />
 
                                     </div>
@@ -206,4 +197,3 @@ function Cart ({ open, setOpen }) {
     </Transition.Root>
   )
 }
-export default memo(Cart)

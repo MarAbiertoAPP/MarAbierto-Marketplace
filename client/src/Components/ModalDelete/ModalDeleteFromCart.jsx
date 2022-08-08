@@ -1,16 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
-import { removeFromCart } from '../../Redux/Actions/ActionsCart'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllCart } from '../../Redux/Actions/ActionsCart'
+import axios from 'axios'
 export default function Modal ({ id, pop }) {
   Modal.propTypes = {
     pop: PropTypes.func,
-
-    id: PropTypes.string
+    id: PropTypes.number
   }
 
-  const dispatch = useDispatch()
   const [showModal, setShowModal] = React.useState(true)
+  const userId = useSelector(state => state.User?.id)
+  const dispatch = useDispatch()
+
+  const handleDeleteNFT = () => {
+    axios.post('/car/delete', { nftId: id, userId })
+      .then(res => dispatch(getAllCart(userId)))
+    pop(false)
+  }
 
   return (
       <>
@@ -58,10 +65,7 @@ export default function Modal ({ id, pop }) {
                     <button
                       className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"
-                      onClick={() => {
-                        dispatch(removeFromCart(id))
-                        pop(false)
-                      }}
+                      onClick={handleDeleteNFT}
                     >
                       CONFIRM
                     </button>

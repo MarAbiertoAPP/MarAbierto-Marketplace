@@ -30,7 +30,7 @@ const Details = () => {
     className={style.div}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}security
+    exit={{ opacity: 0 }}
     >
       <div className={'mt-10 flex flex-col items-center w-screen max-w-screen-xl'} >
       <Nav/>

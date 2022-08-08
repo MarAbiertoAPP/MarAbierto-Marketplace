@@ -41,7 +41,7 @@ export default function ItemsCart () {
                     <div
                       className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border bg-pink-500 opacity-100 border-gray-200">
                       <img
-                        src={e.image}
+                        src={e.img}
                         alt={e.title}
                         className="h-full w-full object-cover object-center"
                       />

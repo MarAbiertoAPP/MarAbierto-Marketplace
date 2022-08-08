@@ -2,7 +2,7 @@ import { CART_FROM_LOCAL_STORAGE, BUY_NOW, CLEAN_BUY_NOW, GET_ALL_CART } from '.
 import axios from 'axios'
 export function addToCart ({ userId, nftId }) {
   return function (dispatch) {
-    /*  console.log(`entre a addto cart con el user id: ${userId} y el nftId: ${nftId}`) */
+    console.log(`entre a addto cart con el user id: ${userId} y el nftId: ${nftId}`)
     axios.post('/car', { nftId, userId })
       .then((res) => {
         console.log(res)
@@ -12,15 +12,24 @@ export function addToCart ({ userId, nftId }) {
   }
 }
 
-export function removeFromCart (nftId, userId) {
+export function removeFromCart ({ userId, nftId }) {
+  console.log(`entre a removeFromCart con el userid: ${userId} y el nftId: ${nftId}`)
   return function () {
     axios.delete('/car', { nftId, userId })
-
-      .catch(error => console.log(error.message))
+      .then((res) => {
+        console.log(res)
+      })
+      .catch(error => console.log(`borrado error ${error.message}`))
   }
 }
 export function getAllCart (userId) {
-  console.log('userID del get all cart', userId)
+  if (!userId) {
+    return {
+      type: GET_ALL_CART,
+      payload: []
+    }
+  }
+
   return function (dispatch) {
     axios.get(`/car/${userId}`)
       .then(res => {

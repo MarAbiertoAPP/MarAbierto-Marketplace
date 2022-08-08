@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../../Home/toast.css'
-
+import axios from 'axios'
 import { motion } from 'framer-motion'
 import { FaEthereum } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi'
 import { passDetail } from '../../../Redux/Actions/ActionsDetail'
-import { addToCart, getAllCart } from '../../../Redux/Actions/ActionsCart'
+import { getAllCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
 
 export default function Card ({ title, image, price, nftId, collectionName, secondWidth, userId }) {
@@ -39,7 +39,7 @@ export default function Card ({ title, image, price, nftId, collectionName, seco
     title: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.number,
-    nftId: PropTypes.string,
+    nftId: PropTypes.number,
     userId: PropTypes.string,
 
     collectionName: PropTypes.string,
@@ -47,7 +47,7 @@ export default function Card ({ title, image, price, nftId, collectionName, seco
   }
   const { isAuthenticated, loginWithRedirect } = useAuth0()
   const handleBuy = () => {
-    if (Cart.find(i => i.nftId === nftId)) {
+    if (Cart.find(i => i.id === nftId)) {
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-right',
@@ -80,13 +80,8 @@ export default function Card ({ title, image, price, nftId, collectionName, seco
         title: 'item added to your shopping cart'
       })
 
-      return dispatch(
-
-        addToCart({
-          nftId,
-          userId
-        }),
-        getAllCart(userId))
+      axios.post('/car', { nftId, userId })
+        .then((res) => dispatch(getAllCart(userId)))
     }
   }
 
