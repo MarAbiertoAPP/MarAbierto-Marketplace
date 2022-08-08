@@ -10,7 +10,7 @@ import { motion } from 'framer-motion'
 import { FaEthereum } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi'
 import { passDetail } from '../../../Redux/Actions/ActionsDetail'
-import { addToCart, getAllCart } from '../../../Redux/Actions/ActionsCart'
+import { addToCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
 
 export default function Card ({ title, image, price, nftId, collectionName, secondWidth, userId }) {
@@ -47,7 +47,7 @@ export default function Card ({ title, image, price, nftId, collectionName, seco
   }
   const { isAuthenticated, loginWithRedirect } = useAuth0()
   const handleBuy = () => {
-    if (Cart.find(i => i.nftId === nftId)) {
+    if (Cart.find(i => i.id === nftId)) {
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-right',
@@ -80,13 +80,11 @@ export default function Card ({ title, image, price, nftId, collectionName, seco
         title: 'item added to your shopping cart'
       })
 
-      return dispatch(
-
+      dispatch(
         addToCart({
           nftId,
           userId
-        }),
-        getAllCart(userId))
+        }))
     }
   }
 

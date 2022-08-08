@@ -205,7 +205,7 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state,
 
-        Cart: [action.payload]
+        Cart: action.payload
 
       }
 
