@@ -33,6 +33,7 @@ function Nav () {
 
   const handleLogout = () => {
     logout()
+    localStorage.clear('User')
   }
   const handleClick = (e) => {
     e.preventDefault()
