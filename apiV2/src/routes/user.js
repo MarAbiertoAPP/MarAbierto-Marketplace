@@ -31,11 +31,21 @@ router.post('/signup', async (req, res) => {
 router.get('/makesuperuser', async (req, res) => {
   try {
     const userS = await searchUser('mar.abierto.mrkt@gmail.com')
+    if (!userS) {
+      return res.status(200).json({
+        msg: 'No existe el usuario'
+      })
+    }
     const updated = await user.update({ typeUser: 'SU' }, {
       where: {
         id: userS.id
       }
     })
+    if (!updated) {
+      return res.status(200).json({
+        msg: 'Usuario no actualizado'
+      })
+    }
     res.send(updated, 'aca esta gus')
   } catch (err) {
     console.log(err)
