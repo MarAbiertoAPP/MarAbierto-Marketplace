@@ -28,32 +28,6 @@ router.post('/signup', async (req, res) => {
     res.status(500).send({ error: 'Algo ha ocurrido' })
   }
 })
-router.get('/makesuperuser', async (req, res) => {
-  try {
-    const userS = await searchUser('mar.abierto.mrkt@gmail.com')
-    console.log(userS)
-    if (!userS) {
-      return res.status(200).json({
-        msg: 'No existe el usuario'
-      })
-    }
-    const updated = await user.update({ typeUser: 'SU' }, {
-      where: {
-        id: userS.email
-      }
-    })
-    console.log(updated)
-    if (!updated) {
-      return res.status(200).json({
-        msg: 'Usuario no actualizado'
-      })
-    }
-    res.send(updated, 'aca esta gus')
-  } catch (err) {
-    console.log(err)
-    res.status(500).send({ error: 'Algo ha ocurrido' })
-  }
-})
 // Get user
 router.get('/profile', async (req, res) => {
   res.send('not working at the moment')
