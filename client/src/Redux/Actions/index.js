@@ -259,8 +259,8 @@ export function setPageMaxCollec (pageMax) {
     payload: pageMax
   }
 }
-export async function addReview (review, id) {
-  await axios.post('/review', { review, id })
+export async function addReview (description, id) {
+  await axios.post('/review', { description, id })
     .then(res => console.log(res))
 }
 

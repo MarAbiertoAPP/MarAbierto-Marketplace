@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import footer from '../Footer/Footer.module.css'
 import { useTranslation } from 'react-i18next'
+import axios from 'axios'
 
-import { addReview } from '../../Redux/Actions'
 import { useNavigate } from 'react-router-dom'
 const Footer = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+
   const [t] = useTranslation('faq')
   const { id } = useSelector(state => state.User)
-  console.log(id)
+
   const [inputReview, setinputReview] = useState()
   const handleInputReview = (e) => {
     setinputReview(e.target.value.replace(/[^A-Za,-z0-9-]/g, ' '))
@@ -18,8 +18,9 @@ const Footer = () => {
   const goToReview = () => {
     navigate('/review')
   }
-  function handleButtonReview (inputReview) {
-    return dispatch(addReview(inputReview, id))
+  async function handleButtonReview (description) {
+    axios.post('/review', { description, id })
+      .then(res => console.log(res))
   }
   return (
     <div className={footer.Container}>
