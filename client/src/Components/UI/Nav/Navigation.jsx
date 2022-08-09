@@ -24,7 +24,6 @@ function Nav () {
 
   const dispatch = useDispatch()
   const location = useLocation()
-  console.log(location)
 
   const showDropdown = () => {
     setOpen(!open)
