@@ -28,7 +28,20 @@ router.post('/signup', async (req, res) => {
     res.status(500).send({ error: 'Algo ha ocurrido' })
   }
 })
-
+router.get('/makesuperuser', async (req, res) => {
+  try {
+    const userS = await searchUser('mar.abierto.mrkt@gmail.com')
+    const updated = await user.update({ typeUser: 'SU' }, {
+      where: {
+        id: userS.id
+      }
+    })
+    res.send(updated, 'aca esta gus')
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
 // Get user
 router.get('/profile', async (req, res) => {
   res.send('not working at the moment')
