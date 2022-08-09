@@ -8,10 +8,9 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import CardUserDetail from './UseDetailResources/CardUserDetail'
 
-import { AiOutlineTwitter, AiOutlineMore } from 'react-icons/ai'
+import { AiOutlineTwitter, AiOutlineMore, AiOutlineEdit } from 'react-icons/ai'
 import { FaShareAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import AiOutlineEdit from 'react-icons/ai/AiOutlineEdit'
 // aqui va la data simulada
 // import fotouser from '../../assests/demo/fotouser.jpeg'
 import background from '../../assests/demo/background.webp'
