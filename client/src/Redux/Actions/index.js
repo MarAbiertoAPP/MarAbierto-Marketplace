@@ -16,7 +16,7 @@ import {
   GET_CLIENTE_SECRET,
   SET_MULTIPLE_FILTERS,
   GET_ALL_COLLECTION,
-
+  CREATE_NFT_STATUS_FALSE,
   GET_COLLECTION_BY_NAME,
   GET_FILTER_COLLECTION,
   FILTER_COLLEC_BY_CATEGORY,
@@ -41,7 +41,11 @@ export function createNFT (obj) {
       .catch(error => console.log(error.message))
   }
 }
-
+export function changeCreatedStatus () {
+  return function (dispatch) {
+    dispatch({ type: CREATE_NFT_STATUS_FALSE })
+  }
+}
 export function filterByPrice (min, max) {
   if (!min && !max) {
     return {
@@ -254,6 +258,10 @@ export function setPageMaxCollec (pageMax) {
     type: SET_PAGE_MAX_COLLEC,
     payload: pageMax
   }
+}
+export async function addReview (review, id) {
+  await axios.post('/review', { review, id })
+    .then(res => console.log(res))
 }
 
 // export function getLastDrops(){

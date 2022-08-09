@@ -1,12 +1,25 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import footer from '../Footer/Footer.module.css'
 import { useTranslation } from 'react-i18next'
-const Footer = () => {
-  const [t] = useTranslation('faq')
 
+import { addReview } from '../../Redux/Actions'
+import { useNavigate } from 'react-router-dom'
+const Footer = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [t] = useTranslation('faq')
+  const { id } = useSelector(state => state.User)
+  console.log(id)
   const [inputReview, setinputReview] = useState()
   const handleInputReview = (e) => {
-    setinputReview(e.taget.value.replace(/[^A-Za,-z0-9-]/g, ' '))
+    setinputReview(e.target.value.replace(/[^A-Za,-z0-9-]/g, ' '))
+  }
+  const goToReview = () => {
+    navigate('/review')
+  }
+  function handleButtonReview (inputReview) {
+    return dispatch(addReview(inputReview, id))
   }
   return (
     <div className={footer.Container}>
@@ -131,8 +144,10 @@ const Footer = () => {
             <p className="mb-4">
               <a href="/home" className="text-violet-500">Home</a>
             </p>
-            <p className="mb-4 text-orange-400">LEAVE A COMMENT<textarea value={inputReview} placeholder= 'max text length is 200' onChange={(e) => handleInputReview(e.target.value)} className='h-28 mr-20 pl-2 bg-transparent border-white border rounded-lg  text-neutral-300' ></textarea>
+            <p className="mb-4 text-orange-400">LEAVE A COMMENT<textarea placeholder= 'max text length is 100' onChange={handleInputReview} className='h-28 mr-20 pl-2 bg-transparent border-white border rounded-lg  text-neutral-300' ></textarea>
             </p>
+            <button onClick={() => handleButtonReview(inputReview)} className=' bg-violet-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded' >Send</button>
+            <button onClick={() => goToReview()} className=' ml-2 bg-violet-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded' >go to Reviews</button>
 
           </div>
           <div className="">

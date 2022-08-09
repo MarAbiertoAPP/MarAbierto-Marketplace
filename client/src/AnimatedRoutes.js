@@ -16,6 +16,7 @@ import CollectionNewHome from './Components/CollectionNewHome/CollectionNewHome'
 import Create from './Components/Create/Create'
 import AdminPanel from './Components/AdminPanel/AdminPanel'
 import Team from './Components/Team/Team'
+import Review from './Components/Review/Review'
 // import Home from './Components/Home/Home'
 
 export default function AnimatedRoutes () {
@@ -37,6 +38,7 @@ export default function AnimatedRoutes () {
         <Route path='/collection/:name' element={<CollectionNewHome/>} />
         <Route path='/AdminPanel' element={<AdminPanel/>} />
         <Route path='/team' element={<Team/>} />
+        <Route path='/review' element={<Review/>} />
         {/* <Route path='/home' element={<Home/>} /> */}
 
       </Routes>

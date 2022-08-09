@@ -21,7 +21,7 @@ import {
   DETAIL,
   FILTER_BY_TITLE_CAT,
   FILTER_BY_PRICE_CAT,
-  BUY_NOW, CREATE_NFT_STATUS, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC, CLEAN_COLLECTION_BY_NAME, GET_ALL_CART
+  BUY_NOW, CREATE_NFT_STATUS, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC, CREATE_NFT_STATUS_FALSE, CLEAN_COLLECTION_BY_NAME, GET_ALL_CART, SUBMIT_REVIEW
 } from '../Actions/ActionsCreators'
 
 const initialState = {
@@ -37,6 +37,7 @@ const initialState = {
     cardsPerPage: 10
   },
   created: false,
+  review: [],
   categories: [],
   filterBar: false,
   Cart: [],
@@ -69,6 +70,18 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state,
         created: !state.created
+      }
+    case SUBMIT_REVIEW:{
+      const { review, id } = action.payload
+      return {
+        ...state,
+        review: [...state.review, { review, id }]
+      }
+    }
+    case CREATE_NFT_STATUS_FALSE:
+      return {
+        ...state,
+        created: false
       }
 
     case FILTER_BY_PRICE:

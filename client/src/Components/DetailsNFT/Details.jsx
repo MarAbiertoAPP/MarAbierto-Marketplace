@@ -35,6 +35,7 @@ const Details = () => {
       <div className={'mt-10 flex flex-col items-center w-screen max-w-screen-xl'} >
       <Nav/>
         <TitleDetails title={nftDetail?.collection?.name} />
+        <h2 className='text-purple-700 text-2xl font-bold' > NFT ID: {id}</h2>
         <TitleLikesSM title={nftDetail?.title}/>
 
         <div className={`my-6 flex flex-col xl:flex-row w-full min-h-min xl:${style.limitH} pb-9`}>
@@ -43,6 +44,7 @@ const Details = () => {
           <div className='flex flex-col basis-8/12 '>
 
             <TitleLikesXL title={nftDetail?.title}/>
+
             <DetailsDescription description={nftDetail?.collection?.description}/>
 
             <div className='w-full p-4 md:px-14 xl:p-8 '>

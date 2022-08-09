@@ -12,7 +12,7 @@ import {
   useSelector
 } from 'react-redux'
 
-import { createNFT, getAllCategories } from '../../Redux/Actions'
+import { changeCreatedStatus, createNFT, getAllCategories } from '../../Redux/Actions'
 import { useTranslation } from 'react-i18next'
 import Swal from 'sweetalert2'
 const maxLengthInput = 200
@@ -22,9 +22,24 @@ export default function Create () {
   const [t] = useTranslation('faq')
   useEffect(() => {
     dispatch(getAllCategories())
+    dispatch(changeCreatedStatus())
   }, [])
-  // const { categories } = useSelector(state => state)
   const { created } = useSelector(state => state)
+  useEffect(() => {
+    created &&
+      Swal.fire({
+        title: 'NFT CREATED!!',
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.value) {
+          console.log('nft creado')
+          setImageSelected('https://media4.giphy.com/media/1cXXYmhrXLGqY6gmYt/200w.gif?cid=82a1493biaiertvmjcuwkbuo8ihyx8ylgqf5s3q4oy6ujrw5&rid=200w.gif&ct=g')
+        }
+      })
+  }, [created])
+  // const { categories } = useSelector(state => state)
 
   const { user } = useAuth0()
   const [inputName, setInputName] = useState()
@@ -40,7 +55,7 @@ export default function Create () {
   const handleInputDescription = (input) => {
     setInputDescription(input.replace(/[^A-Za,-z0-9-]/g, ' '))
   }
-
+  const [nftBuyStatus, setnftBuyStatus] = useState(false)
   const handlePriceChange = (input) => {
     const priceFormat = input.replace(/[^\d-.]/g, '')
 
@@ -71,19 +86,7 @@ export default function Create () {
 
   const enviarNft = () => {
     dispatch(createNFT(nftcreate))
-
-    created &&
-      Swal.fire({
-        title: 'NFT CREATED!!',
-        icon: 'success',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
-      }).then((result) => {
-        if (result.value) {
-          console.log('nft creado')
-          setImageSelected('https://media4.giphy.com/media/1cXXYmhrXLGqY6gmYt/200w.gif?cid=82a1493biaiertvmjcuwkbuo8ihyx8ylgqf5s3q4oy6ujrw5&rid=200w.gif&ct=g')
-        }
-      })
+    setnftBuyStatus(true)
   }
 
   return (
@@ -183,8 +186,7 @@ export default function Create () {
                       Preview
                       </button>
 
-                  <button disabled={!inputName || !inputDescription /* || !inputCategorie */ || !inputPrice } onClick={() => { enviarNft() }} className={'bg-transparent enabled:hover:bg-lime-500 disabled:cursor-not-allowed  text-blue-700 font-semibold enabled:hover:text-black py-2 px-4 border border-blue-500 enabled:hover:border-transparent rounded'}>{t('send.send')}</button></div>
-
+                  <button disabled={!inputName || !inputDescription /* || !inputCategorie */ || !inputPrice || nftBuyStatus } onClick={() => { enviarNft() }} className={'bg-transparent enabled:hover:bg-lime-500 disabled:cursor-not-allowed  text-blue-700 font-semibold enabled:hover:text-black py-2 px-4 border border-blue-500 enabled:hover:border-transparent rounded'}>{t('send.send')}</button></div>
                 </div>
 
               </div>
