@@ -1,5 +1,6 @@
 /*eslint-disable*/
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import Nav from '../UI/Nav/Navigation'
 import style from './AdminPanel.module.css'
 import AdminCollections from './AdminPanelResources/AdminCollections'
@@ -7,10 +8,18 @@ import AdminDashboard from './AdminPanelResources/AdminDashboard'
 import AdminNfts from './AdminPanelResources/AdminNfts'
 import AdminReports from './AdminPanelResources/AdminReports'
 import AdminUsers from './AdminPanelResources/AdminUsers'
-
+import { useNavigate } from 'react-router-dom'
 export default function AdminPanel () {
   const [rendering, setRendering] = useState('Dashboard')
-  
+  const user = useSelector(state => state.User)
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (user.typeUser !== 'SU') {
+      navigate('/')
+    }
+  },[])
+
+
   function handleRendering1 (e) {
     e.preventDefault()
     setRendering('Dashboard')
@@ -40,7 +49,9 @@ export default function AdminPanel () {
   
     <div className={style.div}>
       {/* <Nav/> */}
-        <div className=' w-full max-w-screen-xl  flex h-screen max-h-limitHnewHome'>
+      {
+        user && user.typeUser === 'SU' ?(
+<div className=' w-full max-w-screen-xl  flex h-screen max-h-limitHnewHome'>
           <div className='basis-3/12 min-h-full shadow-2xl shadow-purple-700 flex flex-col items-center'>
 
             <div className='p-8 text-center border border-xl border-t-transparent border-x-transparent border-neutral-300'>
@@ -83,6 +94,8 @@ export default function AdminPanel () {
           </div>
 
         </div>
+        )
+      : null}
     </div>
   )
 }
