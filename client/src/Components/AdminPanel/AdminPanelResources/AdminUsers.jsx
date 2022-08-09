@@ -23,6 +23,9 @@ export default function AdminUsers () {
       .catch(function (error) {
         console.log(error)
       })
+
+    setInput('')
+    setdataFromUserForTheCard([])
   }
 
   async function unbanUser (e, id) {
@@ -36,6 +39,8 @@ export default function AdminUsers () {
       .catch(function (error) {
         console.log(error)
       })
+    setInput('')
+    setdataFromUserForTheCard([])
   }
 
   function handleInputChanges (e) {
@@ -65,7 +70,7 @@ export default function AdminUsers () {
     axios.get('https://marabierto.herokuapp.com/users/banned')
       .then(r => r.data)
       .then(res => setTotalBannedUsers(res))
-  }, [])
+  })
 
   return (
     <div className='w-full flex flex-col items-center'>
@@ -81,12 +86,12 @@ export default function AdminUsers () {
 
           </div>
 
-          <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
+          {/* <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
 
             <h1 className='text-neutral-300 text-6xl'>xx7xx</h1>
             <h1 className='text-neutral-200 text-2xl'>New users in the last 7 days</h1>
 
-          </div>
+          </div> */}
 
         </div>
 

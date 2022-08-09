@@ -22,6 +22,19 @@ const createNFT = async (title, description, img, price, collectionName, id) => 
   }
 }
 
+const returnAllBanned = async () => {
+  try {
+    return await nft.findAll({
+      where:{
+        isBanned:true
+      }
+    }) 
+
+  } catch (error) {
+    console.log(error)
+    throw error.message
+  }
+}
 
 const banANft = async (id) => {
   try {
@@ -99,6 +112,7 @@ module.exports = {
   // getFavoritesPerId,
   deleteAllNft,
   banANft,
-  unbanANft
+  unbanANft,
+  returnAllBanned
 
 }

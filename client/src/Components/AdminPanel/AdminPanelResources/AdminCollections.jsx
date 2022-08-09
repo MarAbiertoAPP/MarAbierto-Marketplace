@@ -23,7 +23,7 @@ export default function AdminCollections () {
   }
 
   return (
-    <div className='w-full flex flex-col items-center'>
+    <div className='w-full flex flex-col items-center justify-center'>
 
       <div className={`w-full px-10 my-14 flex flex-col ${style.scrollBar} overflow-scroll overflow-x-hidden`}>
 
@@ -36,12 +36,12 @@ export default function AdminCollections () {
 
           </div>
 
-          <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
+          {/* <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
 
             <h1 className='text-neutral-300 text-6xl'>xx7xx</h1>
             <h1 className='text-neutral-200 text-2xl'>New Collections in the last 7 days</h1>
 
-          </div>
+          </div> */}
 
         </div>
 

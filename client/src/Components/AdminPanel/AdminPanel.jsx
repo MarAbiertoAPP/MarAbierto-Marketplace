@@ -39,7 +39,7 @@ export default function AdminPanel () {
   return (
   
     <div className={style.div}>
-      <Nav/>
+      {/* <Nav/> */}
         <div className=' w-full max-w-screen-xl  flex h-screen max-h-limitHnewHome'>
           <div className='basis-3/12 min-h-full shadow-2xl shadow-purple-700 flex flex-col items-center'>
 

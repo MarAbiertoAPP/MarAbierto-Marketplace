@@ -29,6 +29,9 @@ export default function AdminNfts () {
       .catch(function (error) {
         console.log(error)
       })
+
+    setInput('')
+    setdataFromNftForTheCard()
   }
 
   async function unbanNFT (e, id) {
@@ -42,6 +45,9 @@ export default function AdminNfts () {
       .catch(function (error) {
         console.log(error)
       })
+
+    setInput('')
+    setdataFromNftForTheCard()
   }
 
   function handleInputChanges (e) {
@@ -80,12 +86,12 @@ export default function AdminNfts () {
 
           </div>
 
-          <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
+          {/* <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
 
             <h1 className='text-neutral-300 text-6xl'>xx7xx</h1>
             <h1 className='text-neutral-200 text-2xl'>New NFTs in the last 7 days</h1>
 
-          </div>
+          </div> */}
 
         </div>
 
@@ -124,8 +130,9 @@ export default function AdminNfts () {
               <img className='w-96 h-96 rounded-lg object-contain' alt={'foto'} src={dataFromNftForTheCard.img}></img>
 
               <div className='flex flex-col items-center w-full'>
+                <h1 className='text-2xl text-neutral-300'>{dataFromNftForTheCard.collection.name}</h1>
+                <h1 className='text-2xl text-neutral-300'>{dataFromNftForTheCard.title}</h1>
                 <h1 className='text-2xl text-neutral-300'>{dataFromNftForTheCard.id}</h1>
-                <h1 className='text-2xl text-neutral-300'>{dataFromNftForTheCard.nickname}</h1>
                 {
                   dataFromNftForTheCard.isBanned
                     ? <button onClick={(e) => unbanNFT(e, dataFromNftForTheCard.id)} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Unban NFT</button>
