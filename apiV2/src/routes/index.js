@@ -7,7 +7,7 @@ const user = require('./user')
 const favorite = require('./favorites')
 const report = require('./report')
 const car = require('./car.js')
-const review = requir('./review.js')
+const review = require('./review.js')
 const router = Router()
 
 router.use('/payment', payment)
