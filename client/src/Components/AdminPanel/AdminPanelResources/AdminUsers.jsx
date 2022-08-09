@@ -53,6 +53,20 @@ export default function AdminUsers () {
     getdataFromUserForTheCard(input)
   }
 
+  async function makeSuperUser (email) {
+    // eslint-disable-next-line
+    const response = await axios.post('https://marabierto.herokuapp.com/users/makesuperuser', { email: email })
+    if (response.data.success) {
+      alert('user was made superuser succesfully')
+    }
+  }
+  async function removeSuperUser (email) {
+    // eslint-disable-next-line
+    const response = await axios.post('https://marabierto.herokuapp.com/users/removesuperuser', { email: email })
+    if (response.data.success) {
+      alert('user was removed superuser succesfully')
+    }
+  }
   async function getdataFromUserForTheCard (nickname) {
     const response = await axios.get(`https://marabierto.herokuapp.com/users/getuserdatabyname/${nickname}`).then(r => r.data)
     setdataFromUserForTheCard(response)
@@ -138,6 +152,10 @@ export default function AdminUsers () {
                   user.isBanned
                     ? <button onClick={(e) => unbanUser(e, user.id)} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Unban User</button>
                     : <button onClick={(e) => banUser(e, user.id)} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Ban User</button>
+                }{
+                  user.typeUser === 'N'
+                    ? <button onClick={() => makeSuperUser(user.email)} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Make Superuser</button>
+                    : <button className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300' onClick={() => removeSuperUser(user.email)}>Remove Superuser</button>
                 }
               </div>
             </div>

@@ -91,6 +91,27 @@ router.get('/getuserdatabyname/:nickname', async (req, res) => {
     res.status(500).send({ error: 'Algo ha ocurrido' })
   }
 })
+router.post('/makesuperuser', async (req, res) => {
+  try {
+    const { email } = req.body
+    const response = await user.update({ typeUser: 'SU' }, { where: { email } })
+    return res.status(201).json(response)
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
+
+router.post('/removesuperuser', async (req, res) => {
+  try {
+    const { email } = req.body
+    const response = await user.update({ typeUser: 'N' }, { where: { email } })
+    return res.status(201).json(response)
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
 
 router.post('/banuser', async (req, res) => {
   try {

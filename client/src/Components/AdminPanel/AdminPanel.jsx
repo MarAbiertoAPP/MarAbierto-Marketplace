@@ -12,14 +12,14 @@ import { useNavigate } from 'react-router-dom'
 export default function AdminPanel () {
   const [rendering, setRendering] = useState('Dashboard')
   const user = useSelector(state => state.User)
+  const [users, setUsers] = useState([])
   const navigate = useNavigate()
   useEffect(() => {
     if (user.typeUser !== 'SU') {
       navigate('/')
     }
   },[])
-
-
+  
   function handleRendering1 (e) {
     e.preventDefault()
     setRendering('Dashboard')
