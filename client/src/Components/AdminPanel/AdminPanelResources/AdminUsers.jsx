@@ -56,9 +56,7 @@ export default function AdminUsers () {
   async function makeSuperUser (email) {
     // eslint-disable-next-line
     const response = await axios.post('https://marabierto.herokuapp.com/users/makesuperuser', { email: email })
-    if (response.data.success) {
-      alert('user was made superuser succesfully')
-    }
+    console.log(response)
   }
   async function removeSuperUser (email) {
     // eslint-disable-next-line
