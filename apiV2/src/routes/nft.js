@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const router = Router()
 const { nft, Op, collection, user } = require('../db.js')
-const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../utils/nft')
+const { createNFT, getNftId, addFavorite, getFavoritesPerId, banANft, unbanANft } = require('../utils/nft')
 
 // Route GET with search by name and filters
 // params came by body
@@ -133,6 +133,27 @@ router.get('/detail/:id', async (req, res) => {
     return response ? res.status(200).send(response) : res.status(400).send({ msg: 'Not found' })
   } catch (error) {
     return res.status(400).send({ msg: error })
+  }
+})
+
+
+router.post('/bannft', async (req, res) => {
+  try {
+    const { id } = req.body
+    await banANft(parseInt(id))
+    return res.status(201).json({ res: 'NFT is now banned' })
+  } catch (err) {
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
+
+router.post('/unbannft', async (req, res) => {
+  try {
+    const { id } = req.body
+    await unbanANft(parseInt(id))
+    return res.status(201).json({ res: 'NFT is now unbanned' })
+  } catch (err) {
+    res.status(500).send({ error: 'Algo ha ocurrido' })
   }
 })
 

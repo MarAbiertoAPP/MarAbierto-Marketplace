@@ -7,6 +7,7 @@ const user = require('./user')
 const favorite = require('./favorites')
 const report = require('./report')
 const car = require('./car.js')
+const review = require('./review.js')
 const router = Router()
 
 router.use('/payment', payment)
@@ -17,4 +18,5 @@ router.use('/users', user)
 router.use('/favorite', favorite)
 router.use('/report', report)
 router.use('/car', car)
+router.use('/review', review)
 module.exports = router
