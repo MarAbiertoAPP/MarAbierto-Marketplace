@@ -7,6 +7,7 @@ export default function AdminNfts () {
   const [nftQuantity, setnftQuantity] = useState()
   const [input, setInput] = useState('')
   const [dataFromNftForTheCard, setdataFromNftForTheCard] = useState()
+  const [bannedNftQ, setBannedNftQ] = useState('?')
 
   async function getdataFromNftForTheCard (id) {
     const response = await axios.get(`https://marabierto.herokuapp.com/nft/detail/${id}`).then(r => r.data)
@@ -57,7 +58,15 @@ export default function AdminNfts () {
 
   useEffect((nftQuan) => {
     countNft()
-  }, [])
+  })
+
+  useEffect(() => {
+    async function putoUseEffect () {
+      const response = await axios.get('https://marabierto.herokuapp.com/nft/allbanned').then(r => r.data.length).catch(e => console.log(e))
+      setBannedNftQ(response)
+    }
+    putoUseEffect()
+  })
 
   async function countNft () {
     let nftQuan = 0
@@ -99,7 +108,7 @@ export default function AdminNfts () {
 
           <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
 
-           <h1 className='text-neutral-300 text-6xl'>xx222xx</h1>
+           <h1 className='text-neutral-300 text-6xl'>{bannedNftQ}</h1>
             <h1 className='text-neutral-200 text-2xl'>Banned NFTs</h1>
 
           </div>
