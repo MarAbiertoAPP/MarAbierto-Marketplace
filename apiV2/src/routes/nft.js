@@ -140,7 +140,7 @@ router.get('/detail/:id', async (req, res) => {
 router.post('/bannft', async (req, res) => {
   try {
     const { id } = req.body
-    await banANft(Number(id))
+    await banANft(parseInt(id))
     return res.status(201).json({ res: 'NFT is now banned' })
   } catch (err) {
     res.status(500).send({ error: 'Algo ha ocurrido' })
@@ -150,7 +150,7 @@ router.post('/bannft', async (req, res) => {
 router.post('/unbannft', async (req, res) => {
   try {
     const { id } = req.body
-    await unbanANft(Number(id))
+    await unbanANft(parseInt(id))
     return res.status(201).json({ res: 'NFT is now unbanned' })
   } catch (err) {
     res.status(500).send({ error: 'Algo ha ocurrido' })
