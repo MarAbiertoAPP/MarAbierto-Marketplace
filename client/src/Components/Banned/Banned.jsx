@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ChromeDinoGame from 'react-chrome-dino'
 
 export default function Banned () {
+  useEffect(() => {
+
+  }, [])
   return (
-    <div>
+    <div className='bg-white'>
       <ChromeDinoGame />
     </div>
   )
