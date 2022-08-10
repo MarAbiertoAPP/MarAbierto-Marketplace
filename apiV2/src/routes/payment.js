@@ -10,7 +10,9 @@ router.post('/', async (req, res) => {
     amount: Number(((nftValue.ethereumValue * nftValue.totalBuy) * 100).toFixed(0)),
     currency: 'usd',
     automatic_payment_methods: { enabled: true }
+
   })
+
   const intent = paymentIntent
   res.json({ client_secret: intent.client_secret })
 })

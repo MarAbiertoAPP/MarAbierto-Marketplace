@@ -9,6 +9,8 @@ module.exports = {
     extend: {
       maxHeight: {
         limitH: '550px',
+        limitHS: '370px',
+        limitHM: '470px',
         limitHnewHome: '800px',
         limitCardCarousel: '600px'
       },

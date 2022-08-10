@@ -8,20 +8,20 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import CardUserDetail from './UseDetailResources/CardUserDetail'
 
-import { AiOutlineTwitter, AiOutlineMore, AiOutlineEdit } from 'react-icons/ai'
-import { FaShareAlt } from 'react-icons/fa'
+import { /* AiOutlineTwitter, AiOutlineMore,  */AiOutlineEdit } from 'react-icons/ai'
+// import { FaShareAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 // aqui va la data simulada
 // import fotouser from '../../assests/demo/fotouser.jpeg'
 import background from '../../assests/demo/background.webp'
 
-const data = {
+/* const data = {
   name: 'gatingatito',
   description: 'HERE GOES USER DESCRIPTION',
   joined: '22-Feb-2222',
   userID: ' here goes use ID'
 
-}
+} */
 
 const dataFromApiExample = [{
   title: 'Waifusion #2541',
@@ -139,7 +139,7 @@ const UserDetail = (props) => {
               <h1 className='text-white text-6xl capitalize'>{userRedux?.nickname}</h1>
               {/* <h1 className='text-white text-xl'>{data.address}</h1> */}
               <h1 className='text-white'>{`Joined ${userRedux?.createdAt.slice(0, 10)}`}</h1>
-              <p className='text-white'>{data.description}</p>
+              {/* <p className='text-white'>{data.description}</p> */}
               <p className='text-white'> {userRedux?.id}</p>
             </div>
 
@@ -149,9 +149,9 @@ const UserDetail = (props) => {
 
             <div className='basis-3/12'>
               <div className='flex place-content-around items-center my-8 xl:my-0'>
-                <AiOutlineTwitter className='text-5xl text-white'/>
-                <FaShareAlt className='text-4xl text-white'/>
-                <AiOutlineMore className='text-5xl text-white'/>
+               {/*  <AiOutlineTwitter className='text-5xl text-white'/> */}
+               {/*  <FaShareAlt className='text-4xl text-white'/> */}
+                {/* <AiOutlineMore className='text-5xl text-white'/> */}
                 {
                   userRedux && userRedux.typeUser === 'SU'
                     ? (
