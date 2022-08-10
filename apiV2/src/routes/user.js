@@ -147,7 +147,7 @@ router.post('/sendmail', async (req, res) => {
 
   console.log(nftFromCart)
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: process.env.MAIL_HOST,
     port: 465,
     secure: true,
     auth: {
