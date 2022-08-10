@@ -21,7 +21,6 @@ const Details = () => {
   const [nftDetail, setNftDetail] = useState({})
   const dispatch = useDispatch()
   const { User } = useSelector(state => state)
-  const { favorites } = useSelector(state => state)
 
   useEffect(() => {
     window.scrollTo(0, 0)

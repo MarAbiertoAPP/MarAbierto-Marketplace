@@ -10,18 +10,13 @@ const TitleLikesXL = (props) => {
   }
   const userId = useSelector(state => state.User?.id)
   const { detail } = useSelector(state => state)
+  const { Favorites } = useSelector(state => state)
   const [estilo, setEstilo] = useState('text-neutral-400 text-3xl hover:text-red-500')
-
-  // useEffect(() => {
-  //   if (detail.likes.includes(userId)) {
-  //     setEstilo('text-red-500 text-3xl hover:text-red-500')
-  //   } else {
-  //     setEstilo('text-neutral-400 text-3xl hover:text-red-500')
-  //   }
-  // },[])
+  const favorito = Favorites.find(favorite => favorite.nftId === detail.id)
 
   const handleClick = () => {
     axios.post('/favorite/add', { nftId: detail.nftId, userId })
+    return setEstilo('text-red-500 text-3xl')
     // axios.post('/favorite/delete', { nftId: id, userId })
   }
 
@@ -29,7 +24,7 @@ const TitleLikesXL = (props) => {
     <div className='hidden xl:flex w-full'>
       <h1 className='mt-6 text-3xl tracking-wider text-purple-700 mx-8 capitalize'>{props.title}</h1>
       <div className='flex items-center mt-6 place-content-end ml-64'>
-        <FaHeart onClick={handleClick} className={estilo}/>
+        {favorito && <FaHeart className={estilo} onClick={handleClick}/>}
         {/* <p className='ml-4 text-md self-auto text-neutral-400 tracking-wider'>444 likes</p> */}
       </div>
     </div>
