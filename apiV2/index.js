@@ -1,6 +1,6 @@
 const server = require('./src/app')
 const { conn } = require('./src/db.js')
- // const chargue = require('./precharge/index')
+// const chargue = require('./precharge/index')
 
 // Syncing all the models at once.nxnbxzbnbzbznxbnzbksjksj
 conn.sync({ force: false }).then(async () => {
