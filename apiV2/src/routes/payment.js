@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
   res.json({ client_secret: intent.client_secret })
 })
 
-router.post('/change-status/', async (req, res) => {
+router.post('/change-status', async (req, res) => {
   try {
     const { id, ownerId } = req.body
     return res.status(200).send(await statusNft(id, ownerId))

@@ -144,28 +144,28 @@ router.get('/banned', async (req, res) => {
 
 router.post('/sendmail', async (req, res) => {
   const { nickname, nftFromCart, userEmail } = req.body
+  try {
+    const transporter = nodemailer.createTransport({
+      host: process.env.MAIL_HOST,
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.MAIL_FROM,
+        pass: process.env.MAIL_PASS
 
-  const transporter = nodemailer.createTransport({
-    host: process.env.MAIL_HOST,
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.MAIL_FROM,
-      pass: process.env.MAIL_PASS
+      }
+    })
 
-    }
-  })
-
-  await transporter.sendMail({
-    from: process.env.MAIL_FROM,
-    to: userEmail,
-    subject: 'Mar Abierto thanks for buying',
-    html: `
+    await transporter.sendMail({
+      from: process.env.MAIL_FROM,
+      to: userEmail,
+      subject: 'Mar Abierto thanks for buying',
+      html: `
           <h1  style="color:black ;text-align:center; font-weight:400"  >Mar abierto</h1>
           <br>
           <p  style="color:blue ;text-align: center; font-weight:500">Thank you ${nickname} for Buying on MAR ABIERTO</p>
 <div>    
-${nftFromCart.map((nft) => {
+${nftFromCart?.map((nft) => {
   return `<img src=${nft.img} alt="nft-image" />
 
   <h2 style="color:black ; text-align: center" >${nft.title}</h2>`
@@ -178,7 +178,11 @@ ${nftFromCart.map((nft) => {
 
 `
 
-  })
+    })
+    return res.send({ msg: 'correo enviado!' })
+  } catch (error) {
+    return res.status(500).send({ error: error.message })
+  }
 })
 
 module.exports = router
