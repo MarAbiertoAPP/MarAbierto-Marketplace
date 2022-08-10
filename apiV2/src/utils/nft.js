@@ -1,7 +1,7 @@
 const { nft, collection /* favorite */ } = require('../db.js')
 // const User = require('../models/User.js')
 const { getCollectionIdByName } = require('./collection.js')
-// const { findUser } = require('../utils/user')
+const { findUser } = require('../utils/user')
 
 // Create nft
 const createNFT = async (title, description, img, price, collectionName, id) => {
@@ -74,7 +74,18 @@ const getNftId = async (id) => {
       }
       ]
     })
-    return gonorrea
+    const response = {
+      id: gonorrea.id,
+      title: gonorrea.title,
+      description: gonorrea.description,
+      img: gonorrea.img,
+      price: gonorrea.price,
+      isActive: gonorrea.isActive,
+      isBanned: gonorrea.isBanned,
+      collection: gonorrea.collection,
+      ownerId: await findUser(gonorrea.ownerId)
+    }
+    return response
   } catch (error) {
     throw error.message
   }
