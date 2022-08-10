@@ -30,7 +30,9 @@ const CheckoutForm = () => {
         return_url: 'https://mar-abierto-marketplace.vercel.app/thanks'
       }
 
-    }).then(axios.post('/sendmail', { nickname, nftFromCart, userEmail })).then(dispatch(cleanAllCart(userId)))
+    }).then(axios.post('/sendmail', { nickname, nftFromCart, userEmail }))
+      .then(dispatch(cleanAllCart(userId)))
+      .finally(setLoading(false))
     if (error) {
       setErrorMessage(error.message)
       setLoading(false)

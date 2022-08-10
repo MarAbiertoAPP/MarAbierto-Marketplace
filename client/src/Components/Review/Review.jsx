@@ -8,7 +8,7 @@ const Review = () => {
   useEffect(() => {
     axios.get('/review').then(res => setuserReview(res.data))
   }, [])
-  console.log(userReview)
+
   return (
     <div >
         <Nav/>

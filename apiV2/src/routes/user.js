@@ -145,7 +145,6 @@ router.get('/banned', async (req, res) => {
 router.post('/sendmail', async (req, res) => {
   const { nickname, nftFromCart, userEmail } = req.body
 
-  console.log(nftFromCart)
   const transporter = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
     port: 465,

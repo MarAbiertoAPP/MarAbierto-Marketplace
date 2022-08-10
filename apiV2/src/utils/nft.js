@@ -25,11 +25,10 @@ const createNFT = async (title, description, img, price, collectionName, id) => 
 const returnAllBanned = async () => {
   try {
     return await nft.findAll({
-      where:{
-        isBanned:true
+      where: {
+        isBanned: true
       }
-    }) 
-
+    })
   } catch (error) {
     console.log(error)
     throw error.message
@@ -43,13 +42,11 @@ const banANft = async (id) => {
         id
       }
     })
-
   } catch (error) {
     console.log(error)
     throw error.message
   }
 }
-
 
 const unbanANft = async (id) => {
   try {
