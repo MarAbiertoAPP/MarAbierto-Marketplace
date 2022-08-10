@@ -58,7 +58,7 @@ export default function DropDownTail ({ open, setOpen, children }) {
                   </Transition.Child>
                   <div className="flex h-full flex-col  bg-black opacity-60 py-6 shadow-xl">
                     <div className="px-4 sm:px-6">wh
-                      <Dialog.Title className="font-medium text-2xl font-sans opacity-100 text-white"> Panel title </Dialog.Title>
+                      <Dialog.Title className="font-medium text-2xl font-sans opacity-100 text-white"> </Dialog.Title>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6 font-medium text-2xl font-sans opacity-100 text-white">
                       {/* Replace with your content */}
