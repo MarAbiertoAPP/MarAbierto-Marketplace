@@ -5,7 +5,7 @@ const { createUser, searchUser, searchByName, banAnUser, unbanAnUser, getAllBann
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const { user } = require('../db.js')
-
+const nodemailer = require('nodemailer')
 // Create New User Register
 router.post('/signup', async (req, res) => {
   const { name, nickname, email, picture } = req.body
@@ -120,6 +120,46 @@ router.get('/banned', async (req, res) => {
   } catch (err) {
     res.status(500).send({ error: 'Algo ha ocurrido' })
   }
+})
+
+router.post('/sendmail', async (req, res) => {
+  const { nickname, nftFromCart } = req.body
+
+  console.log(nftFromCart)
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.MAIL_FROM,
+      pass: process.env.MAIL_PASS
+
+    }
+  })
+
+  await transporter.sendMail({
+    from: process.env.MAIL_FROM,
+    to: 'julianlasoto@hotmail.com',
+    subject: 'Mar Abierto thanks for buying',
+    html: `
+          <h1  style="color:black ;text-align:center; font-weight:400"  >Mar abierto</h1>
+          <br>
+          <p  style="color:blue ;text-align: center; font-weight:500">Thank you ${nickname} for Buying on MAR ABIERTO</p>
+<div>    
+${nftFromCart.map((nft) => {
+  return `<img src=${nft.img} alt="nft-image" />
+
+  <h2 style="color:black ; text-align: center" >${nft.title}</h2>`
+})}
+
+
+</div>
+
+<br>
+
+`
+
+  })
 })
 
 module.exports = router

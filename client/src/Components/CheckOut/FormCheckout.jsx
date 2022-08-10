@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 const CheckoutForm = () => {
+  const { nickname } = useSelector(state => state.User)
+  const nftFromCart = useSelector(state => state.Cart)
   const stripe = useStripe()
   const elements = useElements()
   const [errorMessage, setErrorMessage] = useState(null)
@@ -18,22 +22,24 @@ const CheckoutForm = () => {
       // `Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
-        return_url: 'http://localhost:3000/thanks'
-      }
-    })
 
+        return_url: 'https://mar-abierto-marketplace.vercel.app/thanks'
+      }
+
+    }).then(axios.post('/sendmail', { nickname, nftFromCart }))
     if (error) {
       setErrorMessage(error.message)
-      return <h1 className='text-white'> HUBO UN ERROR </h1>
+      setLoading(false)
       // This point will only be reached if there is an immediate error when
       // confirming the payment. Show error to your customer (for example, payment
       // details incomplete)
     } else {
-      setLoading(false)
+      console.log(error)
+    }
+
     // Your customer will be redirected to your `return_url`. For some payment
     // methods like iDEAL, your customer will be redirected to an intermediate
     // site first to authorize the payment, then redirected to the `return_url`.
-    }
   }
 
   return (
@@ -51,8 +57,9 @@ const CheckoutForm = () => {
 
           : ('PAY')}</button>
       {/* Show error message to your customers */}
-{loading && <h1 className='text-xl text-lime-600' >ENVIANDO PAGO...</h1>}
-      {errorMessage && <div className='text-white'>{errorMessage}</div>}
+{loading && <h1 className='text-xl text-lime-600' >SENDING PAYMENT...</h1> }
+
+      {errorMessage && <div className='text-orange-700'>{errorMessage}</div>}
     </form>
   )
 }

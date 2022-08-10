@@ -22,6 +22,7 @@ const Footer = () => {
     axios.post('/review', { description, id })
       .then(res => console.log(res))
   }
+
   return (
     <div className={footer.Container}>
       <div className="flex justify-center items-center lg:justify-between p-6 border-b ">
@@ -261,7 +262,9 @@ const Footer = () => {
                 </svg> </a>
 
                 </span> LinkedIn Nicolás Suarez
+
             </p>
+
           </div>
         </div>
       </div>
