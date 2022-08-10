@@ -27,9 +27,9 @@ const Details = () => {
     axios.get(`/nft/detail/${id}`)
       .then(response => setNftDetail(response.data))
   }, [])
-
-  // eslint-disable-next-line no-lone-blocks
-  { User.id && dispatch(getAllFavorites(User.id)) }
+  useEffect(() => {
+    dispatch(getAllFavorites(User.id))
+  }, [dispatch, User.id])
 
   return (
     <motion.div
