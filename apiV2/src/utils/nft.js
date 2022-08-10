@@ -1,6 +1,7 @@
 const { nft, collection /* favorite */ } = require('../db.js')
+// const User = require('../models/User.js')
 const { getCollectionIdByName } = require('./collection.js')
-// const { findUser } = require('../utils/user')
+const { findUser } = require('../utils/user')
 
 // Create nft
 const createNFT = async (title, description, img, price, collectionName, id) => {
@@ -25,11 +26,10 @@ const createNFT = async (title, description, img, price, collectionName, id) => 
 const returnAllBanned = async () => {
   try {
     return await nft.findAll({
-      where:{
-        isBanned:true
+      where: {
+        isBanned: true
       }
-    }) 
-
+    })
   } catch (error) {
     console.log(error)
     throw error.message
@@ -43,13 +43,11 @@ const banANft = async (id) => {
         id
       }
     })
-
   } catch (error) {
     console.log(error)
     throw error.message
   }
 }
-
 
 const unbanANft = async (id) => {
   try {
@@ -67,14 +65,27 @@ const unbanANft = async (id) => {
 // get Nft per id incluide name of user and category
 const getNftId = async (id) => {
   try {
-    return await nft.findOne({
+    const gonorrea = await nft.findOne({
       where: { id },
-      attributes: ['id', 'title', 'description', 'img', 'price', 'isActive', 'isBanned'],
+      attributes: ['id', 'title', 'description', 'img', 'price', 'isActive', 'isBanned', 'ownerId'],
       include: [{
         model: collection,
         attributes: ['name', 'description']
-      }]
+      }
+      ]
     })
+    const response = {
+      id: gonorrea.id,
+      title: gonorrea.title,
+      description: gonorrea.description,
+      img: gonorrea.img,
+      price: gonorrea.price,
+      isActive: gonorrea.isActive,
+      isBanned: gonorrea.isBanned,
+      collection: gonorrea.collection,
+      ownerId: await findUser(gonorrea.ownerId)
+    }
+    return response
   } catch (error) {
     throw error.message
   }
