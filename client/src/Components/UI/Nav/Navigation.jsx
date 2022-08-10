@@ -94,8 +94,9 @@ function Nav () {
               open={open}
               setOpen={setOpen}>
               <div className={Classes.menu_items}>
-                <li>Home</li>
-                <li> FAQ</li>
+                <li><Link to={'/'}>Home</Link></li>
+                <li><Link to={'/create'}>Create</Link></li>
+                <li><Link to={'/faq'}>FAQ</Link></li>
                 {
                   !isAuthenticated
                     ? <li onClick={() => loginWithRedirect()}> <CgLogIn />Login</li>
