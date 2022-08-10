@@ -5,7 +5,7 @@ import chatLogo from '../../assests/chat.png'
 import { useSelector } from 'react-redux'
 function ChatbotMar (handleclick) {
   const [chatbot, setchatbot] = useState(false)
-  const userNick = useSelector(state => state.User.nickname)
+  const userNick = useSelector(state => state.User?.nickname)
   const openChat = () => {
     setchatbot(!chatbot)
   }
@@ -13,7 +13,7 @@ function ChatbotMar (handleclick) {
   const steps = [
     {
       id: '1',
-      message: `Hello ${`${userNick} !` || 'guest'}, I am a chatbot`,
+      message: `Hello ${userNick || 'Guest'} !, I am a chatbot`,
       trigger: '3'
     },
 
