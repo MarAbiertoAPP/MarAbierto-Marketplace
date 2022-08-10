@@ -49,7 +49,6 @@ router.get('/all', async (req, res) => {
     const count = await collection.count({
       where: whereQuery
     })
-
     const allCollections = await collection.findAll({
       where: whereQuery,
       attributes: ['id', 'frontPage', 'mini', 'name'],
