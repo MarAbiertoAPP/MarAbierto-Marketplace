@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './CollectionNewHome.module.css'
 
 // import foto from '../../assests/demo/fotouser.jpeg'
 
 import Nav from '../UI/Nav/Navigation'
 import Card from '../UI/Card/Card'
-import { FaDiscord, FaTwitter, FaShareAlt } from 'react-icons/fa'
+// import { FaDiscord, FaTwitter, FaShareAlt } from 'react-icons/fa'
 import { RiFilterFill, RiFilterOffFill } from 'react-icons/ri'
 import { BsGridFill, BsGrid3X3GapFill } from 'react-icons/bs'
-import { AiFillStar, AiOutlineMore } from 'react-icons/ai'
+// import { AiFillStar, AiOutlineMore } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { cleanCollectionByName, getCollectionByName } from '../../Redux/Actions'
 import { useParams } from 'react-router-dom'
@@ -32,6 +32,13 @@ export default function CollectionNewHome (props) {
   const { CollName } = useSelector(state => state)
   const { title } = useSelector(state => state.filterCollec)
   const { price } = useSelector(state => state.filterCollec)
+  const NftPrices = useSelector(state => state.CollName.nfts)
+  const maxNftPrice = []
+  NftPrices?.map((el) => {
+    return maxNftPrice.push(el.price)
+  })
+  const maxPriceNft = NftPrices && Math.max(...maxNftPrice)
+  const minPriceNft = NftPrices && Math.min(...maxNftPrice)
 
   useEffect(() => {
     const collectionCofig = {
@@ -62,7 +69,7 @@ export default function CollectionNewHome (props) {
 
             </div>
 
-            <div className='basis-4/12 flex space-x-8 mt-4'>
+            {/* <div className='basis-4/12 flex space-x-8 mt-4'>
                 <div className='flex space-x-10 h-fit items-center'>
 
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-neutral-300" viewBox="0 0 20 20" fill="currentColor">
@@ -76,7 +83,7 @@ export default function CollectionNewHome (props) {
                   <AiOutlineMore className='text-6xl font-bold text-neutral-300'/>
                   </div>
 
-                </div>
+                </div> */}
         </div>
 
         <div className=' flex mt-4'>
@@ -87,23 +94,23 @@ export default function CollectionNewHome (props) {
               <h1 className='text-neutral-300 text-xl font-bold'>Items</h1>
             </div>
 
-            <div className='flex flex-col'>
+            {/* <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'1.6K'}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('owner.owner')}</h1>
             </div>
-
-            <div className='flex flex-col'>
+ */}
+            {/* <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'3000'}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('solded.solded')}</h1>
-            </div>
+            </div> */}
 
             <div className='flex flex-col'>
-              <h1 className='text-purple-700  font-semibold text-3xl'>{'1.4'}</h1>
+              <h1 className='text-purple-700  font-semibold text-3xl'>{minPriceNft || 0}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('floorPrice.floorPrice')}</h1>
             </div>
 
             <div className='flex flex-col'>
-              <h1 className='text-purple-700 font-semibold text-3xl'>{'44.4'}</h1>
+              <h1 className='text-purple-700 font-semibold text-3xl'>{maxPriceNft || 0}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('CeilPrice.CeilPrice')}</h1>
             </div>
 

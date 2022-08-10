@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import style from './Details.module.css'
@@ -14,58 +13,66 @@ import ButtonsDetails from './ButtonsDetails/ButtonsDetails'
 import Nav from '../UI/Nav/Navigation'
 import Footer from '../Footer/Footer'
 import { motion } from 'framer-motion'
+import { getAllFavorites } from '../../Redux/Actions/ActionsDetail'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Details = () => {
   const { id } = useParams()
   const [nftDetail, setNftDetail] = useState({})
+  const dispatch = useDispatch()
+  const { User } = useSelector(state => state)
 
   useEffect(() => {
     window.scrollTo(0, 0)
     axios.get(`/nft/detail/${id}`)
       .then(response => setNftDetail(response.data))
   }, [])
+  useEffect(() => {
+    dispatch(getAllFavorites(User.id))
+  }, [dispatch, User.id])
 
   return (
     <motion.div
-    className={style.div}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
+      className={style.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
-      <div className={'mt-10 flex flex-col items-center w-screen max-w-screen-xl'} >
-      <Nav/>
-        <TitleDetails title={nftDetail?.collection?.name} />
-        <h2 className='text-purple-700 text-2xl font-bold' > NFT ID: {id}</h2>
-        <TitleLikesSM title={nftDetail?.title}/>
+      <div className={'mt-10 flex flex-col items-center w-screen max-w-screen-xl'}>
+        <Nav/>
 
-        <div className={`my-6 flex flex-col xl:flex-row w-full min-h-min xl:${style.limitH} pb-9`}>
+          <TitleDetails title={nftDetail?.collection?.name}/>
+          <h2 className='text-purple-700 text-2xl font-bold'> NFT ID: {id}</h2>
+          <TitleLikesSM title={nftDetail?.title}/>
 
-          <RenderImg img={nftDetail?.img}/>
-          <div className='flex flex-col basis-8/12 '>
+          <div className={`my-6 flex flex-col xl:flex-row w-full min-h-min xl:${style.limitH} pb-9`}>
 
-            <TitleLikesXL title={nftDetail?.title}/>
+            <RenderImg img={nftDetail?.img}/>
+            <div className='flex flex-col basis-8/12 '>
 
-            <DetailsDescription description={nftDetail?.collection?.description}/>
+              <TitleLikesXL title={nftDetail?.title}/>
 
-            <div className='w-full p-4 md:px-14 xl:p-8 '>
+              <DetailsDescription description={nftDetail?.collection?.description}/>
 
-              <CurrentPriceDetail price={nftDetail?.price}/>
-              <CurrentOwner user={nftDetail?.User}/>
-              <ButtonsDetails />
+              <div className='w-full p-4 md:px-14 xl:p-8 '>
 
-              <div className='w-full flex justify-center'>
-                <p className='mt-4 text-md self-auto text-neutral-400 tracking-wider'>By clicking &quot;Buy now&quot; or &quot;Make an offer&quot;, you agree to the Terms of Service</p>
+                <CurrentPriceDetail price={nftDetail?.price}/>
+                <CurrentOwner user={nftDetail?.User}/>
+                <ButtonsDetails/>
+
+                <div className='w-full flex justify-center'>
+                  <p className='mt-4 text-md self-auto text-neutral-400 tracking-wider'>By clicking &quot;Buy
+                    now&quot; or &quot;Make an offer&quot;, you agree to the Terms of Service</p>
+                </div>
+
               </div>
 
             </div>
 
           </div>
-
-        </div>
       </div>
       <Footer/>
     </motion.div>
-
   )
 }
 

@@ -21,7 +21,7 @@ import {
   DETAIL,
   FILTER_BY_TITLE_CAT,
   FILTER_BY_PRICE_CAT,
-  BUY_NOW, CREATE_NFT_STATUS, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC, CREATE_NFT_STATUS_FALSE, CLEAN_COLLECTION_BY_NAME, GET_ALL_CART, SUBMIT_REVIEW
+  BUY_NOW, CREATE_NFT_STATUS, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC, CREATE_NFT_STATUS_FALSE, CLEAN_COLLECTION_BY_NAME, GET_ALL_CART, SUBMIT_REVIEW, GET_ALL_FAVORITES
 } from '../Actions/ActionsCreators'
 
 const initialState = {
@@ -44,6 +44,7 @@ const initialState = {
   BuyNow: [],
   User: [],
   payData: [],
+  Favorites: [],
   detail: {},
   Conv: [],
   Collection: [],
@@ -213,11 +214,16 @@ export default function rootReducer (state = initialState, action) {
 
       }
 
+    case GET_ALL_FAVORITES:
+      return {
+        ...state,
+        Favorites: action.payload
+      }
+
     case GET_CLIENTE_SECRET:
       return {
         ...state,
         payData: action.payload
-
       }
 
     case CART_FROM_LOCAL_STORAGE:
