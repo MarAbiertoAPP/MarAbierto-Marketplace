@@ -17,6 +17,10 @@ const TitleLikesXL = (props) => {
   const favorito = Favorites.map((e) => e.id).find((e) => e === Number(id))
 
   const handleClick = () => {
+    if (favorito) {
+      axios.post('/favorite/delete', { nftId: id, userId })
+      return setEstilo('text-neutral-400 text-3xl')
+    }
     axios.post('/favorite/add', { nftId: id, userId })
     return setEstilo('text-red-500 text-3xl')
     // axios.post('/favorite/delete', { nftId: id, userId })

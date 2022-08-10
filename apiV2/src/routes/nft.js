@@ -136,7 +136,6 @@ router.get('/detail/:id', async (req, res) => {
   }
 })
 
-
 router.post('/bannft', async (req, res) => {
   try {
     const { id } = req.body
