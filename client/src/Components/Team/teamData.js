@@ -11,7 +11,7 @@ export const data42 = [{
 {
   name: 'Julian Soto',
   contact: 'https://www.linkedin.com/in/julian-soto-dev/',
-  img: 'https://media.licdn.com/media/AAYQAQSOAAgAAQAAAAAAAB-zrMZEDXI2T62PSuT6kpB6qg.png'
+  img: 'https://media-exp1.licdn.com/dms/image/D4E35AQH4y_WOQUORzw/profile-framedphoto-shrink_200_200/0/1660148865760?e=1660755600&v=beta&t=lFTZxt092oq91oz7SSk5XAhTS42UTdTR5gueuVB4dVU'
 },
 {
   name: 'Rafael Quiroga',

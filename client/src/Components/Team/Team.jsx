@@ -1,9 +1,11 @@
 import React from 'react'
 import { data42 } from './teamData'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
+import Nav from '../UI/Nav/Navigation'
 const Team = () => {
   return (
     <div>
+      <Nav/>
         <h1 className='text-orange-400 font-xl text-center font-bold text-2xl'>
             CREATOR TEAM
         </h1>
@@ -17,7 +19,8 @@ const Team = () => {
 
               <h2 className='text-lime-300' >{team.name}</h2>
               <div className='flex flex-row  justify-around' >
-                <FaLinkedin className='text-blue-400' />
+                <a href={team.contact}><FaLinkedin className='text-blue-400' /></a>
+
                 <FaGithub className='text-blue-400' />
             </div>
 

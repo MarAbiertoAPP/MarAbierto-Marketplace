@@ -138,8 +138,10 @@ const UserDetail = (props) => {
             <div className='basis-5/12 space-y-2 text-center xl:text-start'>
               <h1 className='text-white text-6xl capitalize'>{userRedux?.nickname}</h1>
               {/* <h1 className='text-white text-xl'>{data.address}</h1> */}
-              <h1 className='text-white'>{`Joined ${userRedux?.createdAt.slice(0, 10)}`}</h1>
+
+              <h1 className='text-white'>{`Joined ${userRedux?.createdAt?.slice(0, 10)}`}</h1>
               {/* <p className='text-white'>{data.description}</p> */}
+
               <p className='text-white'> {userRedux?.id}</p>
             </div>
 
