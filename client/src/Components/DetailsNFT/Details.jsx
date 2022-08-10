@@ -21,15 +21,16 @@ const Details = () => {
   const [nftDetail, setNftDetail] = useState({})
   const dispatch = useDispatch()
   const { User } = useSelector(state => state)
+  const { favorites } = useSelector(state => state)
 
   useEffect(() => {
     window.scrollTo(0, 0)
     axios.get(`/nft/detail/${id}`)
       .then(response => setNftDetail(response.data))
   }, [])
-
-  // eslint-disable-next-line no-lone-blocks
-  { User.id && dispatch(getAllFavorites(User.id)) }
+  useEffect(() => {
+    dispatch(getAllFavorites(User.id))
+  }, [dispatch, User.id])
 
   return (
     <motion.div

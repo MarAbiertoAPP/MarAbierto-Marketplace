@@ -224,7 +224,6 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state,
         payData: action.payload
-
       }
 
     case CART_FROM_LOCAL_STORAGE:

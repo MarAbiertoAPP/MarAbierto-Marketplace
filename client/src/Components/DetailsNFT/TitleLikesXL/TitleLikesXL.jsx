@@ -8,7 +8,7 @@ const TitleLikesXL = (props) => {
   TitleLikesXL.propTypes = {
     title: PropTypes.any
   }
-  const userId = useSelector(state => state.User.id)
+  const userId = useSelector(state => state.User?.id)
   const { detail } = useSelector(state => state)
   const [estilo, setEstilo] = useState('text-neutral-400 text-3xl hover:text-red-500')
 
@@ -22,7 +22,6 @@ const TitleLikesXL = (props) => {
 
   const handleClick = () => {
     axios.post('/favorite/add', { nftId: detail.nftId, userId })
-    return setEstilo('text-red-500 text-3xl')
     // axios.post('/favorite/delete', { nftId: id, userId })
   }
 
