@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './CollectionNewHome.module.css'
 
 // import foto from '../../assests/demo/fotouser.jpeg'
@@ -32,6 +32,13 @@ export default function CollectionNewHome (props) {
   const { CollName } = useSelector(state => state)
   const { title } = useSelector(state => state.filterCollec)
   const { price } = useSelector(state => state.filterCollec)
+  const NftPrices = useSelector(state => state.CollName.nfts)
+  const maxNftPrice = []
+  NftPrices?.map((el) => {
+    return maxNftPrice.push(el.price)
+  })
+  const maxPriceNft = NftPrices && Math.max(...maxNftPrice)
+  const minPriceNft = NftPrices && Math.min(...maxNftPrice)
 
   useEffect(() => {
     const collectionCofig = {
@@ -87,23 +94,23 @@ export default function CollectionNewHome (props) {
               <h1 className='text-neutral-300 text-xl font-bold'>Items</h1>
             </div>
 
-            <div className='flex flex-col'>
+            {/* <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'1.6K'}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('owner.owner')}</h1>
             </div>
-
-            <div className='flex flex-col'>
+ */}
+            {/* <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'3000'}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('solded.solded')}</h1>
-            </div>
+            </div> */}
 
             <div className='flex flex-col'>
-              <h1 className='text-purple-700  font-semibold text-3xl'>{'1.4'}</h1>
+              <h1 className='text-purple-700  font-semibold text-3xl'>{minPriceNft || 0}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('floorPrice.floorPrice')}</h1>
             </div>
 
             <div className='flex flex-col'>
-              <h1 className='text-purple-700 font-semibold text-3xl'>{'44.4'}</h1>
+              <h1 className='text-purple-700 font-semibold text-3xl'>{maxPriceNft || 0}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('CeilPrice.CeilPrice')}</h1>
             </div>
 
