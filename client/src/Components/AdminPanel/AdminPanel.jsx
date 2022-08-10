@@ -60,9 +60,9 @@ export default function AdminPanel () {
 
             <div className='flex flex-col w-full my-14 space-y-10'>
 
-                <button onClick={handleRendering1} value='Dashboard' className='p-4 mx-4 text-center rounded-2xl border-xl bg-purple-900  border-neutral-300 hover:bg-purple-700'>
-                  <h1 className='text-2xl text-neutral-300'>Dashboard</h1>
-                </button>
+                {/*<button onClick={handleRendering1} value='Dashboard' className='p-4 mx-4 text-center rounded-2xl border-xl bg-purple-900  border-neutral-300 hover:bg-purple-700'>*/}
+                {/*  <h1 className='text-2xl text-neutral-300'>Dashboard</h1>*/}
+                {/*</button>*/}
 
                 <button onClick={handleRendering2}  value='Reports' className='p-4 mx-4 text-center rounded-2xl border-xl bg-purple-900  border-neutral-300 hover:bg-purple-700'>
                   <h1 className='text-2xl text-neutral-300'>Reports</h1>

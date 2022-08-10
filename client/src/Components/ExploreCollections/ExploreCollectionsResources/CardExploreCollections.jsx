@@ -11,7 +11,7 @@ export default function CardExploreCollections ({name , frontPage, id,mini }) {
     <div className='basis-96 h-72 m-2  shadow-rafagod  mx-4 my-8 rounded-xl  hover:shadow-rose-300  '>
       <Link to={`/collection/${name}`}>
         
-      <img className='w-full rounded-t-xl h-3/4 object-cover  ' src={frontPage} alt={name}/>
+      <img className='w-full rounded-t-xl h-3/4 object-cover' src={frontPage} alt={name}/>
 
       <div className='h-1/4 rounded-b-xl flex items-center bg-neutral-800'>
         <img className='ml-6 -mt-12 h-16 w-16 rounded-full shadow-md shadow-white ' src={mini}/>
