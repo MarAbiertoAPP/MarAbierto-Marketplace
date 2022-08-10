@@ -1,11 +1,11 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './UserDetail.module.css'
 import Nav from '../UI/Nav/Navigation'
 import Footer from '../Footer/Footer'
 // import Card from '../UI/Card/Card'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CardUserDetail from './UseDetailResources/CardUserDetail'
 
 import { /* AiOutlineTwitter, AiOutlineMore,  */AiOutlineEdit } from 'react-icons/ai'
@@ -14,6 +14,11 @@ import { Link } from 'react-router-dom'
 // aqui va la data simulada
 // import fotouser from '../../assests/demo/fotouser.jpeg'
 import background from '../../assests/demo/background.webp'
+import { getAllFavorites } from '../../Redux/Actions/ActionsDetail'
+import Carousel from '../NewHome/newHomeResources/Carousel'
+import { getAllCollection } from '../../Redux/Actions'
+import CarouselSM from '../NewHome/newHomeResources/CarouselSM'
+import axios from 'axios'
 
 /* const data = {
   name: 'gatingatito',
@@ -23,105 +28,131 @@ import background from '../../assests/demo/background.webp'
 
 } */
 
-const dataFromApiExample = [{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-},
-{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-},
-{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-},
-{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-},
-{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-},
-{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-},
-{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-},
-{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-},
-{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-},
-{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-},
-{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-},
-{
-  title: 'Waifusion #2541',
-  description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
-  price: 1.1,
-  img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
-  category: 'Sports'
-}
-]
+// const dataFromApiExample = [{
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// },
+// {
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// },
+// {
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// },
+// {
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// },
+// {
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// },
+// {
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// },
+// {
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// },
+// {
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// },
+// {
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// },
+// {
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// },
+// {
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// },
+// {
+//   title: 'Waifusion #2541',
+//   description: "Waifusion is a community-run digital Waifu NFT project with deflationary mechanics. There are 16,384 guaranteed-unique Waifusion NFTs. They're just like you; a beautiful work of art, but 2-D and therefore, superior, Anon-kun. Each Waifu is wholly unique and yours forever... unless you sell them... Baka.",
+//   price: 1.1,
+//   img: 'https://lh3.googleusercontent.com/PL0asok_cN4gQ3K1bqlQIlcjvergT9Isv-wQhALcikcwJa_4QiRRhd8iPvafHyGhLlf_ZVlyvWzBS42Jtar7bERnpAXZlKdoM0ZUvro=w600',
+//   category: 'Sports'
+// }
+// ]
 //
 // console.log(data) // te he callado eslint
 
 const UserDetail = (props) => {
+  const dispatch = useDispatch()
   const userRedux = useSelector(state => state?.User)
-  console.log(userRedux)
+  const { Favorites } = useSelector(state => state)
+  const { User } = useSelector(state => state)
+  const Collection = useSelector(state => state.Collection)
+  const [tab, setTab] = useState(0)
+  const [owned, setOwnded] = useState()
+
+  useEffect(() => {
+    dispatch(getAllFavorites(User?.id))
+    axios.get(`/nft/owner/${User.id}`).then(res => setOwnded(res.data))
+  }, [User])
+
+  useEffect(() => {
+    dispatch(getAllCollection())
+  }, [User])
+
+  const tabHandler = () => {
+    return setTab(1)
+  }
+
+  const tabOneHandler = () => {
+    return setTab(2)
+  }
+
+  const tabTwoHandler = () => {
+    return setTab(3)
+  }
 
   const [t] = useTranslation('faq')
   return (
 
     <div className={style.div}>
 
-      <Nav/>
-       <div className='w-full max-w-screen-xl'>
+      <Nav />
+      <div className='w-full max-w-screen-xl'>
 
         <div className='object-contain mt-12 w-full h-96 max-w-screen-xl'>
           <img className='w-full h-full' src={background}></img>
@@ -151,15 +182,15 @@ const UserDetail = (props) => {
 
             <div className='basis-3/12'>
               <div className='flex place-content-around items-center my-8 xl:my-0'>
-               {/*  <AiOutlineTwitter className='text-5xl text-white'/> */}
-               {/*  <FaShareAlt className='text-4xl text-white'/> */}
+                {/*  <AiOutlineTwitter className='text-5xl text-white'/> */}
+                {/*  <FaShareAlt className='text-4xl text-white'/> */}
                 {/* <AiOutlineMore className='text-5xl text-white'/> */}
                 {
                   userRedux && userRedux.typeUser === 'SU'
                     ? (
-                    <Link to='/AdminPanel' className='text-white text-5xl'>
-                      <AiOutlineEdit className='text-white'/>
-                    </Link>
+                      <Link to='/AdminPanel' className='text-white text-5xl'>
+                        <AiOutlineEdit className='text-white' />
+                      </Link>
                       )
                     : null}
               </div>
@@ -169,21 +200,57 @@ const UserDetail = (props) => {
           </div>
 
           <div className='w-full p-6 flex space-x-20'>
-            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Collected.Collected')}</h1>
-            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Created.Created')}</h1>
-            <h1 className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Favorites.Favorites')}</h1>
+            {owned?.length > 0 &&
+              <button onClick={tabHandler} className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Collected.Collected')}</button>
+            }
+
+            {Favorites?.length > 0 &&
+              <button onClick={tabOneHandler} className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Favorites.Favorites')}</button>
+            }
+
+            <button onClick={tabTwoHandler} className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Created.Created')}</button>
           </div>
 
         </div>
 
         <div className='flex flex-row flex-wrap justify-center'>
-          {dataFromApiExample?.map((item, index) => {
+          {tab === 0 && Favorites?.map((item, index) => {
             return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id} />
           })}
-        </div>
 
+          {/* collected */}
+          {tab === 1 && owned?.map((item, index) => {
+            return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id} />
+          })}
+          {/* Favorites */}
+          {tab === 2 && Favorites?.map((item, index) => {
+            return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id} />
+          })}
+          {/* created */}
+          {tab === 3 && Favorites?.map((item, index) => {
+            return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id} />
+          })}
+
+        </div>
+        <div className='w-full max-w-screen-xl mt-24 space-y-14 flex flex-col justify-center'>
+          <h1 className='text-3xl text-center text-neutral-300'> Last Drops</h1>
+
+          <div className='w-full'>
+
+            <div className='hidden xl:flex mb-20 capitalize'>
+              <Carousel data={Collection.collections} />
+
+            </div>
+
+            <div className='xl:hidden mb-20 capitalize'>
+              <CarouselSM data={Collection.collections} />
+            </div>
+
+          </div>
+
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
