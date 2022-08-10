@@ -16,7 +16,6 @@ const postToCar = async (nftId, userId) => {
       date: Date.now()
     })
   } catch (error) {
-    console.log(error)
     throw error.message
   }
 }
