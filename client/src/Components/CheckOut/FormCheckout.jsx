@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { cleanAllCart } from '../../Redux/Actions/ActionsCart'
 
 const CheckoutForm = () => {
+  const dispatch = useDispatch()
   const { nickname } = useSelector(state => state.User)
   const nftFromCart = useSelector(state => state.Cart)
   const stripe = useStripe()
@@ -11,7 +13,9 @@ const CheckoutForm = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [loading, setLoading] = useState(false)
   const handleSubmit = async (event) => {
+    const userId = useSelector(state => state.User?.id)
     event.preventDefault()
+
     setLoading(true)
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
@@ -36,7 +40,7 @@ const CheckoutForm = () => {
     } else {
       console.log(error)
     }
-
+    dispatch(cleanAllCart(userId))
     // Your customer will be redirected to your `return_url`. For some payment
     // methods like iDEAL, your customer will be redirected to an intermediate
     // site first to authorize the payment, then redirected to the `return_url`.
