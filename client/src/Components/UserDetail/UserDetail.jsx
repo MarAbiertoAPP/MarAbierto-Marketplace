@@ -5,12 +5,12 @@ import Nav from '../UI/Nav/Navigation'
 import Footer from '../Footer/Footer'
 // import Card from '../UI/Card/Card'
 import { useTranslation } from 'react-i18next'
-
+import { useSelector } from 'react-redux'
 import CardUserDetail from './UseDetailResources/CardUserDetail'
 
-import { AiOutlineTwitter, AiOutlineMore } from 'react-icons/ai'
+import { AiOutlineTwitter, AiOutlineMore, AiOutlineEdit } from 'react-icons/ai'
 import { FaShareAlt } from 'react-icons/fa'
-
+import { Link } from 'react-router-dom'
 // aqui va la data simulada
 // import fotouser from '../../assests/demo/fotouser.jpeg'
 import background from '../../assests/demo/background.webp'
@@ -114,6 +114,7 @@ const dataFromApiExample = [{
 
 const UserDetail = (props) => {
   const { user } = useAuth0()
+  const userRedux = useSelector(state => state.User)
   console.log(user)
   const [t] = useTranslation('faq')
   return (
@@ -152,6 +153,14 @@ const UserDetail = (props) => {
                 <AiOutlineTwitter className='text-5xl text-white'/>
                 <FaShareAlt className='text-4xl text-white'/>
                 <AiOutlineMore className='text-5xl text-white'/>
+                {
+                  userRedux && userRedux.typeUser === 'SU'
+                    ? (
+                    <Link to='/AdminPanel' className='text-white text-5xl'>
+                      <AiOutlineEdit className='text-white'/>
+                    </Link>
+                      )
+                    : null}
               </div>
 
             </div>

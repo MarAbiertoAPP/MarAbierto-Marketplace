@@ -19,6 +19,10 @@ export default function AdminReports () {
         {report?.map(e => {
           return <CardReport key={e.id} type={e.type} description={e.description} id={e.id} target={e.target}/>
         })}
+
+        {!report.length && <h1 className='text-neutral-300 text-center text-6xl'>
+            All reports have been resolved!
+          </h1>}
       </div>
 
     </div>

@@ -28,7 +28,6 @@ router.post('/signup', async (req, res) => {
     res.status(500).send({ error: 'Algo ha ocurrido' })
   }
 })
-
 // Get user
 router.get('/profile', async (req, res) => {
   res.send('not working at the moment')
@@ -87,6 +86,27 @@ router.get('/getuserdatabyname/:nickname', async (req, res) => {
     const { nickname } = req.params
     const response = await searchByName(nickname)
     return res.status(201).json(response)
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
+router.post('/makesuperuser', async (req, res) => {
+  try {
+    const { email } = req.body
+    const response = await user.update({ typeUser: 'SU' }, { where: { email } })
+    return res.status(201).json(response, { msg: 'Granted permissions' })
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
+
+router.post('/removesuperuser', async (req, res) => {
+  try {
+    const { email } = req.body
+    const response = await user.update({ typeUser: 'N' }, { where: { email } })
+    return res.status(201).json(response, { msg: 'Revoked permissions' })
   } catch (err) {
     console.log(err)
     res.status(500).send({ error: 'Algo ha ocurrido' })

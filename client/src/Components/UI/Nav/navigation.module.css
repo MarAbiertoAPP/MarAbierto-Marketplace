@@ -111,6 +111,12 @@
   height: 2.4rem;
   user-select: none;
 }
+.back{
+  position: absolute;
+  margin-right: 80%;
+  margin-top: 10px
+
+}
 .icons{
   cursor: pointer;
   width: 45px;

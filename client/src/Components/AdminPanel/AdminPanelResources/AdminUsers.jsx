@@ -23,6 +23,9 @@ export default function AdminUsers () {
       .catch(function (error) {
         console.log(error)
       })
+
+    setInput('')
+    setdataFromUserForTheCard([])
   }
 
   async function unbanUser (e, id) {
@@ -36,6 +39,8 @@ export default function AdminUsers () {
       .catch(function (error) {
         console.log(error)
       })
+    setInput('')
+    setdataFromUserForTheCard([])
   }
 
   function handleInputChanges (e) {
@@ -48,6 +53,18 @@ export default function AdminUsers () {
     getdataFromUserForTheCard(input)
   }
 
+  async function makeSuperUser (email) {
+    // eslint-disable-next-line
+    const response = await axios.post('https://marabierto.herokuapp.com/users/makesuperuser', { email: email })
+    console.log(response)
+  }
+  async function removeSuperUser (email) {
+    // eslint-disable-next-line
+    const response = await axios.post('https://marabierto.herokuapp.com/users/removesuperuser', { email: email })
+    if (response.data.success) {
+      alert('user was removed superuser succesfully')
+    }
+  }
   async function getdataFromUserForTheCard (nickname) {
     const response = await axios.get(`https://marabierto.herokuapp.com/users/getuserdatabyname/${nickname}`).then(r => r.data)
     setdataFromUserForTheCard(response)
@@ -59,7 +76,7 @@ export default function AdminUsers () {
       setHowmanyUsersExist(response)
     }
     getHowManyUsersExist()
-  })
+  }, [])
 
   useEffect(() => {
     axios.get('https://marabierto.herokuapp.com/users/banned')
@@ -81,12 +98,12 @@ export default function AdminUsers () {
 
           </div>
 
-          <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
+          {/* <div className='w-5/12 border border-neutral-600 border-2 rounded-xl flex flex-col items-center p-4 space-y-4'>
 
             <h1 className='text-neutral-300 text-6xl'>xx7xx</h1>
             <h1 className='text-neutral-200 text-2xl'>New users in the last 7 days</h1>
 
-          </div>
+          </div> */}
 
         </div>
 
@@ -133,6 +150,10 @@ export default function AdminUsers () {
                   user.isBanned
                     ? <button onClick={(e) => unbanUser(e, user.id)} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Unban User</button>
                     : <button onClick={(e) => banUser(e, user.id)} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Ban User</button>
+                }{
+                  user.typeUser === 'N'
+                    ? <button onClick={() => makeSuperUser(user.email)} className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300'>Make Superuser</button>
+                    : <button className='bg-gray-700 hover:bg-red-700 mt-4 text-2xl rounded-lg px-4 py-2 text-neutral-300' onClick={() => removeSuperUser(user.email)}>Remove Superuser</button>
                 }
               </div>
             </div>
