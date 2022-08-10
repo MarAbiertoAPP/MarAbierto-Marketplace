@@ -13,8 +13,9 @@ import ButtonsDetails from './ButtonsDetails/ButtonsDetails'
 import Nav from '../UI/Nav/Navigation'
 import Footer from '../Footer/Footer'
 import { motion } from 'framer-motion'
-import { getAllFavorites } from '../../Redux/Actions/ActionsDetail'
 import { useDispatch, useSelector } from 'react-redux'
+import { getAllFavorites } from '../../Redux/Actions/ActionsDetail'
+// import { getAllFavorites } from '../../Redux/Actions/ActionsDetail'
 
 const Details = () => {
   const { id } = useParams()
@@ -29,7 +30,10 @@ const Details = () => {
   }, [])
 
   // eslint-disable-next-line no-lone-blocks
-  { User.id && dispatch(getAllFavorites(User.id)) }
+
+  useEffect(() => {
+    dispatch(getAllFavorites(User.id))
+  }, [dispatch, User.id])
 
   return (
     <motion.div

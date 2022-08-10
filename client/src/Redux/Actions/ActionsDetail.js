@@ -9,6 +9,7 @@ export function passDetail (detailData) {
 }
 
 export function getAllFavorites (userId) {
+  console.log('userId', userId)
   if (!userId) {
     return {
       type: GET_ALL_FAVORITES,
