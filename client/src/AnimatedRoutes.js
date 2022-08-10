@@ -27,9 +27,11 @@ export default function AnimatedRoutes () {
   const user = useSelector(state => state.User)
   useEffect(() => {
     if (user.id) {
-      navigate('/Banned')
+      if (user.isBanned) {
+        navigate('/Banned')
+      }
     }
-  }, [user.id])
+  }, [location.pathname, user.isBanned])
   return (
     <AnimatePresence exitBeforeEnter>
       <Routes location={location} key={location.pathname}>

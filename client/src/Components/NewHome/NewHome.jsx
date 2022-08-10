@@ -186,6 +186,7 @@ export default function NewHome() {
       {/* /------el tercer componente --> carusel TOP -> esta de aqui para arriba, de aqui para abajo el 4to-------- */}
 
       <Footer/>
+      
 
     </div>
 
