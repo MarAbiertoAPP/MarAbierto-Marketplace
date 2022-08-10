@@ -1,6 +1,4 @@
-
 import React from 'react'
-
 import Nav from '../UI/Nav/Navigation'
 
 const ThanksForBuying = () => {

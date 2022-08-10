@@ -48,7 +48,7 @@ export default function AdminPanel () {
   return (
   
     <div className={style.div}>
-      {/* <Nav/> */}
+       <Nav/> 
       {
         user && user.typeUser === 'SU' ?(
 <div className=' w-full max-w-screen-xl  flex h-screen max-h-limitHnewHome'>

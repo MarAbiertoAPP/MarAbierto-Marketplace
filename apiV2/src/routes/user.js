@@ -143,7 +143,7 @@ router.get('/banned', async (req, res) => {
 })
 
 router.post('/sendmail', async (req, res) => {
-  const { nickname, nftFromCart } = req.body
+  const { nickname, nftFromCart, userEmail } = req.body
 
   console.log(nftFromCart)
   const transporter = nodemailer.createTransport({
@@ -159,7 +159,7 @@ router.post('/sendmail', async (req, res) => {
 
   await transporter.sendMail({
     from: process.env.MAIL_FROM,
-    to: 'julianlasoto@hotmail.com',
+    to: userEmail,
     subject: 'Mar Abierto thanks for buying',
     html: `
           <h1  style="color:black ;text-align:center; font-weight:400"  >Mar abierto</h1>

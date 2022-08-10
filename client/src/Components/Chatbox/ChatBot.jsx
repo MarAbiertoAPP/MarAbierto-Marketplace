@@ -13,7 +13,7 @@ function ChatbotMar (handleclick) {
   const steps = [
     {
       id: '1',
-      message: `Hello ${`${userNick} !` || ''}, I am a chatbot`,
+      message: `Hello ${`${userNick} !` || 'guest'}, I am a chatbot`,
       trigger: '3'
     },
 
@@ -39,29 +39,43 @@ function ChatbotMar (handleclick) {
       message: 'what would you like to know?',
       trigger: '6C'
     },
-    {
-      id: '6C',
-      options: [
-        { label: 'How to Buy', trigger: '7A' },
-        { label: 'How to Pay', trigger: '7A' },
-        { label: 'Nothing', trigger: '6B' }
-      ]
 
-    },
     {
       id: '6B',
       message: 'Bye bye!!',
       end: true
     },
+    {
+      id: '6C',
+      options: [
+        { value: 'b', label: 'How to Buy', trigger: '7A' },
+        { value: 'p', label: 'How to Pay', trigger: '7A' },
+        { label: 'Nothing', trigger: '6B' }
+      ]
+
+    },
 
     {
       id: '7A',
       message: 'The great about Mar Abierto is that you can pay your NFTs with Credit Card?',
-      trigger: '6B'
+      trigger: '7B'
 
+    },
+    {
+      id: '7B',
+      message: 'Do you need anything else?',
+      trigger: '7C'
+    },
+    {
+      id: '7C',
+      options: [
+        { value: 'y', label: 'Yes', trigger: '6A' },
+        { value: 'n', label: 'No', trigger: '6B' }
+      ]
     }
 
   ]
+
   return (
   <div className='my-50  '>
 

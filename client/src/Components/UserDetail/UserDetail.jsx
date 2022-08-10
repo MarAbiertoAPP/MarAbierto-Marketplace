@@ -14,7 +14,6 @@ import { Link } from 'react-router-dom'
 // aqui va la data simulada
 // import fotouser from '../../assests/demo/fotouser.jpeg'
 import background from '../../assests/demo/background.webp'
-import { useAuth0 } from '@auth0/auth0-react'
 
 const data = {
   name: 'gatingatito',
@@ -113,9 +112,9 @@ const dataFromApiExample = [{
 // console.log(data) // te he callado eslint
 
 const UserDetail = (props) => {
-  const { user } = useAuth0()
-  const userRedux = useSelector(state => state.User)
-  console.log(user)
+  const userRedux = useSelector(state => state?.User)
+  console.log(userRedux)
+
   const [t] = useTranslation('faq')
   return (
 
@@ -129,7 +128,7 @@ const UserDetail = (props) => {
         </div>
 
         <div className='w-full flex justify-center xl:justify-start'>
-          <img className='aspect-auto shadow-2xl shadow-black box -mt-40 xl:ml-20 w-72 h-72 md:w-96 md:h-96 xl:w-48 xl:h-48 rounded-full' src={user?.picture}></img>
+          <img className='aspect-auto shadow-2xl shadow-black box -mt-40 xl:ml-20 w-72 h-72 md:w-96 md:h-96 xl:w-48 xl:h-48 rounded-full' src={userRedux?.profile_picture}></img>
         </div>
 
         <div className='-mt-10 w-full'>
@@ -137,11 +136,11 @@ const UserDetail = (props) => {
           <div className='w-full mt-10 flex flex-col xl:flex-row'>
 
             <div className='basis-5/12 space-y-2 text-center xl:text-start'>
-              <h1 className='text-white text-6xl capitalize'>{user?.nickname}</h1>
+              <h1 className='text-white text-6xl capitalize'>{userRedux?.nickname}</h1>
               {/* <h1 className='text-white text-xl'>{data.address}</h1> */}
-              <h1 className='text-white'>{`Joined ${user?.updated_at.slice(0, 10)}`}</h1>
+              <h1 className='text-white'>{`Joined ${userRedux?.createdAt.slice(0, 10)}`}</h1>
               <p className='text-white'>{data.description}</p>
-              <p className='text-white'> {data.userID}</p>
+              <p className='text-white'> {userRedux?.id}</p>
             </div>
 
             <div className='basis-4/12'>

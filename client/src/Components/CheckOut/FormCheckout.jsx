@@ -8,12 +8,13 @@ const CheckoutForm = () => {
   const dispatch = useDispatch()
   const { nickname } = useSelector(state => state.User)
   const nftFromCart = useSelector(state => state.Cart)
+  const userEmail = useSelector(state => state.User.name)
   const stripe = useStripe()
   const elements = useElements()
   const [errorMessage, setErrorMessage] = useState(null)
   const [loading, setLoading] = useState(false)
+  const userId = useSelector(state => state.User?.id)
   const handleSubmit = async (event) => {
-    const userId = useSelector(state => state.User?.id)
     event.preventDefault()
 
     setLoading(true)
@@ -26,11 +27,10 @@ const CheckoutForm = () => {
       // `Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
-
         return_url: 'https://mar-abierto-marketplace.vercel.app/thanks'
       }
 
-    }).then(axios.post('/sendmail', { nickname, nftFromCart }))
+    }).then(axios.post('/sendmail', { nickname, nftFromCart, userEmail })).then(dispatch(cleanAllCart(userId)))
     if (error) {
       setErrorMessage(error.message)
       setLoading(false)
@@ -40,7 +40,7 @@ const CheckoutForm = () => {
     } else {
       console.log(error)
     }
-    dispatch(cleanAllCart(userId))
+    //
     // Your customer will be redirected to your `return_url`. For some payment
     // methods like iDEAL, your customer will be redirected to an intermediate
     // site first to authorize the payment, then redirected to the `return_url`.
