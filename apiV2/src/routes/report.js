@@ -24,6 +24,18 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.post('/resolved', async(req,res) => {
+  try {
+    const {id} = req.body
+    let response = await report.destroy({where:{id}}) 
+    return res.status(200).send('response')
+  
+  } catch (error) {
+    return res.status(400).send({ msg: error })
+  }
+  
+})
+
 
 
 module.exports = router

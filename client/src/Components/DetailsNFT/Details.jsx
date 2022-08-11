@@ -47,7 +47,6 @@ const Details = () => {
         <Nav/>
 
           <TitleDetails title={nftDetail?.collection?.name}/>
-          <h2 className='text-purple-700 text-2xl font-bold'> NFT ID: {id}</h2>
           <TitleLikesSM title={nftDetail?.title}/>
 
           <div className={`my-6 flex flex-col xl:flex-row w-full min-h-min xl:${style.limitH} pb-9`}>

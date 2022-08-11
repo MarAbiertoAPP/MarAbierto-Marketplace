@@ -29,9 +29,10 @@ const TitleLikesSM = ({ title }) => {
 
   async function report (e) {
     e.preventDefault()
-    const response = { type: 'nft', description: 'this user has been reported', target: id.toString() }
-    await axios.post('marabierto.herokuapp.com/report', response).then(e => alert('report has been send succesfully'))
-      .catch(e => { alert('error'); console.log(e) })
+    const response = { type: 'nft', description: 'this user has been reported', target: Number(id) }
+    console.log(response.target)
+    await axios.post('/report', response).then(e => alert('report has been send succesfully'))
+      .catch(e => { alert('error'); console.log(e.message) })
   }
 
   useEffect(() => {
