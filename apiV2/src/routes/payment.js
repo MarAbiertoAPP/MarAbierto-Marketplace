@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
 router.post('/change-status', async (req, res) => {
   try {
     const { id, ownerId } = req.body
+    console.log(id)
     return res.status(200).send(await statusNft(id, ownerId))
   } catch (error) {
     return res.status(400).send({ msg: error })
