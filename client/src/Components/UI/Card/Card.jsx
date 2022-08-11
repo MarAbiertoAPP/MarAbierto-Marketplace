@@ -13,7 +13,7 @@ import { passDetail } from '../../../Redux/Actions/ActionsDetail'
 import { getAllCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
 
-export default function Card ({ title, image, price, nftId, collectionName, secondWidth, userId }) {
+export default function Card ({ title, image, price, nftId, collectionName, secondWidth, userId, isActive }) {
   const [t] = useTranslation('faq')
   /* const { user } = useAuth0() */
   const dispatch = useDispatch()
@@ -41,6 +41,7 @@ export default function Card ({ title, image, price, nftId, collectionName, seco
     price: PropTypes.string,
     nftId: PropTypes.number,
     userId: PropTypes.string,
+    isActive: PropTypes.bool,
 
     collectionName: PropTypes.string,
     secondWidth: PropTypes.bool
@@ -104,7 +105,7 @@ export default function Card ({ title, image, price, nftId, collectionName, seco
         <div>
           <p className='flex items-center py-3 pb-16 text-sm'>{`${t('nftPrice.price')}: ${price}`} <FaEthereum /></p>
         </div>
-        <button className= { secondWidth ? 'w-4/6 flex justify-center items-center bg-purple-900/80 hover:bg-purple-700 py-2 rounded-xl absolute bottom-4 left-0 right-0 m-auto p-2 ' : 'w-4/6 flex justify-center items-center bg-purple-900/80 hover:bg-purple-700 py-2 rounded-full absolute bottom-4 left-0 right-0 m-auto p-2 '} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}><FiShoppingCart className= { secondWidth ? '   mr-4 text-orange-500' : ' mr-2 text-lime-500'} />{t('AddToCart.AddToCart')}</button>
+        <button className= { secondWidth ? 'w-4/6 flex justify-center items-center bg-purple-900/80 enabled:hover:bg-purple-700 disabled:opacity-75 disabled:cursor-not-allowed py-2 rounded-xl absolute bottom-4 left-0 right-0 m-auto p-2 ' : 'w-4/6 flex justify-center items-center bg-purple-900/80 hover:bg-purple-700 py-2 rounded-full absolute bottom-4 left-0 right-0 m-auto p-2 '} disabled={!isActive} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}><FiShoppingCart className= { secondWidth ? '   mr-4 text-orange-500' : ' mr-2 text-lime-500'} />{t('AddToCart.AddToCart')}</button>
     </motion.div>
   )
 }
