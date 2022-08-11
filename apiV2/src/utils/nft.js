@@ -101,14 +101,10 @@ const deleteAllNft = async () => {
   }
 }
 
-const statusNft = async (id, ownerId) => {
+const statusNft = async (id, idOwner) => {
   try {
-    const nftC = await nft.findByPk(id)
-    const isActive = !nftC.isActive
-    return await nftC.update({
-      ownerId,
-      isActive
-    })
+    const nftC = await nft.update({ ownerId: idOwner, isActive: false }, { where: { id } })
+    return nftC
   } catch (error) {
     throw error.message
   }
@@ -157,7 +153,6 @@ const getPerCreatorId = async (creatorId) => {
     throw error.message
   }
 }
-
 
 module.exports = {
   createNFT,

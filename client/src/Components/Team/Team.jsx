@@ -4,7 +4,7 @@ import { FaLinkedin } from 'react-icons/fa'
 import Nav from '../UI/Nav/Navigation'
 const Team = () => {
   return (
-    <div>
+    <div >
       <div className='flex justify-center'>
       <Nav />
       </div>
