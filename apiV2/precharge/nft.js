@@ -497,6 +497,34 @@ const NFTs = [
     price: 1,
     img: 'https://img.seadn.io/files/56b70b8b31b3e8f9a6e0f4708b328e52.png?auto=format&fit=max&w=384',
     collection: 'Influence Asteroids'
+  },
+  {
+    title: 'SLABS - SLAB 36',
+    description: 'How does one convey a sense of space and materiality through digital abstraction? For fifteen years, Nicolas Sassoon pursued this question through his artistic practice, using the visual language of early computer graphics.',
+    price: 0.77,
+    img: 'https://lh3.googleusercontent.com/7zZDmSXqVf-N7p5qJfUIH68zW-xLKbuO2Qx_rLSeVhThu0PPS5c2ilkksaV71rCPvTofF_k60TZ4a9PatWE4od6DZtpSxKhvgrmf90U=w600',
+    collection: 'SLABS'
+  },
+  {
+    title: 'SLABS - SLAB 43',
+    description: 'How does one convey a sense of space and materiality through digital abstraction? For fifteen years, Nicolas Sassoon pursued this question through his artistic practice, using the visual language of early computer graphics.',
+    price: 1,
+    img: 'https://lh3.googleusercontent.com/xs2utudHg7AbScv86cnTzzI07OQmQNmE0ANR36FLosch1RGBj1N3oGU-kFq67t2U41L3xBtL1pGQfEe2DXUE-OMpJ3clyrsL_cal=w600',
+    collection: 'SLABS'
+  },
+  {
+    title: 'SLABS - SLAB 15',
+    description: 'How does one convey a sense of space and materiality through digital abstraction? For fifteen years, Nicolas Sassoon pursued this question through his artistic practice, using the visual language of early computer graphics.',
+    price: 2,
+    img: 'https://lh3.googleusercontent.com/qN1h_EWAjWgCS2DprysMQnuNYWYtLuZ8FYQH0EOZcjlyHMwNCDrMfAEZ0DJKXjLhdZgOD3H2-BALlZycaJLC7RkQCpcCSUo35aqqqZg=w600',
+    collection: 'SLABS'
+  },
+  {
+    title: 'SLABS - SLAB 38',
+    description: 'How does one convey a sense of space and materiality through digital abstraction? For fifteen years, Nicolas Sassoon pursued this question through his artistic practice, using the visual language of early computer graphics.',
+    price: 2.75,
+    img: 'https://lh3.googleusercontent.com/7UD-k_mtSxuaV2dlrUpUDzx0pm0SZaDBl2ltEd_QyJSc9ik3zlG6SL-URPK3E89JLMb1AenWaTWYtb2nUqkOqvOrb4iqJS-JVVSnNA=w600',
+    collection: 'SLABS'
   }
 ]
 

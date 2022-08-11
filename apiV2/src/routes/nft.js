@@ -1,7 +1,9 @@
 const { Router } = require('express')
 const router = Router()
 const { nft, Op, collection, user } = require('../db.js')
-const { createNFT, getNftId, addFavorite, getFavoritesPerId, banANft, unbanANft, returnAllBanned, getPerUserId } = require('../utils/nft')
+const { createNFT, getNftId, addFavorite, getFavoritesPerId, banANft, unbanANft, returnAllBanned, getPerUserId,
+  getPerCreatorId
+} = require('../utils/nft')
 
 // Route GET with search by name and filters
 // params came by body
@@ -71,8 +73,8 @@ router.get('/', async (req, res) => {
 // Route to create a NFT
 router.post('/', async (req, res) => {
   try {
-    const { title, description, img, price, collectionName, id } = req.body
-    const response = await createNFT(title, description, img, price, collectionName, id)
+    const { title, description, img, price, collectionName, ownerId, creatorId } = req.body
+    const response = await createNFT(title, description, img, price, collectionName, ownerId, creatorId)
     console.log(response)
     return res.status(200).send('nftCreada')
   } catch (error) {
@@ -174,4 +176,15 @@ router.get('/owner/:ownerId', async (req, res) => {
     return res.status(400).send({ msg: error })
   }
 })
+
+router.get('/creator/:creatorId', async (req, res) => {
+  try {
+    const { creatorId } = req.params
+    const response = await getPerCreatorId(creatorId)
+    return response ? res.status(200).send(response) : res.status(400).send({ msg: 'Not found' })
+  } catch (error) {
+    return res.status(400).send({ msg: error })
+  }
+})
+
 module.exports = router

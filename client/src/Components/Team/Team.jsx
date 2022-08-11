@@ -12,7 +12,7 @@ const Team = () => {
     <div className='  flex flex-row justify-around '>
     {data42.map((team) => {
       return (
-          <div className='m-5 w-4/5  hover:shadow-2xl   hover:shadow-purple-800 ' key={team.name}>
+          <div className='m- w-4/5  hover:shadow-2xl   hover:shadow-purple-800 ' key={team.name}>
             <div className= ' m-auto  h/96 w-4/5  border-2 border-solid border-blue-300 '>
                 <img className=' h-full text-center  w-full object-contain   ' src={team.img} alt="imagen" />
             </div>

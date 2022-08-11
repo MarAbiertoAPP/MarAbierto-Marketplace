@@ -19,7 +19,11 @@ export default function AdminPanel() {
     if (user.typeUser !== 'SU') {
       navigate('/')
     }
-  }, [])
+  },[])
+  function handleRendering1 (e) {
+    e.preventDefault()
+    setRendering('Dashboard')
+  }
 
   // function handleRendering1(e) {
   //   e.preventDefault()

@@ -34,6 +34,7 @@ export default function CollectionNewHome (props) {
   const { price } = useSelector(state => state.filterCollec)
   const NftPrices = useSelector(state => state.CollName?.nfts)
   const maxNftPrice = []
+  console.log(CollName.collectionS?.user?.name)
 
   NftPrices?.length
     ? NftPrices.map((el) => maxNftPrice.push(el.price))
@@ -58,13 +59,13 @@ export default function CollectionNewHome (props) {
       <div className='w-full max-w-screen-xl my-12'>
         <img className='w-full h-96 object-cover' src={CollName.collectionS?.frontPage}></img>
 
-        <div className='w-full flex'>
+        <div className='w-full flex flex-col xl:flex-row'>
 
-            <div className='basis-8/12'>
-              <img className='ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={CollName.collectionS?.mini}></img>
-              <div className='flex flex-col space-y-2 text-start mt-2'>
+            <div className='basis-8/12 flex flex-col items-center xl:items-start'>
+              <img className='xl:ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={CollName.collectionS?.mini}></img>
+              <div className='flex flex-col space-y-2 text-center xl:text-start mt-2'>
                 <h1 className='text-purple-700 text-3xl font-bold capitalize'>{CollName.collectionS?.name}</h1>
-                <h1 className='text-neutral-300 text-xl'>{'By: \'user of collection \' '}</h1>
+                <h1 className='text-neutral-300 text-xl'>By: {CollName.collectionS?.user?.name} </h1>
                 <h1 className='text-neutral-300 text-lg'>{CollName.collectionS?.description}</h1>
               </div>
 
@@ -87,8 +88,8 @@ export default function CollectionNewHome (props) {
                 </div> */}
         </div>
 
-        <div className=' flex mt-4'>
-          <div className='space-x-20 basis-8/12 flex'>
+        <div className=' flex mt-4 justify-center xl:justify-start'>
+          <div className='space-x-20 flex'>
 
             <div className='flex flex-col'>
               <h1 className='text-purple-700 font-semibold text-3xl'>{CollName.nfts?.length}</h1>
@@ -122,7 +123,7 @@ export default function CollectionNewHome (props) {
         <div className='w-full mt-8 flex justify-between items-center border border-x-transparent border-t-transparent border-b-white pb-2'>
           < SearchBar/>
           <div className='flex'>
-            <div className='basis-1/12  flex place-content-around p-2' >
+            <div className='basis-1/12  flex place-content-around p-2 hidden md:flex' >
               {width ? <button className='text-orange-500 text-2xl' onClick={changeWidth }><BsGridFill/></button> : <button className='text-orange-500 text-3xl ' onClick={changeWidth }><BsGrid3X3GapFill/></button> }
             </div>
             <div className='basis-1/12  flex place-content-around p-2' >

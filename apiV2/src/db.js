@@ -26,6 +26,7 @@ const sequelize = new Sequelize(
     }
   }
 )
+
 /**
  * Create models in database
  */
@@ -67,6 +68,14 @@ user.hasMany(nft, {
 
 nft.belongsTo(user, {
   foreignKey: 'ownerId'
+})
+
+user.hasMany(nft, {
+  foreignKey: 'creatorId'
+})
+
+nft.belongsTo(user, {
+  foreignKey: 'creatorId'
 })
 
 collection.hasMany(nft)

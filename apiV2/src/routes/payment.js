@@ -1,5 +1,5 @@
 const express = require('express')
-const { statusNft } = require('../utils/nft')
+const { statusNft, statusMultipleNft } = require('../utils/nft')
 const router = express.Router()
 
 router.post('/', async (req, res) => {
@@ -17,10 +17,20 @@ router.post('/', async (req, res) => {
   res.json({ client_secret: intent.client_secret })
 })
 
-router.post('/change-status', async (req, res) => {
+router.put('/change-status', async (req, res) => {
   try {
     const { id, ownerId } = req.body
-    return res.status(200).send(await statusNft(id, ownerId))
+    const response = await statusNft(id, ownerId)
+    return res.status(200).send(response)
+  } catch (error) {
+    return res.status(400).send({ msg: error })
+  }
+})
+
+router.post('/change-MultipleStatus', async (req, res) => {
+  try {
+    const { ids, ownerId } = req.body
+    return res.status(200).send(await statusMultipleNft(ids, ownerId))
   } catch (error) {
     return res.status(400).send({ msg: error })
   }
