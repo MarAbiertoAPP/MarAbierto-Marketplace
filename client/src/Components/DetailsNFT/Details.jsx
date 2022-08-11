@@ -62,7 +62,7 @@ const Details = () => {
               <div className='w-full p-4 md:px-14 xl:p-8 '>
 
                 <CurrentPriceDetail price={nftDetail?.price}/>
-                <Link to={`/users/${nftDetail?.ownerId.id}`}>
+                <Link to={`/users/${nftDetail?.ownerId?.id}`}>
                 <CurrentOwner user={nftDetail?.ownerId?.nickname}/>
                 </Link>
 
