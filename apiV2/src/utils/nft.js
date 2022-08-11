@@ -115,6 +115,22 @@ const statusNft = async (id, ownerId) => {
   }
 }
 
+const statusMultipleNft = async (ids, ownerId) => {
+  try {
+    for (let i = 0; i < ids.length; i++) {
+      const nftC = await nft.findByPk(ids[i])
+      const isActive = !nftC.isActive
+      await nftC.update({
+        ownerId,
+        isActive
+      })
+    }
+    return 'successfully changed'
+  } catch (error) {
+    throw error.message
+  }
+}
+
 const getPerUserId = async (ownerId) => {
   try {
     return await nft.findAll(
@@ -139,5 +155,6 @@ module.exports = {
   banANft,
   unbanANft,
   returnAllBanned,
-  getPerUserId
+  getPerUserId,
+  statusMultipleNft
 }
