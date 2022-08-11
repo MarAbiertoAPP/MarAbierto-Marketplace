@@ -1,4 +1,4 @@
-import { CART_FROM_LOCAL_STORAGE, BUY_NOW, CLEAN_BUY_NOW, GET_ALL_CART } from './ActionsCreators'
+import { CART_FROM_LOCAL_STORAGE, BUY_NOW, CLEAN_BUY_NOW, GET_ALL_CART, CHANGE_NFT_STATUS } from './ActionsCreators'
 import axios from 'axios'
 export function addToCart ({ userId, nftId }) {
   return function (dispatch) {
@@ -64,5 +64,15 @@ export function cleanBuyNow () {
 export function cleanAllCart (userId) {
   return function () {
     axios.delete(`/car/${userId}`)
+  }
+}
+
+export function changeStatus (obj) {
+  console.log(obj)
+  return function (dispatch) {
+    axios.post('/payment/change-status', obj)
+      .then(dispatch({ type: CHANGE_NFT_STATUS }))
+
+      .catch(error => console.log(error.message))
   }
 }
