@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import CardUserDetail from './UseDetailResources/CardUserDetail'
 
-import { /* AiOutlineTwitter, AiOutlineMore,  */AiOutlineEdit } from 'react-icons/ai'
+import { /* AiOutlineTwitter, AiOutlineMore,  */SiPhpmyadmin } from 'react-icons/si'
 // import { FaShareAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 // aqui va la data simulada
@@ -192,7 +192,7 @@ const UserDetail = (props) => {
                   userRedux && userRedux.typeUser === 'SU'
                     ? (
                       <Link to='/AdminPanel' className='text-white text-5xl'>
-                        <AiOutlineEdit className='text-white'/>
+                        <SiPhpmyadmin className='text-white'/>
                       </Link>
                       )
                     : null}
