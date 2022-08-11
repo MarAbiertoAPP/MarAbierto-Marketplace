@@ -34,6 +34,7 @@ export default function CollectionNewHome (props) {
   const { price } = useSelector(state => state.filterCollec)
   const NftPrices = useSelector(state => state.CollName?.nfts)
   const maxNftPrice = []
+  console.log(CollName.collectionS?.user?.name)
 
   NftPrices?.length
     ? NftPrices.map((el) => maxNftPrice.push(el.price))
@@ -64,7 +65,7 @@ export default function CollectionNewHome (props) {
               <img className='xl:ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={CollName.collectionS?.mini}></img>
               <div className='flex flex-col space-y-2 text-center xl:text-start mt-2'>
                 <h1 className='text-purple-700 text-3xl font-bold capitalize'>{CollName.collectionS?.name}</h1>
-                <h1 className='text-neutral-300 text-xl'>{'By: \'user of collection \' '}</h1>
+                <h1 className='text-neutral-300 text-xl'>By: {CollName.collectionS?.user?.name} </h1>
                 <h1 className='text-neutral-300 text-lg'>{CollName.collectionS?.description}</h1>
               </div>
 
