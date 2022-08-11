@@ -116,7 +116,7 @@ const ExploreCollection = () => {
       <Nav/>
 
       <div className='mt-16 w-full max-w-screen-xl'>
-      <h1 className='text-3xl text-white'>{t('ExploreCollections.ExploreCollections')}</h1>
+      <h1 className='text-center xl:text-start text-3xl text-white'>{t('ExploreCollections.ExploreCollections')}</h1>
 
       <div className='w-full flex space-x-10 mt-8'>
       <FilterCollections/>
