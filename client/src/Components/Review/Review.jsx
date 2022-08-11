@@ -11,8 +11,10 @@ const Review = () => {
 
   return (
     <div >
-        <Nav/>
-        <div className='flex flex-row justify-around mt-5'>
+        <div className='flex justify-center'>
+      <Nav />
+      </div>
+        <div className='flex flex-row justify-around mt-10'>
         {userReview
           ? userReview.map((r, index) => {
             return (<div className=' border-double border-2 border-sky-500 bg-indigo-600' key={index}> <h2 className='p-5 text-center  text-lime-300'>Review: {r.description}</h2>
