@@ -42,6 +42,7 @@ export default function Create () {
   // const { categories } = useSelector(state => state)
 
   const { user, isAuthenticated } = useAuth0()
+  user && console.log(user)
   const [inputName, setInputName] = useState()
   const [inputDescription, setInputDescription] = useState()
   const [imageSelected, setImageSelected] = useState('https://i.ytimg.com/vi/6wuBl4xVR0g/maxresdefault.jpg')
@@ -72,7 +73,7 @@ export default function Create () {
         description: inputDescription,
         price: inputPrice,
         img: response.data.secure_url,
-        userId: user.sub,
+        userId: user.nickname,
         collectionName: 'Created By Users'
 
       })
