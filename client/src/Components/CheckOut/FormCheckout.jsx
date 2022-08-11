@@ -1,19 +1,21 @@
+/*eslint-disable*/
 import React, { useState } from 'react'
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { cleanAllCart } from '../../Redux/Actions/ActionsCart'
+import { cleanAllCart, changeStatus } from '../../Redux/Actions/ActionsCart'
 
 const CheckoutForm = () => {
   const dispatch = useDispatch()
   const { nickname } = useSelector(state => state.User)
   const nftFromCart = useSelector(state => state.Cart)
-  const userEmail = useSelector(state => state.User.name)
+  const userEmail = useSelector(state => state.User.email)
   const stripe = useStripe()
   const elements = useElements()
   const [errorMessage, setErrorMessage] = useState(null)
   const [loading, setLoading] = useState(false)
   const userId = useSelector(state => state.User?.id)
+
   const handleSubmit = async (event) => {
     event.preventDefault()
 
@@ -30,9 +32,12 @@ const CheckoutForm = () => {
         return_url: 'https://mar-abierto-marketplace.vercel.app/thanks'
       }
 
-    }).then(axios.post('/sendmail', { nickname, nftFromCart, userEmail }))
+    })/* .then(axios.post('/sendmail', { nickname, nftFromCart, userEmail })) */
+      .then(dispatch(changeStatus({ id: nftFromCart, ownerId: userId })))
       .then(dispatch(cleanAllCart(userId)))
-      .finally(setLoading(false))
+      .then(setLoading(false))
+      .then(axios.post('/sendmail', { nickname, nftFromCart, userEmail }))
+      .catch(error => console.log(error))
     if (error) {
       setErrorMessage(error.message)
       setLoading(false)
