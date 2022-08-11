@@ -7,7 +7,7 @@ const Team = () => {
     <div>
       <Nav/>
         <h1 className='text-orange-400 font-xl text-center font-bold text-2xl'>
-            CREATOR TEAM
+            THE TEAM
         </h1>
     <div className='  flex flex-row justify-around '>
     {data42.map((team) => {

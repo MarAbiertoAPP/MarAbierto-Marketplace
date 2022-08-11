@@ -109,7 +109,7 @@ export default function Create () {
               <input
                 onChange={(e) => handleInputnameChange(e.target.value)} className='mr-20 pl-2 bg-transparent border-white border rounded-lg text-neutral-300'></input>
             </div>
-            {inputName ? '' : <p className='text-orange-800'>Name is required</p>}
+            {inputName ? '' : <p className='text-orange-800'>{t('Name.Name')}</p>}
 {/* <h1 className='text-xl text-purple-700'>{t('Select a Categorie Class.Select a Categorie Class')}</h1> */}
 {/* <select className='form-select appearance-none
       block
@@ -138,7 +138,7 @@ export default function Create () {
             {inputDescription
               ? ''
               : <h2 className='text-orange-800 ' >
-              Description text is required</h2>}
+              {t('DescriptionRequired.DescriptionRequired')}</h2>}
 
             { status === 'NFT' &&
 
@@ -147,7 +147,7 @@ export default function Create () {
               <input type="Number" placeholder='Enter Price' onChange={(e) => handlePriceChange(e.target.value)} className='mr-20 pl-2 bg-transparent border-white border rounded-lg text-neutral-300'></input>
             </div>
             }
-            {inputPrice ? '' : <p className='text-orange-800'> Price is Required</p>}
+            {inputPrice ? '' : <p className='text-orange-800'>{t('PriceRequired.PriceRequired')}</p>}
 
             <div className='flex flex-col'>
               <h1 className='text-xl text-purple-700'>{t('Upload your NFT image.Upload your NFT image')}</h1>
