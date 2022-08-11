@@ -106,6 +106,7 @@ const statusNft = async (cart, idOwner) => {
     const nftC = await cart.map(async (id) => {
       await nft.update({ ownerId: idOwner, isActive: false }, { where: { id } })
     })
+    console.log(nftC)
     return nftC
   } catch (error) {
     throw error.message
