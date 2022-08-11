@@ -145,7 +145,7 @@ router.post('/bannft', async (req, res) => {
     await banANft(parseInt(id))
     return res.status(201).json({ res: 'NFT is now banned' })
   } catch (err) {
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 1' })
   }
 })
 
@@ -155,7 +155,7 @@ router.post('/unbannft', async (req, res) => {
     await unbanANft(parseInt(id))
     return res.status(201).json({ res: 'NFT is now unbanned' })
   } catch (err) {
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 2' })
   }
 })
 
