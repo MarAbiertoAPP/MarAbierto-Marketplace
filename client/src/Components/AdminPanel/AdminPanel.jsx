@@ -19,7 +19,7 @@ export default function AdminPanel () {
       navigate('/')
     }
   },[])
-  
+  //asd
   function handleRendering1 (e) {
     e.preventDefault()
     setRendering('Dashboard')
