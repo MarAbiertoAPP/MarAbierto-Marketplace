@@ -69,6 +69,14 @@ nft.belongsTo(user, {
   foreignKey: 'ownerId'
 })
 
+user.hasMany(nft, {
+  foreignKey: 'creatorId'
+})
+
+nft.belongsTo(user, {
+  foreignKey: 'creatorId'
+})
+
 collection.hasMany(nft)
 nft.belongsTo(collection)
 

@@ -71,8 +71,8 @@ router.get('/', async (req, res) => {
 // Route to create a NFT
 router.post('/', async (req, res) => {
   try {
-    const { title, description, img, price, collectionName, id } = req.body
-    const response = await createNFT(title, description, img, price, collectionName, id)
+    const { title, description, img, price, collectionName, ownerId, creatorId } = req.body
+    const response = await createNFT(title, description, img, price, collectionName, ownerId, creatorId)
     console.log(response)
     return res.status(200).send('nftCreada')
   } catch (error) {

@@ -41,7 +41,7 @@ export default function Create () {
   }, [created])
   // const { categories } = useSelector(state => state)
 
-  const { user, isAuthenticated } = useAuth0()
+  const { isAuthenticated } = useAuth0()
   const [inputName, setInputName] = useState()
   const [inputDescription, setInputDescription] = useState()
   const [imageSelected, setImageSelected] = useState('https://i.ytimg.com/vi/6wuBl4xVR0g/maxresdefault.jpg')
@@ -72,7 +72,8 @@ export default function Create () {
         description: inputDescription,
         price: inputPrice,
         img: response.data.secure_url,
-        userId: user.sub,
+        ownerId: JSON.parse(window.localStorage.getItem('User')).id,
+        creatorId: JSON.parse(window.localStorage.getItem('User')).id,
         collectionName: 'Created By Users'
 
       })
@@ -85,6 +86,7 @@ export default function Create () {
   const [status] = useState('NFT')
 
   const enviarNft = () => {
+    console.log(nftcreate)
     dispatch(createNFT(nftcreate))
     setnftBuyStatus(true)
   }
