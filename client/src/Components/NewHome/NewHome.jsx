@@ -71,9 +71,6 @@ export default function NewHome() {
            </div>
 
 
-
-
-
           <p className='text-2xl text-neutral-500 text-center xl:text-start'>{t("newHomedetailInfo.newHomedetailInfo")}</p>
 
           <div className='flex w-full space-x-20 justify-center xl:justify-start'>
