@@ -11,6 +11,7 @@ import {
   SET_PAGE_MAX,
   CREATE_USER,
   GET_ALL_CATEGORIES,
+  CHANGE_NFT_STATUS,
   /* ADD_TO_CART,
   REMOVE_FROM_CART,
   REMOVE_ALL_FROM_CART, */
@@ -308,6 +309,10 @@ export default function rootReducer (state = initialState, action) {
           ...state.filterCollec,
           max: action.payload
         }
+      }
+    case CHANGE_NFT_STATUS:
+      return {
+        ...state
       }
 
     default:
