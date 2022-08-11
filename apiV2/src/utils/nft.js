@@ -101,14 +101,12 @@ const deleteAllNft = async () => {
   }
 }
 
-const statusNft = async (id, ownerId) => {
+const statusNft = async (cart, idOwner) => {
   try {
-    const nftC = await nft.findByPk(id)
-    const isActive = !nftC.isActive
-    return await nftC.update({
-      ownerId,
-      isActive
+    const nftC = await cart.map(async (id) => {
+      await nft.update({ ownerId: idOwner, isActive: false }, { where: { id } })
     })
+    return nftC
   } catch (error) {
     throw error.message
   }
