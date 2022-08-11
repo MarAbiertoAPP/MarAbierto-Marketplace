@@ -104,7 +104,7 @@ const deleteAllNft = async () => {
 const statusNft = async (cart, idOwner) => {
   try {
     const nftC = await cart.map(async e => {
-      await nft.update({ ownerId: idOwner, isActive: false }, { where: { e.id } })
+      await nft.update({ ownerId: idOwner, isActive: false }, { where: { id: e.id } })
     })
     console.log(nftC)
     return nftC
