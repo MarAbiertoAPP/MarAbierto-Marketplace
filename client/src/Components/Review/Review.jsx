@@ -10,12 +10,12 @@ const Review = () => {
   }, [])
 
   return (
-    <div >
+    <div className='h-screen' >
         <div className='flex justify-center'>
       <Nav />
       </div>
         <div className='flex flex-row justify-around mt-10'>
-        {userReview
+        {userReview?.length > 0
           ? userReview.map((r, index) => {
             return (<div className=' border-double border-2 border-sky-500 bg-indigo-600' key={index}> <h2 className='p-5 text-center  text-lime-300'>Review: {r.description}</h2>
         <h3 className='p-2 text-orange-300'> User id: {r.id}</h3>

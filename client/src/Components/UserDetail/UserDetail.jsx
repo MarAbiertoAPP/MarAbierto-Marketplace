@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import CardUserDetail from './UseDetailResources/CardUserDetail'
 
-import { /* AiOutlineTwitter, AiOutlineMore,  */AiOutlineEdit } from 'react-icons/ai'
+import { /* AiOutlineTwitter, AiOutlineMore,  */SiPhpmyadmin } from 'react-icons/si'
 // import { FaShareAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 // aqui va la data simulada
@@ -122,11 +122,13 @@ const UserDetail = (props) => {
   const { User } = useSelector(state => state)
   const Collection = useSelector(state => state.Collection)
   const [tab, setTab] = useState(0)
-  const [owned, setOwnded] = useState()
+  const [owned, setOwned] = useState()
+  const [creator, setCreator] = useState()
 
   useEffect(() => {
     dispatch(getAllFavorites(User?.id))
-    axios.get(`/nft/owner/${User.id}`).then(res => setOwnded(res.data))
+    axios.get(`/nft/owner/${User.id}`).then(res => setOwned(res.data))
+    axios.get(`/nft/creator/${User.id}`).then(res => setCreator(res.data))
   }, [User])
 
   useEffect(() => {
@@ -190,7 +192,7 @@ const UserDetail = (props) => {
                   userRedux && userRedux.typeUser === 'SU'
                     ? (
                       <Link to='/AdminPanel' className='text-white text-5xl'>
-                        <AiOutlineEdit className='text-white'/>
+                        <SiPhpmyadmin className='text-white'/>
                       </Link>
                       )
                     : null}
@@ -210,9 +212,12 @@ const UserDetail = (props) => {
               <button onClick={tabOneHandler}
                       className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Favorites.Favorites')}</button>
             }
+            {
+              creator?.length > 0 &&
+              <button onClick={tabTwoHandler}
+                      className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Created.Created')}</button>
+            }
 
-            <button onClick={tabTwoHandler}
-                    className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Created.Created')}</button>
           </div>
 
         </div>
@@ -247,7 +252,7 @@ const UserDetail = (props) => {
             return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id}/>
           })}
           {/* created */}
-          {tab === 3 && Favorites?.map((item, index) => {
+          {tab === 3 && creator?.map((item, index) => {
             return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id}/>
           })}
 

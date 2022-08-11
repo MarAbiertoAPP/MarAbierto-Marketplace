@@ -142,6 +142,20 @@ const getPerUserId = async (ownerId) => {
   }
 }
 
+const getPerCreatorId = async (creatorId) => {
+  try {
+    return await nft.findAll(
+      {
+        where: {
+          creatorId
+        }
+      }
+    )
+  } catch (error) {
+    throw error.message
+  }
+}
+
 module.exports = {
   createNFT,
   getNftId,
@@ -153,5 +167,6 @@ module.exports = {
   unbanANft,
   returnAllBanned,
   getPerUserId,
-  statusMultipleNft
+  statusMultipleNft,
+  getPerCreatorId
 }

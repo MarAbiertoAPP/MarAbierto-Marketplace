@@ -26,6 +26,7 @@ const sequelize = new Sequelize(
     }
   }
 )
+
 /**
  * Create models in database
  */

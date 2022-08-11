@@ -12,7 +12,7 @@ const CurrentOwner = (props) => {
     <div className='flex my-6'>
       <p className='text-md self-auto text-neutral-400 tracking-wider'>{t('OwnedBy.OwnedBy')}</p>
       {/* <Link className='ml-4' to={`/user/${props.user}`}> */}
-      <div className='ml-5'>
+      <div className='ml-2'>
         <p className='text-lg self-auto text-cyan-600 tracking-wider
         decoration-transparent underline hover:underline-offset-4 hover:decoration-current'> {props.user}</p>
       </div>
