@@ -1,12 +1,17 @@
 import React from 'react'
 import Swal from 'sweetalert2'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { buyNow, getAllCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
 import { useAuth0 } from '@auth0/auth0-react'
-const ButtonsDetails = (props) => {
+const ButtonsDetails = ({ isActive }) => {
+  ButtonsDetails.propTypes = {
+    isActive: PropTypes.bool
+  }
+
   const { Cart } = useSelector(state => state)
   const { detail } = useSelector(state => state)
   const userId = useSelector(state => state.User.id)
@@ -78,9 +83,10 @@ const ButtonsDetails = (props) => {
 
   return (
     <div className='flex flex-col md:flex-row space-around mt-20 space-y-4 md:space-y-0'>
-        <button onClick={(e) => isAuthenticated ? handleBuyNow(e) : loginWithRedirect()} className='basis-4/12 bg-purple-700 hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('buyNow.buyNow')}</button>
-       {/*  <button className='basis-4/12 bg-amber-600 mx-8 text-2xl py-4'>{t('makeOffer.makeOffer')}</button> */}
-        <button onClick={(e) => isAuthenticated ? handleAddToCart(e) : loginWithRedirect()} className='basis-4/12 bg-purple-700 hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('AddToCart.AddToCart')}</button>
+
+        <button onClick={(e) => isAuthenticated ? handleBuyNow(e) : loginWithRedirect()} disabled={!isActive} className='basis-4/12 bg-purple-700 hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('buyNow.buyNow')}</button>
+        <button onClick={(e) => isAuthenticated ? handleAddToCart(e) : loginWithRedirect()} disabled={!isActive} className='basis-4/12 bg-purple-700 hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('AddToCart.AddToCart')}</button>
+
     </div>
   )
 }

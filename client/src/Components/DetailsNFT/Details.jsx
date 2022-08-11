@@ -35,6 +35,7 @@ const Details = () => {
     dispatch(getAllFavorites(User.id))
   }, [dispatch, User.id])
 
+  console.log(nftDetail)
   return (
     <motion.div
       className={style.div}
@@ -61,8 +62,8 @@ const Details = () => {
               <div className='w-full p-4 md:px-14 xl:p-8 '>
 
                 <CurrentPriceDetail price={nftDetail?.price}/>
-                <CurrentOwner user={nftDetail?.User}/>
-                <ButtonsDetails/>
+                <CurrentOwner user={nftDetail?.ownerId?.nickname}/>
+                <ButtonsDetails isActive={nftDetail?.isActive}/>
 
                 <div className='w-full flex justify-center'>
                   <p className='mt-4 text-md self-auto text-neutral-400 tracking-wider'>By clicking &quot;Buy

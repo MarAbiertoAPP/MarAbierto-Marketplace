@@ -32,11 +32,12 @@ export default function CollectionNewHome (props) {
   const { CollName } = useSelector(state => state)
   const { title } = useSelector(state => state.filterCollec)
   const { price } = useSelector(state => state.filterCollec)
-  const NftPrices = useSelector(state => state.CollName.nfts)
+  const NftPrices = useSelector(state => state.CollName?.nfts)
   const maxNftPrice = []
-  NftPrices?.map((el) => {
-    return maxNftPrice.push(el.price)
-  })
+
+  NftPrices?.length
+    ? NftPrices.map((el) => maxNftPrice.push(el.price))
+    : maxNftPrice.push(0)
   const maxPriceNft = NftPrices && Math.max(...maxNftPrice)
   const minPriceNft = NftPrices && Math.min(...maxNftPrice)
 
