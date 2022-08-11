@@ -16,6 +16,7 @@ router.post('/', async (req, res) => {
 // route to get a category
 router.get('/', async (req, res) => {
   const { name } = req.query
+  console.log('si entre')
   if (name) {
     const find = await findName(name)
     return find

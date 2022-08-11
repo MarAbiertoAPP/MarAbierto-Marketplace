@@ -25,7 +25,7 @@ router.post('/signup', async (req, res) => {
     })
   } catch (err) {
     console.log(err)
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 3' })
   }
 })
 // Get user
@@ -57,7 +57,7 @@ router.post('/signin', async (req, res) => {
     })
   } catch (err) {
     console.log(err)
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 4' })
   }
 })
 
@@ -67,7 +67,7 @@ router.get('/amount', async (req, res) => {
     return res.status(201).json(response.length)
   } catch (err) {
     console.log(err)
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 5' })
   }
 })
 
@@ -77,7 +77,7 @@ router.get('/getallusersdata', async (req, res) => {
     return res.status(201).json(response)
   } catch (err) {
     console.log(err)
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 6' })
   }
 })
 
@@ -88,7 +88,7 @@ router.get('/getuserdatabyname/:nickname', async (req, res) => {
     return res.status(201).json(response)
   } catch (err) {
     console.log(err)
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 7 ' })
   }
 })
 router.post('/makesuperuser', async (req, res) => {
@@ -98,7 +98,7 @@ router.post('/makesuperuser', async (req, res) => {
     return res.status(201).json(response, { msg: 'Granted permissions' })
   } catch (err) {
     console.log(err)
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 8' })
   }
 })
 
@@ -109,7 +109,7 @@ router.post('/removesuperuser', async (req, res) => {
     return res.status(201).json(response, { msg: 'Revoked permissions' })
   } catch (err) {
     console.log(err)
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 9' })
   }
 })
 
@@ -119,7 +119,7 @@ router.post('/banuser', async (req, res) => {
     await banAnUser(id)
     return res.status(201).json({ res: 'User is now banned' })
   } catch (err) {
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 10' })
   }
 })
 
@@ -129,7 +129,7 @@ router.post('/unbanuser', async (req, res) => {
     await unbanAnUser(id)
     return res.status(201).json({ res: 'User is now unbanned' })
   } catch (err) {
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 11' })
   }
 })
 
@@ -138,19 +138,10 @@ router.get('/banned', async (req, res) => {
     const response = await getAllBannedUsers()
     return res.status(201).json(response)
   } catch (err) {
-    res.status(500).send({ error: 'Algo ha ocurrido' })
+    res.status(500).send({ error: 'Algo ha ocurrido 12' })
   }
 })
-// search the user by id in params
-router.get('/:id', async (req, res) => {
-  try {
-    const { id } = req.params
-    const response = await user.findOne({ where: { id } })
-    return res.status(201).json(response)
-  } catch (err) {
-    res.status(500).send({ error: 'Algo ha ocurrido' })
-  }
-})
+
 router.post('/sendmail', async (req, res) => {
   const { nickname, nftFromCart, userEmail } = req.body
   try {
@@ -191,6 +182,18 @@ ${nftFromCart?.map((nft) => {
     return res.send({ msg: 'correo enviado!' })
   } catch (error) {
     return res.status(500).send({ error: error.message })
+  }
+})
+
+// search the user by id in params
+router.get('/user/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    console.log('hhsddssjgdj')
+    const response = await user.findOne({ where: { id } })
+    return res.status(201).json(response)
+  } catch (err) {
+    res.status(500).send({ error: 'Algo ha ocurrido 13' })
   }
 })
 
