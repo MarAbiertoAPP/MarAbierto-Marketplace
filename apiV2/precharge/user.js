@@ -1,43 +1,43 @@
 const User = [
   {
-    name: 'Nombre 1',
-    nickname: 'Nickname 1',
+    name: 'Aitor Tilla',
+    nickname: 'Aitor Tilla',
     email: 'nombre1@gmail.com',
     typeUser: 'N'
   },
   {
-    name: 'Nombre 2',
-    nickname: 'Nickname 2',
+    name: 'Helen Chufe',
+    nickname: 'Helen Chufe',
     email: 'nombre2@gmail.com',
     typeUser: 'N'
   },
   {
-    name: 'Nombre 3',
-    nickname: 'Nickname 3',
+    name: 'Rubén D. Moniado',
+    nickname: 'Rubén D. Moniado',
     email: 'nombre3@gmail.com',
     typeUser: 'N'
   },
   {
-    name: 'Nombre 4',
-    nickname: 'Nickname 4',
+    name: 'Zacarias Flores Del Campo',
+    nickname: 'Zacarias Flores Del Campo',
     email: 'nombre4@gmail.com',
     typeUser: 'N'
   },
   {
-    name: 'Nombre 5',
-    nickname: 'Nickname 5',
+    name: 'Elton Tito',
+    nickname: 'Elton Tito',
     email: 'nombre5@gmail.com',
     typeUser: 'N'
   },
   {
-    name: 'Nombre 6',
-    nickname: 'Nickname 6',
+    name: 'Elena Nito',
+    nickname: 'Elena Nito',
     email: 'nombre6@gmail.com',
     typeUser: 'N'
   },
   {
-    name: 'Nombre 7',
-    nickname: 'Nickname 7',
+    name: 'Dolores Delano',
+    nickname: 'Dolores Delano',
     email: 'nombre7@gmail.com',
     typeUser: 'N'
   }

@@ -44,12 +44,15 @@ const chargue = async () => {
 
     // Charge all NFT's
     for (const nft of NFTs) {
+      const userIndex = rndNumber(allUsersId.length)
       await createNFT(
         nft.title,
         nft.description,
         nft.img,
         nft.price,
-        nft.collection
+        nft.collection,
+        allUsersId[userIndex].id,
+        allUsersId[userIndex].id
       )
     }
 

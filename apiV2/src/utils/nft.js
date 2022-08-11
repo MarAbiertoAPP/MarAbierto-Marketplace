@@ -4,10 +4,9 @@ const { getCollectionIdByName } = require('./collection.js')
 const { findUser } = require('../utils/user')
 
 // Create nft
-const createNFT = async (title, description, img, price, collectionName, id) => {
+const createNFT = async (title, description, img, price, collectionName, ownerId, creatorId) => {
   try {
     const collection = await getCollectionIdByName(collectionName)
-    const ownerId = collection.userId
     const collectionId = collection.id
     return await nft.create({
       title: title.toLowerCase(),
@@ -15,8 +14,8 @@ const createNFT = async (title, description, img, price, collectionName, id) => 
       img,
       price,
       collectionId,
-      id,
-      ownerId
+      ownerId,
+      creatorId
     })
   } catch (error) {
     throw error.message
@@ -115,6 +114,36 @@ const statusNft = async (id, ownerId) => {
   }
 }
 
+const statusMultipleNft = async (ids, ownerId) => {
+  try {
+    for (let i = 0; i < ids.length; i++) {
+      const nftC = await nft.findByPk(ids[i])
+      const isActive = !nftC.isActive
+      await nftC.update({
+        ownerId,
+        isActive
+      })
+    }
+    return 'successfully changed'
+  } catch (error) {
+    throw error.message
+  }
+}
+
+const getPerUserId = async (ownerId) => {
+  try {
+    return await nft.findAll(
+      {
+        where: {
+          ownerId
+        }
+      }
+    )
+  } catch (error) {
+    throw error.message
+  }
+}
+
 module.exports = {
   createNFT,
   getNftId,
@@ -124,6 +153,7 @@ module.exports = {
   deleteAllNft,
   banANft,
   unbanANft,
-  returnAllBanned
-
+  returnAllBanned,
+  getPerUserId,
+  statusMultipleNft
 }
