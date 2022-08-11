@@ -1,7 +1,9 @@
 const { Router } = require('express')
 const router = Router()
 const { nft, Op, collection, user } = require('../db.js')
-const { createNFT, getNftId, addFavorite, getFavoritesPerId, banANft, unbanANft, returnAllBanned, getPerUserId } = require('../utils/nft')
+const { createNFT, getNftId, addFavorite, getFavoritesPerId, banANft, unbanANft, returnAllBanned, getPerUserId,
+  getPerCreatorId
+} = require('../utils/nft')
 
 // Route GET with search by name and filters
 // params came by body
@@ -174,4 +176,15 @@ router.get('/owner/:ownerId', async (req, res) => {
     return res.status(400).send({ msg: error })
   }
 })
+
+router.get('/creator/:creatorId', async (req, res) => {
+  try {
+    const { creatorId } = req.params
+    const response = await getPerCreatorId(creatorId)
+    return response ? res.status(200).send(response) : res.status(400).send({ msg: 'Not found' })
+  } catch (error) {
+    return res.status(400).send({ msg: error })
+  }
+})
+
 module.exports = router
