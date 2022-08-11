@@ -141,7 +141,16 @@ router.get('/banned', async (req, res) => {
     res.status(500).send({ error: 'Algo ha ocurrido' })
   }
 })
-
+// search the user by id in params
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const response = await user.findOne({ where: { id } })
+    return res.status(201).json(response)
+  } catch (err) {
+    res.status(500).send({ error: 'Algo ha ocurrido' })
+  }
+})
 router.post('/sendmail', async (req, res) => {
   const { nickname, nftFromCart, userEmail } = req.body
   try {

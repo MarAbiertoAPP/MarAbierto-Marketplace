@@ -9,6 +9,7 @@ import RenderDetails from './Components/DetailsNFT/RenderDetails'
 import Checkout from './Components/CheckOut/Checkout.jsx'
 import { AnimatePresence } from 'framer-motion'
 import UserDetail from './Components/UserDetail/UserDetail'
+import UsersDetail from './Components/UserDetail/UsersDetail'
 import ThanksForBuying from './Components/thanksForBuying/ThanksForBuying'
 import WalletCardEthers from './Components/metamask/Metamask'
 import NewHome from './Components/NewHome/NewHome'
@@ -42,6 +43,7 @@ export default function AnimatedRoutes () {
         <Route path="/checkout" element={<Checkout/>}/>
         <Route path="/detail/:id" element={<RenderDetails/>}/>
         <Route path="/faq" element={<Faq/>}/>
+        <Route path="/user/:id" element={<UsersDetail/>}/>
         <Route path='/user' element={<UserDetail/>}/>
         <Route path='/thanks' element={<ThanksForBuying/>}/>
         <Route path = '/collection' element={<ExploreCollection/>}/>

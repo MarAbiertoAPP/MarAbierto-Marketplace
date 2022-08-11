@@ -177,7 +177,6 @@ export function getAllCollection () {
       .catch(error => console.log(error.message))
   }
 }
-
 export function getCollectionByName ({ name, title, price }) {
   return function (dispatch) {
     let query = '?'

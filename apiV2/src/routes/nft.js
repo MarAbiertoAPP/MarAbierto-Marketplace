@@ -1,7 +1,8 @@
 const { Router } = require('express')
 const router = Router()
 const { nft, Op, collection, user } = require('../db.js')
-const { createNFT, getNftId, addFavorite, getFavoritesPerId, banANft, unbanANft, returnAllBanned, getPerUserId,
+const {
+  createNFT, getNftId, addFavorite, getFavoritesPerId, banANft, unbanANft, returnAllBanned, getPerUserId,
   getPerCreatorId
 } = require('../utils/nft')
 

@@ -9,7 +9,7 @@ import CardUserDetail from './UseDetailResources/CardUserDetail'
 
 import { /* AiOutlineTwitter, AiOutlineMore,  */SiPhpmyadmin } from 'react-icons/si'
 // import { FaShareAlt } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 // aqui va la data simulada
 // import fotouser from '../../assests/demo/fotouser.jpeg'
 import background from '../../assests/demo/background.webp'
@@ -19,25 +19,29 @@ import { getAllCollection } from '../../Redux/Actions'
 import CarouselSM from '../NewHome/newHomeResources/CarouselSM'
 import axios from 'axios'
 
-const UserDetail = (props) => {
+const UsersDetail = (props) => {
+  const { id } = useParams()
   const dispatch = useDispatch()
-  const userRedux = useSelector(state => state?.User)
   const { Favorites } = useSelector(state => state)
-  const { User } = useSelector(state => state)
   const Collection = useSelector(state => state.Collection)
   const [tab, setTab] = useState(0)
   const [owned, setOwned] = useState()
   const [creator, setCreator] = useState()
+  const [user, setUser] = useState()
 
   useEffect(() => {
-    dispatch(getAllFavorites(User?.id))
-    axios.get(`/nft/owner/${User.id}`).then(res => setOwned(res.data))
-    axios.get(`/nft/creator/${User.id}`).then(res => setCreator(res.data))
-  }, [User])
+    axios.get(`/users/${id}`).then(res => setUser(res.data))
+  }, [id])
 
   useEffect(() => {
     dispatch(getAllCollection())
-  }, [User])
+  }, [user])
+
+  useEffect(() => {
+    dispatch(getAllFavorites(user?.id))
+    axios.get(`/nft/owner/${user.id}`).then(res => setOwned(res.data))
+    axios.get(`/nft/creator/${user.id}`).then(res => setCreator(res.data))
+  }, [user])
 
   const tabHandler = () => {
     return setTab(1)
@@ -66,7 +70,7 @@ const UserDetail = (props) => {
         <div className='w-full flex justify-center xl:justify-start'>
           <img
             className='aspect-auto shadow-2xl shadow-black box -mt-40 xl:ml-20 w-72 h-72 md:w-96 md:h-96 xl:w-48 xl:h-48 rounded-full'
-            src={userRedux?.profile_picture}></img>
+            src={user?.profile_picture}></img>
         </div>
 
         <div className='-mt-10 w-full'>
@@ -74,13 +78,13 @@ const UserDetail = (props) => {
           <div className='w-full mt-10 flex flex-col xl:flex-row'>
 
             <div className='basis-5/12 space-y-2 text-center xl:text-start'>
-              <h1 className='text-white text-6xl capitalize'>{userRedux?.nickname}</h1>
+              <h1 className='text-white text-6xl capitalize'>{user?.nickname}</h1>
               {/* <h1 className='text-white text-xl'>{data.address}</h1> */}
 
-              <h1 className='text-white'>{`Joined ${userRedux?.createdAt?.slice(0, 10)}`}</h1>
+              <h1 className='text-white'>{`Joined ${user?.createdAt?.slice(0, 10)}`}</h1>
               {/* <p className='text-white'>{data.description}</p> */}
 
-              <p className='text-white'> {userRedux?.id}</p>
+              <p className='text-white'> {user?.id}</p>
             </div>
 
             <div className='basis-4/12'>
@@ -93,7 +97,7 @@ const UserDetail = (props) => {
                 {/*  <FaShareAlt className='text-4xl text-white'/> */}
                 {/* <AiOutlineMore className='text-5xl text-white'/> */}
                 {
-                  userRedux && userRedux.typeUser === 'SU'
+                  user && user.typeUser === 'SU'
                     ? (
                       <Link to='/AdminPanel' className='text-white text-5xl'>
                         <SiPhpmyadmin className='text-white'/>
@@ -168,4 +172,4 @@ const UserDetail = (props) => {
   )
 }
 
-export default UserDetail
+export default UsersDetail

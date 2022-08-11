@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import style from './Details.module.css'
 import TitleDetails from './Title/TitleDetails'
 import axios from 'axios'
@@ -62,7 +62,10 @@ const Details = () => {
               <div className='w-full p-4 md:px-14 xl:p-8 '>
 
                 <CurrentPriceDetail price={nftDetail?.price}/>
+                <Link to={`/users/${nftDetail?.ownerId.id}`}>
                 <CurrentOwner user={nftDetail?.ownerId?.nickname}/>
+                </Link>
+
                 <ButtonsDetails isActive={nftDetail?.isActive}/>
 
                 <div className='w-full flex justify-center'>
