@@ -30,7 +30,7 @@ const UsersDetail = (props) => {
   const [user, setUser] = useState()
 
   useEffect(() => {
-    axios.get(`/users/${id}`).then(res => setUser(res.data))
+    axios.get(`/users/user/${id}`).then(res => setUser(res.data))
   }, [id])
 
   useEffect(() => {
