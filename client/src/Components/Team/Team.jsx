@@ -1,6 +1,6 @@
 import React from 'react'
 import { data42 } from './teamData'
-import { FaLinkedin, FaGithub } from 'react-icons/fa'
+import { FaLinkedin } from 'react-icons/fa'
 import Nav from '../UI/Nav/Navigation'
 const Team = () => {
   return (
@@ -12,17 +12,13 @@ const Team = () => {
     <div className='  flex flex-row justify-around '>
     {data42.map((team) => {
       return (
-          <div className='m-5 w-4/5 border-2  border-solid border-orange-500   ' key={team.name}>
+          <div className='m-5 w-4/5  hover:shadow-2xl   hover:shadow-purple-800 ' key={team.name}>
             <div className= ' m-auto  h/96 w-4/5  border-2 border-solid border-blue-300 '>
                 <img className=' h-full text-center  w-full object-contain   ' src={team.img} alt="imagen" />
             </div>
+            <div className='  flex flex-row justify-around mt-2' ><h2 className='text-lime-300' >{team.name}</h2>
 
-              <h2 className='text-lime-300' >{team.name}</h2>
-              <div className='flex flex-row  justify-around' >
-                <a href={team.contact}><FaLinkedin className='text-blue-400' /></a>
-
-                <FaGithub className='text-blue-400' />
-            </div>
+             <a href={team.contact}><FaLinkedin className='text-blue-400' /></a></div>
 
           </div>
       )

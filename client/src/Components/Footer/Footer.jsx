@@ -137,6 +137,10 @@ const Footer = () => {
           <p className="mb-4">
               <a href="/faq" className="text-violet-500">FAQ</a>
             </p>
+          <p className="mb-4">
+              <a href="/team" className="text-violet-500 font-bold
+              ">MEET THE TEAM</a>
+            </p>
             {/* <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start text-yellow-400">
               Links
             </h6>

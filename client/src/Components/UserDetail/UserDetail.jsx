@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import style from './UserDetail.module.css'
 import Nav from '../UI/Nav/Navigation'
@@ -151,7 +150,7 @@ const UserDetail = (props) => {
 
     <div className={style.div}>
 
-      <Nav />
+      <Nav/>
       <div className='w-full max-w-screen-xl'>
 
         <div className='object-contain mt-12 w-full h-96 max-w-screen-xl'>
@@ -159,7 +158,9 @@ const UserDetail = (props) => {
         </div>
 
         <div className='w-full flex justify-center xl:justify-start'>
-          <img className='aspect-auto shadow-2xl shadow-black box -mt-40 xl:ml-20 w-72 h-72 md:w-96 md:h-96 xl:w-48 xl:h-48 rounded-full' src={userRedux?.profile_picture}></img>
+          <img
+            className='aspect-auto shadow-2xl shadow-black box -mt-40 xl:ml-20 w-72 h-72 md:w-96 md:h-96 xl:w-48 xl:h-48 rounded-full'
+            src={userRedux?.profile_picture}></img>
         </div>
 
         <div className='-mt-10 w-full'>
@@ -189,7 +190,7 @@ const UserDetail = (props) => {
                   userRedux && userRedux.typeUser === 'SU'
                     ? (
                       <Link to='/AdminPanel' className='text-white text-5xl'>
-                        <AiOutlineEdit className='text-white' />
+                        <AiOutlineEdit className='text-white'/>
                       </Link>
                       )
                     : null}
@@ -201,56 +202,59 @@ const UserDetail = (props) => {
 
           <div className='w-full p-6 flex space-x-20'>
             {owned?.length > 0 &&
-              <button onClick={tabHandler} className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Collected.Collected')}</button>
+              <button onClick={tabHandler}
+                      className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Collected.Collected')}</button>
             }
 
             {Favorites?.length > 0 &&
-              <button onClick={tabOneHandler} className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Favorites.Favorites')}</button>
+              <button onClick={tabOneHandler}
+                      className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Favorites.Favorites')}</button>
             }
 
-            <button onClick={tabTwoHandler} className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Created.Created')}</button>
+            <button onClick={tabTwoHandler}
+                    className='text-lg text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current'>{t('Created.Created')}</button>
           </div>
 
         </div>
 
         <div className='flex flex-row flex-wrap justify-center'>
-          {tab === 0 && Favorites?.map((item, index) => {
-            return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id} />
-          })}
+          {tab === 0 &&
+            <div className='w-full max-w-screen-xl mt-24 space-y-14 flex flex-col justify-center'>
+              <h1 className='text-3xl text-center text-neutral-300'> Last Drops</h1>
+
+              <div className='w-full'>
+
+                <div className='hidden xl:flex mb-20 capitalize'>
+                  <Carousel data={Collection.collections}/>
+
+                </div>
+
+                <div className='xl:hidden mb-20 capitalize'>
+                  <CarouselSM data={Collection.collections}/>
+                </div>
+
+              </div>
+
+            </div>
+          }
 
           {/* collected */}
           {tab === 1 && owned?.map((item, index) => {
-            return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id} />
+            return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id}/>
           })}
           {/* Favorites */}
           {tab === 2 && Favorites?.map((item, index) => {
-            return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id} />
+            return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id}/>
           })}
           {/* created */}
           {tab === 3 && Favorites?.map((item, index) => {
-            return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id} />
+            return <CardUserDetail key={index} title={item.title} image={item.img} price={item.price} id={item.id}/>
           })}
 
         </div>
-        <div className='w-full max-w-screen-xl mt-24 space-y-14 flex flex-col justify-center'>
-          <h1 className='text-3xl text-center text-neutral-300'> Last Drops</h1>
 
-          <div className='w-full'>
-
-            <div className='hidden xl:flex mb-20 capitalize'>
-              <Carousel data={Collection.collections} />
-
-            </div>
-
-            <div className='xl:hidden mb-20 capitalize'>
-              <CarouselSM data={Collection.collections} />
-            </div>
-
-          </div>
-
-        </div>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   )
 }
