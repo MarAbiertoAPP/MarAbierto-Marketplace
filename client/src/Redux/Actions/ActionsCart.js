@@ -70,7 +70,7 @@ export function cleanAllCart (userId) {
 export function changeStatus (obj) {
   console.log(obj)
   return function (dispatch) {
-    axios.post('/payment/change-status', obj)
+    axios.put('/payment/change-status', obj)
       .then(dispatch({ type: CHANGE_NFT_STATUS }))
 
       .catch(error => console.log(error.message))

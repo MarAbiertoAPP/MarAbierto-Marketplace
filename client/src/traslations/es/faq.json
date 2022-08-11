@@ -155,5 +155,20 @@
     },
     "Pre-visualization": {
         "Pre-visualization": "Previsualizacion"
+    },
+    "Back": {
+        "Back": "Regresar"
+    },
+    "Description": {
+        "Description": "Descripcion"
+    },
+    "Name": {
+        "Name": "El nombre es requerido"
+    },
+    "DescriptionRequired": {
+        "DescriptionRequired": "Se requiere una Descripcion"
+    },
+    "PriceRequired": {
+        "PriceRequired": "Se requiere un Precio"
     }
 }

@@ -4,12 +4,10 @@ import { FaLinkedin } from 'react-icons/fa'
 import Nav from '../UI/Nav/Navigation'
 const Team = () => {
   return (
-    <div >
-      <div className='flex justify-center'>
-      <Nav />
-      </div>
-        <h1 className='text-orange-400 font-xl text-center font-bold text-2xl m-10'>
-            CREATOR TEAM
+    <div>
+      <Nav/>
+        <h1 className='text-orange-400 font-xl text-center font-bold text-2xl'>
+            THE TEAM
         </h1>
     <div className='  flex flex-row justify-around '>
     {data42.map((team) => {

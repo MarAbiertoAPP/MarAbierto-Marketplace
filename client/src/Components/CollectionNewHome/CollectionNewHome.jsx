@@ -141,7 +141,7 @@ export default function CollectionNewHome (props) {
           }
             <div className=' w-full  flex flex-row flex-wrap justify-center '>
               {CollName.nfts?.map(e => {
-                return <Card key={e.id} title={e.title} image={e.img} price={e.price} userId={userId} secondWidth={width} nftId={e.id}/>
+                return <Card key={e.id} title={e.title} image={e.img} price={e.price} userId={userId} secondWidth={width} nftId={e.id} isActive={e.isActive}/>
               })}
           </div>
         </div>
