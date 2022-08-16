@@ -6,7 +6,7 @@ export const data42 = [{
 {
   name: 'Gustavo Foscarini',
   contact: 'https://www.linkedin.com/in/gustavo-foscarini/',
-  img: 'https://media-exp1.licdn.com/dms/image/D5635AQHv17wn9-uxXA/profile-framedphoto-shrink_800_800/0/1654791669212?e=1660438800&v=beta&t=msGZ4KtzVij2gYkjyFWzxGKkjUkM7JB54J0uXoDtZ9A'
+  img: 'https://media-exp1.licdn.com/dms/image/D5635AQHv17wn9-uxXA/profile-framedphoto-shrink_100_100/0/1654791669212?e=1661266800&v=beta&t=mYEHdlcNzCZrrH95hblkMGV6qbaOryldhwezIfATfx0'
 },
 {
   name: 'Julian Soto',
@@ -26,7 +26,7 @@ export const data42 = [{
 {
   name: 'Marcelo Godoy',
   contact: 'https://www.linkedin.com/in/marcelo-alejandro-godoy-baquero-635493208/',
-  img: 'https://media-exp1.licdn.com/dms/image/D4D35AQEgvPwQs9nkSg/profile-framedphoto-shrink_800_800/0/1650223383464?e=1660489200&v=beta&t=tXYPQuxgraTMmqw_1kHyJzOCPp_L6fuGxklJG-V9qbo'
+  img: 'https://media-exp1.licdn.com/dms/image/D4D35AQEgvPwQs9nkSg/profile-framedphoto-shrink_200_200/0/1650223383464?e=1661270400&v=beta&t=Tk_LNmuX84gh0VAoTyOAq6cZ5HkA7vVYLysDoiAejJ0'
 
 },
 {
@@ -37,7 +37,7 @@ export const data42 = [{
 {
   name: 'Nicolas Alvarez',
   contact: 'https://www.linkedin.com/in/nicolas-alejandro-suarez-alvarez-859159246/',
-  img: 'https://media-exp1.licdn.com/dms/image/C5603AQGepzjmII7UCA/profile-displayphoto-shrink_800_800/0/1658349773276?e=1665619200&v=beta&t=4jvg2rpJvAoEwgbJ0lB1DaK_Hkj01FwS-aQ-6wA0bGQ'
+  img: 'https://media-exp1.licdn.com/dms/image/C4E03AQHZ3GjBmkvQvw/profile-displayphoto-shrink_200_200/0/1660595226957?e=1666224000&v=beta&t=O5TJoO0wINxBUNp0lznipoRwjXHo9Tkq1tbKrg8m8Oc'
 }
 
 ]

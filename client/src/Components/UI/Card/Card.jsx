@@ -88,24 +88,27 @@ export default function Card ({ title, image, price, nftId, collectionName, seco
 
   return (
     <motion.div
-    className={ secondWidth
-      ? 'w-60 mx-2 my-2 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]'
-      : 'w-72 mx-4 my-4 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]' }
+      className={secondWidth
+        ? 'w-60 mx-2 my-2 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]'
+        : 'w-72 mx-4 my-4 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]'}
 
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
     >
-        <div className='h-72 box-border rounded-lg w-full'>
-          <Link className='flex justify-center' onClick={handleDetail} to={`/detail/${nftId}`}>
-            <img className='object-cover h-72 w-full rounded-lg' src={image} alt="pic"></img>
-          </Link>
-        </div>
-        <h2 className='text-base font-extrabold mt-4 capitalize'>{title}</h2>
-        <h3 className='text-sm capitalize'>{collectionName}</h3>
-        <div>
-          <p className='flex items-center py-3 pb-16 text-sm'>{`${t('nftPrice.price')}: ${price}`} <FaEthereum /></p>
-        </div>
-        <button className= { secondWidth ? 'w-4/6 flex justify-center items-center bg-purple-900/80 enabled:hover:bg-purple-700 disabled:opacity-75 disabled:cursor-not-allowed py-2 rounded-xl absolute bottom-4 left-0 right-0 m-auto p-2 ' : 'w-4/6 flex justify-center items-center bg-purple-900/80 enabled:hover:bg-purple-700 disabled:opacity-75 disabled:cursor-not-allowed py-2 rounded-full absolute bottom-4 left-0 right-0 m-auto p-2 '} disabled={!isActive} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}><FiShoppingCart className= { secondWidth ? '   mr-4 text-orange-500' : ' mr-2 text-lime-500'} />{t('AddToCart.AddToCart')}</button>
+      <div className='h-72 box-border rounded-lg w-full'>
+        <Link className='flex justify-center' onClick={handleDetail} to={`/detail/${nftId}`}>
+          <img className='object-cover h-72 w-full rounded-lg' src={image} alt="pic"></img>
+        </Link>
+      </div>
+      <h2 className='text-base font-extrabold mt-4 capitalize'>{title}</h2>
+      <h3 className='text-sm capitalize'>{collectionName}</h3>
+      <div>
+        <p className='flex items-center py-3 pb-16 text-sm'>{`${t('nftPrice.price')}: ${price}`} <FaEthereum /></p>
+      </div>
+      {isActive
+        ? <button className={secondWidth ? 'w-4/6 flex justify-center items-center bg-purple-900/80 enabled:hover:bg-purple-700 py-2 rounded-xl absolute bottom-4 left-0 right-0 m-auto p-2 ' : 'w-4/6 flex justify-center items-center bg-purple-900/80 enabled:hover:bg-purple-700  py-2 rounded-full absolute bottom-4 left-0 right-0 m-auto p-2 '} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}><FiShoppingCart className={secondWidth ? '   mr-4 text-orange-500' : ' mr-2 text-lime-500'} />{t('AddToCart.AddToCart')}</button>
+        : <button className={secondWidth ? 'w-4/6 flex justify-center items-center bg-purple-900/80 py-2 opacity-50 cursor-not-allowed rounded-xl absolute bottom-4 left-0 right-0 m-auto p-2 ' : 'w-4/6 flex justify-center items-center bg-purple-900/80 opacity-50  py-2 rounded-full absolute cursor-not-allowed bottom-4 left-0 right-0 m-auto p-2 '}>Sold Out</button>
+      }
     </motion.div>
   )
 }

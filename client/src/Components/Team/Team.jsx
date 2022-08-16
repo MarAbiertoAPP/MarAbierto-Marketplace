@@ -5,7 +5,9 @@ import Nav from '../UI/Nav/Navigation'
 const Team = () => {
   return (
     <div>
-      <Nav/>
+       <div className='flex justify-center'>
+      <Nav />
+      </div>
         <h1 className='text-orange-400 font-xl text-center font-bold text-2xl'>
             THE TEAM
         </h1>

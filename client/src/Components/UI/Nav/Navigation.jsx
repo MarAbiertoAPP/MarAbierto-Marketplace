@@ -56,7 +56,7 @@ function Nav () {
           }
           <Link to ='/'>
         <div>
-          <img src={Logo} alt="logo" className={`${Classes.logo} cursor-pointer`} />
+          <img src={Logo} alt="logo" className={`${Classes.logo} cursor-pointer mr-20 xl:mr-50`} />
         </div>
           </Link>
 

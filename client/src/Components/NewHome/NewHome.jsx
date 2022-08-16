@@ -1,14 +1,8 @@
 /*eslint-disable*/
 
-import Nav from '../UI/Nav/Navigation'
 import Carousel from './newHomeResources/Carousel'
 import Footer from '../Footer/Footer'
 import style from './newHome.module.css'
-import {Fade} from 'react-slideshow-image';
-import photo from '../../assests/newHomePhoto.jpg'
-import mini from '../../assests/demo/fotouser.jpeg'
-import photo2 from '../../assests/demo/background.webp'
-import CarouselLanding from './newHomeResources/CarouselLanding';
 import {Link, useNavigate} from 'react-router-dom';
 import {useTranslation} from 'react-i18next'
 import {useDispatch, useSelector} from 'react-redux';
@@ -17,7 +11,7 @@ import {useEffect} from 'react';
 import ChatbotMar from '../Chatbox/ChatBot'
 import { useAuth0 } from '@auth0/auth0-react'
 import CarouselSM from './newHomeResources/CarouselSM';
-import {getAllFavorites} from "../../Redux/Actions/ActionsDetail";
+
 
 
 
@@ -48,19 +42,11 @@ export default function NewHome() {
 
   return (
     <div className={style.div}>
-      <Nav/>
-
-
       <div className={'xl:mt-20 w-full max-w-screen-xl flex flex-col xl:flex-row xl:max-h-limitHnewHome'}>
-
         <div className='basis-6/12 xl:space-y-8 p-6 flex flex-col justify-center'>
           <h1 className='text-neutral-300 text-4xl md:text-5xl text-center xl:text-start'>{t("newHomeTitle.newHomeTitle")}</h1>
-
-
            <div className='xl:hidden basis-5/12 flex flex-col items-center justify-center p-8'>
-
               <div onClick={()=> navigate('/collection/waifusion')} className='shadow-2xl shadow-purple-700 flex flex-col  rounded-lg hover:shadow-white'>    
-
                 <img className='max-h-limitHS md:max-h-limitHM xl:max-h-limitH max-w-xl m-4 rounded-2xl' src={'https://lh3.googleusercontent.com/N9PAvOmcM6aKvnO4lthhz_cNvs1uGykOdHqL4FSFRB97jGqWCeoK0tG8-IwI7TVY7-CK5F60mB7cxK-vl70IrMoDfpG_12QQBKSY9mc=w600'}></img>
                 <div className='flex m-4 items-center'>              
                   <img className='rounded-full h-10 w-10' src={'https://lh3.googleusercontent.com/TrltscwBLgNJMM_jgHDU9f1GMR5xEfvC2SNwyqest2_3yN6icrtWQIvQTJRTA1WyGKP3qkOskrHMGyKDiXclLC0BWTB77mD0BWQ5xg=s168'}></img>

@@ -82,10 +82,14 @@ const ButtonsDetails = ({ isActive }) => {
   }
 
   return (
-    <div className='flex flex-col md:flex-row space-around mt-20 space-y-4 md:space-y-0'>
-
-        <button onClick={(e) => isAuthenticated ? handleBuyNow(e) : loginWithRedirect()} disabled={!isActive} className='basis-4/12 bg-purple-700 enabled:hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl disabled:opacity-75 disabled:cursor-not-allowed'>{t('buyNow.buyNow')}</button>
-        <button onClick={(e) => isAuthenticated ? handleAddToCart(e) : loginWithRedirect()} disabled={!isActive} className='basis-4/12 bg-purple-700 enabled:hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl disabled:opacity-75 disabled:cursor-not-allowed'>{t('AddToCart.AddToCart')}</button>
+    <div >
+      {isActive
+        ? <div className='flex flex-col md:flex-row space-around mt-20 space-y-4 md:space-y-0'>
+          <button onClick={(e) => isAuthenticated ? handleBuyNow(e) : loginWithRedirect()} className='basis-4/12 bg-purple-700 enabled:hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('buyNow.buyNow')}</button>
+          <button onClick={(e) => isAuthenticated ? handleAddToCart(e) : loginWithRedirect()} className='basis-4/12 bg-purple-700 enabled:hover:bg-purple-900 mx-8 text-2xl py-4 rounded-2xl'>{t('AddToCart.AddToCart')}</button>
+        </div>
+        : <button className='basis-4/12 bg-purple-700  mx-8 text-2xl cursor-not-allowed opacity-50 py-4 rounded-2xl disabled:opacity-75 disabled:cursor-not-allowed'>Sold out</button>
+      }
 
     </div>
   )
