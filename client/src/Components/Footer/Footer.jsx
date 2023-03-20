@@ -1,14 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import footer from '../Footer/Footer.module.css'
 import { useTranslation } from 'react-i18next'
+import axios from 'axios'
+
+import { useNavigate } from 'react-router-dom'
 const Footer = () => {
+  const navigate = useNavigate()
+
   const [t] = useTranslation('faq')
+  const { id } = useSelector(state => state.User)
+
+  const [inputReview, setinputReview] = useState()
+  const handleInputReview = (e) => {
+    setinputReview(e.target.value.replace(/[^A-Za,-z0-9-]/g, ' '))
+  }
+  const goToReview = () => {
+    navigate('/review')
+  }
+  async function handleButtonReview (description) {
+    axios.post('/review', { description, id })
+      .then(res => console.log(res))
+  }
+
   return (
     <div className={footer.Container}>
       <div className="flex justify-center items-center lg:justify-between p-6 border-b ">
-        <div className="mr-12 hidden lg:block">
+        {/* <div className="mr-12 hidden lg:block">
           <span className="text-violet-500 text-lg"> {t('Contact Us.Contact Us')}</span>
-        </div>
+        </div> */}
         {/* <div className="flex justify-center">
           <a href="#!" className="mr-6 text-violet-500">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f"
@@ -95,37 +115,46 @@ const Footer = () => {
               )}
             </h6>
             <p className="mb-4">
-              <a href="#!" className="text-violet-500">React</a>
+              <p className="text-violet-500">React</p>
             </p>
             <p className="mb-4">
-              <a href="#!" className="text-violet-500">Redux</a>
+              <p className="text-violet-500">Redux</p>
             </p>
             <p className="mb-4">
-              <a href="#!" className="text-violet-500">Express</a>
+              <p className="text-violet-500">Express</p>
             </p>
             <p className="mb-4">
-              <a href="#!" className="text-violet-500">Sequelize</a>
+              <p className="text-violet-500">Sequelize</p>
             </p>
             <p className="mb-4">
-              <a href="#!" className="text-violet-500">Postgres</a>
+              <p className="text-violet-500">Postgres</p>
             </p>
             <p>
-              <a href="#!" className="text-violet-500">Node.js</a>
+              <p className="text-violet-500">Node.js</p>
             </p>
           </div>
           <div className="">
-            <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start text-yellow-400">
-              Links
-            </h6>
-            <p className="mb-4">
+          <p className="mb-4">
               <a href="/faq" className="text-violet-500">FAQ</a>
             </p>
+          <p className="mb-4">
+              <a href="/team" className="text-violet-500 font-bold
+              ">MEET THE TEAM</a>
+            </p>
+            {/* <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start text-yellow-400">
+              Links
+            </h6>
+
             <p className="mb-4">
               <a href="" className="text-violet-500">My User</a>
             </p>
             <p className="mb-4">
               <a href="/home" className="text-violet-500">Home</a>
+            </p> */}
+            <p className="mb-4 text-orange-400">LEAVE A COMMENT<textarea placeholder= 'max text length is 100' onChange={handleInputReview} className='h-28 mr-20 pl-2 bg-transparent border-white border rounded-lg  text-neutral-300' ></textarea>
             </p>
+            <button onClick={() => handleButtonReview(inputReview)} className=' bg-violet-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded' >Send</button>
+            <button onClick={() => goToReview()} className=' ml-2 bg-violet-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded' >go to Reviews</button>
 
           </div>
           <div className="">
@@ -238,7 +267,9 @@ const Footer = () => {
                 </svg> </a>
 
                 </span> LinkedIn Nicolás Suarez
+
             </p>
+
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ export default function Checkout () {
 
   const { BuyNow, Cart } = useSelector(state => state)
   const checkoutNft = BuyNow.length ? BuyNow : Cart
-  const ethereumValue = useSelector(state => state.Conv.ethereum.usd)
+  const ethereumValue = useSelector(state => state.Conv.ethereum?.usd)
 
   useEffect(() => {
     let totalBuy = 0

@@ -9,6 +9,7 @@ const modelLike = require('./models/Like.js')
 const modelShoppingCar = require('./models/ShoppingCar.js')
 const modelCollection = require('./models/Collection.js')
 const modelReport = require('./models/Report.js')
+const modelReview = require('./models/Review')
 
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env
 // process.env.DATABASE_URL ||
@@ -16,7 +17,7 @@ const sequelize = new Sequelize(
   process.env.DATABASE_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/marketplace`,
   {
     logging: false,
-    /* native: false */
+    // native: false
     dialectOptions: {
       ssl: {
         require: true,
@@ -25,6 +26,7 @@ const sequelize = new Sequelize(
     }
   }
 )
+
 /**
  * Create models in database
  */
@@ -37,6 +39,7 @@ modelFavorite(sequelize)
 modelLike(sequelize)
 modelShoppingCar(sequelize)
 modelReport(sequelize)
+modelReview(sequelize)
 
 /**
  * create relationship
@@ -50,7 +53,6 @@ const {
   favorite,
   like,
   shoppingCar
-  // report
 } = sequelize.models
 
 category.hasMany(collection)
@@ -59,6 +61,22 @@ collection.belongsTo(category)
 // User creator
 user.hasMany(collection)
 collection.belongsTo(user)
+
+user.hasMany(nft, {
+  foreignKey: 'ownerId'
+})
+
+nft.belongsTo(user, {
+  foreignKey: 'ownerId'
+})
+
+user.hasMany(nft, {
+  foreignKey: 'creatorId'
+})
+
+nft.belongsTo(user, {
+  foreignKey: 'creatorId'
+})
 
 collection.hasMany(nft)
 nft.belongsTo(collection)

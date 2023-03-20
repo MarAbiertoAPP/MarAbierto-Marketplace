@@ -5,44 +5,64 @@ import { Dialog, Transition } from '@headlessui/react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
+import { useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios'
 // import { removeFromCart } from '../../Redux/Actions/ActionsCart'
 import { FaTrashAlt } from 'react-icons/fa'
 import Modal from '../ModalDelete/ModalDeleteFromCart'
 import { Link } from 'react-router-dom'
 import { getEthereumConv } from '../../Redux/Actions/Convertion'
-import { cleanAllCart } from '../../Redux/Actions/ActionsCart'
+import { getAllCart } from '../../Redux/Actions/ActionsCart'
+import { createUser, userFromLocalStorage } from '../../Redux/Actions'
 
-export function Cart ({ open, setOpen }) {
+export default function Cart ({ open, setOpen }) {
+  const { isAuthenticated, user } = useAuth0()
+
   const dispatch = useDispatch()
   const ethereumValue = useSelector(state => state.Conv.ethereum)
-
+  // const { user } = useAuth0()
   const ethValue = ethereumValue?.usd
   const cartToBuy = useSelector(state => state.Cart)
+
+  const userId = useSelector(state => state.User?.id)
+
   Cart.propTypes = {
     open: PropTypes.bool,
     setOpen: PropTypes.func
+
   }
   const handleCleanCart = () => {
-    dispatch(cleanAllCart())
+    axios.delete(`/car/${userId}`)
+      .then(res => dispatch(getAllCart(userId)))
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+
+    if (isAuthenticated) {
+      dispatch(createUser(user))
+      dispatch(userFromLocalStorage())
+    }
+  }, [isAuthenticated])
+
   useEffect(() => {
     dispatch(getEthereumConv())
-    localStorage.setItem('Cart', JSON.stringify(cartToBuy))
-  }, [cartToBuy])
+    dispatch(getAllCart(userId))
+  }, [userId])
 
   let totalBuy = 0
   // const total = Number(totalBuy.toFixed(4))
-  cartToBuy.map(item => {
+
+  cartToBuy?.map(item => {
     totalBuy = totalBuy + Number(item.price.toFixed(3))
     return totalBuy
-  }
-
-  )
+  })
 
   const [popModal, setPopModal] = useState(false)
 
   const handleDelete = (e) => {
     setPopModal(true)
+
     idDelete.current = e
   }
   const idDelete = useRef()
@@ -95,11 +115,11 @@ export function Cart ({ open, setOpen }) {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {cartToBuy.map((e) => (
+                            {cartToBuy?.map((e) => (
                               <li key={e.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border bg-pink-500 opacity-100 border-gray-200">
                                   <img
-                                    src={e.image}
+                                    src={e.img}
                                     alt={e.title}
                                     className="h-full w-full object-cover object-center"
                                   />
@@ -127,9 +147,7 @@ export function Cart ({ open, setOpen }) {
                                       <FaTrashAlt
                                       type="button"
                                       className="font-medium text-lime-500 hover:text-indigo-500 cursor-pointer "
-                                      onClick={ () => handleDelete(e.id)
-
-                                      }
+                                      onClick={(event) => handleDelete(e.id)}
                                         />
 
                                     </div>

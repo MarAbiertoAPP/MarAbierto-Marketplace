@@ -1,9 +1,10 @@
 const { nft, collection /* favorite */ } = require('../db.js')
+// const User = require('../models/User.js')
 const { getCollectionIdByName } = require('./collection.js')
-// const { findUser } = require('../utils/user')
+const { findUser } = require('../utils/user')
 
 // Create nft
-const createNFT = async (title, description, img, price, collectionName, id) => {
+const createNFT = async (title, description, img, price, collectionName, ownerId, creatorId) => {
   try {
     const collection = await getCollectionIdByName(collectionName)
     const collectionId = collection.id
@@ -13,9 +14,49 @@ const createNFT = async (title, description, img, price, collectionName, id) => 
       img,
       price,
       collectionId,
-      id
+      ownerId,
+      creatorId
     })
   } catch (error) {
+    throw error.message
+  }
+}
+
+const returnAllBanned = async () => {
+  try {
+    return await nft.findAll({
+      where: {
+        isBanned: true
+      }
+    })
+  } catch (error) {
+    console.log(error)
+    throw error.message
+  }
+}
+
+const banANft = async (id) => {
+  try {
+    return await nft.update({ isBanned: true }, {
+      where: {
+        id
+      }
+    })
+  } catch (error) {
+    console.log(error)
+    throw error.message
+  }
+}
+
+const unbanANft = async (id) => {
+  try {
+    return await nft.update({ isBanned: false }, {
+      where: {
+        id
+      }
+    })
+  } catch (error) {
+    console.log(error)
     throw error.message
   }
 }
@@ -23,14 +64,27 @@ const createNFT = async (title, description, img, price, collectionName, id) => 
 // get Nft per id incluide name of user and category
 const getNftId = async (id) => {
   try {
-    return await nft.findOne({
+    const gonorrea = await nft.findOne({
       where: { id },
-      attributes: ['id', 'title', 'description', 'img', 'price', 'isActive'],
+      attributes: ['id', 'title', 'description', 'img', 'price', 'isActive', 'isBanned', 'ownerId'],
       include: [{
         model: collection,
         attributes: ['name', 'description']
-      }]
+      }
+      ]
     })
+    const response = {
+      id: gonorrea.id,
+      title: gonorrea.title,
+      description: gonorrea.description,
+      img: gonorrea.img,
+      price: gonorrea.price,
+      isActive: gonorrea.isActive,
+      isBanned: gonorrea.isBanned,
+      collection: gonorrea.collection,
+      ownerId: await findUser(gonorrea.ownerId)
+    }
+    return response
   } catch (error) {
     throw error.message
   }
@@ -47,10 +101,73 @@ const deleteAllNft = async () => {
   }
 }
 
+const statusNft = async (cart, idOwner) => {
+  try {
+    const nftC = await cart.map(async e => {
+      await nft.update({ ownerId: idOwner, isActive: false }, { where: { id: e.id } })
+    })
+    console.log(nftC)
+    return nftC
+  } catch (error) {
+    throw error.message
+  }
+}
+
+const statusMultipleNft = async (ids, ownerId) => {
+  try {
+    for (let i = 0; i < ids.length; i++) {
+      const nftC = await nft.findByPk(ids[i])
+      const isActive = !nftC.isActive
+      await nftC.update({
+        ownerId,
+        isActive
+      })
+    }
+    return 'successfully changed'
+  } catch (error) {
+    throw error.message
+  }
+}
+
+const getPerUserId = async (ownerId) => {
+  try {
+    return await nft.findAll(
+      {
+        where: {
+          ownerId
+        }
+      }
+    )
+  } catch (error) {
+    throw error.message
+  }
+}
+
+const getPerCreatorId = async (creatorId) => {
+  try {
+    return await nft.findAll(
+      {
+        where: {
+          creatorId
+        }
+      }
+    )
+  } catch (error) {
+    throw error.message
+  }
+}
+
 module.exports = {
   createNFT,
   getNftId,
+  statusNft,
   // addFavorite,
   // getFavoritesPerId,
-  deleteAllNft
+  deleteAllNft,
+  banANft,
+  unbanANft,
+  returnAllBanned,
+  getPerUserId,
+  statusMultipleNft,
+  getPerCreatorId
 }

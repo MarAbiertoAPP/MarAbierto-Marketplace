@@ -12,7 +12,7 @@ export default function ItemsCart () {
   let totalBuy = 0
   const checkoutNft = BuyNow.length ? BuyNow : Cart
 
-  checkoutNft.map(item => {
+  checkoutNft?.map(item => {
     totalBuy = totalBuy + Number(item.price.toFixed(3))
     return totalBuy
   })
@@ -21,7 +21,7 @@ export default function ItemsCart () {
     return () => { dispatch(cleanBuyNow()) }
   }, [])
 
-  checkoutNft.sort((a, b) => a.title.localeCompare(b.title))
+  checkoutNft?.sort((a, b) => a.title.localeCompare(b.title))
 
   return (
     <div>
@@ -41,7 +41,7 @@ export default function ItemsCart () {
                     <div
                       className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border bg-pink-500 opacity-100 border-gray-200">
                       <img
-                        src={e.image}
+                        src={e.img}
                         alt={e.title}
                         className="h-full w-full object-cover object-center"
                       />

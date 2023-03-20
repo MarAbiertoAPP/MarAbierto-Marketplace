@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { filterCollecByCategory, getAllCategories, setPageCollec } from '../../../Redux/Actions'
 import { useTranslation } from 'react-i18next'
+
 function FilterCollections () {
   const [t] = useTranslation('faq')
   const dispatch = useDispatch()
@@ -19,6 +20,7 @@ function FilterCollections () {
 
   const handleClick = (e) => {
     const { value } = e.target
+    console.log(value)
     if (e.target.checked) {
       setChecked([value])
       if ([value].length > 0) {
@@ -33,6 +35,16 @@ function FilterCollections () {
       if ([...checked.filter(c => c !== value)].length === 0) {
         dispatch(filterCollecByCategory(null))
       }
+    }
+    dispatch(setPageCollec(1))
+  }
+
+  function handleSelectChanges (e) {
+    e.preventDefault()
+    console.log(e.target.value)
+    setChecked([e.target.value])
+    if ([e.target.value].length > 0) {
+      dispatch(filterCollecByCategory([e.target.value].join('_')))
     }
     dispatch(setPageCollec(1))
   }
@@ -85,11 +97,25 @@ function FilterCollections () {
   }
 
   return (
-    <div className='w-full text-lime-600 flex space-x-10 mt-8'>
-         <button onClick={handleClick} value='All' checked={!!checkedState} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current capitalize'>All</button>
-    {allCategories?.map(e => {
-      return <button key={e.id} value={e.name} checked={!!checkedState} id={e.id} onClick={handleClick} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current capitalize'>{t(`${e.name}.${e.name}`)}</button>
-    })}
+    <div className='w-full'>
+
+      <div className='hidden xl:flex w-full text-lime-600 flex space-x-10 mt-8'>
+           <button onClick={handleClick} value='All' checked={!!checkedState} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current capitalize'>All</button>
+      {allCategories?.map(e => {
+        return <button key={e.id} value={e.name} checked={!!checkedState} id={e.id} onClick={handleClick} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current capitalize'>{t(`${e.name}.${e.name}`)}</button>
+      })}
+      </div>
+      <div className='w-full flex justify-center text-center xl:hidden'>
+
+      <select onChange={e => handleSelectChanges(e)} className='w-8/12 text-center h-8 rounded-lg bg-transparent text-neutral-300 border-2 border-purple-700 outline-none'>
+        <option value='All' checked={!!checkedState} className='bg-gray-900 text-purple-700 py-4'>All</option>
+        {allCategories?.map(e => {
+          return <option key={e.id} value={e.name} id={e.id} className='bg-gray-900 text-purple-700 py-4 capitalize'>{t(`${e.name}.${e.name}`)}</option>
+        })}
+
+      </select>
+      </div>
+
     </div>
   )
 }

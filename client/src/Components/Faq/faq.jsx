@@ -18,15 +18,14 @@ export default function Faq () {
 
   return (
 
-    <motion.div
+      <motion.div
     className={style.main}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
     >
-
+<Nav/>
     <main className={style.wrapper}>
-    <Nav/>
 
         <div className={style.image__wrapper}>
             <div className={style.image__wrapper_inner}>
@@ -56,6 +55,8 @@ export default function Faq () {
 
     </div>
     </main>
+
 </motion.div>
+
   )
 }

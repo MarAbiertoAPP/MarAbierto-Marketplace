@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './CollectionNewHome.module.css'
 
 // import foto from '../../assests/demo/fotouser.jpeg'
 
 import Nav from '../UI/Nav/Navigation'
 import Card from '../UI/Card/Card'
-import { FaDiscord, FaTwitter, FaShareAlt } from 'react-icons/fa'
+// import { FaDiscord, FaTwitter, FaShareAlt } from 'react-icons/fa'
 import { RiFilterFill, RiFilterOffFill } from 'react-icons/ri'
 import { BsGridFill, BsGrid3X3GapFill } from 'react-icons/bs'
-import { AiFillStar, AiOutlineMore } from 'react-icons/ai'
+// import { AiFillStar, AiOutlineMore } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { cleanCollectionByName, getCollectionByName } from '../../Redux/Actions'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import SearchBar from './SearchBar'
 import FilterPrice from './FilterPrice'
+import ChatbotMar from '../Chatbox/ChatBot'
 
 export default function CollectionNewHome (props) {
   const [t] = useTranslation('faq')
@@ -22,6 +23,7 @@ export default function CollectionNewHome (props) {
   const { name } = useParams()
   const [width, setWidth] = useState(false)
   const [filt, setFilt] = useState(false)
+  const userId = useSelector(state => state.User.id)
 
   const changeWidth = () => {
     setWidth(!width)
@@ -30,6 +32,15 @@ export default function CollectionNewHome (props) {
   const { CollName } = useSelector(state => state)
   const { title } = useSelector(state => state.filterCollec)
   const { price } = useSelector(state => state.filterCollec)
+  const NftPrices = useSelector(state => state.CollName?.nfts)
+  const maxNftPrice = []
+  console.log(CollName.collectionS?.user?.name)
+
+  NftPrices?.length
+    ? NftPrices.map((el) => maxNftPrice.push(el.price))
+    : maxNftPrice.push(0)
+  const maxPriceNft = NftPrices && Math.max(...maxNftPrice)
+  const minPriceNft = NftPrices && Math.min(...maxNftPrice)
 
   useEffect(() => {
     const collectionCofig = {
@@ -48,19 +59,19 @@ export default function CollectionNewHome (props) {
       <div className='w-full max-w-screen-xl my-12'>
         <img className='w-full h-96 object-cover' src={CollName.collectionS?.frontPage}></img>
 
-        <div className='w-full flex'>
+        <div className='w-full flex flex-col xl:flex-row'>
 
-            <div className='basis-8/12'>
-              <img className='ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={CollName.collectionS?.mini}></img>
-              <div className='flex flex-col space-y-2 text-start mt-2'>
+            <div className='basis-8/12 flex flex-col items-center xl:items-start'>
+              <img className='xl:ml-14 -mt-40 h-56 w-56 rounded-full shadow-purple-900 shadow-2xl' src={CollName.collectionS?.mini}></img>
+              <div className='flex flex-col space-y-2 text-center xl:text-start mt-2'>
                 <h1 className='text-purple-700 text-3xl font-bold capitalize'>{CollName.collectionS?.name}</h1>
-                <h1 className='text-neutral-300 text-xl'>{'By: \'user of collection \' '}</h1>
+                <h1 className='text-neutral-300 text-xl'>By: {CollName.collectionS?.user?.name} </h1>
                 <h1 className='text-neutral-300 text-lg'>{CollName.collectionS?.description}</h1>
               </div>
 
             </div>
 
-            <div className='basis-4/12 flex space-x-8 mt-4'>
+            {/* <div className='basis-4/12 flex space-x-8 mt-4'>
                 <div className='flex space-x-10 h-fit items-center'>
 
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-neutral-300" viewBox="0 0 20 20" fill="currentColor">
@@ -74,34 +85,34 @@ export default function CollectionNewHome (props) {
                   <AiOutlineMore className='text-6xl font-bold text-neutral-300'/>
                   </div>
 
-                </div>
+                </div> */}
         </div>
 
-        <div className=' flex mt-4'>
-          <div className='space-x-20 basis-8/12 flex'>
+        <div className=' flex mt-4 justify-center xl:justify-start'>
+          <div className='space-x-20 flex'>
 
             <div className='flex flex-col'>
               <h1 className='text-purple-700 font-semibold text-3xl'>{CollName.nfts?.length}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>Items</h1>
             </div>
 
-            <div className='flex flex-col'>
+            {/* <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'1.6K'}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('owner.owner')}</h1>
             </div>
-
-            <div className='flex flex-col'>
+ */}
+            {/* <div className='flex flex-col'>
               <h1 className='text-purple-700  font-semibold text-3xl'>{'3000'}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('solded.solded')}</h1>
-            </div>
+            </div> */}
 
             <div className='flex flex-col'>
-              <h1 className='text-purple-700  font-semibold text-3xl'>{'1.4'}</h1>
+              <h1 className='text-purple-700  font-semibold text-3xl'>{minPriceNft || 0}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('floorPrice.floorPrice')}</h1>
             </div>
 
             <div className='flex flex-col'>
-              <h1 className='text-purple-700 font-semibold text-3xl'>{'44.4'}</h1>
+              <h1 className='text-purple-700 font-semibold text-3xl'>{maxPriceNft || 0}</h1>
               <h1 className='text-neutral-300 text-xl font-bold'>{t('CeilPrice.CeilPrice')}</h1>
             </div>
 
@@ -112,7 +123,7 @@ export default function CollectionNewHome (props) {
         <div className='w-full mt-8 flex justify-between items-center border border-x-transparent border-t-transparent border-b-white pb-2'>
           < SearchBar/>
           <div className='flex'>
-            <div className='basis-1/12  flex place-content-around p-2' >
+            <div className='basis-1/12  flex place-content-around p-2 hidden md:flex' >
               {width ? <button className='text-orange-500 text-2xl' onClick={changeWidth }><BsGridFill/></button> : <button className='text-orange-500 text-3xl ' onClick={changeWidth }><BsGrid3X3GapFill/></button> }
             </div>
             <div className='basis-1/12  flex place-content-around p-2' >
@@ -130,11 +141,13 @@ export default function CollectionNewHome (props) {
           }
             <div className=' w-full  flex flex-row flex-wrap justify-center '>
               {CollName.nfts?.map(e => {
-                return <Card key={e.id} title={e.title} image={e.img} price={e.price} id={e.id} secondWidth={width} />
+                return <Card key={e.id} title={e.title} image={e.img} price={e.price} userId={userId} secondWidth={width} nftId={e.id} isActive={e.isActive}/>
               })}
           </div>
         </div>
-
+        <div className="z-10 md:z-50 fixed bottom-10 right-0">
+          <ChatbotMar />
+          </div>
       </div>
     </div>
   )

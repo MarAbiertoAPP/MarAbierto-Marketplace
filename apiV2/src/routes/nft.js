@@ -1,13 +1,15 @@
 const { Router } = require('express')
 const router = Router()
 const { nft, Op, collection, user } = require('../db.js')
-const { createNFT, getNftId, addFavorite, getFavoritesPerId } = require('../utils/nft')
+const {
+  createNFT, getNftId, addFavorite, getFavoritesPerId, banANft, unbanANft, returnAllBanned, getPerUserId,
+  getPerCreatorId
+} = require('../utils/nft')
 
 // Route GET with search by name and filters
 // params came by body
 // pagination came by query
 router.get('/', async (req, res) => {
-  console.log('in')
   try {
     const input = req.query
     // Get query to order
@@ -71,11 +73,11 @@ router.get('/', async (req, res) => {
 
 // Route to create a NFT
 router.post('/', async (req, res) => {
-  console.log(req.body)
   try {
-    const { title, description, img, price, collectionName, id } = req.body
-    const response = await createNFT(title, description, img, price, collectionName, id)
-    return res.status(200).send(response)
+    const { title, description, img, price, collectionName, ownerId, creatorId } = req.body
+    const response = await createNFT(title, description, img, price, collectionName, ownerId, creatorId)
+    console.log(response)
+    return res.status(200).send('nftCreada')
   } catch (error) {
     return res.status(400).send({ msg: error })
   }
@@ -94,7 +96,7 @@ router.post('/add', async (req, res) => {
         path: n.img,
         price: n.price,
         userId: n.userId,
-        categoryId: n.categoryId
+        collectionName: n.collectionName
       })
     })
 
@@ -131,6 +133,55 @@ router.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params
     const response = await getNftId(id)
+    return response ? res.status(200).send(response) : res.status(400).send({ msg: 'Not found' })
+  } catch (error) {
+    return res.status(400).send({ msg: error })
+  }
+})
+
+router.post('/bannft', async (req, res) => {
+  try {
+    const { id } = req.body
+    await banANft(parseInt(id))
+    return res.status(201).json({ res: 'NFT is now banned' })
+  } catch (err) {
+    res.status(500).send({ error: 'Algo ha ocurrido 1' })
+  }
+})
+
+router.post('/unbannft', async (req, res) => {
+  try {
+    const { id } = req.body
+    await unbanANft(parseInt(id))
+    return res.status(201).json({ res: 'NFT is now unbanned' })
+  } catch (err) {
+    res.status(500).send({ error: 'Algo ha ocurrido 2' })
+  }
+})
+
+router.get('/allbanned', async (req, res) => {
+  try {
+    const response = await returnAllBanned()
+    return response ? res.status(200).send(response) : res.status(400).send({ msg: 'Not found' })
+  } catch (error) {
+    return res.status(400).send({ msg: error })
+  }
+})
+
+router.get('/owner/:ownerId', async (req, res) => {
+  try {
+    const { ownerId } = req.params
+    const response = await getPerUserId(ownerId)
+    return response ? res.status(200).send(response) : res.status(400).send({ msg: 'Not found' })
+  } catch (error) {
+    return res.status(400).send({ msg: error })
+  }
+})
+
+router.get('/creator/:creatorId', async (req, res) => {
+  try {
+    const { creatorId } = req.params
+    const response = await getPerCreatorId(creatorId)
     return response ? res.status(200).send(response) : res.status(400).send({ msg: 'Not found' })
   } catch (error) {
     return res.status(400).send({ msg: error })

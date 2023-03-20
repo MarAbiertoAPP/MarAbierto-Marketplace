@@ -6,7 +6,6 @@ import { AiOutlineRight, AiOutlineLeft, AiOutlineDoubleLeft, AiOutlineDoubleRigh
 export default function Pagination () {
   const dispatch = useDispatch()
   const { page, max } = useSelector(state => state.filterCollec)
-  console.log(max)
 
   const handleClick = (e) => {
     e.preventDefault()

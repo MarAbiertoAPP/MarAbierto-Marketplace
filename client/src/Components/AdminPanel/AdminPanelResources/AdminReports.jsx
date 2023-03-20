@@ -1,16 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from '../AdminPanel.module.css'
 import CardReport from './CardReport'
+import axios from 'axios'
 
 export default function AdminReports () {
+  const [report, setReport] = useState([])
+  useEffect(() => {
+    async function getData () {
+      const response = await axios.get('https://marabierto.herokuapp.com/report').then(r => r.data)
+      setReport(response)
+    }
+    getData()
+  })
   return (
     <div className='w-full flex flex-col items-center'>
 
       <div className={`${style.scrollBar} my-8 w-full px-10  overflow-scroll overflow-x-hidden space-y-10`}>
-        <CardReport type='user' target='gatingatito' description={`
-Lorem Ipsum is aaa aaa aaa simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuriesa.`}/>
-        <CardReport type='nft' target='15'/>
-        <CardReport type='collection' target='waifusion'/>
+        {report?.map(e => {
+          return <CardReport key={e.id} type={e.type} description={e.description} id={e.id} target={e.target}/>
+        })}
+
+        {!report.length && <h1 className='text-neutral-300 text-center text-6xl'>
+            All reports have been resolved!
+          </h1>}
       </div>
 
     </div>

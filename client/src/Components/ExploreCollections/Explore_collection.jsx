@@ -5,24 +5,25 @@ import CardExploreCollections from './ExploreCollectionsResources/CardExploreCol
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
-import { createUser, getFilterCollection, setPageMaxCollec } from '../../Redux/Actions'
+import { /* createUser, */ getFilterCollection, setPageMaxCollec } from '../../Redux/Actions'
 import PaginationCollection from './PaginationCollection/PaginationCollection'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import FilterCollections from './FiltersCollections/FilterCollections'
-import { useAuth0 } from '@auth0/auth0-react'
+import ChatbotMar from '../Chatbox/ChatBot'
+/* import { useAuth0 } from '@auth0/auth0-react' */
 
 const ExploreCollection = () => {
   const dispatch = useDispatch()
-  const { isAuthenticated, user } = useAuth0()
+  /* const { isAuthenticated } = useAuth0() */
   const [t] = useTranslation('faq')
 
   useEffect(() => {
     dispatch(getFilterCollection())
     window.scrollTo(0, 0)
-    if (isAuthenticated) {
+    /* if (isAuthenticated) {
       dispatch(createUser(user))
-    }
+    } */
   }, [])
 
   // const handleClick = (e) => {
@@ -113,18 +114,22 @@ const ExploreCollection = () => {
   return (
     <div className={style.div}>
       <Nav/>
+
       <div className='mt-16 w-full max-w-screen-xl'>
-      <h1 className='text-3xl text-white'>{t('ExploreCollections.ExploreCollections')}</h1>
+      <h1 className='text-center xl:text-start text-3xl text-white'>{t('ExploreCollections.ExploreCollections')}</h1>
 
       <div className='w-full flex space-x-10 mt-8'>
       <FilterCollections/>
-
+      <div className=" z-10 md:z-50 fixed bottom-10 right-0">
+          <ChatbotMar />
+          </div>
       </div>
       <div className='w-full mt-10 flex flex-row flex-wrap justify-center'>
         {dataAPI && dataAPI.collections?.map(({ name, frontPage, id, mini }) => frontPage
           ? <CardExploreCollections key={id} id={id} frontPage={frontPage} mini={mini} name={name}/>
           : null)}
       </div>
+
 <PaginationCollection/>
       </div>
     </div>

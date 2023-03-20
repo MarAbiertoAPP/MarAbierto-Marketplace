@@ -1,6 +1,6 @@
 DB_USER=postgres
-DB_PASSWORD=2jmk3218
-DB_HOST=http://186.145.234.49/
+DB_PASSWORD=pass1234
+DB_HOST=localhost
 HOST=http://127.0.0.1:3001/
 DATABASE_URL=postgres://dpgvrvhjuwdmpe:3f79f90872f2e92aa1dc537add8b2810f146123d051f9215bcc8730d33be548b@ec2-100-26-39-41.compute-1.amazonaws.com:5432/d4hp6tmunj0qqq
 PORT=3001

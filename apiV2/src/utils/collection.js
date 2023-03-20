@@ -17,7 +17,7 @@ const createCollection = async (userId, name, categoryId, frontPage, mini, descr
   }
 }
 
-// Get collection per name
+// Get collection per name, exclude banned nfts
 const getCollectionByName = async (name) => {
   try {
     return await collection.findOne({
@@ -75,20 +75,23 @@ const getCollectionPerID = async (id, title, price) => {
     })
     const whereQuery = {}
     whereQuery.collectionId = id
+    whereQuery.isBanned = { [Op.not]: true }
     if (title) whereQuery.title = { [Op.iLike]: `%${title}%` }
     if (price) {
       const priceMinMax = price.split('_')
       whereQuery.price = { [Op.between]: [Number(priceMinMax[0]), Number(priceMinMax[1])] }
     }
+    // if attribute isBanned is true, then it is not included in the query
     const nfts = await nft.findAll({
       where: whereQuery,
-      attributes: ['id', 'title', 'description', 'img', 'price', 'isActive'],
+      attributes: ['id', 'title', 'description', 'img', 'price', 'isActive', 'isBanned'],
       include: [{
         model: collection,
         attributes: ['id', 'name']
       }]
     })
     console.log(nfts.length)
+
     return {
       collectionS,
       nfts
@@ -118,7 +121,7 @@ const getCollectionIdByName = async (name) => {
       where: {
         name: eliminarDiacriticos(name).toLowerCase()
       },
-      attributes: ['id'],
+      attributes: ['id', 'userId'],
       raw: true,
       nest: true
     })

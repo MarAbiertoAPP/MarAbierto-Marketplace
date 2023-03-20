@@ -1,42 +1,54 @@
-import React from 'react'
+import React/* , { useEffect } */ from 'react'
 import PropTypes from 'prop-types'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../../Home/toast.css'
+import axios from 'axios'
 import { motion } from 'framer-motion'
 import { FaEthereum } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi'
 import { passDetail } from '../../../Redux/Actions/ActionsDetail'
-import { addToCart } from '../../../Redux/Actions/ActionsCart'
+import { getAllCart } from '../../../Redux/Actions/ActionsCart'
 import { useTranslation } from 'react-i18next'
-export default function Card ({ title, image, price, id, collectionName, secondWidth }) {
+
+export default function Card ({ title, image, price, nftId, collectionName, secondWidth, userId, isActive }) {
   const [t] = useTranslation('faq')
+  /* const { user } = useAuth0() */
   const dispatch = useDispatch()
   const handleDetail = () => {
     dispatch(passDetail({
       title,
       image,
       price,
-      id,
+      nftId,
+
       collectionName
     }))
   }
+  /* useEffect(() => {
+    dispatch(
+      getAllCart(userId))
+  }, []) */
 
   const { Cart } = useSelector(state => state)
+  /* const userId = useSelector(state => state.User.id) */
 
   Card.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
-    price: PropTypes.number,
-    id: PropTypes.number,
+    price: PropTypes.string,
+    nftId: PropTypes.number,
+    userId: PropTypes.string,
+    isActive: PropTypes.bool,
+
     collectionName: PropTypes.string,
     secondWidth: PropTypes.bool
   }
   const { isAuthenticated, loginWithRedirect } = useAuth0()
   const handleBuy = () => {
-    if (Cart.find(i => i.id === id)) {
+    if (Cart.find(i => i.id === nftId)) {
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-right',
@@ -68,38 +80,35 @@ export default function Card ({ title, image, price, id, collectionName, secondW
         icon: 'success',
         title: 'item added to your shopping cart'
       })
-      return dispatch(
-        addToCart({
-          title,
-          image,
-          price,
-          id
-        }
-        )
-      )
+
+      axios.post('/car', { nftId, userId })
+        .then((res) => dispatch(getAllCart(userId)))
     }
   }
 
   return (
     <motion.div
-    className={ secondWidth
-      ? 'w-60 mx-2 my-2 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]'
-      : 'w-72 mx-4 my-4 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]' }
+      className={secondWidth
+        ? 'w-60 mx-2 my-2 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]'
+        : 'w-72 mx-4 my-4 text-white border rounded-lg border-[#5c1c5c6b] p-4 relative hover:shadow-[0_10px_50px_1px_rgba(25,25,205,0.3)]  hover:border-[rgba(25,25,205,0.3)]'}
 
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
     >
-        <div className='h-72 box-border rounded-lg w-full'>
-          <Link className='flex justify-center' onClick={handleDetail} to={`/detail/${id}`}>
-            <img className='object-cover h-72 w-full rounded-lg' src={image} alt="pic"></img>
-          </Link>
-        </div>
-        <h2 className='text-base font-extrabold mt-4 capitalize'>{title}</h2>
-        <h3 className='text-sm capitalize'>{collectionName}</h3>
-        <div>
-          <p className='flex items-center py-3 pb-16 text-sm'>{`${t('nftPrice.price')}: ${price}`} <FaEthereum /></p>
-        </div>
-        <button className= { secondWidth ? 'w-4/6 flex justify-center items-center bg-purple-900/80 hover:bg-purple-700 py-2 rounded-xl absolute bottom-4 left-0 right-0 m-auto p-2 ' : 'w-4/6 flex justify-center items-center bg-purple-900/80 hover:bg-purple-700 py-2 rounded-full absolute bottom-4 left-0 right-0 m-auto p-2 '} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}><FiShoppingCart className= { secondWidth ? '   mr-4 text-orange-500' : ' mr-2 text-lime-500'} />{t('AddToCart.AddToCart')}</button>
+      <div className='h-72 box-border rounded-lg w-full'>
+        <Link className='flex justify-center' onClick={handleDetail} to={`/detail/${nftId}`}>
+          <img className='object-cover h-72 w-full rounded-lg' src={image} alt="pic"></img>
+        </Link>
+      </div>
+      <h2 className='text-base font-extrabold mt-4 capitalize'>{title}</h2>
+      <h3 className='text-sm capitalize'>{collectionName}</h3>
+      <div>
+        <p className='flex items-center py-3 pb-16 text-sm'>{`${t('nftPrice.price')}: ${price}`} <FaEthereum /></p>
+      </div>
+      {isActive
+        ? <button className={secondWidth ? 'w-4/6 flex justify-center items-center bg-purple-900/80 enabled:hover:bg-purple-700 py-2 rounded-xl absolute bottom-4 left-0 right-0 m-auto p-2 ' : 'w-4/6 flex justify-center items-center bg-purple-900/80 enabled:hover:bg-purple-700  py-2 rounded-full absolute bottom-4 left-0 right-0 m-auto p-2 '} onClick={(e) => isAuthenticated ? handleBuy(e) : loginWithRedirect()}><FiShoppingCart className={secondWidth ? '   mr-4 text-orange-500' : ' mr-2 text-lime-500'} />{t('AddToCart.AddToCart')}</button>
+        : <button className={secondWidth ? 'w-4/6 flex justify-center items-center bg-purple-900/80 py-2 opacity-50 cursor-not-allowed rounded-xl absolute bottom-4 left-0 right-0 m-auto p-2 ' : 'w-4/6 flex justify-center items-center bg-purple-900/80 opacity-50  py-2 rounded-full absolute cursor-not-allowed bottom-4 left-0 right-0 m-auto p-2 '}>Sold Out</button>
+      }
     </motion.div>
   )
 }

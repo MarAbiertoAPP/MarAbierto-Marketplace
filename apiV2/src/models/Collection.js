@@ -31,6 +31,10 @@ module.exports = (sequelize) => {
       validate: {
         notNull: true
       }
+    },
+    isBanned: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     timeStamps: false,

@@ -11,9 +11,10 @@ import {
   SET_PAGE_MAX,
   CREATE_USER,
   GET_ALL_CATEGORIES,
-  ADD_TO_CART,
+  CHANGE_NFT_STATUS,
+  /* ADD_TO_CART,
   REMOVE_FROM_CART,
-  REMOVE_ALL_FROM_CART,
+  REMOVE_ALL_FROM_CART, */
   CART_FROM_LOCAL_STORAGE,
   SET_MULTIPLE_FILTERS,
   GET_CLIENTE_SECRET,
@@ -21,7 +22,7 @@ import {
   DETAIL,
   FILTER_BY_TITLE_CAT,
   FILTER_BY_PRICE_CAT,
-  BUY_NOW, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC, CLEAN_COLLECTION_BY_NAME
+  BUY_NOW, CREATE_NFT_STATUS, CLEAN_BUY_NOW, GET_ETHEREUM_CONV, GET_ALL_COLLECTION, GET_COLLECTION_BY_NAME, GET_FILTER_COLLECTION, FILTER_COLLEC_BY_CATEGORY, SET_PAGE_COLLEC, SET_PAGE_MAX_COLLEC, CREATE_NFT_STATUS_FALSE, CLEAN_COLLECTION_BY_NAME, GET_ALL_CART, SUBMIT_REVIEW, GET_ALL_FAVORITES
 } from '../Actions/ActionsCreators'
 
 const initialState = {
@@ -36,12 +37,15 @@ const initialState = {
     max: undefined,
     cardsPerPage: 10
   },
+  created: false,
+  review: [],
   categories: [],
   filterBar: false,
   Cart: [],
   BuyNow: [],
   User: [],
   payData: [],
+  Favorites: [],
   detail: {},
   Conv: [],
   Collection: [],
@@ -62,6 +66,24 @@ export default function rootReducer (state = initialState, action) {
     case CREATE_NFT:
       return {
         ...state
+
+      }
+    case CREATE_NFT_STATUS:
+      return {
+        ...state,
+        created: !state.created
+      }
+    case SUBMIT_REVIEW:{
+      const { review, id } = action.payload
+      return {
+        ...state,
+        review: [...state.review, { review, id }]
+      }
+    }
+    case CREATE_NFT_STATUS_FALSE:
+      return {
+        ...state,
+        created: false
       }
 
     case FILTER_BY_PRICE:
@@ -184,29 +206,25 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state, User: action.payload
       }
-    case ADD_TO_CART:
-      return {
-        ...state,
-        Cart: [...state.Cart, action.payload]
-      }
 
-    case REMOVE_FROM_CART:
+    case GET_ALL_CART:
       return {
         ...state,
-        Cart: [...state.Cart.filter((item) => item.id !== action.payload)]
-      }
 
-    case REMOVE_ALL_FROM_CART:
-      return {
-        ...state,
         Cart: action.payload
+
+      }
+
+    case GET_ALL_FAVORITES:
+      return {
+        ...state,
+        Favorites: action.payload
       }
 
     case GET_CLIENTE_SECRET:
       return {
         ...state,
         payData: action.payload
-
       }
 
     case CART_FROM_LOCAL_STORAGE:
@@ -291,6 +309,10 @@ export default function rootReducer (state = initialState, action) {
           ...state.filterCollec,
           max: action.payload
         }
+      }
+    case CHANGE_NFT_STATUS:
+      return {
+        ...state
       }
 
     default:
