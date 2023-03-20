@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -86,9 +87,9 @@ function FilterCollections () {
 
   return (
     <div className='w-full text-lime-600 flex space-x-10 mt-8'>
-         <button onClick={handleClick} value='All' className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current capitalize'>All</button>
+         <button onClick={handleClick} value='All' checked={!!checkedState} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current capitalize'>All</button>
     {allCategories?.map(e => {
-      return <button key={e.id} value={e.name} id={e.id} onClick={handleClick} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current capitalize'>{t(`${e.name}.${e.name}`)}</button>
+      return <button key={e.id} value={e.name} checked={!!checkedState} id={e.id} onClick={handleClick} className='text-md text-white font-semibold  underline underline-offset-4 decoration-transparent decoration-solid hover:decoration-current capitalize'>{t(`${e.name}.${e.name}`)}</button>
     })}
     </div>
   )
