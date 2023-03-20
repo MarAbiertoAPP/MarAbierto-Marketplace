@@ -56,7 +56,7 @@ const CheckoutForm = () => {
   return (
     <form className='w-96 flex flex-col justify-center'>
       <PaymentElement />
-      <button disable ={!stripe} onClick={handleSubmit} className='text-white p-4 my-6 bg-purple-500 hover:bg-purple-900 rounded-lg'>
+      <button disabled={!stripe} onClick={handleSubmit} className='text-white p-4 my-6 bg-purple-500 hover:bg-purple-900 rounded-lg'>
         {loading
           ? (<div className='flex justify-center items-center'>
           <svg aria-hidden="true" className="mr-2 w-8 h-8 text-gray-200 flex justify-center align-center animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
